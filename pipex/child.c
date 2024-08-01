@@ -15,26 +15,28 @@
 int	ft_heredoc(char *here_doc, char *limiter)
 {
 	char	*line;
-	int		temp_fd;
+	int		tmp_fd;
 
-	temp_fd = open(here_doc, O_CREAT | O_RDWR | O_TRUNC, 0777);
+	tmp_fd = open(here_doc, O_CREAT | O_RDWR | O_TRUNC, 0777);
 	while (1)
 	{
 		ft_putstr_fd("heredoc > ", 1);
 		line = get_next_line(STDIN_FILENO);
 		if (!line)
 			break ;
-		if (ft_strncmp(line, limiter, ft_strlen(limiter) + 1) == 10)
+		if (ft_strncmp(line, limiter, ft_strlen(limiter)) == 0)
 		{
 			free(line);
 			break ;
 		}
-		write(temp_fd, line, ft_strlen(line));
+		write(tmp_fd, line, ft_strlen(line));
 		free(line);
 	}
-	close(temp_fd);
-	temp_fd = open(here_doc, O_RDONLY);
-	return (temp_fd);
+	close(tmp_fd);
+	tmp_fd = open(here_doc, O_RDONLY);
+	if (tmp_fd < 0 || unlink(here_doc) < 0) 
+		ft_error("Error: open or unlink");
+	return (tmp_fd);
 }
 
 void	ft_first_cmd(int (*fd)[2], char **argv, char **env)
@@ -56,7 +58,7 @@ void	ft_first_cmd(int (*fd)[2], char **argv, char **env)
 		dup2(fd_in, STDIN_FILENO);
 		dup2(fd[0][1], STDOUT_FILENO);
 		close(fd[0][0]);
-		ft_execute(argv[2], env);
+		ft_execute(argv[2 + (ft_strncmp("here_doc", argv[1], 9) == 0)], env);
 	}
 	close(fd_in);
 	close(fd[0][1]);

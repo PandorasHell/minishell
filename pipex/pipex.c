@@ -58,10 +58,7 @@ void	ft_pipex_bonus(int argc, char **argv, char **env)
 
 	here_doc = 0;
 	if (ft_strncmp(argv[1], "here_doc", 9) == 0)
-	{
 		here_doc = 1;
-		ft_heredoc(argv[2], argv[3]);
-	}
 	if (pipe(fd[0]) < 0)
 		ft_error("Error: pipe");
 	cmds = 2 + here_doc;
