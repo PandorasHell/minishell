@@ -5,18 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: juan-cas <juan-cas@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/13 12:45:45 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/08/13 12:56:34 by juan-cas         ###   ########.fr       */
+/*   Created: 2024/08/13 13:58:43 by juan-cas          #+#    #+#             */
+/*   Updated: 2024/08/13 13:58:47 by juan-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-
-
-
-
-int main(int argc, char **argv, env **enviroment)
-{
-
-	return (0);
-}
