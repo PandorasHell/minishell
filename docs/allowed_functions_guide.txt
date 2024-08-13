@@ -1,83 +1,130 @@
 –––––––––––––––––––––––––––––––– READLINE ––––––––––––––––––––––––––––––––
 
-readline
-rl_clear_history
-rl_on_new_line
-rl_replace_line
-rl_redisplay
-add_history
+readline			-->
+rl_clear_history	-->
+rl_on_new_line		-->
+rl_replace_line		-->
+rl_redisplay		-->
+add_history			-->
 
 –––––––––––––––––––––––––––––––– MEMORY ––––––––––––––––––––––––––––––––
 
-malloc
-free
+malloc	-->
+free	-->
 
 –––––––––––––––––––––––––––––––– PROCESS ––––––––––––––––––––––––––––––––
 
-fork
-wait
-waitpid
-wait3
-wait4
-kill
-exit
-execve
+fork	-->
+wait	-->
+waitpid	-->
+wait3	-->
+wait4	-->
+kill	-->
+exit	-->
+execve	-->
 
 –––––––––––––––––––––––––––––––– FILES ––––––––––––––––––––––––––––––––
 
-write
-access
-open
-read
-close
-stat
-lstat
-fstat
-unlink
-dup
-dup2
-pipe
+write	-->
+access	-->
+open	-->
+read	-->
+close	-->
+stat	-->
+lstat	-->
+fstat	-->
+unlink	-->
+dup		-->
+dup2	-->
+pipe	-->
 
 –––––––––––––––––––––––––––––––– SIGNALS ––––––––––––––––––––––––––––––––
 
-signal
-sigaction
+signal		-->
+sigaction	-->
 
 –––––––––––––––––––––––––––––––– DIRECTORIES ––––––––––––––––––––––––––––––––
 
-getcwd
-chdir
-opendir
-readdir
-closedir
+getcwd		-->
+chdir		-->
+opendir		-->
+readdir		-->
+closedir	-->
 
 –––––––––––––––––––––––––––––––– ERROR ––––––––––––––––––––––––––––––––
 
-strerror
-perror
+strerror	-->
+perror		-->
 
 –––––––––––––––––––––––––––––––– I/O TERM ––––––––––––––––––––––––––––––––
 
-isatty
-ttyname
-ttyslot
-ioctl
-tcsetattr
-tcgetattr
+isatty		-->
+ttyname		-->
+ttyslot		-->
+ioctl		-->
+tcsetattr	-->
+tcgetattr	-->
 
 –––––––––––––––––––––––––––––––– ENVIRONMENT ––––––––––––––––––––––––––––––––
 
-getenv
+getenv	-->
 
 –––––––––––––––––––––––––––––––– TERM CAPACITY ––––––––––––––––––––––––––––––––
 
-tgetent
-tgetflag
-tgetnum
-tgetstr
-tgoto
-tputs
+tgetent		-->
+tgetflag	-->
+tgetnum		-->
+tgetstr		-->
+tgoto		-->
+tputs		-->
 
 –––––––––––––––––––––––––––––––– LIBFT ––––––––––––––––––––––––––––––––
 
-printf
+printf		-->
+
+## ALL THESE FUNCTIONS NEED TO BE USED WITH "ft_ AT THE BEGINNING"
+
+atoi		-->
+bzero		-->
+calloc		-->
+isalnum		-->
+isalpha		-->
+isascii		-->
+isdigit		-->
+isprint		-->
+itoa		-->
+memchr		-->
+memcmp		-->
+memcpy		-->
+memmove		-->
+memset		-->
+putchar_fd	-->
+putendl_fd	-->
+putnbr_fd	-->
+putstr_fd	-->
+split		-->
+strchr		-->
+strdup		-->
+striteri	-->
+strjoin		-->
+strlcat		-->
+strlcpy		-->
+strlen		-->
+strmapi		-->
+strncmp		-->
+strnstr		-->
+strrchr		-->
+strtrim		-->
+substr		-->
+tolower		-->
+toupper		-->
+
+lstadd_back		-->
+lstadd_front	-->
+lstclear		-->
+lstdelone		-->
+lstiter			-->
+lstlast			-->
+lstmap			-->
+lstnew			-->
+lstsize			-->
