@@ -13,6 +13,8 @@ LIBFT_DIR := $(LIB_DIR)/libft
 SRC_FILES := $(SRC_DIR) \
 $(SRC_FILES)/src/minishell.c \
 $(SRC_FILES)/src/main.c \
+$(SRC_FILES)/src/utils/aritmetics.c \
+$(SRC_FILES)/parsing/malloc_check.c \
 
 # Object files
 OBJ_FILES := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))
