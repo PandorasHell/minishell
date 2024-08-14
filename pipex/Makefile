@@ -1,11 +1,12 @@
 NAME	=	pipex
 CC		=	gcc
-CFLAGS	=	-Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS	=	-Wall -Wextra -Werror #-g3 -fsanitize=address
 LFT		=	libft/libft.a
 OBJ		=	$(SRCS:.c=.o)
 SRCS	=	pipex.c \
 			child.c \
-			exec.c
+			exec.c	\
+			utils.c
 
 
 all:		$(LFT) $(NAME)

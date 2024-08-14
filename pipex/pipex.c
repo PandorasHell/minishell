@@ -5,48 +5,45 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 19:34:20 by smeixoei          #+#    #+#             */
-/*   Updated: 2024/02/21 19:34:20 by smeixoei         ###   ########.fr       */
+/*   Created: 2024/08/06 19:04:16 by smeixoei          #+#    #+#             */
+/*   Updated: 2024/08/06 19:04:16 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	ft_error(char *str)
-{
-	ft_putendl_fd(str, 2);
-	exit(1);
-}
-
-void	ft_waitchild(pid_t child)
+void	ft_waitchild(pid_t *child, int cmds)
 {
 	int		status;
 	pid_t	wait;
+	int		i;
 
-	wait = waitpid(child, &status, 0);
-	while (wait != child)
+	i = 0;
+	while (i < cmds)
 	{
+		wait = waitpid(child[i], &status, 0);
 		if (wait == -1)
-			ft_error("Error: command not found");
-	}
-	if (WIFEXITED(status))
-	{
-		if (WEXITSTATUS(status) != 0)
-			ft_error("Error: command not found");
+			ft_error("Error: waitpid", NULL);
+		i++;
 	}
 }
 
 void	ft_pipex(int argc, char **argv, char **env)
 {
 	int		fd[2][2];
-	pid_t	child;
+	pid_t	*child;
+	int		i;
 
-	child = 0;
+	i = 0;
+	child = (pid_t *)malloc(sizeof(pid_t) * (argc - 3));
+	if (!child)
+		ft_error("Error: malloc", NULL);
 	if (pipe(fd[0]) < 0)
-		ft_error("Error: pipe");
-	ft_first_cmd(fd, argv, env);
-	child = ft_last_cmd(fd, argv, env, argc);
-	ft_waitchild(child);
+		ft_error("Error: pipe", NULL);
+	child[i++] = ft_first_cmd(fd, argv, env);
+	child[i++] = ft_last_cmd(fd, argv, env, argc);
+	ft_waitchild(child, i);
+	free(child);
 }
 
 void	ft_pipex_bonus(int argc, char **argv, char **env)
@@ -54,19 +51,25 @@ void	ft_pipex_bonus(int argc, char **argv, char **env)
 	int		fd[2][2];
 	int		cmds;
 	int		here_doc;
-	pid_t	child;
+	int		i;
+	pid_t	*child;
 
 	here_doc = 0;
+	i = 0;
+	child = (pid_t *)malloc(sizeof(pid_t) * (argc - 3));
+	if (!child)
+		ft_error("Error: malloc", NULL);
 	if (ft_strncmp(argv[1], "here_doc", 9) == 0)
 		here_doc = 1;
 	if (pipe(fd[0]) < 0)
-		ft_error("Error: pipe");
+		ft_error("Error: pipe", NULL);
 	cmds = 2 + here_doc;
-	ft_first_cmd(fd, argv, env);
+	child[i++] = ft_first_cmd(fd, argv, env);
 	while (++cmds < argc - 2)
-		ft_mid_cmd(fd, argv, env, cmds);
-	child = ft_last_cmd(fd, argv, env, argc);
-	ft_waitchild(child);
+		child[i++] = ft_mid_cmd(fd, argv, env, cmds);
+	child[i++] = ft_last_cmd(fd, argv, env, argc);
+	ft_waitchild(child, i);
+	free(child);
 }
 
 // void	ft_leaks(void)
@@ -78,12 +81,12 @@ int	main(int argc, char **argv, char **env)
 {
 	// atexit(ft_leaks);
 	if (argc < 5 || ((ft_strncmp(argv[1], "here_doc", 9) == 0) && argc < 6))
-		ft_error("Error: invalid arguments");
+		ft_error("Error: invalid arguments", NULL);
 	if (BONUS == 0 && argc == 5)
 		ft_pipex(argc, argv, env);
 	else if (BONUS == 1 && argc >= 5)
 		ft_pipex_bonus(argc, argv, env);
 	else
-		ft_error("Error: invalid arguments");
+		ft_error("Error: invalid arguments", NULL);
 	return (0);
 }
