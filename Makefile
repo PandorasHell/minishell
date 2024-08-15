@@ -1,6 +1,6 @@
 # Compiler and flags
 CC := gcc
-CFLAGS := -Wall -Wextra -Werror -g -fsanitize=address,leak
+CFLAGS := -Wall -Wextra -Werror #-g -fsanitize=address,leak
 
 
 # Directories
@@ -10,17 +10,16 @@ LIB_DIR := lib
 LIBFT_DIR := $(LIB_DIR)/libft
 
 # Source files
-SRC_FILES := $(SRC_DIR) \
-$(SRC_FILES)/src/minishell.c \
-$(SRC_FILES)/src/main.c \
-$(SRC_FILES)/src/utils/aritmetics.c \
-$(SRC_FILES)/parsing/malloc_check.c \
+SRC_FILES := 	$(SRC_DIR)/main.c \
+				$(SRC_DIR)/minishell.c \
+				#$(SRC_DIR)/utils/aritmetics.c \
+				$(SRC_DIR)/parsing/malloc_check.c \
 
 # Object files
 OBJ_FILES := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))
 
 # Libraries
-LIBS := -L$(LIBFT_DIR) -lft 
+LIBS := -L$(LIBFT_DIR) -lft -lreadline
 
 # Executable
 TARGET := minishell
