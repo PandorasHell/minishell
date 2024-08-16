@@ -12,6 +12,7 @@ LIBFT_DIR := $(LIB_DIR)/libft
 # Source files
 SRC_FILES := 	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/minishell.c \
+				$(SRC_DIR)/env/env.c \
 				#$(SRC_DIR)/utils/aritmetics.c \
 				$(SRC_DIR)/parsing/malloc_check.c \
 
@@ -19,7 +20,7 @@ SRC_FILES := 	$(SRC_DIR)/main.c \
 OBJ_FILES := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))
 
 # Libraries
-LIBS := -L$(LIBFT_DIR) -lft #-lreadline
+LIBS := -L$(LIBFT_DIR) -lft -lreadline
 
 # Executable
 TARGET := minishell

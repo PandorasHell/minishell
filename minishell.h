@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:52:54 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/08/16 11:59:51 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/08/16 20:27:30 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,17 @@
 #include "./lib/libft/libft.h"
 #include "./pipex/pipex.h"
 
-typedef struct s_env
+typedef struct s_data_env
 {
 	char *key;
 	char *value;
-	struct s_env *next;
-}	t_env;
+}	t_denv;
+
+typedef struct s_list_env
+{
+	t_denv *content;
+	struct s_listenv *next;
+}	t_lenv;
 
 typedef struct s_aritmetics
 {
@@ -38,5 +43,8 @@ typedef struct s_aritmetics
 void malloc_check(void *str);
 t_aritmetics *a_node_creator(t_aritmetics *information, int value);
 int shell_aritmetics(char *str);
+
+// ENV
+t_lenv	*save_env(char **env);
 
 #endif
