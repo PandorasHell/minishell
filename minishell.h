@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:52:54 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/08/15 20:29:51 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/08/16 11:59:51 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@
 #include <readline/history.h>
 #include "./lib/libft/libft.h"
 #include "./pipex/pipex.h"
+
+typedef struct s_env
+{
+	char *key;
+	char *value;
+	struct s_env *next;
+}	t_env;
 
 typedef struct s_aritmetics
 {

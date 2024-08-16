@@ -19,7 +19,7 @@ SRC_FILES := 	$(SRC_DIR)/main.c \
 OBJ_FILES := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))
 
 # Libraries
-LIBS := -L$(LIBFT_DIR) -lft -lreadline
+LIBS := -L$(LIBFT_DIR) -lft #-lreadline
 
 # Executable
 TARGET := minishell
