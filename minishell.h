@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:52:54 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/08/16 20:27:30 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/08/16 20:29:48 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_data_env
 typedef struct s_list_env
 {
 	t_denv *content;
-	struct s_listenv *next;
+	struct s_list_env *next;
 }	t_lenv;
 
 typedef struct s_aritmetics
