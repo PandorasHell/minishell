@@ -25,7 +25,7 @@ int main(int argc, char **argv, char **enviroment)
 		line = readline("minishell $>> ");
 		if (line)
 		{
-			//lexical_analysis(line);
+			lexical_analysis(line);
 			if (*line != '\0')
 				add_history(line);
 		}
