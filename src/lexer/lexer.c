@@ -1,0 +1,105 @@
+
+#include "../../minishell.h"
+
+static int double_ampersan_pipe_check(const char *line)
+{
+	int index;
+
+	index = -1;
+	while(line[++index])
+	{
+		if (line[index] == '|')
+		{
+			if (line[index + 1] == '|')
+				return (1);
+		}
+		else if (line[index] == '&')
+		{
+			if (line[index + 1] == '&')
+				return (1);
+		}
+	}
+	return (0);
+}
+
+static int quote_checker(const char *line)
+{
+	int index;
+	int quote_counter;
+
+	index = -1;
+	quote_counter = 0;
+	if (line[0] == 	34)
+		return (0);
+	else
+	{
+		while (line[++index])
+		{
+			if (line[index] == 39)
+				quote_counter++;
+		}
+	}
+	if (quote_counter % 2 != 0)
+		return (1);
+	return (0);
+}
+
+static int doublequote_checker(const char *line)
+{
+	int index;
+	int quote_counter;
+
+	index = -1;
+	quote_counter = 0;
+	if (line[0] == 	39)
+		return (0);
+	else
+	{
+		while (line[++index])
+		{
+			if (line[index] == 34)
+				quote_counter++;
+		}
+	}
+	if (quote_counter % 2 != 0)
+		return (1);
+	return (0);
+}
+
+static void space_remover(char *line)
+{
+	int i;
+	int j;
+	int spaceflag;
+
+	i = 0;
+	j = 0;
+	spaceflag = 0;
+	while(line[i])
+	{
+		if(line[i] != ' ')
+		{
+			line[j++] = line[i];
+			spaceflag = 0;
+		}
+		else if (spaceflag == 0)
+		{
+			line[j++] = line[i];
+			spaceflag = 1;
+		}
+		i++;
+	}
+	line[j] = '\0';
+}
+
+void lexical_analysis(char *line)
+{
+	space_remover(line);
+	if (doublequote_checker(line))
+		printf("error");
+	if (quote_checker(line))
+		printf("error");
+	if (double_ampersan_pipe_check(line))
+		printf("error");
+	printf("the line contains ---> %s\n", line);
+}

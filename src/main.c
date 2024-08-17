@@ -3,6 +3,8 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
+void lexical_analysis(char *line);
+
 int main(int argc, char **argv, char **enviroment)
 {
 	char	*line;
@@ -35,3 +37,5 @@ int main(int argc, char **argv, char **enviroment)
 	rl_clear_history();
 	return (0);
 }
+
+
