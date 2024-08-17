@@ -26,12 +26,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="753c5d10-1022-4b1b-a423-f31660716c25" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lexer/lexer.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/lexer/lexer.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/aritmetics.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/list_for_aritmetics.c" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,7 +197,7 @@
       <workItem from="1723625598178" duration="5608000" />
       <workItem from="1723915027238" duration="93000" />
       <workItem from="1723915122121" duration="11000" />
-      <workItem from="1723915142729" duration="3558000" />
+      <workItem from="1723915142729" duration="3648000" />
     </task>
     <servers />
   </component>

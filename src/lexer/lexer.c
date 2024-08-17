@@ -84,6 +84,7 @@ static void space_remover(char *line)
 		}
 		else if (spaceflag == 0)
 		{
+			//TODO: crear una funcion que revise si, luego de conseguir un | hay otro o un & hay otro.
 			line[j++] = line[i];
 			spaceflag = 1;
 		}
