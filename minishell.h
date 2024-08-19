@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:52:54 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/08/16 20:29:48 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/08/19 11:02:48 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,12 @@ typedef struct s_list_env
 	struct s_list_env *next;
 }	t_lenv;
 
+typedef struct s_line_word
+{
+	char *word;
+	struct s_word_line *next;
+}	t_lword;
+
 typedef struct s_aritmetics
 {
 	int value;
@@ -47,4 +53,8 @@ int shell_aritmetics(char *str);
 // ENV
 t_lenv	*save_env(char **env);
 
+// LEXER
+int	is_space(char c);
+int	is_operator(char c);
+t_lword	*split_words(char *line);
 #endif

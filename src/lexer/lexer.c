@@ -22,50 +22,6 @@ static int double_ampersan_pipe_check(const char *line)
 	return (0);
 }
 
-static int quote_checker(const char *line)
-{
-	int index;
-	int quote_counter;
-
-	index = -1;
-	quote_counter = 0;
-	if (line[0] == 	34)
-		return (0);
-	else
-	{
-		while (line[++index])
-		{
-			if (line[index] == 39)
-				quote_counter++;
-		}
-	}
-	if (quote_counter % 2 != 0)
-		return (1);
-	return (0);
-}
-
-static int doublequote_checker(const char *line)
-{
-	int index;
-	int quote_counter;
-
-	index = -1;
-	quote_counter = 0;
-	if (line[0] == 	39)
-		return (0);
-	else
-	{
-		while (line[++index])
-		{
-			if (line[index] == 34)
-				quote_counter++;
-		}
-	}
-	if (quote_counter % 2 != 0)
-		return (1);
-	return (0);
-}
-
 static void space_remover(char *line)
 {
 	int i;
