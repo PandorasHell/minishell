@@ -3,22 +3,14 @@
 static int quote_checker(const char *line)
 {
 	int len;
+	char quote;
 
+	quote = line[0];
 	len = 1;
-	if (line[0] == '\'')
-	{
-		while (line[len] && line[len] != '\'')
-			len++;
-		if (line[len] == '\'')
-			return (len);
-	}
-	else if (line[0] == '\"')
-	{
-		while (line[len] && line[len] != '\"')
-			len++;
-		if (line[len] == '\"')
-			return (len);
-	}
+	while (line[len] && line[len] != quote)
+		len++;
+	if (line[len] == quote)
+		return (len + 1);
 	return (0);
 }
 
@@ -26,15 +18,28 @@ static char *save_word(char *line)
 {
 	char *word;
 	int i;
+	int len;
+	int quote;
 
-	i = 0;
-	while (line[i] && !is_space(line[i]))
-		i++;
-	word = ft_calloc(i + 1, sizeof(char));
+	len = 0;
+	quote = 0;
+	while (line[len] && !is_space(line[len]))
+	{
+		if (is_quote(line[len]))
+		{
+			quote = quote_checker(&line[len]);
+			if (!quote)
+				return (NULL);
+			len += quote;
+		}
+		else
+			len++;
+	}
+	word = ft_calloc(len + 1, sizeof(char));
 	if (!word)
 		return (NULL);
 	i = 0;
-	while (line[i] && !is_space(line[i]))
+	while (i < len)
 	{
 		word[i] = line[i];
 		i++;
@@ -62,7 +67,14 @@ t_lword	*split_words(char *line)
 				return (NULL);
 			}
 			tmp->word = save_word(&line[i]);
+			if (!tmp->word)
+			{
+				ft_lstclear((t_list **)&words, free);
+				free(tmp);
+				return (NULL);
+			}
 			ft_lstadd_back((t_list **)&words, (t_list *)tmp);
+			i += ft_strlen(tmp->word);
 		}
 		else
 			i++;

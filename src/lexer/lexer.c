@@ -1,26 +1,26 @@
 
 #include "../../minishell.h"
 
-static int double_ampersan_pipe_check(const char *line)
-{
-	int index;
+// static int double_ampersan_pipe_check(const char *line)
+// {
+// 	int index;
 
-	index = -1;
-	while(line[++index])
-	{
-		if (line[index] == '|')
-		{
-			if (line[index + 1] == '|')
-				return (1);
-		}
-		else if (line[index] == '&')
-		{
-			if (line[index + 1] == '&')
-				return (1);
-		}
-	}
-	return (0);
-}
+// 	index = -1;
+// 	while(line[++index])
+// 	{
+// 		if (line[index] == '|')
+// 		{
+// 			if (line[index + 1] == '|')
+// 				return (1);
+// 		}
+// 		else if (line[index] == '&')
+// 		{
+// 			if (line[index + 1] == '&')
+// 				return (1);
+// 		}
+// 	}
+// 	return (0);
+// }
 
 static void space_remover(char *line)
 {
@@ -49,14 +49,11 @@ static void space_remover(char *line)
 	line[j] = '\0';
 }
 
-void lexical_analysis(char *line)
+t_lword *lexical_analysis(char *line)
 {
+	t_lword *words;
+
 	space_remover(line);
-	if (doublequote_checker(line))
-		printf("error");
-	if (quote_checker(line))
-		printf("error");
-	if (double_ampersan_pipe_check(line))
-		printf("error");
-	printf("the line contains ---> %s\n", line);
+	words = split_words(line);
+	return (words);
 }

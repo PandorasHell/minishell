@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:52:54 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/08/19 11:02:48 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/08/20 11:18:07 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_aritmetics
 
 void malloc_check(void *str);
 t_aritmetics *a_node_creator(t_aritmetics *information, int value);
-int shell_aritmetics(char *str);
+//int shell_aritmetics(char *str);
 
 // ENV
 t_lenv	*save_env(char **env);
@@ -56,5 +56,7 @@ t_lenv	*save_env(char **env);
 // LEXER
 int	is_space(char c);
 int	is_operator(char c);
+int is_quote(char c);
 t_lword	*split_words(char *line);
+t_lword *lexical_analysis(char *line);
 #endif
