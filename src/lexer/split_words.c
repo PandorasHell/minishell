@@ -23,7 +23,7 @@ static char *save_word(char *line)
 
 	len = 0;
 	quote = 0;
-	while (line[len] && !is_space(line[len]))
+	while (line[len] && !is_space(line[len]) && !is_operator(line[len]))
 	{
 		if (is_quote(line[len]))
 		{
@@ -44,7 +44,6 @@ static char *save_word(char *line)
 		word[i] = line[i];
 		i++;
 	}
-	word[i] = '\0'; //FIXME: <--- no hace falta poner el nulo al final ya que calloc lo hace.
 	return (word);
 }
 
@@ -67,6 +66,8 @@ t_lword	*split_words(char *line)
 				return (NULL);
 			}
 			tmp->word = save_word(&line[i]);
+			if (is_operator(line[i]))
+				tmp->word = ft_substr(&line[i], 0, 1);
 			if (!tmp->word)
 			{
 				ft_lstclear((t_list **)&words, free);
