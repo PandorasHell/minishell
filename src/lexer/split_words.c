@@ -44,7 +44,7 @@ static char *save_word(char *line)
 		word[i] = line[i];
 		i++;
 	}
-	word[i] = '\0';
+	word[i] = '\0'; //FIXME: <--- no hace falta poner el nulo al final ya que calloc lo hace.
 	return (word);
 }
 
