@@ -23,7 +23,7 @@ int main(int argc, char **argv, char **enviroment)
 			cmd = lexical_analysis(line);
 			while (cmd)
 			{
-				printf("%s\n", cmd->word);
+				printf("<%s>\n", cmd->word);
 				cmd = cmd->next;
 			}
 			if (*line != '\0')
