@@ -1,9 +1,9 @@
 #include "../../minishell.h"
 
-static int quote_checker(const char *line)
+static int	quote_checker(const char *line)
 {
-	int len;
-	char quote;
+	int		len;
+	char	quote;
 
 	quote = line[0];
 	len = 1;
@@ -14,12 +14,11 @@ static int quote_checker(const char *line)
 	return (0);
 }
 
-static char *save_word(char *line)
+static char	*save_word(char *line)
 {
-	char *word;
-	int i;
-	int len;
-	int quote;
+	char	*word;
+	int		len;
+	int		quote;
 
 	len = 0;
 	quote = 0;
@@ -38,36 +37,44 @@ static char *save_word(char *line)
 	word = ft_calloc(len + 1, sizeof(char));
 	if (!word)
 		return (NULL);
-	i = 0;
-	while (i < len)
-	{
-		word[i] = line[i];
-		i++;
-	}
+	ft_strlcpy(word, line, len + 1);
 	return (word);
 }
 
-t_lword	*split_words(char *line)
+static char	*save_operator(char *line)
 {
-	t_lword *words;
-	t_lword *tmp;
-	int i;
+	char	*word;
+	int		len;
+	char	operator;
+
+	operator = line[0];
+	while (line[len] && line[len] == operator)
+		len++;
+	if (len > 2)
+		return (NULL);
+	word = ft_calloc(len + 1, sizeof(char));
+	if (!word)
+		return (NULL);
+	ft_strlcpy(word, line, len + 1);
+	return (word);
+}
+
+t_lword	*split_words(char *line, t_lword *words)
+{
+	t_lword	*tmp;
+	int		i;
 
 	i = 0;
-	words = NULL;
 	while (line[i])
 	{
 		if (!is_space(line[i]))
 		{
 			tmp = ft_calloc(1, sizeof(t_lword));
 			if (!tmp)
-			{
-				ft_lstclear((t_list **)&words, free);
-				return (NULL);
-			}
+				return ((ft_lstclear((t_list **)&words, free)), NULL);
 			tmp->word = save_word(&line[i]);
 			if (is_operator(line[i]))
-				tmp->word = ft_substr(&line[i], 0, 1);
+				tmp->word = save_operator(&line[i]);
 			if (!tmp->word)
 			{
 				ft_lstclear((t_list **)&words, free);

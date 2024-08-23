@@ -7,7 +7,7 @@ int main(int argc, char **argv, char **enviroment)
 {
 	char	*line;
 	t_lenv	*env;
-	t_lword	*cmd;
+	t_lexer	*cmd;
 	(void)argc;
 	(void)argv;
 
@@ -23,7 +23,7 @@ int main(int argc, char **argv, char **enviroment)
 			cmd = lexical_analysis(line);
 			while (cmd)
 			{
-				printf("<%s>\n", cmd->word);
+				printf("<%d %s>\n", cmd->content->key, cmd->content->value);
 				cmd = cmd->next;
 			}
 			if (*line != '\0')
