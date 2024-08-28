@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:52:54 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/08/23 12:17:23 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/08/28 19:03:56 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_list_env
 typedef struct s_line_word
 {
 	char *word;
-	struct s_word_line *next;
+	struct s_line_word *next;
 }	t_lword;
 
 typedef struct s_data_lexer

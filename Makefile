@@ -1,6 +1,6 @@
 # Compiler and flags
 CC := gcc
-CFLAGS := #-Wall -Wextra -Werror #-g3 -fsanitize=address,leak
+CFLAGS := -Wall -Wextra -Werror #-g3 -fsanitize=address,leak
 
 
 # Directories
@@ -11,7 +11,6 @@ LIBFT_DIR := $(LIB_DIR)/libft
 
 # Source files
 SRC_FILES := 	$(SRC_DIR)/main.c \
-				$(SRC_DIR)/minishell.c \
 				$(SRC_DIR)/env/env.c \
 				$(SRC_DIR)/parsing/malloc_check.c \
 				$(SRC_DIR)/lexer/lexer.c \

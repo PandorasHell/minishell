@@ -1,12 +1,12 @@
 #include "../../minishell.h"
 
-static void	*set_key(t_lword *words, t_lexer *new)
+static void	set_lexer_key(t_lword *words, t_lexer *new)
 {
 	t_dlexer	*data;
 
 	data = ft_calloc(1, sizeof(t_dlexer));
 	if (!data)
-		return (NULL);
+		return ;
 	new->content = data;
 	data->value = ft_strdup(words->word);
 	data->key = 0;
@@ -39,7 +39,7 @@ static t_lexer	*set_lexer_value(t_lword *words, t_lexer *lexer)
 		new = ft_calloc(1, sizeof(t_lexer));
 		if (!new)
 			return (ft_lstclear((t_list **)&lexer, free), NULL);
-		set_key(words, new);
+		set_lexer_key(words, new);
 		if (new->content->key == -1)
 			return (NULL);
 		ft_lstadd_back((t_list **)&lexer, (t_list *)new);
@@ -54,6 +54,7 @@ t_lexer	*lexical_analysis(char *line)
 	t_lexer	*lexer;
 
 	lexer = NULL;
+	words = NULL;
 	words = split_words(line, words);
 	if (!words)
 		return (NULL);
