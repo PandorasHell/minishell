@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:52:54 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/08/28 19:03:56 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/08/29 20:16:47 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,18 @@ typedef struct s_lexer
 	struct s_lexer *next;
 }	t_lexer;
 
+typedef struct s_data_cmd
+{
+	int		key;
+	char	*value;
+}	t_dcmd;
+
+typedef struct s_cmd
+{
+	t_dcmd *content;
+	struct s_cmd *next;
+}	t_cmd;
+
 typedef struct s_aritmetics
 {
 	int value;
@@ -71,4 +83,8 @@ int	is_operator(char c);
 int is_quote(char c);
 t_lword	*split_words(char *line, t_lword *words);
 t_lexer *lexical_analysis(char *line);
+
+//PARSER
+//t_cmd	*final_cmd(t_lexer *lexer);
+
 #endif
