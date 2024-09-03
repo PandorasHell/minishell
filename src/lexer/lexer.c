@@ -9,20 +9,20 @@ static void	set_lexer_key(t_lword *words, t_lexer *new)
 		return ;
 	new->content = data;
 	data->value = ft_strdup(words->word);
-	data->key = 0;
+	data->key = WORD;
 	if (data->value[0] == '|')
-		data->key = 1;
-	if (data->value[0] == '&')
-		data->key = 2;
-	if (data->value[0] == '<')
-		data->key = 3;
-	if (data->value[0] == '<' && data->value[1])
-		data->key = 4;
-	if (data->value[0] == '>')
-		data->key = 5;
-	if (data->value[0] == '>' && data->value[1])
+		data->key = PIPE;
+	else if (data->value[0] == '<')
+		data->key = INFILE;
+	else if (data->value[0] == '<' && data->value[1])
+		data->key = HEREDOC;
+	else if (data->value[0] == '>')
+		data->key = OUTFILE;
+	else if (data->value[0] == '>' && data->value[1])
+		data->key = APPEND;
+	else if (data->value[0] == ';')
 		data->key = 6;
-	if (data->value[0] == ';')
+	else if (data->value[0] == '&')
 		data->key = 7;
 	if ((data->value[0] == '|' && data->value[1])
 		|| (data->value[0] == '&' && data->value[1]))

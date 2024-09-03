@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:52:54 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/08/29 20:16:47 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/09/03 12:43:54 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,15 @@
 #include "./lib/libft/libft.h"
 #include "./pipex/pipex.h"
 
+#define WORD 0
+#define INFILE 1
+#define HEREDOC 2
+#define OUTFILE 3
+#define APPEND 4
+#define PIPE 5
+
+
+// ENVIROMENT
 typedef struct s_data_env
 {
 	char *key;
@@ -33,6 +42,7 @@ typedef struct s_list_env
 	struct s_list_env *next;
 }	t_lenv;
 
+// LEXER
 typedef struct s_line_word
 {
 	char *word;
@@ -51,28 +61,36 @@ typedef struct s_lexer
 	struct s_lexer *next;
 }	t_lexer;
 
+// PARSER
 typedef struct s_data_cmd
 {
-	int		key;
 	char	*value;
+	struct s_data_cmd *next;	
 }	t_dcmd;
+
+typedef struct s_data_redir_cmd
+{
+	char	*where;
+	int		type;	
+}	t_drcmd;
+
+typedef struct s_redir_cmd
+{
+	t_drcmd *content;	
+	struct s_redir_cmd *next;
+}	t_rcmd;
+
+typedef struct s_inter_cmd
+{
+	t_dcmd	*word;
+	t_rcmd	*redir;
+}	t_icmd;
 
 typedef struct s_cmd
 {
-	t_dcmd *content;
+	t_icmd *content;
 	struct s_cmd *next;
 }	t_cmd;
-
-typedef struct s_aritmetics
-{
-	int value;
-	struct s_aritmetics *next;
-}	t_aritmetics;
-
-
-void malloc_check(void *str);
-t_aritmetics *a_node_creator(t_aritmetics *information, int value);
-//int shell_aritmetics(char *str);
 
 // ENV
 t_lenv	*save_env(char **env);
