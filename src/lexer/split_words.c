@@ -48,6 +48,7 @@ static char	*save_operator(char *line)
 	char	operator;
 
 	operator = line[0];
+	len = 0;
 	while (line[len] && line[len] == operator)
 		len++;
 	if (len > 2)

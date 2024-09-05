@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:52:54 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/09/03 12:43:54 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/09/05 12:55:06 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,6 @@ t_lword	*split_words(char *line, t_lword *words);
 t_lexer *lexical_analysis(char *line);
 
 //PARSER
-//t_cmd	*final_cmd(t_lexer *lexer);
+t_cmd	*final_cmd(t_lexer *lexer);
 
 #endif

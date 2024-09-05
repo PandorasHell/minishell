@@ -16,6 +16,7 @@ SRC_FILES := 	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/lexer/lexer.c \
 				$(SRC_DIR)/lexer/lexer_utils.c \
 				$(SRC_DIR)/lexer/split_words.c \
+				$(SRC_DIR)/parser/parser.c \
 
 # Object files
 OBJ_FILES := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))
