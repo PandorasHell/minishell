@@ -48,6 +48,20 @@ static t_lexer	*set_lexer_value(t_lword *words, t_lexer *lexer)
 	return (lexer);
 }
 
+void	free_lexer(t_lexer *lexer)
+{
+	t_lexer	*tmp;
+
+	while (lexer)
+	{
+		tmp = lexer->next;
+		free(lexer->content->value);
+		free(lexer->content);
+		free(lexer);
+		lexer = tmp;
+	}
+}
+
 t_lexer	*lexical_analysis(char *line)
 {
 	t_lword	*words;
@@ -59,5 +73,6 @@ t_lexer	*lexical_analysis(char *line)
 	if (!words)
 		return (NULL);
 	lexer = set_lexer_value(words, lexer);
+	ft_lstclear((t_list **)&words, free);
 	return (lexer);
 }

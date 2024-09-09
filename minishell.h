@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:52:54 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/09/05 12:55:06 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/09/06 19:51:51 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,12 +88,13 @@ typedef struct s_inter_cmd
 
 typedef struct s_cmd
 {
-	t_icmd *content;
+	t_icmd *info;
 	struct s_cmd *next;
 }	t_cmd;
 
 // ENV
 t_lenv	*save_env(char **env);
+void	free_env(t_lenv *env);
 
 // LEXER
 int	is_space(char c);
@@ -101,8 +102,14 @@ int	is_operator(char c);
 int is_quote(char c);
 t_lword	*split_words(char *line, t_lword *words);
 t_lexer *lexical_analysis(char *line);
+void	free_lexer(t_lexer *lexer);
 
 //PARSER
 t_cmd	*final_cmd(t_lexer *lexer);
+void	free_cmd(t_cmd *cmd);
+t_cmd	*set_cmd_mem(t_cmd *cmd);
+t_dcmd	*set_cmd_word(t_lexer *lexer);
+t_rcmd	*set_cmd_redir(t_lexer *lexer);
+void	set_cmd_value(t_lexer *lexer);
 
 #endif

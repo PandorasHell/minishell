@@ -23,27 +23,32 @@ int main(int argc, char **argv, char **enviroment)
 		{
 			lexer = lexical_analysis(line);
 			cmd = final_cmd(lexer);
-			while (lexer)
-			{
-				printf("<%d %s>\n", lexer->content->key, lexer->content->value);
-				lexer = lexer->next;
-			}
+			free_lexer(lexer);
 			if (cmd)
-				printf("Si\n");
+			{
+				// printf("word: %s\n", cmd->info->word->value);
+				// printf("type: %d\n", cmd->info->redir->content->type);
+				// printf("where: %s\n", cmd->info->redir->content->where);
+				free_cmd(cmd);
+			}
 			// while (cmd)
 			// {
-			// 	printf("name: %s type: %d where: %s\n", cmd->content->word->value, cmd->content->redir->content->type, cmd->content->redir->content->where);
+			// 	printf("word: %s\n", cmd->info->word->value);
+			// 	printf("type: %d\n", cmd->info->redir->content->type);
+			// 	printf("where: %s\n", cmd->info->redir->content->where);
 			// 	cmd = cmd->next;
 			// }
 			if (!ft_strncmp(line, "exit", 4))
 				break ;
 			if (*line != '\0')
 				add_history(line);
+			free(line);
 		}
 		else
 			break ;
 	}
-	//rl_clear_history();
+	rl_clear_history();
+	free_env(env);
 	return (0);
 }
 
