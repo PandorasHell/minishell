@@ -50,30 +50,29 @@ t_rcmd	*set_cmd_redir(t_lexer *lexer)
 	return (new);
 }
 
-void	set_cmd_value(t_lexer *lexer, t_cmd *cmd)
+int	set_cmd_value(t_lexer *lexer, t_cmd *cmd)
 {
 	t_dcmd *new_word;
 	t_rcmd *new_redir;
+	int		status;
 
     if (lexer->content->key == WORD)
     {
         new_word = set_cmd_word(lexer);
         if (!new_word)
-            return (free_cmd(cmd));
+            return (free_cmd(cmd), 1);
         ft_lstadd_back((t_list **)&cmd->info->word, (t_list *)new_word);
+		status = WORD;
      }
     else if (lexer->content->key == PIPE)
-    {
-        lexer = lexer->next;
-        return ;
-    }
+        status = PIPE;
     else
     {
         new_redir = set_cmd_redir(lexer);
         if (!new_redir)
-            return (free_cmd(cmd));
+            return (free_cmd(cmd), 1);
         ft_lstadd_back((t_list **)&cmd->info->redir, (t_list *)new_redir);
-        lexer = lexer->next;
+		status = REDIR;
     }
-	lexer = lexer->next;
+	return (status);
 }

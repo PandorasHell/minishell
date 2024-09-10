@@ -12,14 +12,14 @@ static void	set_lexer_key(t_lword *words, t_lexer *new)
 	data->key = WORD;
 	if (data->value[0] == '|')
 		data->key = PIPE;
-	else if (data->value[0] == '<')
-		data->key = INFILE;
 	else if (data->value[0] == '<' && data->value[1])
 		data->key = HEREDOC;
-	else if (data->value[0] == '>')
-		data->key = OUTFILE;
+	else if (data->value[0] == '<')
+		data->key = INFILE;
 	else if (data->value[0] == '>' && data->value[1])
 		data->key = APPEND;
+	else if (data->value[0] == '>')
+		data->key = OUTFILE;
 	else if (data->value[0] == ';')
 		data->key = 6;
 	else if (data->value[0] == '&')
