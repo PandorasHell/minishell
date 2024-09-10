@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:52:54 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/09/10 13:06:22 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/09/10 18:54:34 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,8 @@ void	free_lexer(t_lexer *lexer);
 t_cmd	*final_cmd(t_lexer *lexer);
 void	free_cmd(t_cmd *cmd);
 t_cmd	*set_cmd_mem(t_cmd *cmd);
-t_dcmd	*set_cmd_word(t_lexer *lexer);
-t_rcmd	*set_cmd_redir(t_lexer *lexer);
-int	set_cmd_value(t_lexer *lexer, t_cmd *cmd);
+// t_dcmd	*set_cmd_word(t_lexer *lexer);
+// t_rcmd	*set_cmd_redir(t_lexer *lexer);
+int	set_cmd_value(t_lexer **lexer, t_cmd *cmd);
 
 #endif
