@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:52:54 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/09/10 18:54:34 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/09/11 11:42:45 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,33 +62,33 @@ typedef struct s_lexer
 }	t_lexer;
 
 // PARSER
-typedef struct s_data_cmd
+typedef struct s_cmd_name
 {
-	char	*value;
+	char	*name;
 	struct s_data_cmd *next;	
-}	t_dcmd;
+}	t_cmd_name;
 
-typedef struct s_data_redir_cmd
+typedef struct s_cmd_data_redir
 {
 	char	*where;
 	int		type;	
-}	t_drcmd;
+}	t_cmd_dred;
 
-typedef struct s_redir_cmd
+typedef struct s_cmd_redir
 {
-	t_drcmd *content;	
-	struct s_redir_cmd *next;
-}	t_rcmd;
+	t_cmd_dred *content;	
+	struct s_cmd_redir *next;
+}	t_cmd_red;
 
-typedef struct s_inter_cmd
+typedef struct s_cmd_data
 {
-	t_dcmd	*word;
-	t_rcmd	*redir;
-}	t_icmd;
+	t_cmd_name	*word;
+	t_cmd_red	*redir;
+}	t_cmd_data;
 
 typedef struct s_cmd
 {
-	t_icmd *info;
+	t_cmd_data *info;
 	struct s_cmd *next;
 }	t_cmd;
 
