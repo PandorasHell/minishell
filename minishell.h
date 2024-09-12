@@ -111,5 +111,8 @@ t_cmd	*set_cmd_mem(t_cmd *cmd);
 // t_dcmd	*set_cmd_word(t_lexer *lexer);
 // t_rcmd	*set_cmd_redir(t_lexer *lexer);
 int	set_cmd_value(t_lexer **lexer, t_cmd *cmd);
+int status_pipe(t_lexer **lexer, int status);
+int status_redir(t_lexer **lexer, int status, t_cmd *cmd);
+void free_cmd_lst(t_cmd **cmd);
 
 #endif

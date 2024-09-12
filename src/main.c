@@ -21,6 +21,8 @@ int main(int argc, char **argv, char **enviroment)
 		line = readline("minishell $>> ");
 		if (line)
 		{
+			if (!ft_strncmp(line, "exit", 4))
+				break ;
 			lexer = lexical_analysis(line);
 			cmd = final_cmd(lexer);
 			free_lexer(lexer);
@@ -35,8 +37,6 @@ int main(int argc, char **argv, char **enviroment)
 				// }
 				free_cmd(cmd);
 			}
-			if (!ft_strncmp(line, "exit", 4))
-				break ;
 			if (*line != '\0')
 				add_history(line);
 			free(line);
