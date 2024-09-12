@@ -4,12 +4,18 @@ void free_cmd(t_cmd *cmd)
 {
     t_cmd *tmp;
 	t_cmd_red *tmp_redir;
+	t_cmd_name *tmp_word;
 
     while (cmd)
     {
         tmp = cmd->next;
         if (cmd->info->word)
-            ft_lstclear((t_list **)&cmd->info->word, free);
+            {
+				tmp_word = cmd->info->word->next;
+				free(cmd->info->word->name);
+				free(cmd->info->word);
+				cmd->info->word = tmp_word;
+			}
         if (cmd->info->redir)
         {
             while (cmd->info->redir)
@@ -37,7 +43,6 @@ t_cmd	*create_cmd(t_lexer **lexer)
 		return (free_cmd(cmd), NULL);
 	while (lexer)
 	{
-		printf("creating value...\n");
 		status = set_cmd_value(lexer, cmd);
 		if (status == PIPE)
 		{
@@ -73,26 +78,10 @@ t_cmd	*final_cmd(t_lexer *lexer)
 	{
 		if (lexer->content->key == PIPE)
 			return (free_cmd(cmd), printf("PIPE ERROR \n"), NULL);
-		printf("creating cmd...\n");
 		new = create_cmd(&lexer);
 		if (!new)
 			return (free_cmd(cmd), ft_lstclear((t_list **)&cmd, free), NULL);
-		if (new->info->word)
-       		printf("word: %s\n", new->info->word->name);
-		if (new->info->redir)
-		{
-			while (new->info->redir)
-			{
-				if (new->info->word)
-       				printf("word: %s\n", new->info->word->name);
-				printf("where: %s\n", new->info->redir->content->where);
-				printf("type: %d\n", new->info->redir->content->type);
-				new->info->redir = new->info->redir->next;
-			}
-		}
 		ft_lstadd_back((t_list **)&cmd, (t_list *)new);
-		if (lexer)
-			printf("lex: %s\n", lexer->content->value);
 	}
 	return (cmd);
 }

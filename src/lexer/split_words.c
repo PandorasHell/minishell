@@ -73,8 +73,9 @@ t_lword	*split_words(char *line, t_lword *words)
 			tmp = ft_calloc(1, sizeof(t_lword));
 			if (!tmp)
 				return ((ft_lstclear((t_list **)&words, free)), NULL);
-			tmp->word = save_word(&line[i]);
-			if (is_operator(line[i]))
+			if (!is_operator(line[i]))
+				tmp->word = save_word(&line[i]);
+			else if (is_operator(line[i]))
 				tmp->word = save_operator(&line[i]);
 			if (!tmp->word)
 			{

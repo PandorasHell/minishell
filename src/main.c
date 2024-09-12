@@ -25,18 +25,12 @@ int main(int argc, char **argv, char **enviroment)
 			cmd = final_cmd(lexer);
 			free_lexer(lexer);
 			if (cmd)
-			{
-				// while (cmd)
-				// {
-				// 	printf("word: %s\n", cmd->info->word->value);
-				// 	printf("type: %d\n", cmd->info->redir->content->type);
-				// 	printf("where: %s\n", cmd->info->redir->content->where);
-				// 	cmd = cmd->next;
-				// }
 				free_cmd(cmd);
-			}
 			if (!ft_strncmp(line, "exit", 4))
+			{
+				free(line);
 				break ;
+			}
 			if (*line != '\0')
 				add_history(line);
 			free(line);
