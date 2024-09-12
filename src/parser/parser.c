@@ -64,7 +64,6 @@ t_cmd	*final_cmd(t_lexer *lexer)
 	{
 		if (lexer->content->key == PIPE)
 			return (free_cmd(cmd), printf("PIPE ERROR \n"), NULL);
-		printf("creating cmd...\n");
 		new = create_cmd(&lexer);
 		if (!new)
 			return (free_cmd(cmd), ft_lstclear((t_list **)&cmd, free), NULL);

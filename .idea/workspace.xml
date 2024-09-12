@@ -25,13 +25,16 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="753c5d10-1022-4b1b-a423-f31660716c25" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/parser/free_cmd_lst.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/parser/status_checker.c" afterDir="false" />
+    <list default="true" id="753c5d10-1022-4b1b-a423-f31660716c25" name="Changes" comment="fixed cmd leaks, refactored the function into modular functions, added documentation to those functions, found leaks with lexical analizis fixing those leaks.">
+      <change afterPath="$PROJECT_DIR$/src/lexer/word_lexer_free.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/exit_checker.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/minishell.h" beforeDir="false" afterPath="$PROJECT_DIR$/minishell.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lexer/lexer.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/lexer/lexer.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lexer/split_words.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/lexer/split_words.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/free_cmd_lst.c" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parser/parser.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/parser.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -82,6 +85,9 @@
       </map>
     </option>
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
     <option name="majorVersion" value="2024" />
@@ -118,6 +124,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/utils" />
       <recent name="$PROJECT_DIR$/src/parser" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/lib" />
@@ -211,9 +218,22 @@
       <workItem from="1723915122121" duration="11000" />
       <workItem from="1723915142729" duration="3648000" />
     </task>
+    <task id="LOCAL-00001" summary="fixed cmd leaks, refactored the function into modular functions, added documentation to those functions, found leaks with lexical analizis fixing those leaks.">
+      <option name="closed" value="true" />
+      <created>1726101053976</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1726101053976</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fixed cmd leaks, refactored the function into modular functions, added documentation to those functions, found leaks with lexical analizis fixing those leaks." />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed cmd leaks, refactored the function into modular functions, added documentation to those functions, found leaks with lexical analizis fixing those leaks." />
   </component>
 </project>
