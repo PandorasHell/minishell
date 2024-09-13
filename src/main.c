@@ -21,15 +21,18 @@ int main(int argc, char **argv, char **enviroment)
 		line = readline("minishell $>> ");
 		if (line)
 		{
-			lexer = lexical_analysis(line);
-			cmd = final_cmd(lexer);
-			free_lexer(lexer);
-			if (cmd)
-				free_cmd(cmd);
-			if (!ft_strncmp(line, "exit", 4))
+			if (!exit_checker(line, "exit"))
 			{
 				free(line);
 				break ;
+			}
+			lexer = lexical_analysis(line);
+			cmd = final_cmd(lexer);
+			free_lexer(&lexer);
+			if (cmd != NULL)
+			{
+				free_cmd(cmd);
+				ft_lstclear((t_list **)&cmd, free);
 			}
 			if (*line != '\0')
 				add_history(line);
@@ -38,7 +41,7 @@ int main(int argc, char **argv, char **enviroment)
 		else
 			break ;
 	}
-	//rl_clear_history();
+	rl_clear_history();
 	free_env(env);
 	return (0);
 }

@@ -30,7 +30,9 @@ void free_cmd(t_cmd *cmd)
         cmd = tmp;
     }
 }
-
+/**
+ *
+ */
 t_cmd	*create_cmd(t_lexer **lexer)
 {
 	t_cmd	*cmd;
@@ -44,26 +46,14 @@ t_cmd	*create_cmd(t_lexer **lexer)
 	while (lexer)
 	{
 		status = set_cmd_value(lexer, cmd);
-		if (status == PIPE)
-		{
-			if ((*lexer)->next)
-				(*lexer) = (*lexer)->next;
-			return (cmd);
-		}
-		else if (status == REDIR)
-		{
-			if ((*lexer)->next)
-				(*lexer) = (*lexer)->next;
-			else
-				return (free_cmd(cmd), printf("NO REDIR ERROR \n"), NULL);
-		}
+		if (!status_pipe(lexer, status))
+			return(cmd);
+		if (status_redir(lexer, status, cmd))
+			return (NULL);
 		if ((*lexer)->next && (status == WORD || status == REDIR))
 			(*lexer) = (*lexer)->next;
 		else
-		{
-			(*lexer) = (*lexer)->next;
-			break ;
-		}
+			return ((*lexer) = (*lexer)->next, cmd);
 	}
 	return (cmd);
 }

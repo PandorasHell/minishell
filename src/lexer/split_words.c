@@ -63,7 +63,7 @@ static char	*save_operator(char *line)
 t_lword	*split_words(char *line, t_lword *words)
 {
 	t_lword	*tmp;
-	int		i;
+	size_t	i;
 
 	i = 0;
 	while (line[i])

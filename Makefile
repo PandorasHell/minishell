@@ -1,6 +1,6 @@
 # Compiler and flags
 CC := gcc
-CFLAGS := -Wall -Wextra -Werror -g3 -fsanitize=address#,leak
+CFLAGS := -Wall -Wextra -Werror -g3 -fsanitize=address,leak
 
 
 # Directories
@@ -16,8 +16,11 @@ SRC_FILES := 	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/lexer/lexer.c \
 				$(SRC_DIR)/lexer/lexer_utils.c \
 				$(SRC_DIR)/lexer/split_words.c \
+				$(SRC_DIR)/lexer/word_lexer_free.c \
 				$(SRC_DIR)/parser/parser.c \
 				$(SRC_DIR)/parser/set_values.c \
+				$(SRC_DIR)/parser/status_checker.c \
+				$(SRC_DIR)/utils/exit_checker.c \
 
 # Object files
 OBJ_FILES := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))
