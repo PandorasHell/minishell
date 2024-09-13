@@ -21,8 +21,6 @@ void free_cmd(t_cmd *cmd)
                 cmd->info->redir = tmp_redir;
             }
         }
-		free(cmd->info);
-		free(cmd);
         cmd = tmp;
     }
 }
@@ -68,8 +66,6 @@ t_cmd	*final_cmd(t_lexer *lexer)
 		if (!new)
 			return (free_cmd(cmd), ft_lstclear((t_list **)&cmd, free), NULL);
 		ft_lstadd_back((t_list **)&cmd, (t_list *)new);
-		if (lexer)
-			printf("lex: %s\n", lexer->content->value);
 	}
 	return (cmd);
 }

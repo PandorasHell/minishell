@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:52:54 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/09/11 11:42:45 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/09/12 18:48:05 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ typedef struct s_lexer
 typedef struct s_cmd_name
 {
 	char	*name;
-	struct s_data_cmd *next;	
+	struct s_cmd_name *next;	
 }	t_cmd_name;
 
 typedef struct s_cmd_data_redir

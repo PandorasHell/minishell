@@ -30,7 +30,10 @@ int main(int argc, char **argv, char **enviroment)
 			cmd = final_cmd(lexer);
 			free_lexer(&lexer);
 			if (cmd != NULL)
+			{
 				free_cmd(cmd);
+				ft_lstclear((t_list **)&cmd, free);
+			}
 			if (*line != '\0')
 				add_history(line);
 			free(line);
