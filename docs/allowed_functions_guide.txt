@@ -1,27 +1,27 @@
 –––––––––––––––––––––––––––––––– READLINE ––––––––––––––––––––––––––––––––
 
-readline			-->
-rl_clear_history	-->
-rl_on_new_line		-->
-rl_replace_line		-->
-rl_redisplay		-->
-add_history			-->
+readline			--> Espera a que el usuario introduzca una línea de texto. Permite navegar por el historial de comandos anteriores y editar la línea actual Cuando se presiona Enter, la línea completa se retorna como un char*.
+rl_clear_history	--> Elimina todas las entradas almacenadas en el historial de comandos.
+rl_on_new_line		--> Actualiza internamente el estado de Readline para reflejar que una nueva línea de entrada está comenzando.
+rl_replace_line		--> Reemplaza la línea actual que está siendo editada por una nueva línea.
+rl_redisplay		--> Fuerza a Readline a volver a mostrar la línea de entrada actual.
+add_history			--> Añade una nueva entrada al historial de comandos.
 
 –––––––––––––––––––––––––––––––– MEMORY ––––––––––––––––––––––––––––––––
 
-malloc	-->
-free	-->
+malloc	--> Asigna un bloque de memoria en el heap. La memoria asignada persiste hasta que se libera explícitamente.
+free	--> Libera un bloque de memoria previamente asignado por malloc, calloc, realloc, u otras funciones de asignación de memoria dinámica.
 
 –––––––––––––––––––––––––––––––– PROCESS ––––––––––––––––––––––––––––––––
 
-fork	-->
-wait	-->
-waitpid	-->
-wait3	-->
-wait4	-->
-kill	-->
-exit	-->
-execve	-->
+fork	--> Llamada al sistema que crea un nuevo proceso, duplicando el proceso que hace la llamada.
+wait	--> Llamada al sistema que hace que el proceso padre espere a que uno de sus procesos hijos termine, para luego recoger su estado de salida.
+waitpid	--> Versión más flexible de wait que permite al proceso padre esperar a un proceso hijo específico.
+wait3	--> Similar a wait, pero también devuelve el uso de recursos del proceso hijo que terminó.
+wait4	--> Combina la funcionalidad de waitpid y wait3, permitiendo especificar un PID y recibir estadísticas de recursos.
+kill	--> Envía una señal a un proceso o grupo de procesos. Puede enviar cualquier señal.
+exit	--> Termina el proceso actual y devuelve un valor de estado a su proceso padre. Se asegura de que todos los buffers de E/S se vacíen antes de salir.
+execve	--> Reemplaza el proceso actual con un nuevo programa.
 
 –––––––––––––––––––––––––––––––– FILES ––––––––––––––––––––––––––––––––
 
@@ -82,17 +82,17 @@ tputs		-->
 
 printf		-->
 
-## ALL THESE FUNCTIONS NEED TO BE USED WITH "ft_ AT THE BEGINNING"
+## ALL THESE FUNCTIONS NEED TO BE USED WITH "ft_ AT THE BEGINNING" ##
 
-atoi		-->
-bzero		-->
-calloc		-->
-isalnum		-->
-isalpha		-->
-isascii		-->
-isdigit		-->
-isprint		-->
-itoa		-->
+atoi		--> Convierte un array de caracteres en un valor int.
+bzero		--> Convierte a '\0' todos los elementos de la cadena facilitada.
+calloc		--> Asigna un bloque de memoria en el heap rellenando cada uno de sus valores con '\0'. La memoria asignada persiste hasta que se libera explícitamente.
+isalnum		--> Comprueba que la cadena facilitada contenga unicamente caracteres alfanumericos.
+isalpha		--> Comprueba que la cadena facilitada contenga unicamente caracteres alfabeticos.
+isascii		--> Comprueba que la cadena facilitada contenga unicamente caracteres dentro de la tabla ASCII.
+isdigit		--> Comprueba que la cadena facilitada contenga unicamente caracteres numericos.
+isprint		--> Comprueba que la cadena facilitada contenga unicamente caracteres imprimibles.
+itoa		--> Convierte un array de enteros en un array de caracteres.
 memchr		-->
 memcmp		-->
 memcpy		-->
@@ -116,15 +116,15 @@ strnstr		-->
 strrchr		-->
 strtrim		-->
 substr		-->
-tolower		-->
-toupper		-->
+tolower		--> Convierte todos los caracteres alfabeticos de una cadena a minusculas.
+toupper		--> Convierte todos los caracteres alfabeticos de una cadena a mayusculas.
 
-lstadd_back		-->
-lstadd_front	-->
-lstclear		-->
-lstdelone		-->
-lstiter			-->
-lstlast			-->
-lstmap			-->
-lstnew			-->
-lstsize			-->
+lstadd_back		--> Añade un nuevo nodo al final de la lista. Si la lista estuviera vacía se convierte en el primero.
+lstadd_front	--> Añade un nuevo nodo al principio de la lista. Si la lista estuviera vacía se convierte en el primero.
+lstclear		--> Elimina la lista, borrando todos sus nodos y el contenido de estos.
+lstdelone		--> Elimina el nodo relacionado, tambien lo que contenga.
+lstiter			--> Aplica una funcion a cada nodo de la lista.
+lstlast			--> Mueve la referencia al nodo final de la lista.
+lstmap			--> Crea y devuelve un duplicado de la lista. Aplica una funcion a cada uno de los nodos de esta.
+lstnew			--> Crea un nuevo nodo.
+lstsize			--> Devuelve el tamaño de una lista.
