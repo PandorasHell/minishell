@@ -1,0 +1,1657 @@
+Index: pipex/libft/ft_putchar_fd.c
+===================================================================
+diff --git a/pipex/libft/ft_putchar_fd.c b/pipex/libft/ft_putchar_fd.c
+deleted file mode 100644
+--- a/pipex/libft/ft_putchar_fd.c	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
++++ /dev/null	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
+@@ -1,18 +0,0 @@
+-/* ************************************************************************** */
+-/*                                                                            */
+-/*                                                        :::      ::::::::   */
+-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+-/*                                                    +:+ +:+         +:+     */
+-/*   By: smeixoei <smeixoei@student.42.fr>          +#+  +:+       +#+        */
+-/*                                                +#+#+#+#+#+   +#+           */
+-/*   Created: 2023/03/27 13:06:01 by smeixoei          #+#    #+#             */
+-/*   Updated: 2023/06/12 14:56:15 by smeixoei         ###   ########.fr       */
+-/*                                                                            */
+-/* ************************************************************************** */
+-
+-#include "libft.h"
+-
+-void	ft_putchar_fd(char c, int fd)
+-{
+-	write(fd, &c, 1);
+-}
+Index: pipex/libft/ft_putendl_fd.c
+===================================================================
+diff --git a/pipex/libft/ft_putendl_fd.c b/pipex/libft/ft_putendl_fd.c
+deleted file mode 100644
+--- a/pipex/libft/ft_putendl_fd.c	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
++++ /dev/null	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
+@@ -1,19 +0,0 @@
+-/* ************************************************************************** */
+-/*                                                                            */
+-/*                                                        :::      ::::::::   */
+-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+-/*                                                    +:+ +:+         +:+     */
+-/*   By: smeixoei <smeixoei@student.42.fr>          +#+  +:+       +#+        */
+-/*                                                +#+#+#+#+#+   +#+           */
+-/*   Created: 2023/03/27 13:27:10 by smeixoei          #+#    #+#             */
+-/*   Updated: 2023/06/12 14:58:49 by smeixoei         ###   ########.fr       */
+-/*                                                                            */
+-/* ************************************************************************** */
+-
+-#include "libft.h"
+-
+-void	ft_putendl_fd(char *s, int fd)
+-{
+-	ft_putstr_fd(s, fd);
+-	ft_putchar_fd('\n', fd);
+-}
+Index: pipex/libft/ft_atoi.c
+===================================================================
+diff --git a/pipex/libft/ft_atoi.c b/pipex/libft/ft_atoi.c
+deleted file mode 100644
+--- a/pipex/libft/ft_atoi.c	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
++++ /dev/null	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
+@@ -1,38 +0,0 @@
+-/* ************************************************************************** */
+-/*                                                                            */
+-/*                                                        :::      ::::::::   */
+-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+-/*                                                    +:+ +:+         +:+     */
+-/*   By: smeixoei <smeixoei@student.42.fr>          +#+  +:+       +#+        */
+-/*                                                +#+#+#+#+#+   +#+           */
+-/*   Created: 2023/03/07 15:55:10 by smeixoei          #+#    #+#             */
+-/*   Updated: 2023/06/19 14:30:20 by smeixoei         ###   ########.fr       */
+-/*                                                                            */
+-/* ************************************************************************** */
+-
+-#include "libft.h"
+-
+-int	ft_atoi(const char *str)
+-{
+-	int	flag;
+-	int	nb;
+-	int	i;
+-
+-	nb = 0;
+-	i = 0;
+-	flag = 1;
+-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+-		i++;
+-	if (str[i] == '-' || str[i] == '+')
+-	{
+-		if (str[i] == '-')
+-			flag *= -1;
+-		i++;
+-	}
+-	while (str[i] >= '0' && str[i] <= '9')
+-	{
+-		nb = (nb * 10) + (str[i] - '0');
+-		i++;
+-	}
+-	return (nb * flag);
+-}
+Index: pipex/libft/ft_strjoin.c
+===================================================================
+diff --git a/pipex/libft/ft_strjoin.c b/pipex/libft/ft_strjoin.c
+deleted file mode 100644
+--- a/pipex/libft/ft_strjoin.c	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
++++ /dev/null	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
+@@ -1,55 +0,0 @@
+-/* ************************************************************************** */
+-/*                                                                            */
+-/*                                                        :::      ::::::::   */
+-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+-/*                                                    +:+ +:+         +:+     */
+-/*   By: smeixoei <smeixoei@student.42.fr>          +#+  +:+       +#+        */
+-/*                                                +#+#+#+#+#+   +#+           */
+-/*   Created: 2023/03/27 12:19:18 by smeixoei          #+#    #+#             */
+-/*   Updated: 2024/03/05 19:28:51 by smeixoei         ###   ########.fr       */
+-/*                                                                            */
+-/* ************************************************************************** */
+-
+-#include "libft.h"
+-
+-char	*ft_loop(char *s1, char *s2, char *src)
+-{
+-	int	i;
+-	int	y;
+-
+-	i = 0;
+-	y = 0;
+-	while (s1[i] != '\0')
+-	{
+-		src[i] = s1[i];
+-		i++;
+-	}
+-	while (s2[y] != '\0')
+-	{
+-		src[i] = s2[y];
+-		i++;
+-		y++;
+-	}
+-	src[i] = '\0';
+-	return (src);
+-}
+-
+-char	*ft_strjoin(char const *s1, char const *s2)
+-{
+-	char	*aux_s1;
+-	char	*aux_s2;
+-	char	*src;
+-
+-	if (s1 == NULL && s2 == NULL)
+-		return (NULL);
+-	else if (s1 == NULL)
+-		return ((char *)s2);
+-	else if (s2 == NULL)
+-		return ((char *)s1);
+-	aux_s1 = (char *)s1;
+-	aux_s2 = (char *)s2;
+-	src = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+-	if (!src)
+-		return (NULL);
+-	return (ft_loop(aux_s1, aux_s2, src));
+-}
+Index: pipex/libft/ft_isdigit.c
+===================================================================
+diff --git a/pipex/libft/ft_isdigit.c b/pipex/libft/ft_isdigit.c
+deleted file mode 100644
+--- a/pipex/libft/ft_isdigit.c	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
++++ /dev/null	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
+@@ -1,18 +0,0 @@
+-/* ************************************************************************** */
+-/*                                                                            */
+-/*                                                        :::      ::::::::   */
+-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+-/*                                                    +:+ +:+         +:+     */
+-/*   By: smeixoei <smeixoei@student.42madrid.com>   +#+  +:+       +#+        */
+-/*                                                +#+#+#+#+#+   +#+           */
+-/*   Created: 2023/03/07 13:28:20 by smeixoei          #+#    #+#             */
+-/*   Updated: 2023/03/15 15:33:56 by smeixoei         ###   ########.fr       */
+-/*                                                                            */
+-/* ************************************************************************** */
+-
+-#include "libft.h"
+-
+-int	ft_isdigit(int c)
+-{
+-	return (c >= '0' && c <= '9');
+-}
+Index: pipex/libft/ft_strmapi.c
+===================================================================
+diff --git a/pipex/libft/ft_strmapi.c b/pipex/libft/ft_strmapi.c
+deleted file mode 100644
+--- a/pipex/libft/ft_strmapi.c	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
++++ /dev/null	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
+@@ -1,33 +0,0 @@
+-/* ************************************************************************** */
+-/*                                                                            */
+-/*                                                        :::      ::::::::   */
+-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+-/*                                                    +:+ +:+         +:+     */
+-/*   By: smeixoei <smeixoei@student.42.fr>          +#+  +:+       +#+        */
+-/*                                                +#+#+#+#+#+   +#+           */
+-/*   Created: 2023/03/29 15:42:48 by smeixoei          #+#    #+#             */
+-/*   Updated: 2023/06/12 15:10:21 by smeixoei         ###   ########.fr       */
+-/*                                                                            */
+-/* ************************************************************************** */
+-
+-#include "libft.h"
+-
+-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+-{
+-	char	*str;
+-	int		i;
+-
+-	if (!s)
+-		return (NULL);
+-	str = (char *)malloc(sizeof(char) * ft_strlen(s) + 1);
+-	if (!str)
+-		return (NULL);
+-	i = 0;
+-	while (s[i] != '\0')
+-	{
+-		str[i] = f(i, s[i]);
+-		i++;
+-	}
+-	str[i] = '\0';
+-	return (str);
+-}
+Index: pipex/libft/ft_strrchr.c
+===================================================================
+diff --git a/pipex/libft/ft_strrchr.c b/pipex/libft/ft_strrchr.c
+deleted file mode 100644
+--- a/pipex/libft/ft_strrchr.c	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
++++ /dev/null	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
+@@ -1,27 +0,0 @@
+-/* ************************************************************************** */
+-/*                                                                            */
+-/*                                                        :::      ::::::::   */
+-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+-/*                                                    +:+ +:+         +:+     */
+-/*   By: smeixoei <smeixoei@student.42.fr>          +#+  +:+       +#+        */
+-/*                                                +#+#+#+#+#+   +#+           */
+-/*   Created: 2023/06/15 19:20:45 by smeixoei          #+#    #+#             */
+-/*   Updated: 2023/06/15 19:45:28 by smeixoei         ###   ########.fr       */
+-/*                                                                            */
+-/* ************************************************************************** */
+-
+-#include "libft.h"
+-
+-char	*ft_strrchr(const char *s, int c)
+-{
+-	int	i;
+-
+-	i = ft_strlen(s);
+-	while (i >= 0)
+-	{
+-		if (s[i] == (char)c)
+-			return ((char *)&s[i]);
+-		i--;
+-	}
+-	return (0);
+-}
+Index: pipex/libft/ft_striteri.c
+===================================================================
+diff --git a/pipex/libft/ft_striteri.c b/pipex/libft/ft_striteri.c
+deleted file mode 100644
+--- a/pipex/libft/ft_striteri.c	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
++++ /dev/null	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
+@@ -1,27 +0,0 @@
+-/* ************************************************************************** */
+-/*                                                                            */
+-/*                                                        :::      ::::::::   */
+-/*   ft_striteri.c                                      :+:      :+:    :+:   */
+-/*                                                    +:+ +:+         +:+     */
+-/*   By: smeixoei <smeixoei@student.42.fr>          +#+  +:+       +#+        */
+-/*                                                +#+#+#+#+#+   +#+           */
+-/*   Created: 2023/03/27 17:57:44 by smeixoei          #+#    #+#             */
+-/*   Updated: 2023/06/12 15:12:03 by smeixoei         ###   ########.fr       */
+-/*                                                                            */
+-/* ************************************************************************** */
+-
+-#include "libft.h"
+-
+-void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+-{
+-	int	i;
+-
+-	if (!s)
+-		return ;
+-	i = 0;
+-	while (s[i] != '\0')
+-	{
+-		f(i, &s[i]);
+-		i++;
+-	}
+-}
+Index: pipex/libft/ft_isalnum.c
+===================================================================
+diff --git a/pipex/libft/ft_isalnum.c b/pipex/libft/ft_isalnum.c
+deleted file mode 100644
+--- a/pipex/libft/ft_isalnum.c	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
++++ /dev/null	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
+@@ -1,19 +0,0 @@
+-/* ************************************************************************** */
+-/*                                                                            */
+-/*                                                        :::      ::::::::   */
+-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+-/*                                                    +:+ +:+         +:+     */
+-/*   By: smeixoei <smeixoei@student.42madrid.com>   +#+  +:+       +#+        */
+-/*                                                +#+#+#+#+#+   +#+           */
+-/*   Created: 2023/03/07 13:34:57 by smeixoei          #+#    #+#             */
+-/*   Updated: 2023/03/09 17:08:56 by smeixoei         ###   ########.fr       */
+-/*                                                                            */
+-/* ************************************************************************** */
+-
+-#include "libft.h"
+-
+-int	ft_isalnum(int c)
+-{
+-	return ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')
+-		|| (c >= '0' && c <= '9'));
+-}
+Index: pipex/libft/ft_itoa.c
+===================================================================
+diff --git a/pipex/libft/ft_itoa.c b/pipex/libft/ft_itoa.c
+deleted file mode 100644
+--- a/pipex/libft/ft_itoa.c	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
++++ /dev/null	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
+@@ -1,60 +0,0 @@
+-/* ************************************************************************** */
+-/*                                                                            */
+-/*                                                        :::      ::::::::   */
+-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+-/*                                                    +:+ +:+         +:+     */
+-/*   By: smeixoei <smeixoei@student.42.fr>          +#+  +:+       +#+        */
+-/*                                                +#+#+#+#+#+   +#+           */
+-/*   Created: 2023/06/12 14:22:41 by smeixoei          #+#    #+#             */
+-/*   Updated: 2023/06/20 17:18:37 by smeixoei         ###   ########.fr       */
+-/*                                                                            */
+-/* ************************************************************************** */
+-
+-#include "libft.h"
+-
+-int	ft_digit(int n)
+-{
+-	int	count;
+-
+-	count = 0;
+-	if (n == 0)
+-		return (1);
+-	if (n < 0)
+-	{
+-		n *= -1;
+-		count++;
+-	}
+-	while (n > 0)
+-	{
+-		n /= 10;
+-		count++;
+-	}
+-	return (count);
+-}
+-
+-char	*ft_itoa(int n)
+-{
+-	char	*str;
+-	int		number;
+-
+-	number = ft_digit(n);
+-	if (n == -2147483648)
+-		return (ft_strdup("-2147483648"));
+-	str = ft_calloc(number + 1, sizeof(char));
+-	if (!str)
+-		return (0);
+-	if (n == 0)
+-		str[0] = 48;
+-	if (n < 0)
+-	{
+-		str[0] = '-';
+-		n = n * -1;
+-	}
+-	number--;
+-	while (n > 0)
+-	{
+-		str[number--] = n % 10 + '0';
+-		n = n / 10;
+-	}
+-	return (str);
+-}
+Index: pipex/libft/ft_substr.c
+===================================================================
+diff --git a/pipex/libft/ft_substr.c b/pipex/libft/ft_substr.c
+deleted file mode 100644
+--- a/pipex/libft/ft_substr.c	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
++++ /dev/null	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
+@@ -1,40 +0,0 @@
+-/* ************************************************************************** */
+-/*                                                                            */
+-/*                                                        :::      ::::::::   */
+-/*   ft_substr.c                                        :+:      :+:    :+:   */
+-/*                                                    +:+ +:+         +:+     */
+-/*   By: smeixoei <smeixoei@student.42.fr>          +#+  +:+       +#+        */
+-/*                                                +#+#+#+#+#+   +#+           */
+-/*   Created: 2023/03/23 17:23:37 by smeixoei          #+#    #+#             */
+-/*   Updated: 2023/06/12 15:10:11 by smeixoei         ###   ########.fr       */
+-/*                                                                            */
+-/* ************************************************************************** */
+-
+-#include "libft.h"
+-
+-char	*ft_substr(char const *s, unsigned int start, size_t len)
+-{
+-	char	*str;
+-	size_t	i;
+-
+-	i = 0;
+-	if (!s)
+-		return (NULL);
+-	if (ft_strlen(s) == 0 || len == 0)
+-		return (ft_strdup(""));
+-	if (ft_strlen(s) <= start)
+-		return (ft_strdup(""));
+-	if (ft_strlen(s) - start < len)
+-		len = ft_strlen(s) - start;
+-	str = malloc(sizeof(char) * (len + 1));
+-	if (!str)
+-		return (NULL);
+-	while (s[start] != '\0' && i < len)
+-	{
+-		str[i] = s[start];
+-		start++;
+-		i++;
+-	}
+-	str[i] = '\0';
+-	return (str);
+-}
+Index: pipex/libft/ft_toupper.c
+===================================================================
+diff --git a/pipex/libft/ft_toupper.c b/pipex/libft/ft_toupper.c
+deleted file mode 100644
+--- a/pipex/libft/ft_toupper.c	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
++++ /dev/null	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
+@@ -1,20 +0,0 @@
+-/* ************************************************************************** */
+-/*                                                                            */
+-/*                                                        :::      ::::::::   */
+-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+-/*                                                    +:+ +:+         +:+     */
+-/*   By: smeixoei <smeixoei@student.42.fr>          +#+  +:+       +#+        */
+-/*                                                +#+#+#+#+#+   +#+           */
+-/*   Created: 2023/03/22 17:44:36 by smeixoei          #+#    #+#             */
+-/*   Updated: 2023/06/12 15:12:53 by smeixoei         ###   ########.fr       */
+-/*                                                                            */
+-/* ************************************************************************** */
+-
+-#include "libft.h"
+-
+-int	ft_toupper(int c)
+-{
+-	if (c >= 'a' && c <= 'z')
+-		return (c - 32);
+-	return (c);
+-}
+Index: pipex/libft/ft_putnbr_fd.c
+===================================================================
+diff --git a/pipex/libft/ft_putnbr_fd.c b/pipex/libft/ft_putnbr_fd.c
+deleted file mode 100644
+--- a/pipex/libft/ft_putnbr_fd.c	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
++++ /dev/null	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
+@@ -1,35 +0,0 @@
+-/* ************************************************************************** */
+-/*                                                                            */
+-/*                                                        :::      ::::::::   */
+-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+-/*                                                    +:+ +:+         +:+     */
+-/*   By: smeixoei <smeixoei@student.42.fr>          +#+  +:+       +#+        */
+-/*                                                +#+#+#+#+#+   +#+           */
+-/*   Created: 2023/03/27 15:49:21 by smeixoei          #+#    #+#             */
+-/*   Updated: 2023/06/12 15:11:18 by smeixoei         ###   ########.fr       */
+-/*                                                                            */
+-/* ************************************************************************** */
+-
+-#include "libft.h"
+-
+-void	ft_putnbr_fd(int n, int fd)
+-{
+-	if (n == -2147483648)
+-	{
+-		ft_putchar_fd('-', fd);
+-		ft_putchar_fd('2', fd);
+-		n = 147483648;
+-	}
+-	if (n < 0)
+-	{
+-		ft_putchar_fd('-', fd);
+-		n *= -1;
+-	}
+-	if (n < 10)
+-		ft_putchar_fd((n + 48), fd);
+-	else
+-	{
+-		ft_putnbr_fd((n / 10), fd);
+-		ft_putnbr_fd((n % 10), fd);
+-	}
+-}
+Index: pipex/libft/ft_memcmp.c
+===================================================================
+diff --git a/pipex/libft/ft_memcmp.c b/pipex/libft/ft_memcmp.c
+deleted file mode 100644
+--- a/pipex/libft/ft_memcmp.c	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
++++ /dev/null	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
+@@ -1,31 +0,0 @@
+-/* ************************************************************************** */
+-/*                                                                            */
+-/*                                                        :::      ::::::::   */
+-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+-/*                                                    +:+ +:+         +:+     */
+-/*   By: smeixoei <smeixoei@student.42.fr>          +#+  +:+       +#+        */
+-/*                                                +#+#+#+#+#+   +#+           */
+-/*   Created: 2023/03/22 17:46:52 by smeixoei          #+#    #+#             */
+-/*   Updated: 2023/06/12 15:01:28 by smeixoei         ###   ########.fr       */
+-/*                                                                            */
+-/* ************************************************************************** */
+-
+-#include "libft.h"
+-
+-int	ft_memcmp(const void *s1, const void *s2, size_t n)
+-{
+-	const char	*str1;
+-	const char	*str2;
+-	size_t		i;
+-
+-	str1 = (const char *)s1;
+-	str2 = (const char *)s2;
+-	i = 0;
+-	while (i < n)
+-	{
+-		if (str1[i] != str2[i])
+-			return ((unsigned char)str1[i] - (unsigned char)str2[i]);
+-		i++;
+-	}
+-	return (0);
+-}
+Index: pipex/libft/ft_memmove.c
+===================================================================
+diff --git a/pipex/libft/ft_memmove.c b/pipex/libft/ft_memmove.c
+deleted file mode 100644
+--- a/pipex/libft/ft_memmove.c	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
++++ /dev/null	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
+@@ -1,40 +0,0 @@
+-/* ************************************************************************** */
+-/*                                                                            */
+-/*                                                        :::      ::::::::   */
+-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+-/*                                                    +:+ +:+         +:+     */
+-/*   By: smeixoei <smeixoei@student.42.fr>          +#+  +:+       +#+        */
+-/*                                                +#+#+#+#+#+   +#+           */
+-/*   Created: 2023/03/22 17:46:29 by smeixoei          #+#    #+#             */
+-/*   Updated: 2023/06/12 15:00:16 by smeixoei         ###   ########.fr       */
+-/*                                                                            */
+-/* ************************************************************************** */
+-
+-#include "libft.h"
+-
+-void	*ft_memmove(void *dest, const void *src, size_t n)
+-{
+-	char	*s;
+-	char	*d;
+-	size_t	i;
+-
+-	if (dest == 0 && src == 0)
+-		return (0);
+-	s = (char *)src;
+-	d = (char *)dest;
+-	i = 0;
+-	if (d < s)
+-	{
+-		while (i < n)
+-		{
+-			d[i] = s[i];
+-			i++;
+-		}
+-	}
+-	else
+-	{
+-		while (n--)
+-			d[n] = s[n];
+-	}
+-	return (dest);
+-}
+Index: pipex/libft/ft_strnstr.c
+===================================================================
+diff --git a/pipex/libft/ft_strnstr.c b/pipex/libft/ft_strnstr.c
+deleted file mode 100644
+--- a/pipex/libft/ft_strnstr.c	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
++++ /dev/null	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
+@@ -1,33 +0,0 @@
+-/* ************************************************************************** */
+-/*                                                                            */
+-/*                                                        :::      ::::::::   */
+-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+-/*                                                    +:+ +:+         +:+     */
+-/*   By: smeixoei <smeixoei@student.42.fr>          +#+  +:+       +#+        */
+-/*                                                +#+#+#+#+#+   +#+           */
+-/*   Created: 2023/06/15 19:20:00 by smeixoei          #+#    #+#             */
+-/*   Updated: 2023/06/15 19:45:55 by smeixoei         ###   ########.fr       */
+-/*                                                                            */
+-/* ************************************************************************** */
+-
+-#include "libft.h"
+-
+-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+-{
+-	size_t	i;
+-	size_t	result;
+-
+-	i = 0;
+-	if (haystack == NULL && len == 0)
+-		return (NULL);
+-	if (needle[0] == '\0')
+-		return ((char *)haystack);
+-	while ((haystack[i] != '\0') && (i + ft_strlen(needle) <= len))
+-	{
+-		result = ft_strncmp(&haystack[i], needle, ft_strlen(needle));
+-		if (result == 0)
+-			return ((char *)&haystack[i]);
+-		i++;
+-	}
+-	return (0);
+-}
+Index: pipex/libft/ft_strdup.c
+===================================================================
+diff --git a/pipex/libft/ft_strdup.c b/pipex/libft/ft_strdup.c
+deleted file mode 100644
+--- a/pipex/libft/ft_strdup.c	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
++++ /dev/null	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
+@@ -1,24 +0,0 @@
+-/* ************************************************************************** */
+-/*                                                                            */
+-/*                                                        :::      ::::::::   */
+-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+-/*                                                    +:+ +:+         +:+     */
+-/*   By: smeixoei <smeixoei@student.42.fr>          +#+  +:+       +#+        */
+-/*                                                +#+#+#+#+#+   +#+           */
+-/*   Created: 2023/03/23 17:07:29 by smeixoei          #+#    #+#             */
+-/*   Updated: 2023/06/12 15:11:56 by smeixoei         ###   ########.fr       */
+-/*                                                                            */
+-/* ************************************************************************** */
+-
+-#include "libft.h"
+-
+-char	*ft_strdup(const char *s1)
+-{
+-	char	*s;
+-
+-	s = malloc((ft_strlen(s1) + 1));
+-	if (!s)
+-		return (NULL);
+-	ft_strlcpy(s, (char *)s1, ft_strlen(s1) + 1);
+-	return (s);
+-}
+Index: pipex/libft/ft_calloc.c
+===================================================================
+diff --git a/pipex/libft/ft_calloc.c b/pipex/libft/ft_calloc.c
+deleted file mode 100644
+--- a/pipex/libft/ft_calloc.c	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
++++ /dev/null	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
+@@ -1,26 +0,0 @@
+-/* ************************************************************************** */
+-/*                                                                            */
+-/*                                                        :::      ::::::::   */
+-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+-/*                                                    +:+ +:+         +:+     */
+-/*   By: smeixoei <smeixoei@student.42.fr>          +#+  +:+       +#+        */
+-/*                                                +#+#+#+#+#+   +#+           */
+-/*   Created: 2023/03/22 19:01:32 by smeixoei          #+#    #+#             */
+-/*   Updated: 2023/06/12 14:32:03 by smeixoei         ###   ########.fr       */
+-/*                                                                            */
+-/* ************************************************************************** */
+-
+-#include "libft.h"
+-
+-void	*ft_calloc(size_t count, size_t size)
+-{
+-	char	*s;
+-
+-	if (count == SIZE_MAX || size == SIZE_MAX)
+-		return (NULL);
+-	s = malloc(count * size);
+-	if (!s)
+-		return (NULL);
+-	ft_bzero((void *)s, count * size);
+-	return ((void *)s);
+-}
+Index: pipex/libft/ft_isascii.c
+===================================================================
+diff --git a/pipex/libft/ft_isascii.c b/pipex/libft/ft_isascii.c
+deleted file mode 100644
+--- a/pipex/libft/ft_isascii.c	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
++++ /dev/null	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
+@@ -1,18 +0,0 @@
+-/* ************************************************************************** */
+-/*                                                                            */
+-/*                                                        :::      ::::::::   */
+-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+-/*                                                    +:+ +:+         +:+     */
+-/*   By: smeixoei <smeixoei@student.42madrid.com>   +#+  +:+       +#+        */
+-/*                                                +#+#+#+#+#+   +#+           */
+-/*   Created: 2023/03/07 13:38:23 by smeixoei          #+#    #+#             */
+-/*   Updated: 2023/03/09 17:16:00 by smeixoei         ###   ########.fr       */
+-/*                                                                            */
+-/* ************************************************************************** */
+-
+-#include "libft.h"
+-
+-int	ft_isascii(int c)
+-{
+-	return (c >= 0 && c <= 127);
+-}
+Index: pipex/libft/ft_bzero.c
+===================================================================
+diff --git a/pipex/libft/ft_bzero.c b/pipex/libft/ft_bzero.c
+deleted file mode 100644
+--- a/pipex/libft/ft_bzero.c	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
++++ /dev/null	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
+@@ -1,18 +0,0 @@
+-/* ************************************************************************** */
+-/*                                                                            */
+-/*                                                        :::      ::::::::   */
+-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+-/*                                                    +:+ +:+         +:+     */
+-/*   By: smeixoei <smeixoei@student.42.fr>          +#+  +:+       +#+        */
+-/*                                                +#+#+#+#+#+   +#+           */
+-/*   Created: 2023/03/08 16:50:20 by smeixoei          #+#    #+#             */
+-/*   Updated: 2023/06/19 15:12:04 by smeixoei         ###   ########.fr       */
+-/*                                                                            */
+-/* ************************************************************************** */
+-
+-#include "libft.h"
+-
+-void	ft_bzero(void *s, size_t n)
+-{
+-	ft_memset(s, 0, n);
+-}
+Index: pipex/libft/ft_isalpha.c
+===================================================================
+diff --git a/pipex/libft/ft_isalpha.c b/pipex/libft/ft_isalpha.c
+deleted file mode 100644
+--- a/pipex/libft/ft_isalpha.c	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
++++ /dev/null	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
+@@ -1,18 +0,0 @@
+-/* ************************************************************************** */
+-/*                                                                            */
+-/*                                                        :::      ::::::::   */
+-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+-/*                                                    +:+ +:+         +:+     */
+-/*   By: smeixoei <smeixoei@student.42madrid.com>   +#+  +:+       +#+        */
+-/*                                                +#+#+#+#+#+   +#+           */
+-/*   Created: 2023/03/07 13:18:50 by smeixoei          #+#    #+#             */
+-/*   Updated: 2023/03/09 17:11:42 by smeixoei         ###   ########.fr       */
+-/*                                                                            */
+-/* ************************************************************************** */
+-
+-#include "libft.h"
+-
+-int	ft_isalpha(int c)
+-{
+-	return ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'));
+-}
+Index: pipex/libft/ft_memset.c
+===================================================================
+diff --git a/pipex/libft/ft_memset.c b/pipex/libft/ft_memset.c
+deleted file mode 100644
+--- a/pipex/libft/ft_memset.c	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
++++ /dev/null	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
+@@ -1,28 +0,0 @@
+-/* ************************************************************************** */
+-/*                                                                            */
+-/*                                                        :::      ::::::::   */
+-/*   ft_memset.c                                        :+:      :+:    :+:   */
+-/*                                                    +:+ +:+         +:+     */
+-/*   By: smeixoei <smeixoei@student.42madrid.com>   +#+  +:+       +#+        */
+-/*                                                +#+#+#+#+#+   +#+           */
+-/*   Created: 2023/03/08 16:12:19 by smeixoei          #+#    #+#             */
+-/*   Updated: 2023/03/09 16:06:07 by smeixoei         ###   ########.fr       */
+-/*                                                                            */
+-/* ************************************************************************** */
+-
+-#include "libft.h"
+-
+-void	*ft_memset(void *b, int c, size_t len)
+-{
+-	size_t	i;
+-	char	*str;
+-
+-	i = 0;
+-	str = b;
+-	while (i < len)
+-	{
+-		str[i] = c;
+-		i++;
+-	}
+-	return (str);
+-}
+Index: pipex/libft/ft_strncmp.c
+===================================================================
+diff --git a/pipex/libft/ft_strncmp.c b/pipex/libft/ft_strncmp.c
+deleted file mode 100644
+--- a/pipex/libft/ft_strncmp.c	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
++++ /dev/null	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
+@@ -1,29 +0,0 @@
+-/* ************************************************************************** */
+-/*                                                                            */
+-/*                                                        :::      ::::::::   */
+-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+-/*                                                    +:+ +:+         +:+     */
+-/*   By: smeixoei <smeixoei@student.42.fr>          +#+  +:+       +#+        */
+-/*                                                +#+#+#+#+#+   +#+           */
+-/*   Created: 2023/03/07 17:14:35 by smeixoei          #+#    #+#             */
+-/*   Updated: 2023/06/12 15:12:23 by smeixoei         ###   ########.fr       */
+-/*                                                                            */
+-/* ************************************************************************** */
+-
+-#include "libft.h"
+-
+-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+-{
+-	size_t	i;
+-
+-	i = 0;
+-	if (n == 0)
+-		return (0);
+-	while (i + 1 < n && (s1[i] != '\0' || s2[i] != '\0'))
+-	{
+-		if (s1[i] != s2[i])
+-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+-		i++;
+-	}
+-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+-}
+Index: pipex/libft/get_next_line_utils.c
+===================================================================
+diff --git a/pipex/libft/get_next_line_utils.c b/pipex/libft/get_next_line_utils.c
+deleted file mode 100644
+--- a/pipex/libft/get_next_line_utils.c	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
++++ /dev/null	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
+@@ -1,72 +0,0 @@
+-/* ************************************************************************** */
+-/*                                                                            */
+-/*                                                        :::      ::::::::   */
+-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+-/*                                                    +:+ +:+         +:+     */
+-/*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
+-/*                                                +#+#+#+#+#+   +#+           */
+-/*   Created: 2023/06/12 15:51:26 by smeixoei          #+#    #+#             */
+-/*   Updated: 2023/07/26 15:59:31 by smeixoei         ###   ########.fr       */
+-/*                                                                            */
+-/* ************************************************************************** */
+-
+-#include "libft.h"
+-
+-char	*ft_strchr_gnl(const char *s, int c)
+-{
+-	int	i;
+-
+-	i = 0;
+-	while (s[i] != '\0')
+-	{
+-		if (s[i] == (char)c)
+-			return ((char *)&s[i]);
+-		i++;
+-	}
+-	if ((char)c == '\0')
+-		return ((char *)&s[i]);
+-	return (0);
+-}
+-
+-char	*ft_strjoin_gnl(char *s1, char *s2)
+-{
+-	char	*newstring;
+-	int		i;
+-	int		j;
+-
+-	i = -1;
+-	j = 0;
+-	if (!s2 && s1)
+-		return ((char *)s1);
+-	if (!s1)
+-		return (NULL);
+-	newstring = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+-	if (!newstring)
+-		return (NULL);
+-	while (s1[++i] != '\0')
+-		newstring[i] = s1[i];
+-	while (s2[j] != '\0')
+-		newstring[i++] = s2[j++];
+-	newstring[i] = '\0';
+-	free(s1);
+-	return (newstring);
+-}
+-
+-void	*ft_calloc_gnl(size_t count, size_t size)
+-{
+-	char	*s;
+-	size_t	i;
+-
+-	i = 0;
+-	if (count == SIZE_MAX || size == SIZE_MAX)
+-		return (NULL);
+-	s = malloc(count * size);
+-	if (!s)
+-		return (0);
+-	while (i < count * size)
+-	{
+-		s[i] = '\0';
+-		i++;
+-	}
+-	return ((void *)s);
+-}
+Index: pipex/libft/ft_split.c
+===================================================================
+diff --git a/pipex/libft/ft_split.c b/pipex/libft/ft_split.c
+deleted file mode 100644
+--- a/pipex/libft/ft_split.c	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
++++ /dev/null	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
+@@ -1,98 +0,0 @@
+-/* ************************************************************************** */
+-/*                                                                            */
+-/*                                                        :::      ::::::::   */
+-/*   ft_split.c                                         :+:      :+:    :+:   */
+-/*                                                    +:+ +:+         +:+     */
+-/*   By: smeixoei <smeixoei@student.42.fr>          +#+  +:+       +#+        */
+-/*                                                +#+#+#+#+#+   +#+           */
+-/*   Created: 2023/04/11 12:09:35 by smeixoei          #+#    #+#             */
+-/*   Updated: 2024/03/05 19:29:02 by smeixoei         ###   ########.fr       */
+-/*                                                                            */
+-/* ************************************************************************** */
+-
+-#include "libft.h"
+-
+-static int	ft_words(char const *s, char c)
+-{
+-	int	i;
+-	int	words;
+-
+-	i = 0;
+-	words = 0;
+-	while (s[i] != '\0')
+-	{
+-		if ((s[i] != c) && (s[i + 1] == c || s[i + 1] == '\0'))
+-			words++;
+-		i++;
+-	}
+-	return (words);
+-}
+-
+-static int	ft_strchr_pos(char const *s, char c)
+-{
+-	char	*ptr;
+-	int		pos_c;
+-
+-	ptr = ft_strchr(s, (int)c);
+-	if (ptr == 0)
+-		pos_c = ft_strlen(s);
+-	else
+-		pos_c = ptr - s;
+-	return (pos_c);
+-}
+-
+-static void	*ft_free(char **aux)
+-{
+-	int	i;
+-
+-	i = 0;
+-	while (aux[i] != (void *)0)
+-	{
+-		free(aux[i]);
+-		i++;
+-	}
+-	free(aux);
+-	return (NULL);
+-}
+-
+-static char	**ft_fillarray(char const *s, char c, char **aux)
+-{
+-	int	pos_c;
+-	int	i;
+-
+-	i = 0;
+-	while (*s != '\0')
+-	{
+-		if ((*s == c) && (*s))
+-			s++;
+-		else if (*s != c)
+-		{
+-			pos_c = ft_strchr_pos(s, c);
+-			if (pos_c)
+-			{
+-				aux[i] = ft_substr(s, 0, pos_c);
+-				if (!aux[i])
+-					return (ft_free(aux));
+-				i++;
+-				s += pos_c;
+-			}
+-			else
+-				s++;
+-		}
+-	}
+-	aux[i] = NULL;
+-	return (aux);
+-}
+-
+-char	**ft_split(char const *s, char c)
+-{
+-	char	**aux;
+-
+-	if (s == NULL)
+-		return (NULL);
+-	aux = (char **)malloc((ft_words(s, c) + 1) * sizeof(char *));
+-	if (!aux)
+-		return (NULL);
+-	aux = ft_fillarray(s, c, aux);
+-	return (aux);
+-}
+Index: pipex/libft/ft_putstr_fd.c
+===================================================================
+diff --git a/pipex/libft/ft_putstr_fd.c b/pipex/libft/ft_putstr_fd.c
+deleted file mode 100644
+--- a/pipex/libft/ft_putstr_fd.c	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
++++ /dev/null	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
+@@ -1,25 +0,0 @@
+-/* ************************************************************************** */
+-/*                                                                            */
+-/*                                                        :::      ::::::::   */
+-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+-/*                                                    +:+ +:+         +:+     */
+-/*   By: smeixoei <smeixoei@student.42.fr>          +#+  +:+       +#+        */
+-/*                                                +#+#+#+#+#+   +#+           */
+-/*   Created: 2023/03/27 13:10:31 by smeixoei          #+#    #+#             */
+-/*   Updated: 2023/06/12 15:11:25 by smeixoei         ###   ########.fr       */
+-/*                                                                            */
+-/* ************************************************************************** */
+-
+-#include "libft.h"
+-
+-void	ft_putstr_fd(char *s, int fd)
+-{
+-	int	i;
+-
+-	i = 0;
+-	while (s[i] != '\0')
+-	{
+-		ft_putchar_fd(s[i], fd);
+-		i++;
+-	}
+-}
+Index: pipex/libft/Makefile
+===================================================================
+diff --git a/pipex/libft/Makefile b/pipex/libft/Makefile
+deleted file mode 100644
+--- a/pipex/libft/Makefile	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
++++ /dev/null	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
+@@ -1,76 +0,0 @@
+-# **************************************************************************** #
+-#                                                                              #
+-#                                                         :::      ::::::::    #
+-#    Makefile                                           :+:      :+:    :+:    #
+-#                                                     +:+ +:+         +:+      #
+-#    By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+         #
+-#                                                 +#+#+#+#+#+   +#+            #
+-#    Created: 2023/06/20 16:43:22 by smeixoei          #+#    #+#              #
+-#    Updated: 2023/08/09 10:17:12 by smeixoei         ###   ########.fr        #
+-#                                                                              #
+-# **************************************************************************** #
+-
+-NAME = libft.a
+-
+-CC = gcc
+-FLAGS = -Wall -Werror -Wextra
+-LIB = ar -rcs
+-INCLUDES = libft.h
+-SRCS_MAIN = ft_isdigit.c\
+-			ft_isalnum.c\
+-			ft_isascii.c\
+-			ft_isprint.c\
+-			ft_strlen.c\
+-			ft_strlcpy.c\
+-			ft_strlcat.c\
+-			ft_atoi.c\
+-			ft_memset.c\
+-			ft_memcpy.c\
+-			ft_toupper.c\
+-			ft_tolower.c\
+-			ft_isalpha.c\
+-			ft_bzero.c\
+-			ft_strncmp.c\
+-			ft_memmove.c\
+-			ft_strchr.c\
+-			ft_strrchr.c\
+-			ft_memchr.c\
+-			ft_memcmp.c\
+-			ft_strnstr.c\
+-			ft_calloc.c\
+-			ft_strdup.c\
+-			ft_strjoin.c\
+-			ft_itoa.c\
+-			ft_substr.c\
+-			ft_strmapi.c\
+-			ft_striteri.c\
+-			ft_putchar_fd.c\
+-			ft_putstr_fd.c\
+-			ft_putendl_fd.c\
+-			ft_putnbr_fd.c\
+-			ft_strtrim.c\
+-			ft_split.c\
+-			get_next_line.c\
+-			get_next_line_utils.c\
+-
+-OBJS_MAIN = $(SRCS_MAIN:.c=.o)
+-
+-RM = rm -f
+-
+-all: $(NAME)
+-
+-%.o: %.c
+-	$(CC) -c $(FLAGS) $?
+-
+-$(NAME): $(OBJS_MAIN) $(INCLUDES)
+-		$(LIB) $(NAME) $(OBJS_MAIN)
+-
+-clean:
+-	$(RM) $(OBJS_MAIN) $(OBJS_BONUS)
+-
+-fclean: clean
+-	$(RM) $(NAME)
+-
+-re: fclean all
+-
+-.PHONY: all clean fclean res
+Index: pipex/libft/ft_memchr.c
+===================================================================
+diff --git a/pipex/libft/ft_memchr.c b/pipex/libft/ft_memchr.c
+deleted file mode 100644
+--- a/pipex/libft/ft_memchr.c	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
++++ /dev/null	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
+@@ -1,30 +0,0 @@
+-/* ************************************************************************** */
+-/*                                                                            */
+-/*                                                        :::      ::::::::   */
+-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+-/*                                                    +:+ +:+         +:+     */
+-/*   By: smeixoei <smeixoei@student.42.fr>          +#+  +:+       +#+        */
+-/*                                                +#+#+#+#+#+   +#+           */
+-/*   Created: 2023/03/22 17:47:04 by smeixoei          #+#    #+#             */
+-/*   Updated: 2023/06/12 15:01:04 by smeixoei         ###   ########.fr       */
+-/*                                                                            */
+-/* ************************************************************************** */
+-
+-#include "libft.h"
+-
+-void	*ft_memchr(const void *s, int c, size_t n)
+-{
+-	unsigned char	*str;
+-	size_t			i;
+-
+-	str = (unsigned char *)s;
+-	c = (unsigned char)c;
+-	i = 0;
+-	while (i < n)
+-	{
+-		if (str[i] == c)
+-			return ((void *)str + i);
+-		i++;
+-	}
+-	return (0);
+-}
+Index: pipex/libft/ft_memcpy.c
+===================================================================
+diff --git a/pipex/libft/ft_memcpy.c b/pipex/libft/ft_memcpy.c
+deleted file mode 100644
+--- a/pipex/libft/ft_memcpy.c	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
++++ /dev/null	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
+@@ -1,32 +0,0 @@
+-/* ************************************************************************** */
+-/*                                                                            */
+-/*                                                        :::      ::::::::   */
+-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+-/*                                                    +:+ +:+         +:+     */
+-/*   By: smeixoei <smeixoei@student.42.fr>          +#+  +:+       +#+        */
+-/*                                                +#+#+#+#+#+   +#+           */
+-/*   Created: 2023/03/22 17:46:40 by smeixoei          #+#    #+#             */
+-/*   Updated: 2023/06/12 15:00:40 by smeixoei         ###   ########.fr       */
+-/*                                                                            */
+-/* ************************************************************************** */
+-
+-#include "libft.h"
+-
+-void	*ft_memcpy(void *dest, const void *src, size_t n)
+-{
+-	char	*s;
+-	char	*d;
+-	size_t	i;
+-
+-	if (dest == 0 && src == 0)
+-		return (0);
+-	s = (char *)src;
+-	d = (char *)dest;
+-	i = 0;
+-	while (i < n)
+-	{
+-		d[i] = s[i];
+-		i++;
+-	}
+-	return (dest);
+-}
+Index: pipex/libft/ft_strlcpy.c
+===================================================================
+diff --git a/pipex/libft/ft_strlcpy.c b/pipex/libft/ft_strlcpy.c
+deleted file mode 100644
+--- a/pipex/libft/ft_strlcpy.c	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
++++ /dev/null	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
+@@ -1,34 +0,0 @@
+-/* ************************************************************************** */
+-/*                                                                            */
+-/*                                                        :::      ::::::::   */
+-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+-/*                                                    +:+ +:+         +:+     */
+-/*   By: smeixoei <smeixoei@student.42madrid.com>   +#+  +:+       +#+        */
+-/*                                                +#+#+#+#+#+   +#+           */
+-/*   Created: 2023/03/07 17:03:44 by smeixoei          #+#    #+#             */
+-/*   Updated: 2023/03/09 16:03:53 by smeixoei         ###   ########.fr       */
+-/*                                                                            */
+-/* ************************************************************************** */
+-
+-#include "libft.h"
+-
+-size_t	ft_strlcpy(char *dest, char *src, unsigned int size)
+-{
+-	unsigned int	n;
+-	unsigned int	i;
+-
+-	n = 0;
+-	i = 0;
+-	while (src[i] != '\0')
+-		i++;
+-	if (size != 0)
+-	{
+-		while (src[n] != '\0' && n < (size - 1))
+-		{
+-			dest[n] = src[n];
+-			n++;
+-		}
+-		dest[n] = '\0';
+-	}
+-	return (i);
+-}
+Index: pipex/libft/ft_tolower.c
+===================================================================
+diff --git a/pipex/libft/ft_tolower.c b/pipex/libft/ft_tolower.c
+deleted file mode 100644
+--- a/pipex/libft/ft_tolower.c	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
++++ /dev/null	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
+@@ -1,20 +0,0 @@
+-/* ************************************************************************** */
+-/*                                                                            */
+-/*                                                        :::      ::::::::   */
+-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+-/*                                                    +:+ +:+         +:+     */
+-/*   By: smeixoei <smeixoei@student.42.fr>          +#+  +:+       +#+        */
+-/*                                                +#+#+#+#+#+   +#+           */
+-/*   Created: 2023/03/22 17:44:44 by smeixoei          #+#    #+#             */
+-/*   Updated: 2023/06/12 15:12:48 by smeixoei         ###   ########.fr       */
+-/*                                                                            */
+-/* ************************************************************************** */
+-
+-#include "libft.h"
+-
+-int	ft_tolower(int c)
+-{
+-	if (c >= 'A' && c <= 'Z')
+-		return (c + 32);
+-	return (c);
+-}
+Index: pipex/libft/libft.h
+===================================================================
+diff --git a/pipex/libft/libft.h b/pipex/libft/libft.h
+deleted file mode 100644
+--- a/pipex/libft/libft.h	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
++++ /dev/null	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
+@@ -1,72 +0,0 @@
+-/* ************************************************************************** */
+-/*                                                                            */
+-/*                                                        :::      ::::::::   */
+-/*   libft.h                                            :+:      :+:    :+:   */
+-/*                                                    +:+ +:+         +:+     */
+-/*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
+-/*                                                +#+#+#+#+#+   +#+           */
+-/*   Created: 2023/03/09 15:23:37 by smeixoei          #+#    #+#             */
+-/*   Updated: 2023/12/09 18:37:47 by smeixoei         ###   ########.fr       */
+-/*                                                                            */
+-/* ************************************************************************** */
+-
+-#ifndef LIBFT_H
+-# define LIBFT_H
+-
+-# ifndef BUFFER_SIZE
+-#  define BUFFER_SIZE 3
+-# endif
+-
+-# include <fcntl.h>
+-# include <stdint.h>
+-# include <stdlib.h>
+-# include <unistd.h>
+-# include <ctype.h>
+-# include <stdio.h>
+-
+-typedef struct s_list
+-{
+-	void			*content;
+-	struct s_list	*next;
+-}					t_list;
+-
+-int		ft_atoi(const char *str);
+-void	ft_bzero(void *s, size_t n);
+-void	*ft_calloc(size_t count, size_t size);
+-int		ft_isalnum(int c);
+-int		ft_isalpha(int c);
+-int		ft_isascii(int c);
+-int		ft_isdigit(int c);
+-int		ft_isprint(int c);
+-char	*ft_itoa(int n);
+-void	*ft_memchr(const void *s, int c, size_t n);
+-int		ft_memcmp(const void *str1, const void *str2, size_t n);
+-void	*ft_memcpy(void *dest, const void *src, size_t n);
+-void	*ft_memmove(void *dest, const void *src, size_t n);
+-void	*ft_memset(void *b, int c, size_t len);
+-void	ft_putchar_fd(char c, int fd);
+-void	ft_putendl_fd(char *s, int fd);
+-void	ft_putnbr_fd(int n, int fd);
+-void	ft_putstr_fd(char *s, int fd);
+-char	**ft_split(char const *s, char c);
+-char	*ft_strchr(const char *s, int c);
+-char	*ft_strdup(const char *s1);
+-void	ft_striteri(char *s, void (*f)(unsigned int, char *));
+-char	*ft_strjoin(char const *s1, char const *s2);
+-size_t	ft_strlcat(char *dst, const char *src, size_t size);
+-size_t	ft_strlcpy(char *dest, char *src, unsigned int size);
+-size_t	ft_strlen(const char *str);
+-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+-int		ft_strncmp(const char *s1, const char *s2, size_t n);
+-char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
+-char	*ft_strrchr(const char *s, int c);
+-char	*ft_strtrim(char const *s1, char const *set);
+-char	*ft_substr(char const *s, unsigned int start, size_t len);
+-int		ft_tolower(int c);
+-int		ft_toupper(int c);
+-char	*ft_strchr_gnl(const char *s, int c);
+-char	*ft_strjoin_gnl(char *s1, char *s2);
+-void	*ft_calloc_gnl(size_t count, size_t size);
+-char	*get_next_line(int fd);
+-
+-#endif
+Index: pipex/libft/ft_isprint.c
+===================================================================
+diff --git a/pipex/libft/ft_isprint.c b/pipex/libft/ft_isprint.c
+deleted file mode 100644
+--- a/pipex/libft/ft_isprint.c	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
++++ /dev/null	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
+@@ -1,18 +0,0 @@
+-/* ************************************************************************** */
+-/*                                                                            */
+-/*                                                        :::      ::::::::   */
+-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+-/*                                                    +:+ +:+         +:+     */
+-/*   By: smeixoei <smeixoei@student.42madrid.com>   +#+  +:+       +#+        */
+-/*                                                +#+#+#+#+#+   +#+           */
+-/*   Created: 2023/03/07 13:41:33 by smeixoei          #+#    #+#             */
+-/*   Updated: 2023/03/15 15:34:12 by smeixoei         ###   ########.fr       */
+-/*                                                                            */
+-/* ************************************************************************** */
+-
+-#include "libft.h"
+-
+-int	ft_isprint(int c)
+-{
+-	return (c >= 32 && c <= 126);
+-}
+Index: pipex/libft/ft_strlcat.c
+===================================================================
+diff --git a/pipex/libft/ft_strlcat.c b/pipex/libft/ft_strlcat.c
+deleted file mode 100644
+--- a/pipex/libft/ft_strlcat.c	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
++++ /dev/null	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
+@@ -1,38 +0,0 @@
+-/* ************************************************************************** */
+-/*                                                                            */
+-/*                                                        :::      ::::::::   */
+-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+-/*                                                    +:+ +:+         +:+     */
+-/*   By: smeixoei <smeixoei@student.42.fr>          +#+  +:+       +#+        */
+-/*                                                +#+#+#+#+#+   +#+           */
+-/*   Created: 2023/03/22 17:46:11 by smeixoei          #+#    #+#             */
+-/*   Updated: 2023/06/12 15:12:13 by smeixoei         ###   ########.fr       */
+-/*                                                                            */
+-/* ************************************************************************** */
+-
+-#include "libft.h"
+-
+-size_t	ft_strlcat(char *dst, const char *src, size_t size)
+-{
+-	size_t	i;
+-	size_t	ld;
+-	size_t	ls;
+-
+-	i = 0;
+-	if (size == 0 && dst == 0)
+-		return (0);
+-	ld = ft_strlen(dst);
+-	ls = ft_strlen(src);
+-	if (size <= ld)
+-		return (ls + size);
+-	if (size > 0)
+-	{
+-		while (i < size - ld - 1 && src[i] != '\0')
+-		{
+-			dst[ld + i] = src[i];
+-			i++;
+-		}
+-	}
+-	dst[ld + i] = '\0';
+-	return (ld + ls);
+-}
+Index: pipex/libft/ft_strlen.c
+===================================================================
+diff --git a/pipex/libft/ft_strlen.c b/pipex/libft/ft_strlen.c
+deleted file mode 100644
+--- a/pipex/libft/ft_strlen.c	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
++++ /dev/null	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
+@@ -1,23 +0,0 @@
+-/* ************************************************************************** */
+-/*                                                                            */
+-/*                                                        :::      ::::::::   */
+-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+-/*                                                    +:+ +:+         +:+     */
+-/*   By: smeixoei <smeixoei@student.42.fr>          +#+  +:+       +#+        */
+-/*                                                +#+#+#+#+#+   +#+           */
+-/*   Created: 2023/03/07 13:13:06 by smeixoei          #+#    #+#             */
+-/*   Updated: 2023/03/27 12:15:50 by smeixoei         ###   ########.fr       */
+-/*                                                                            */
+-/* ************************************************************************** */
+-
+-#include "libft.h"
+-
+-size_t	ft_strlen(const char *str)
+-{
+-	size_t	i;
+-
+-	i = 0;
+-	while (str[i] != '\0')
+-		i++;
+-	return (i);
+-}
+Index: pipex/libft/ft_strchr.c
+===================================================================
+diff --git a/pipex/libft/ft_strchr.c b/pipex/libft/ft_strchr.c
+deleted file mode 100644
+--- a/pipex/libft/ft_strchr.c	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
++++ /dev/null	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
+@@ -1,29 +0,0 @@
+-/* ************************************************************************** */
+-/*                                                                            */
+-/*                                                        :::      ::::::::   */
+-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+-/*                                                    +:+ +:+         +:+     */
+-/*   By: smeixoei <smeixoei@student.42.fr>          +#+  +:+       +#+        */
+-/*                                                +#+#+#+#+#+   +#+           */
+-/*   Created: 2023/03/22 17:46:17 by smeixoei          #+#    #+#             */
+-/*   Updated: 2023/06/12 15:11:41 by smeixoei         ###   ########.fr       */
+-/*                                                                            */
+-/* ************************************************************************** */
+-
+-#include "libft.h"
+-
+-char	*ft_strchr(const char *s, int c)
+-{
+-	int	i;
+-
+-	i = 0;
+-	while (s[i] != '\0')
+-	{
+-		if (s[i] == (char)c)
+-			return ((char *)&s[i]);
+-		i++;
+-	}
+-	if ((char)c == '\0')
+-		return ((char *)&s[i]);
+-	return (0);
+-}
+Index: pipex/libft/ft_strtrim.c
+===================================================================
+diff --git a/pipex/libft/ft_strtrim.c b/pipex/libft/ft_strtrim.c
+deleted file mode 100644
+--- a/pipex/libft/ft_strtrim.c	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
++++ /dev/null	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
+@@ -1,34 +0,0 @@
+-/* ************************************************************************** */
+-/*                                                                            */
+-/*                                                        :::      ::::::::   */
+-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+-/*                                                    +:+ +:+         +:+     */
+-/*   By: smeixoei <smeixoei@student.42.fr>          +#+  +:+       +#+        */
+-/*                                                +#+#+#+#+#+   +#+           */
+-/*   Created: 2023/04/11 12:09:43 by smeixoei          #+#    #+#             */
+-/*   Updated: 2023/06/19 16:19:00 by smeixoei         ###   ########.fr       */
+-/*                                                                            */
+-/* ************************************************************************** */
+-
+-#include "libft.h"
+-
+-char	*ft_strtrim(char const *s1, char const *set)
+-{
+-	int	len;
+-	int	i;
+-	int	j;
+-
+-	if (!s1 || !set)
+-		return (0);
+-	len = ft_strlen(s1);
+-	i = 0;
+-	j = len;
+-	while (i <= len && ft_strchr(set, s1[i]) != NULL)
+-		i++;
+-	while (j >= i && ft_strchr(set, s1[j]) != NULL)
+-		j--;
+-	if (i > j)
+-		return (ft_strdup(""));
+-	len = j - i;
+-	return (ft_substr(s1, i, len + 1));
+-}
+Index: pipex/libft/get_next_line.c
+===================================================================
+diff --git a/pipex/libft/get_next_line.c b/pipex/libft/get_next_line.c
+deleted file mode 100644
+--- a/pipex/libft/get_next_line.c	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
++++ /dev/null	(revision b8cd0d99642a05dd835d593bf835eb1a4a8a83d6)
+@@ -1,116 +0,0 @@
+-/* ************************************************************************** */
+-/*                                                                            */
+-/*                                                        :::      ::::::::   */
+-/*   get_next_line.c                                    :+:      :+:    :+:   */
+-/*                                                    +:+ +:+         +:+     */
+-/*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
+-/*                                                +#+#+#+#+#+   +#+           */
+-/*   Created: 2023/06/12 15:51:31 by smeixoei          #+#    #+#             */
+-/*   Updated: 2024/02/20 12:09:44 by smeixoei         ###   ########.fr       */
+-/*                                                                            */
+-/* ************************************************************************** */
+-
+-#include "libft.h"
+-
+-static char	*ft_read(int fd, char *rf)
+-{
+-	char	*nl;
+-	int		bytes;
+-
+-	bytes = 1;
+-	nl = ft_calloc_gnl((BUFFER_SIZE + 1), sizeof(char));
+-	if (!nl)
+-		return (NULL);
+-	while (!ft_strchr_gnl(rf, '\n') && bytes != 0)
+-	{
+-		bytes = read(fd, nl, BUFFER_SIZE);
+-		if (bytes < 0)
+-		{
+-			free(nl);
+-			return (NULL);
+-		}
+-		nl[bytes] = '\0';
+-		rf = ft_strjoin_gnl(rf, nl);
+-	}
+-	free(nl);
+-	return (rf);
+-}
+-
+-char	*ft_line(char *rf)
+-{
+-	char	*line;
+-	int		i;
+-
+-	i = 0;
+-	if (!rf || rf[0] == '\0')
+-		return (NULL);
+-	while (rf[i] != '\0' && rf[i] != '\n')
+-		i++;
+-	if (rf[i] == '\n')
+-		line = ft_calloc_gnl((i + 2), sizeof(char));
+-	else
+-		line = ft_calloc_gnl((i + 1), sizeof(char));
+-	if (!line)
+-		return (NULL);
+-	i = 0;
+-	while (rf[i] != '\n' && rf[i] != '\0')
+-	{
+-		line[i] = rf[i];
+-		i++;
+-	}
+-	if (rf[i] == '\n')
+-		line[i++] = '\n';
+-	line[i] = '\0';
+-	return (line);
+-}
+-
+-char	*ft_rst(char *rf)
+-{
+-	char	*rst;
+-	int		i;
+-	int		j;
+-
+-	i = 0;
+-	while (rf[i] != '\n' && rf[i] != '\0')
+-		i++;
+-	if (rf[i] == '\0')
+-	{
+-		free(rf);
+-		return (NULL);
+-	}
+-	rst = ft_calloc_gnl((ft_strlen(rf) - i + 1), sizeof(char));
+-	if (!rst)
+-		return (NULL);
+-	i++;
+-	j = 0;
+-	while (rf[i] != '\0')
+-		rst[j++] = rf[i++];
+-	rst[j] = '\0';
+-	free(rf);
+-	return (rst);
+-}
+-
+-char	*get_next_line(int fd)
+-{
+-	static char	*rf;
+-	char		*line;
+-
+-	if (BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0 || fd < 0)
+-	{
+-		free(rf);
+-		rf = NULL;
+-		return (NULL);
+-	}
+-	if (!rf)
+-	{
+-		rf = ft_calloc_gnl((BUFFER_SIZE + 1), sizeof(char));
+-		if (!rf)
+-			return (NULL);
+-	}
+-	rf = ft_read(fd, rf);
+-	if (!rf)
+-		return (NULL);
+-	line = ft_line(rf);
+-	rf = ft_rst(rf);
+-	return (line);
+-}

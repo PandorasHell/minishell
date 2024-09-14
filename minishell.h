@@ -117,5 +117,6 @@ int status_redir(t_lexer **lexer, int status, t_cmd *cmd);
 
 //UTILS
 int exit_checker(const char *line, const char *comparer_exit);
+int check_character_for_history(char c);
 
 #endif

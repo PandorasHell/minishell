@@ -21,6 +21,7 @@ SRC_FILES := 	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/parser/set_values.c \
 				$(SRC_DIR)/parser/status_checker.c \
 				$(SRC_DIR)/utils/exit_checker.c \
+				$(SRC_DIR)/utils/line_character_checker.c \
 
 # Object files
 OBJ_FILES := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))
