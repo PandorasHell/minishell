@@ -1,21 +1,9 @@
 #include "../minishell.h"
-#include "../lib/libft/libft.h"
 #include <readline/readline.h>
 #include <readline/history.h>
 
-int main(int argc, char **argv, char **enviroment)
+static void line_reader(t_lexer *lexer, t_cmd *cmd, char *line)
 {
-	char	*line;
-	t_lenv	*env;
-	t_lexer	*lexer;
-	t_cmd	*cmd;
-	(void)argc;
-	(void)argv;
-
-	env = save_env(enviroment);
-	if (env)
-		printf("Aaª\n");
-		
 	while (1)
 	{
 		line = readline("minishell $>> ");
@@ -34,13 +22,31 @@ int main(int argc, char **argv, char **enviroment)
 				free_cmd(cmd);
 				ft_lstclear((t_list **)&cmd, free);
 			}
-			if (*line != '\0')
+			if (!check_character_for_history(line[0]))
 				add_history(line);
 			free(line);
 		}
 		else
 			break ;
 	}
+}
+
+int main(int argc, char **argv, char **enviroment)
+{
+	char	*line;
+	t_lenv	*env;
+	t_lexer	*lexer;
+	t_cmd	*cmd;
+	(void)argc;
+	(void)argv;
+
+	env = save_env(enviroment);
+	if (env)
+		printf("Aaª\n");
+	lexer = NULL;
+	cmd = NULL;
+	line = NULL;
+	line_reader(lexer, cmd, line);
 	rl_clear_history();
 	free_env(env);
 	return (0);
