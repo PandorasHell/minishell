@@ -1,19 +1,39 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: juan-cas <juan-cas@student.42madrid.com>   +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/13 13:27:02 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/08/13 14:00:29 by juan-cas         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../minishell.h"
+#include "../lib/libft/libft.h"
+#include <readline/readline.h>
+#include <readline/history.h>
 
 int main(int argc, char **argv, char **enviroment)
 {
+	char	*line;
+	t_lenv	*env;
+	t_lexer	*cmd;
+	(void)argc;
+	(void)argv;
 
+	env = save_env(enviroment);
+	if (env)
+		printf("Aaª\n");
+		
+	while (1)
+	{
+		line = readline("minishell $>> ");
+		if (line)
+		{
+			cmd = lexical_analysis(line);
+			while (cmd)
+			{
+				printf("<%d %s>\n", cmd->content->key, cmd->content->value);
+				cmd = cmd->next;
+			}
+			if (*line != '\0')
+				add_history(line);
+		}
+		else
+			break ;
+	}
+	//rl_clear_history();
 	return (0);
 }
+
+

@@ -1,6 +1,6 @@
 # Compiler and flags
 CC := gcc
-CFLAGS := -Wall -Wextra -Werror -g -fsanitize=address,leak
+CFLAGS := -Wall -Wextra -Werror #-g3 -fsanitize=address,leak
 
 
 # Directories
@@ -10,15 +10,18 @@ LIB_DIR := lib
 LIBFT_DIR := $(LIB_DIR)/libft
 
 # Source files
-SRC_FILES := $(SRC_DIR) \
-$(SRC_FILES)/src/minishell.c \
-$(SRC_FILES)/src/main.c \
+SRC_FILES := 	$(SRC_DIR)/main.c \
+				$(SRC_DIR)/env/env.c \
+				$(SRC_DIR)/parsing/malloc_check.c \
+				$(SRC_DIR)/lexer/lexer.c \
+				$(SRC_DIR)/lexer/lexer_utils.c \
+				$(SRC_DIR)/lexer/split_words.c \
 
 # Object files
 OBJ_FILES := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))
 
 # Libraries
-LIBS := -L$(LIBFT_DIR) -lft 
+LIBS := -L$(LIBFT_DIR) -lft -lreadline
 
 # Executable
 TARGET := minishell
