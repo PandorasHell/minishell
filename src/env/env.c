@@ -1,5 +1,20 @@
 #include "../../minishell.h"
 
+void	free_env(t_lenv *env)
+{
+	t_lenv	*tmp;
+
+	while (env)
+	{
+		tmp = env->next;
+		free(env->content->key);
+		free(env->content->value);
+		free(env->content);
+		free(env);
+		env = tmp;
+	}
+}
+
 void	save_data_env(t_lenv *tmp, char **env, int i)
 {
 	t_denv *data;

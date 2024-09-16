@@ -6,14 +6,14 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 11:58:55 by smeixoei          #+#    #+#             */
-/*   Updated: 2024/08/06 19:00:53 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/09/13 21:10:59 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-# include "./libft/libft.h"
+# include "../lib/libft/libft.h"
 # include <errno.h>
 # include <fcntl.h>
 # include <stdio.h>

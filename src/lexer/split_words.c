@@ -48,6 +48,7 @@ static char	*save_operator(char *line)
 	char	operator;
 
 	operator = line[0];
+	len = 0;
 	while (line[len] && line[len] == operator)
 		len++;
 	if (len > 2)
@@ -62,7 +63,7 @@ static char	*save_operator(char *line)
 t_lword	*split_words(char *line, t_lword *words)
 {
 	t_lword	*tmp;
-	int		i;
+	size_t	i;
 
 	i = 0;
 	while (line[i])
@@ -72,8 +73,9 @@ t_lword	*split_words(char *line, t_lword *words)
 			tmp = ft_calloc(1, sizeof(t_lword));
 			if (!tmp)
 				return ((ft_lstclear((t_list **)&words, free)), NULL);
-			tmp->word = save_word(&line[i]);
-			if (is_operator(line[i]))
+			if (!is_operator(line[i]))
+				tmp->word = save_word(&line[i]);
+			else if (is_operator(line[i]))
 				tmp->word = save_operator(&line[i]);
 			if (!tmp->word)
 			{

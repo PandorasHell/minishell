@@ -9,20 +9,20 @@ static void	set_lexer_key(t_lword *words, t_lexer *new)
 		return ;
 	new->content = data;
 	data->value = ft_strdup(words->word);
-	data->key = 0;
+	data->key = WORD;
 	if (data->value[0] == '|')
-		data->key = 1;
-	if (data->value[0] == '&')
-		data->key = 2;
-	if (data->value[0] == '<')
-		data->key = 3;
-	if (data->value[0] == '<' && data->value[1])
-		data->key = 4;
-	if (data->value[0] == '>')
-		data->key = 5;
-	if (data->value[0] == '>' && data->value[1])
+		data->key = PIPE;
+	else if (data->value[0] == '<' && data->value[1])
+		data->key = HEREDOC;
+	else if (data->value[0] == '<')
+		data->key = INFILE;
+	else if (data->value[0] == '>' && data->value[1])
+		data->key = APPEND;
+	else if (data->value[0] == '>')
+		data->key = OUTFILE;
+	else if (data->value[0] == ';')
 		data->key = 6;
-	if (data->value[0] == ';')
+	else if (data->value[0] == '&')
 		data->key = 7;
 	if ((data->value[0] == '|' && data->value[1])
 		|| (data->value[0] == '&' && data->value[1]))
@@ -32,8 +32,10 @@ static void	set_lexer_key(t_lword *words, t_lexer *new)
 static t_lexer	*set_lexer_value(t_lword *words, t_lexer *lexer)
 {
 	t_lexer	*new;
+	t_lword *temp_word;
 
 	new = NULL;
+	temp_word = words;
 	while (words)
 	{
 		new = ft_calloc(1, sizeof(t_lexer));
@@ -45,7 +47,23 @@ static t_lexer	*set_lexer_value(t_lword *words, t_lexer *lexer)
 		ft_lstadd_back((t_list **)&lexer, (t_list *)new);
 		words = words->next;
 	}
+	free_words(temp_word);
 	return (lexer);
+}
+
+void	free_lexer(t_lexer **lexer)
+{
+	t_lexer	*tmp;
+
+	tmp = (*lexer);
+	while ((*lexer))
+	{
+		(*lexer) = (*lexer)->next;
+		free(tmp->content->value);
+		free(tmp->content);
+		free(tmp);
+		tmp = (*lexer);
+	}
 }
 
 t_lexer	*lexical_analysis(char *line)
