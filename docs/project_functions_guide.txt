@@ -1,13 +1,36 @@
-NO SE SI HACER ESTE DOCUMENTO O DEJAR COMENTARIOS EN EL CODIGO O AMBAS COSAS
-PERO POR SI ACASO DEJO ESTE CREADO PARA:
+–––––––––––––––––––––––––––––––– ENV ––––––––––––––––––––––––––––––––
 
-RESUMEN DE LO QUE REALIZA LA FUNCION. NO ES NECESARIO DECIR EL VALOR DE RETORNO 
-SIMPLEMENTE ES PARA SABER QUE HACE.
+free_env		-->
+save_data_env	-->
+save_env		-->
 
-CON ESTO QUIERO DECIR. QUIZA PODEMOS TENER AQUI UNA GUIA EXTENSA DE QUE HACE
-PASO A PASO, VALOR DE RETORNO Y VARIABLES QUE MODIFICA... LO QUE VIENE A SER 
-DESGRANAR TOTALMENTE LA FUNCION.
-O ESA GUIA MAS EXTENSA DEJARLA EN EL CODIGO ENCIMA DE LA FUNCION EN SI.
-ESTO LO HABIA PENSADO MAS COMO RESUMEN POR SI PENSAMOS:
-HABRA ALGUNA FUNCION YA CREADA QUE HAGA X? 
-Y PODER CONSULTAR AQUI ESO
+–––––––––––––––––––––––––––––––– LEXER ––––––––––––––––––––––––––––––––
+
+is_space			-->
+is_operator			-->
+is_quote			-->
+free_words			-->
+quote_checker		-->
+save_word			-->
+save_operator		-->
+split_words			-->
+set_lexer_key		-->
+set_lexer_value		-->
+free_lexer			-->
+lexical_analysis	-->
+
+–––––––––––––––––––––––––––––––– PARSER ––––––––––––––––––––––––––––––––
+
+free_cmd		-->
+create_cmd		-->
+final_cmd		-->
+set_cmd_mem		-->
+set_cmd_word	-->
+set_cmd_redir	-->
+set_cmd_value	-->
+status_pipe		-->
+status_redir	-->
+
+–––––––––––––––––––––––––––––––– UTILS ––––––––––––––––––––––––––––––––
+
+exit_checker	-->
