@@ -1,23 +1,23 @@
 –––––––––––––––––––––––––––––––– ENV ––––––––––––––––––––––––––––––––
 
-free_env		-->
-save_data_env	-->
-save_env		-->
+free_env		--> Libera la memoria alojada en todos los nodos de lista enlazada "t_env".
+save_data_env	--> Guarda en una nueva estructura "t_denv" los valores key/value del entorno y la devuelve.
+save_env		--> Crea una nueva lista enlazada "t_env" con los valores "t_denv" y "next" para cada variable del entorno.
 
 –––––––––––––––––––––––––––––––– LEXER ––––––––––––––––––––––––––––––––
 
-is_space			-->
-is_operator			-->
-is_quote			-->
-free_words			-->
-quote_checker		-->
-save_word			-->
-save_operator		-->
-split_words			-->
-set_lexer_key		-->
-set_lexer_value		-->
-free_lexer			-->
-lexical_analysis	-->
+is_space			--> Comprueba si el caracter facilitado corresponde a algun caracter de espacio.
+is_operator			--> Comprueba si el caracter facilitado corresponde a algun operador de shell.
+is_quote			--> Comprueba si el caracter facilitado corresponde al caracter de comilla simple o doble.
+free_words			--> Libera la memoria asignada para cada nodo "t_lword".
+quote_checker		--> Comprueba si hay una comilla de cierre en la cadena. Retorna su posición.
+save_word			--> Guarda en un nuevo nodo "t_lword" la cadena de caracteres encontrada. Retorna si encuentra un espacio u operador.
+save_operator		--> Guarda en un nuevo nodo "t_lword" el operador de shell encontrado.
+split_words			--> Genera una nueva lista "t_lword" sobre la linea facilitada por "readline".
+set_lexer_key		--> Asigna un valor "key" a cada nodo de la lista "t_lexer" dentro de la estructura "t_dlexer".
+set_lexer_value		--> Crea una nueva lista "t_lexer" en base a la lista "t_lword". 
+free_lexer			--> Libera toda la memoria asignada de la lista "t_lexer", incluida la estructura "t_dlexer".
+lexical_analysis	--> Funcion controladora para la gestión entre la creación de palabras y el análisis lexico.
 
 –––––––––––––––––––––––––––––––– PARSER ––––––––––––––––––––––––––––––––
 
