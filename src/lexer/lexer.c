@@ -77,5 +77,7 @@ t_lexer	*lexical_analysis(char *line)
 	if (!words)
 		return (NULL);
 	lexer = set_lexer_value(words, lexer);
+	if (!lexer)
+		return (NULL);
 	return (lexer);
 }

@@ -1,5 +1,6 @@
 #include "../../minishell.h"
 
+
 static int	quote_checker(const char *line)
 {
 	int		len;
@@ -60,9 +61,8 @@ static char	*save_operator(char *line)
 	return (word);
 }
 
-t_lword	*split_words(char *line, t_lword *words)
+static t_lword *word_maker(t_lword *tmp, t_lword *words, char *line)
 {
-	t_lword	*tmp;
 	size_t	i;
 
 	i = 0;
@@ -78,16 +78,24 @@ t_lword	*split_words(char *line, t_lword *words)
 			else if (is_operator(line[i]))
 				tmp->word = save_operator(&line[i]);
 			if (!tmp->word)
-			{
-				ft_lstclear((t_list **)&words, free);
-				free(tmp);
-				return (NULL);
-			}
+				return (ft_lstclear((t_list **)&words, free),
+						free(tmp),NULL);
 			ft_lstadd_back((t_list **)&words, (t_list *)tmp);
 			i += ft_strlen(tmp->word);
 		}
 		else
 			i++;
 	}
+	return (words);
+}
+
+t_lword	*split_words(char *line, t_lword *words)
+{
+	t_lword	*tmp;
+
+	tmp = NULL;
+	words = word_maker(tmp, words, line);
+	if (!words)
+		return (NULL);
 	return (words);
 }

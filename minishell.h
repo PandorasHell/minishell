@@ -116,7 +116,9 @@ int status_pipe(t_lexer **lexer, int status);
 int status_redir(t_lexer **lexer, int status, t_cmd *cmd);
 
 //UTILS
-int exit_checker(const char *line, const char *comparer_exit);
+int exit_checker(const char *line);
 int check_character_for_history(char c);
+void built_in_env(t_lenv *env);
+int built_in_command_checker(t_cmd *cmd, t_denv *env);
 
 #endif
