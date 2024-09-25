@@ -2,7 +2,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
-static void line_reader(t_lexer *lexer, t_cmd *cmd, char *line)
+static void line_reader(t_lexer *lexer, t_cmd *cmd, char *line, t_env *env)
 {
 	while (1)
 	{
@@ -16,6 +16,7 @@ static void line_reader(t_lexer *lexer, t_cmd *cmd, char *line)
 			}
 			lexer = lexical_analysis(line);
 			cmd = final_cmd(lexer);
+			cmd = expand_cmd(cmd, env);
 			free_lexer(&lexer);
 			if (cmd != NULL)
 			{
@@ -34,7 +35,7 @@ static void line_reader(t_lexer *lexer, t_cmd *cmd, char *line)
 int main(int argc, char **argv, char **enviroment)
 {
 	char	*line;
-	t_lenv	*env;
+	t_env	*env;
 	t_lexer	*lexer;
 	t_cmd	*cmd;
 	(void)argc;
@@ -46,7 +47,7 @@ int main(int argc, char **argv, char **enviroment)
 	lexer = NULL;
 	cmd = NULL;
 	line = NULL;
-	line_reader(lexer, cmd, line);
+	line_reader(lexer, cmd, line, env);
 	rl_clear_history();
 	free_env(env);
 	return (0);

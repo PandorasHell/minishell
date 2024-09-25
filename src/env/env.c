@@ -1,8 +1,8 @@
 #include "../../minishell.h"
 
-void	free_env(t_lenv *env)
+void	free_env(t_env *env)
 {
-	t_lenv	*tmp;
+	t_env	*tmp;
 
 	while (env)
 	{
@@ -15,7 +15,7 @@ void	free_env(t_lenv *env)
 	}
 }
 
-void	save_data_env(t_lenv *tmp, char **env, int i)
+void	save_data_env(t_env *tmp, char **env, int i)
 {
 	t_denv *data;
 
@@ -27,17 +27,17 @@ void	save_data_env(t_lenv *tmp, char **env, int i)
 	data->value = ft_strdup(ft_strchr(env[i], '=') + 1);
 }
 
-t_lenv	*save_env(char **env)
+t_env	*save_env(char **env)
 {
-	t_lenv	*lst;
-	t_lenv	*tmp;
+	t_env	*lst;
+	t_env	*tmp;
 	int		i;
 
 	i = 0;
 	lst = NULL;
 	while (env[i])
 	{
-		tmp = ft_calloc(1, sizeof(t_lenv));
+		tmp = ft_calloc(1, sizeof(t_env));
 		if (!tmp)
 		{
 			perror("Error creating env list");

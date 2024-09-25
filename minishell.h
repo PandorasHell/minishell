@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:52:54 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/09/13 20:47:34 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/09/25 20:21:05 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct s_list_env
 {
 	t_denv *content;
 	struct s_list_env *next;
-}	t_lenv;
+}	t_env;
 
 // LEXER
 typedef struct s_line_word
@@ -93,8 +93,8 @@ typedef struct s_cmd
 }	t_cmd;
 
 // ENV
-t_lenv	*save_env(char **env);
-void	free_env(t_lenv *env);
+t_env	*save_env(char **env);
+void	free_env(t_env *env);
 
 // LEXER
 int	is_space(char c);
