@@ -4,18 +4,12 @@ void free_cmd(t_cmd *cmd)
 {
     t_cmd *tmp;
 	t_cmd_red *tmp_redir;
-	t_cmd_name *tmp_word;
 
     while (cmd)
     {
         tmp = cmd->next;
         if (cmd->info->word)
-            {
-				tmp_word = cmd->info->word->next;
-				free(cmd->info->word->name);
-				free(cmd->info->word);
-				cmd->info->word = tmp_word;
-			}
+            ft_lstclear((t_list **)&cmd->info->word, free);
         if (cmd->info->redir)
         {
             while (cmd->info->redir)
