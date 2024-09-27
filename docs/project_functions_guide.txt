@@ -25,11 +25,14 @@ free_cmd		--> Libera toda la memoria relacionada a la estructura "t_cmd_data", p
 final_cmd		--> Genra la lista final de comandos con sus opciones y redirecciones correspndientes. En caso de error libera la memoria relacionada.
 create_cmd		--> Gestiona la creación de los valores correspondientes a los nombres, opciones y redirecciones de un comando.
 set_cmd_mem		--> Reserva memoria para la lista "t_cmd" y para la estructura "t_cmd_data".
-set_cmd_word	--> Reserva memoria para la estructura "t_cmd_name" y asigna el valor "name" del comando relacionado. Si hay varios valores "key" con valor WORD seguidos en la lista "t_lexer" estos se generarán como siguientes en la lista "t_cmd_name".
-set_cmd_redir	--> Reserva memoria para la lista "t_cmd_red" y para la estructura "t_cmd_dred", y asigna los valores "where" y "type" del comando relacionado. Si hay varios valores "key" con valor REDIR seguidos en la lista "t_lexer" estos se generarán como siguientes en la lista "t_cmd_redir".
-set_cmd_value	--> Gestiona el tipo de dato que se va a genrar dentro de "t_cmd_data" teniendo en cuienta el valor "key" de "t_clexer". 
+set_cmd_word	--> Reserva memoria para la estructura "t_cmd_name" y asigna el valor "name" del comando relacionado.
+					Si hay varios valores "key" con valor WORD seguidos en la lista "t_lexer" estos se generarán como siguientes en la lista "t_cmd_name".
+set_cmd_redir	--> Reserva memoria para la lista "t_cmd_red" y para la estructura "t_cmd_dred", y asigna los valores "where" y "type" del comando relacionado.
+					Si hay varios valores "key" con valor REDIR seguidos en la lista "t_lexer" estos se generarán como siguientes en la lista "t_cmd_redir".
+set_cmd_value	--> Gestiona el tipo de dato que se va a genrar dentro de "t_cmd_data" teniendo en cuienta el valor "key" de "t_lexer". 
 status_pipe		--> Comprueba si el valor devuelto en "set_cmd_value" corresponde a PIPE y avanza una posición si es posible.
-status_redir	--> Comprueba si el valor devuelto en "set_cmd_value" corresponde a REDIR y avanza una posición si es posible, en caso contrario libera toda la mmoria asignada hasta el momento dentro de "t_cmd".
+status_redir	--> Comprueba si el valor devuelto en "set_cmd_value" corresponde a REDIR y avanza una posición si es posible,
+					en caso contrario libera toda la mmoria asignada hasta el momento dentro de "t_cmd".
 
 –––––––––––––––––––––––––––––––– UTILS ––––––––––––––––––––––––––––––––
 
