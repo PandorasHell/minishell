@@ -52,7 +52,7 @@ t_cmd	*create_cmd(t_lexer **lexer)
 	return (cmd);
 }
 
-t_cmd	*final_cmd(t_lexer *lexer)
+t_cmd	*complete_parser(t_lexer *lexer)
 {
 	t_cmd	*cmd;
 	t_cmd	*new;

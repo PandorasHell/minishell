@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:52:54 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/09/25 20:21:05 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/09/27 18:29:36 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,11 +106,9 @@ void	free_lexer(t_lexer **lexer);
 void free_words(t_lword *words);
 
 //PARSER
-t_cmd	*final_cmd(t_lexer *lexer);
+t_cmd	*complete_parser(t_lexer *lexer);
 void	free_cmd(t_cmd *cmd);
 t_cmd	*set_cmd_mem(t_cmd *cmd);
-// t_dcmd	*set_cmd_word(t_lexer *lexer);
-// t_rcmd	*set_cmd_redir(t_lexer *lexer);
 int	set_cmd_value(t_lexer **lexer, t_cmd *cmd);
 int status_pipe(t_lexer **lexer, int status);
 int status_redir(t_lexer **lexer, int status, t_cmd *cmd);

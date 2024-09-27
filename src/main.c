@@ -4,6 +4,7 @@
 
 static void line_reader(t_lexer *lexer, t_cmd *cmd, char *line, t_env *env)
 {
+	t_cmd	*parser = NULL;
 	while (1)
 	{
 		line = readline("minishell $>> ");
@@ -15,8 +16,8 @@ static void line_reader(t_lexer *lexer, t_cmd *cmd, char *line, t_env *env)
 				break ;
 			}
 			lexer = lexical_analysis(line);
-			cmd = final_cmd(lexer);
-			cmd = expand_cmd(cmd, env);
+			parser = complete_parser(lexer);
+			cmd = expand_cmd(parser, env);
 			free_lexer(&lexer);
 			if (cmd != NULL)
 			{
