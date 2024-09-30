@@ -30,15 +30,10 @@ t_cmd	*expand_cmd(t_cmd *cmd, t_env *env)
 	exp = NULL;
 	while (cmd)
 	{
-		tmp = ft_calloc(1, sizeof(t_cmd));
+		tmp = set_cmd_mem(cmd);
 		if (!tmp)
-			return (free_cmd(exp), NULL);
-		tmp->info = ft_calloc(1, sizeof(t_cmd_data));
-		if (!tmp->info)
-			return(free_cmd(tmp), ft_lstclear((t_list **)&cmd, free), NULL);
+			return (ft_lstclear((t_list **)&cmd, free), NULL);
 		paramenter_expansion(tmp->info, env, cmd);
-		if (!tmp->info)
-			return(free_cmd(tmp), ft_lstclear((t_list **)&cmd, free), NULL);
 		ft_lstadd_back((t_list **)&exp, (t_list *)tmp);
 		cmd = cmd->next;
 	}

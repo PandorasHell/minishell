@@ -40,7 +40,7 @@ t_cmd	*create_cmd(t_lexer **lexer)
 	while (lexer)
 	{
 		status = set_cmd_value(lexer, cmd);
-		if (!status_pipe(lexer, status))
+		if (status_pipe(lexer, status))
 			return(cmd);
 		if (status_redir(lexer, status, cmd))
 			return (NULL);
