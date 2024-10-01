@@ -1,6 +1,6 @@
 #include "../../minishell.h"
 
-t_cmd_name	*expand_redir(t_cmd_name *name, t_env *env, t_cmd *cmd)
+t_cmd_name	*expand_name(t_cmd_name *word, t_env *env, t_cmd *cmd)
 {
 	t_cmd_name	*new;
 
@@ -9,11 +9,11 @@ t_cmd_name	*expand_redir(t_cmd_name *name, t_env *env, t_cmd *cmd)
 		new = ft_calloc(1, sizeof(t_cmd_name));
 		if (!new)
 			return (ft_lstclear((t_list **)&new, free), NULL);
-		new->name = expand_value();
+		new->name = expand_value(cmd->info->word->name, env);
 		if (!new->name)
 			return (ft_lstclear((t_list **)&new, free), free(new), NULL);
-		ft_lstadd_back((t_list **)&name, (t_list *)new);
+		ft_lstadd_back((t_list **)&word, (t_list *)new);
 		cmd->info->word = cmd->info->word->next;
 	}
-	return (name);
+	return (word);
 }

@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:52:54 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/09/27 18:29:36 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/10/01 10:29:01 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,13 @@ t_cmd	*set_cmd_mem(t_cmd *cmd);
 int	set_cmd_value(t_lexer **lexer, t_cmd *cmd);
 int status_pipe(t_lexer **lexer, int status);
 int status_redir(t_lexer **lexer, int status, t_cmd *cmd);
+
+//EXPANDER
+t_cmd	*expand_cmd(t_cmd *cmd, t_env *env);
+t_cmd_red	*expand_redir(t_cmd_red *redir, t_env *env, t_cmd *cmd);
+t_cmd_name	*expand_name(t_cmd_name *word, t_env *env, t_cmd *cmd);
+char	*expand_value(char *name, t_env *env);
+
 
 //UTILS
 int exit_checker(const char *line, const char *comparer_exit);

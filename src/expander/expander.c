@@ -1,26 +1,48 @@
 #include "../../minishell.h"
 
-t_cmd_data	*paramenter_expansion(t_cmd_data *info, t_env *env, t_cmd *cmd)
+char	*expand_value(char *name, t_env *env)
 {
-	// La expansión de parametros sólo se tendrá en cuenta cundo sea $ seguido de caracteres (Sólo el funcionamiento sin llaves). No opciones especiales como:
-			// ${parameter:-word}
-			// ${parameter@operator}
+	char 	*ret;
+	int		i;
+	int		j;
 
-	// Comprobar y expandir (Si fuera necesario) todos los nodos de la lista cmd->info->word->name
-	expand_name(info->word, env, cmd);
-	// Comprobar y expandir (Si fuera necesario) todos los fd apuntados por redirecciones cmd->info->redir->content->where
-	expand_redir(info->redir, env, cmd);
-	// En esencia la expansión es la misma, lo único que cambia es donde se guarda.
-
-	// $? expande al último estado de salida ejecutado 
-
-	// Las variables que estén dentro de comillas dobles sí se expanden, pero no dentro ded las simples
-
-	// Word splitting
-	word_split(info);
-	// Quote Remove
-	quote_remove(info);
+	i = 0;
+	j = 0;
+	ret = ft_calloc(1, sizeof(char *));
+	if (!ret)
+		return (NULL);
+	while (name[i])
+	{
+		if (name[i] == '$')
+		{
+			i++;
+			if (name[i] == '?')
+			{
+				ret = ft_itoa(127);
+				j += ft_strlen(ret);
+				return (ret);
+			}
+			else
+			{
+				while (env)
+				{
+					if (ft_strncmp(env->content->key, &name[i], ft_strlen(env->content->key)) == 0)
+					{
+						ret = ft_strjoin(ret, env->content->value);
+						j += ft_strlen(env->content->value);
+						break;
+					}
+					env = env->next;
+				}
+			}
+		}
+		else
+			ret[j++] = name[i];
+		i++;
+		}
+	return (ret);
 }
+
 
 t_cmd	*expand_cmd(t_cmd *cmd, t_env *env)
 {
@@ -33,9 +55,10 @@ t_cmd	*expand_cmd(t_cmd *cmd, t_env *env)
 		tmp = set_cmd_mem(cmd);
 		if (!tmp)
 			return (ft_lstclear((t_list **)&cmd, free), NULL);
-		paramenter_expansion(tmp->info, env, cmd);
+		expand_name(tmp->info->word, env, cmd);
+		expand_redir(tmp->info->redir, env, cmd);
 		ft_lstadd_back((t_list **)&exp, (t_list *)tmp);
 		cmd = cmd->next;
 	}
-	retrun (exp);
+	return (exp);
 }

@@ -1,6 +1,6 @@
 # Compiler and flags
 CC := gcc
-CFLAGS := -Wall -Wextra -Werror -g3 -fsanitize=address,leak
+CFLAGS := -Wall -Wextra -Werror -g3 -fsanitize=address#,leak
 
 
 # Directories
@@ -22,6 +22,9 @@ SRC_FILES := 	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/parser/status_checker.c \
 				$(SRC_DIR)/utils/exit_checker.c \
 				$(SRC_DIR)/utils/line_character_checker.c \
+				$(SRC_DIR)/expander/expander.c \
+				$(SRC_DIR)/expander/expand_redir.c \
+				$(SRC_DIR)/expander/expand_words.c \
 
 # Object files
 OBJ_FILES := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))

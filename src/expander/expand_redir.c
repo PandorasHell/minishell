@@ -15,7 +15,7 @@ t_cmd_red	*expand_redir(t_cmd_red *redir, t_env *env, t_cmd *cmd)
 		if (!data)
 			return (ft_lstclear((t_list **)&new, free), free(new), NULL);
 		new->content = data;
-		data->where = expand_value();
+		data->where = expand_value(cmd->info->redir->content->where, env);
 		if (!data->where)
 			return (ft_lstclear((t_list **)&new, free), free(new), NULL);
 		data->type = cmd->info->redir->content->type;
