@@ -3,33 +3,35 @@
 char	*expand_value(char *name, t_env *env)
 {
 	char 	*ret;
+	char 	*temp;
+	int		flag = 1;
 	int		i;
-	int		j;
 
 	i = 0;
-	j = 0;
-	ret = ft_calloc(1, sizeof(char *));
-	if (!ret)
-		return (NULL);
+	ret = ft_strdup("");
 	while (name[i])
 	{
 		if (name[i] == '$')
 		{
 			i++;
+			flag = 1;
 			if (name[i] == '?')
 			{
-				ret = ft_itoa(127);
-				j += ft_strlen(ret);
-				return (ret);
+				temp = ft_itoa(127);
+				ret = ft_strappend(ret, temp);
+				free(temp);
+				i++;
 			}
 			else
 			{
 				while (env)
 				{
-					if (ft_strncmp(env->content->key, &name[i], ft_strlen(env->content->key)) == 0)
+					if (ft_strncmp(env->content->key, &name[i], ft_strlen(env->content->key)) == 0) // Solucionar esto
 					{
-						ret = ft_strjoin(ret, env->content->value);
-						j += ft_strlen(env->content->value);
+						temp = ft_strdup(env->content->value);
+						ret = ft_strappend(ret, temp);
+						free(temp);
+						i += ft_strlen(env->content->key);
 						break;
 					}
 					env = env->next;
@@ -37,12 +39,18 @@ char	*expand_value(char *name, t_env *env)
 			}
 		}
 		else
-			ret[j++] = name[i];
-		i++;
+		{
+			if (flag)			
+			{
+				ret = ft_strappend(ret, &name[i]);
+				flag = 0;
+			}
+			i++;
 		}
+	}
+	printf("ret final: %s\n", ret);
 	return (ret);
 }
-
 
 t_cmd	*expand_cmd(t_cmd *cmd, t_env *env)
 {
