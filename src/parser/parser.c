@@ -24,9 +24,7 @@ void free_cmd(t_cmd *cmd)
         cmd = tmp;
     }
 }
-/**
- *
- */
+
 t_cmd	*create_cmd(t_lexer **lexer)
 {
 	t_cmd	*cmd;

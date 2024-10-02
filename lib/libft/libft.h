@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 21:28:29 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/10/02 10:10:27 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/10/02 15:28:39 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char		*ft_strtrim(char const *s1, char const *set);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 int			ft_tolower(int c);
 int			ft_toupper(int c);
-char	*ft_strappend(char *s1, char *s2);
+char		*ft_strappend(char *s1, char *s2);
 
 t_list		*ft_lstnew(void *content);
 void		ft_lstclear(t_list **lst, void (*del)(void *));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juan-cas <juan-cas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 07:02:50 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/05/22 04:27:51 by juan-cas         ###   ########.fr       */
+/*   Updated: 2024/10/02 15:28:04 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static int 	ft_countword(char const *s, char c)
+static int	ft_countword(char const *s, char c)
 {
 	int	count;
 
