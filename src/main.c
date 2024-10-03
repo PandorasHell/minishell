@@ -18,14 +18,14 @@ static void line_reader(t_lexer *lexer, t_cmd *cmd, char *line, t_env *env)
 			lexer = lexical_analysis(line);
 			parser = complete_parser(lexer);
 			cmd = expand_cmd(parser, env);
-			free_cmd(parser);
-			ft_lstclear((t_list **)&parser, free);
 			free_lexer(&lexer);
 			if (cmd != NULL)
 			{
 				free_cmd(cmd);
 				ft_lstclear((t_list **)&cmd, free);
 			}
+			free_cmd(parser);
+			ft_lstclear((t_list **)&parser, free);
 			if (!check_character_for_history(line[0]))
 				add_history(line);
 			free(line);

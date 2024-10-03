@@ -1,11 +1,6 @@
-
-
-
 #include "../../minishell.h"
 
-
-
-void malloc_check(void *str)
+void	malloc_check(void *str)
 {
 	if (!str)
 	{

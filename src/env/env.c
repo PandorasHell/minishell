@@ -17,7 +17,7 @@ void	free_env(t_env *env)
 
 void	save_data_env(t_env *tmp, char **env, int i)
 {
-	t_denv *data;
+	t_denv	*data;
 
 	data = (t_denv *)malloc(sizeof(t_denv));
 	if (!data)

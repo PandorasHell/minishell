@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:52:54 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/10/02 16:19:16 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/10/03 19:25:40 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void					free_words(t_lword *words);
 // PARSER
 t_cmd					*complete_parser(t_lexer *lexer);
 void					free_cmd(t_cmd *cmd);
-t_cmd					*set_cmd_mem(t_cmd *cmd);
+t_cmd					*set_cmd_mem(void);
 int						set_cmd_value(t_lexer **lexer, t_cmd *cmd);
 int						status_pipe(t_lexer **lexer, int status);
 int						status_redir(t_lexer **lexer, int status, t_cmd *cmd);
@@ -120,7 +120,7 @@ int						expand_name(t_cmd *word, t_env *env, t_cmd *cmd);
 char					*expand_value(char *name, t_env *env);
 
 // UTILS
-int						exit_checker(const char *line, const char *comparer_exit);
+int						exit_checker(const char *line, const char *comparer);
 int						check_character_for_history(char c);
 
 #endif

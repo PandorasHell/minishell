@@ -15,20 +15,20 @@ char	*expand_env(char *ret, char *name, int *i, t_env *env)
 {
 	char	*tmp;
 
-	tmp = ft_strdup("");
+	tmp = NULL;
 	while (env)
 	{
 		if (ft_strncmp(env->content->key, &name[*i],
-			ft_strlen(env->content->key) + 1) == 0)
+				ft_strlen(env->content->key) + 1) == 0)
 		{
 			tmp = ft_strdup(env->content->value);
 			ret = ft_strappend(ret, tmp);
+			free(tmp);
 			*i += ft_strlen(env->content->key);
-			break;
+			break ;
 		}
-		else if(env->next == NULL){
-			ret = NULL;
-		}
+		else if (env->next == NULL)
+			break ;
 		env = env->next;
 	}
 	return (ret);
@@ -36,7 +36,7 @@ char	*expand_env(char *ret, char *name, int *i, t_env *env)
 
 char	*expand_value(char *name, t_env *env)
 {
-	char 	*ret;
+	char	*ret;
 	char	lit[2];
 	int		i;
 
@@ -70,15 +70,14 @@ t_cmd	*expand_cmd(t_cmd *cmd, t_env *env)
 	exp = NULL;
 	while (cmd)
 	{
-		tmp = set_cmd_mem(cmd);
+		tmp = set_cmd_mem();
 		if (!tmp)
-			return (ft_lstclear((t_list **)&cmd, free), NULL);
+		{
+			ft_lstclear((t_list **)&cmd, free);
+			return (NULL);
+		}
 		expand_name(tmp, env, cmd);
-		if (tmp->info->word)
-			printf("name: %s\n", tmp->info->word->name);
 		expand_redir(tmp, env, cmd);
-		if (tmp->info->redir)
-			printf("redir: %s\n", tmp->info->redir->content->where);
 		ft_lstadd_back((t_list **)&exp, (t_list *)tmp);
 		cmd = cmd->next;
 	}

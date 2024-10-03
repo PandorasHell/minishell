@@ -8,7 +8,7 @@
  * @return return 1 if status is PIPE or 0 if it isn't.
  */
 
-int status_pipe(t_lexer **lexer, int status)
+int	status_pipe(t_lexer **lexer, int status)
 {
 	if (status == PIPE)
 	{
@@ -28,7 +28,7 @@ int status_pipe(t_lexer **lexer, int status)
  * @return return 0 if status is REDIR or 1 if it isn't.
  */
 
-int status_redir(t_lexer **lexer, int status, t_cmd *cmd)
+int	status_redir(t_lexer **lexer, int status, t_cmd *cmd)
 {
 	if (status == REDIR)
 	{

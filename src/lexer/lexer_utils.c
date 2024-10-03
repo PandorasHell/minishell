@@ -14,7 +14,7 @@ int	is_operator(char c)
 	return (0);
 }
 
-int is_quote(char c)
+int	is_quote(char c)
 {
 	if (c == '\'' || c == '\"')
 		return (1);

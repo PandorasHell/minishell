@@ -1,8 +1,8 @@
 #include "../../minishell.h"
 
-void free_words(t_lword *words)
+void	free_words(t_lword *words)
 {
-	t_lword *temp;
+	t_lword	*temp;
 
 	temp = words;
 	while (words)

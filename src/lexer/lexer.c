@@ -32,7 +32,7 @@ static void	set_lexer_key(t_lword *words, t_lexer *new)
 static t_lexer	*set_lexer_value(t_lword *words, t_lexer *lexer)
 {
 	t_lexer	*new;
-	t_lword *temp_word;
+	t_lword	*temp_word;
 
 	new = NULL;
 	temp_word = words;
@@ -40,7 +40,10 @@ static t_lexer	*set_lexer_value(t_lword *words, t_lexer *lexer)
 	{
 		new = ft_calloc(1, sizeof(t_lexer));
 		if (!new)
-			return (ft_lstclear((t_list **)&lexer, free), NULL);
+		{
+			ft_lstclear((t_list **)&lexer, free);
+			return (NULL);
+		}
 		set_lexer_key(words, new);
 		if (new->content->key == -1)
 			return (NULL);
