@@ -1,9 +1,42 @@
 #include "../../minishell.h"
 
+char	*expand_exit_code(char *ret, int *i)
+{
+	char	*tmp;
+
+	tmp = ft_itoa(127);
+	ret = ft_strappend(ret, tmp);
+	free(tmp);
+	(*i)++;
+	return (ret);
+}
+
+char	*expand_env(char *ret, char *name, int *i, t_env *env)
+{
+	char	*tmp;
+
+	tmp = ft_strdup("");
+	while (env)
+	{
+		if (ft_strncmp(env->content->key, &name[*i],
+			ft_strlen(env->content->key) + 1) == 0)
+		{
+			tmp = ft_strdup(env->content->value);
+			ret = ft_strappend(ret, tmp);
+			*i += ft_strlen(env->content->key);
+			break;
+		}
+		else if(env->next == NULL){
+			ret = NULL;
+		}
+		env = env->next;
+	}
+	return (ret);
+}
+
 char	*expand_value(char *name, t_env *env)
 {
 	char 	*ret;
-	char 	*tmp;
 	char	lit[2];
 	int		i;
 
@@ -15,41 +48,17 @@ char	*expand_value(char *name, t_env *env)
 		{
 			i++;
 			if (name[i] == '?')
-			{
-				tmp = ft_itoa(127);
-				ret = ft_strappend(ret, tmp);
-				free(tmp);
-				i++;
-			}
+				ret = expand_exit_code(ret, &i);
 			else
-			{
-				while (env)
-				{
-					if (ft_strncmp(env->content->key, &name[i], ft_strlen(env->content->key) + 1) == 0)
-					{
-						tmp = ft_strdup(env->content->value);
-						printf("ret: %s, tmp: %s\n", ret, tmp );
-						ret = ft_strappend(ret, tmp);
-						free(tmp);
-						i += ft_strlen(env->content->key);
-						break;
-					}
-					else if(env->next == NULL){
-						ret = NULL;
-					}
-					env = env->next;
-				}
-			}
+				ret = expand_env(ret, name, &i, env);
 		}
 		else
 		{
 			lit[0] = name[i++];
 			lit[1] = '\0';
 			ret = ft_strappend(ret, lit);
-			printf("ret pene: %s\n", ret);
 		}
 	}
-	printf("ret final: %s\n", ret);
 	return (ret);
 }
 
