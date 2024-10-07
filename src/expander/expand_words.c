@@ -10,18 +10,10 @@ int	expand_name(t_cmd *word, t_env *env, t_cmd *cmd)
 	{
 		new = ft_calloc(1, sizeof(t_cmd_name));
 		if (!new)
-		{
-			ft_lstclear((t_list **)&new, free);
-			return (1);
-		}
+			return ();
 		new->name = expand_value(tmp->name, env);
-		printf("new->name: %s\n", new->name);
 		if (!new->name)
-		{
-			ft_lstclear((t_list **)&new, free);
-			free(new);
-			return (1);
-		}
+			return (free_control_name(new));
 		ft_lstadd_back((t_list **)&word->info->word, (t_list *)new);
 		tmp = tmp->next;
 	}

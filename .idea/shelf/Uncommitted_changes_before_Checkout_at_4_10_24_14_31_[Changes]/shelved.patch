@@ -1,0 +1,402 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"CMakeProjectFlavorService\">\n    <option name=\"flavorId\" value=\"CMakePlainProjectFlavor\" />\n  </component>\n  <component name=\"CMakeRunConfigurationManager\">\n    <generated>\n      <config projectName=\"minishell\" targetName=\"libft_clean\" />\n      <config projectName=\"minishell\" targetName=\"bonus\" />\n      <config projectName=\"minishell\" targetName=\"libft\" />\n      <config projectName=\"minishell\" targetName=\"all\" />\n      <config projectName=\"minishell\" targetName=\"re\" />\n      <config projectName=\"minishell\" targetName=\"rebonus\" />\n      <config projectName=\"minishell\" targetName=\"fclean\" />\n      <config projectName=\"minishell\" targetName=\"minishell\" />\n      <config projectName=\"minishell\" targetName=\"libft_fclean\" />\n    </generated>\n  </component>\n  <component name=\"CMakeSettings\">\n    <configurations>\n      <configuration PROFILE_NAME=\"Debug\" ENABLED=\"true\" CONFIG_NAME=\"Debug\" />\n    </configurations>\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"753c5d10-1022-4b1b-a423-f31660716c25\" name=\"Changes\" comment=\"fixed cmd leaks, refactored the function into modular functions, added documentation to those functions, found leaks with lexical analizis fixing those leaks.\">\n      <change afterPath=\"$PROJECT_DIR$/src/built-ins/enviroment.c\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/src/utils/built_in_command_checker.c\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Makefile\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Makefile\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/minishell\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/minishell\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/minishell.h\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/minishell.h\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/obj/lexer/lexer.o\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/obj/lexer/lexer.o\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/obj/lexer/lexer_utils.o\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/obj/lexer/lexer_utils.o\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/obj/lexer/split_words.o\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/obj/lexer/split_words.o\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/obj/main.o\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/obj/main.o\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/obj/parsing/malloc_check.o\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/obj/parsing/malloc_check.o\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/lexer/lexer.c\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/lexer/lexer.c\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/lexer/split_words.c\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/lexer/split_words.c\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main.c\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main.c\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/utils/exit_checker.c\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/utils/exit_checker.c\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"ClangdSettings\">\n    <option name=\"formatViaClangd\" value=\"false\" />\n  </component>\n  <component name=\"ExternalProjectsData\">\n    <projectState path=\"$PROJECT_DIR$\">\n      <ProjectState />\n    </projectState>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"parser\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"MakefileLocalSettings\">\n    <option name=\"availableProjects\">\n      <map>\n        <entry>\n          <key>\n            <ExternalProjectPojo>\n              <option name=\"name\" value=\"minishell\" />\n              <option name=\"path\" value=\"$PROJECT_DIR$\" />\n            </ExternalProjectPojo>\n          </key>\n          <value>\n            <list>\n              <ExternalProjectPojo>\n                <option name=\"name\" value=\"minishell\" />\n                <option name=\"path\" value=\"$PROJECT_DIR$\" />\n              </ExternalProjectPojo>\n            </list>\n          </value>\n        </entry>\n      </map>\n    </option>\n    <option name=\"projectSyncType\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"RE_IMPORT\" />\n      </map>\n    </option>\n  </component>\n  <component name=\"ProblemsViewState\">\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\n  </component>\n  <component name=\"ProjectApplicationVersion\">\n    <option name=\"ide\" value=\"CLion\" />\n    <option name=\"majorVersion\" value=\"2024\" />\n    <option name=\"minorVersion\" value=\"1.4\" />\n    <option name=\"productBranch\" value=\"Classic\" />\n  </component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 7\n}</component>\n  <component name=\"ProjectId\" id=\"2kbIShm9V2fXppnTWvbbmfJhSH5\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">{\n  &quot;keyToString&quot;: {\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,\n    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,\n    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,\n    &quot;com.jetbrains.cidr.cpp.cmake.workspace.CMakeCacheInvalidator.marker&quot;: &quot;true&quot;,\n    &quot;git-widget-placeholder&quot;: &quot;signals&quot;,\n    &quot;last_opened_file_path&quot;: &quot;/mnt/Storage/42cursus/minishell/Makefile&quot;,\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\n    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,\n    &quot;structure.view.defaults.are.configured&quot;: &quot;true&quot;,\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\n  }\n}</component>\n  <component name=\"RecentsManager\">\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/src/utils\" />\n      <recent name=\"$PROJECT_DIR$/src/parser\" />\n      <recent name=\"$PROJECT_DIR$/src\" />\n      <recent name=\"$PROJECT_DIR$/lib\" />\n    </key>\n  </component>\n  <component name=\"RunManager\" selected=\"Native Application.Minishell\">\n    <configuration name=\"Minishell\" type=\"CLionNativeAppRunConfigurationType\" REDIRECT_INPUT=\"false\" ELEVATE=\"false\" USE_EXTERNAL_CONSOLE=\"false\" EMULATE_TERMINAL=\"false\" WORKING_DIR=\"file://$PROJECT_DIR$\" PASS_PARENT_ENVS_2=\"true\" version=\"1\">\n      <method v=\"2\">\n        <option name=\"CLION.COMPOUND.BUILD\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"all\" type=\"CLionNativeAppRunConfigurationType\" REDIRECT_INPUT=\"false\" ELEVATE=\"false\" USE_EXTERNAL_CONSOLE=\"false\" EMULATE_TERMINAL=\"false\" PASS_PARENT_ENVS_2=\"true\" PROJECT_NAME=\"minishell\" TARGET_NAME=\"all\" CONFIG_NAME=\"all\" version=\"1\">\n      <method v=\"2\">\n        <option name=\"CLION.COMPOUND.BUILD\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"bonus\" type=\"CLionNativeAppRunConfigurationType\" REDIRECT_INPUT=\"false\" ELEVATE=\"false\" USE_EXTERNAL_CONSOLE=\"false\" EMULATE_TERMINAL=\"false\" PASS_PARENT_ENVS_2=\"true\" PROJECT_NAME=\"minishell\" TARGET_NAME=\"bonus\" CONFIG_NAME=\"bonus\" version=\"1\">\n      <method v=\"2\">\n        <option name=\"CLION.COMPOUND.BUILD\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"fclean\" type=\"CLionNativeAppRunConfigurationType\" REDIRECT_INPUT=\"false\" ELEVATE=\"false\" USE_EXTERNAL_CONSOLE=\"false\" EMULATE_TERMINAL=\"false\" PASS_PARENT_ENVS_2=\"true\" PROJECT_NAME=\"minishell\" TARGET_NAME=\"fclean\" CONFIG_NAME=\"fclean\" version=\"1\">\n      <method v=\"2\">\n        <option name=\"CLION.COMPOUND.BUILD\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"libft\" type=\"CLionNativeAppRunConfigurationType\" REDIRECT_INPUT=\"false\" ELEVATE=\"false\" USE_EXTERNAL_CONSOLE=\"false\" EMULATE_TERMINAL=\"false\" PASS_PARENT_ENVS_2=\"true\" PROJECT_NAME=\"minishell\" TARGET_NAME=\"libft\" CONFIG_NAME=\"libft\" version=\"1\">\n      <method v=\"2\">\n        <option name=\"CLION.COMPOUND.BUILD\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"libft_clean\" type=\"CLionNativeAppRunConfigurationType\" REDIRECT_INPUT=\"false\" ELEVATE=\"false\" USE_EXTERNAL_CONSOLE=\"false\" EMULATE_TERMINAL=\"false\" PASS_PARENT_ENVS_2=\"true\" PROJECT_NAME=\"minishell\" TARGET_NAME=\"libft_clean\" CONFIG_NAME=\"libft_clean\" version=\"1\">\n      <method v=\"2\">\n        <option name=\"CLION.COMPOUND.BUILD\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"libft_fclean\" type=\"CLionNativeAppRunConfigurationType\" REDIRECT_INPUT=\"false\" ELEVATE=\"false\" USE_EXTERNAL_CONSOLE=\"false\" EMULATE_TERMINAL=\"false\" PASS_PARENT_ENVS_2=\"true\" PROJECT_NAME=\"minishell\" TARGET_NAME=\"libft_fclean\" CONFIG_NAME=\"libft_fclean\" version=\"1\">\n      <method v=\"2\">\n        <option name=\"CLION.COMPOUND.BUILD\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"minishell\" type=\"CLionNativeAppRunConfigurationType\" REDIRECT_INPUT=\"false\" ELEVATE=\"false\" USE_EXTERNAL_CONSOLE=\"false\" EMULATE_TERMINAL=\"false\" PASS_PARENT_ENVS_2=\"true\" PROJECT_NAME=\"minishell\" TARGET_NAME=\"minishell\" CONFIG_NAME=\"minishell\" version=\"1\">\n      <method v=\"2\">\n        <option name=\"CLION.COMPOUND.BUILD\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"re\" type=\"CLionNativeAppRunConfigurationType\" REDIRECT_INPUT=\"false\" ELEVATE=\"false\" USE_EXTERNAL_CONSOLE=\"false\" EMULATE_TERMINAL=\"false\" PASS_PARENT_ENVS_2=\"true\" PROJECT_NAME=\"minishell\" TARGET_NAME=\"re\" CONFIG_NAME=\"re\" version=\"1\">\n      <method v=\"2\">\n        <option name=\"CLION.COMPOUND.BUILD\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"rebonus\" type=\"CLionNativeAppRunConfigurationType\" REDIRECT_INPUT=\"false\" ELEVATE=\"false\" USE_EXTERNAL_CONSOLE=\"false\" EMULATE_TERMINAL=\"false\" PASS_PARENT_ENVS_2=\"true\" PROJECT_NAME=\"minishell\" TARGET_NAME=\"rebonus\" CONFIG_NAME=\"rebonus\" version=\"1\">\n      <method v=\"2\">\n        <option name=\"CLION.COMPOUND.BUILD\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <list>\n      <item itemvalue=\"Native Application.Minishell\" />\n      <item itemvalue=\"Native Application.all\" />\n      <item itemvalue=\"Native Application.bonus\" />\n      <item itemvalue=\"Native Application.fclean\" />\n      <item itemvalue=\"Native Application.libft\" />\n      <item itemvalue=\"Native Application.libft_clean\" />\n      <item itemvalue=\"Native Application.libft_fclean\" />\n      <item itemvalue=\"Native Application.minishell\" />\n      <item itemvalue=\"Native Application.re\" />\n      <item itemvalue=\"Native Application.rebonus\" />\n    </list>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"753c5d10-1022-4b1b-a423-f31660716c25\" name=\"Changes\" comment=\"\" />\n      <created>1723545852106</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1723545852106</updated>\n      <workItem from=\"1723545853715\" duration=\"224000\" />\n      <workItem from=\"1723546079098\" duration=\"15000\" />\n      <workItem from=\"1723546106069\" duration=\"97000\" />\n      <workItem from=\"1723546221314\" duration=\"243000\" />\n      <workItem from=\"1723546465117\" duration=\"11000\" />\n      <workItem from=\"1723546489444\" duration=\"3939000\" />\n      <workItem from=\"1723625598178\" duration=\"5608000\" />\n      <workItem from=\"1723915027238\" duration=\"93000\" />\n      <workItem from=\"1723915122121\" duration=\"11000\" />\n      <workItem from=\"1723915142729\" duration=\"3648000\" />\n      <workItem from=\"1726384475418\" duration=\"1195000\" />\n      <workItem from=\"1726389377632\" duration=\"1607000\" />\n      <workItem from=\"1726561372920\" duration=\"8000\" />\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"fixed cmd leaks, refactored the function into modular functions, added documentation to those functions, found leaks with lexical analizis fixing those leaks.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1726101053976</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1726101053976</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"2\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"fixed cmd leaks, refactored the function into modular functions, added documentation to those functions, found leaks with lexical analizis fixing those leaks.\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"fixed cmd leaks, refactored the function into modular functions, added documentation to those functions, found leaks with lexical analizis fixing those leaks.\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -26,21 +26,37 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="753c5d10-1022-4b1b-a423-f31660716c25" name="Changes" comment="fixed cmd leaks, refactored the function into modular functions, added documentation to those functions, found leaks with lexical analizis fixing those leaks.">
+-      <change afterPath="$PROJECT_DIR$/src/built-ins/enviroment.c" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/utils/built_in_command_checker.c" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/built-ins/pwd_built_in.c" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_09_24_22_41_[Changes]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_09_24_22_41__Changes_.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_14_09_24_15_53_[Changes]1/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_14_09_24_15_53__Changes_1.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_14_09_24_18_53_[Changes]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_14_09_24_18_53__Changes_.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_13_09_24_14_40_[Changes]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_13_09_24_14_40__Changes_.xml" beforeDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/minishell" beforeDir="false" afterPath="$PROJECT_DIR$/minishell" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/minishell.h" beforeDir="false" afterPath="$PROJECT_DIR$/minishell.h" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/obj/lexer/lexer.o" beforeDir="false" afterPath="$PROJECT_DIR$/obj/lexer/lexer.o" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/obj/lexer/lexer_utils.o" beforeDir="false" afterPath="$PROJECT_DIR$/obj/lexer/lexer_utils.o" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/obj/lexer/split_words.o" beforeDir="false" afterPath="$PROJECT_DIR$/obj/lexer/split_words.o" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/obj/main.o" beforeDir="false" afterPath="$PROJECT_DIR$/obj/main.o" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/obj/parsing/malloc_check.o" beforeDir="false" afterPath="$PROJECT_DIR$/obj/parsing/malloc_check.o" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/lexer/lexer.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/lexer/lexer.c" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/lexer/split_words.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/lexer/split_words.c" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/obj/built-ins/enviroment.o" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/obj/env/env.o" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/obj/lexer/lexer.o" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/obj/lexer/lexer_utils.o" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/obj/lexer/split_words.o" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/obj/lexer/word_lexer_free.o" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/obj/main.o" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/obj/parser/parser.o" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/obj/parser/set_values.o" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/obj/parser/status_checker.o" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/obj/parsing/malloc_check.o" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/obj/utils/exit_checker.o" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/obj/utils/line_character_checker.o" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/built-ins/enviroment.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/built-ins/enviroment.c" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/utils/built_in_command_checker.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/built_in_command_checker.c" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/utils/exit_checker.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/exit_checker.c" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/utils/line_character_checker.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/line_character_checker.c" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -109,9 +125,11 @@
+   </component>
+   <component name="PropertiesComponent">{
+   &quot;keyToString&quot;: {
++    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+     &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+     &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
++    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+     &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+     &quot;com.jetbrains.cidr.cpp.cmake.workspace.CMakeCacheInvalidator.marker&quot;: &quot;true&quot;,
+@@ -122,7 +140,7 @@
+     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.editor&quot;,
+     &quot;structure.view.defaults.are.configured&quot;: &quot;true&quot;,
+     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+   }
+@@ -135,7 +153,7 @@
+       <recent name="$PROJECT_DIR$/lib" />
+     </key>
+   </component>
+-  <component name="RunManager" selected="Native Application.Minishell">
++  <component name="RunManager" selected="Makefile Application.Minishell">
+     <configuration name="Minishell" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" version="1">
+       <method v="2">
+         <option name="CLION.COMPOUND.BUILD" enabled="true" />
+@@ -187,16 +205,16 @@
+       </method>
+     </configuration>
+     <list>
+-      <item itemvalue="Native Application.Minishell" />
+-      <item itemvalue="Native Application.all" />
+-      <item itemvalue="Native Application.bonus" />
+-      <item itemvalue="Native Application.fclean" />
+-      <item itemvalue="Native Application.libft" />
+-      <item itemvalue="Native Application.libft_clean" />
+-      <item itemvalue="Native Application.libft_fclean" />
+-      <item itemvalue="Native Application.minishell" />
+-      <item itemvalue="Native Application.re" />
+-      <item itemvalue="Native Application.rebonus" />
++      <item itemvalue="Makefile Application.Minishell" />
++      <item itemvalue="Makefile Application.all" />
++      <item itemvalue="Makefile Application.bonus" />
++      <item itemvalue="Makefile Application.fclean" />
++      <item itemvalue="Makefile Application.libft" />
++      <item itemvalue="Makefile Application.libft_clean" />
++      <item itemvalue="Makefile Application.libft_fclean" />
++      <item itemvalue="Makefile Application.minishell" />
++      <item itemvalue="Makefile Application.re" />
++      <item itemvalue="Makefile Application.rebonus" />
+     </list>
+   </component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+@@ -220,6 +238,10 @@
+       <workItem from="1726384475418" duration="1195000" />
+       <workItem from="1726389377632" duration="1607000" />
+       <workItem from="1726561372920" duration="8000" />
++      <workItem from="1726561428196" duration="5647000" />
++      <workItem from="1727233011624" duration="31000" />
++      <workItem from="1727400540702" duration="45000" />
++      <workItem from="1727465915019" duration="53000" />
+     </task>
+     <task id="LOCAL-00001" summary="fixed cmd leaks, refactored the function into modular functions, added documentation to those functions, found leaks with lexical analizis fixing those leaks.">
+       <option name="closed" value="true" />
+Index: Makefile
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># Compiler and flags\nCC := gcc\nCFLAGS := -Wall -Wextra -Werror -g3 -fsanitize=address,leak\n\n\n# Directories\nSRC_DIR := src\nOBJ_DIR := obj\nLIB_DIR := lib\nLIBFT_DIR := $(LIB_DIR)/libft\n\n# Source files\nSRC_FILES := \t$(SRC_DIR)/main.c \\\n\t\t\t\t$(SRC_DIR)/env/env.c \\\n\t\t\t\t$(SRC_DIR)/parsing/malloc_check.c \\\n\t\t\t\t$(SRC_DIR)/lexer/lexer.c \\\n\t\t\t\t$(SRC_DIR)/lexer/lexer_utils.c \\\n\t\t\t\t$(SRC_DIR)/lexer/split_words.c \\\n\t\t\t\t$(SRC_DIR)/lexer/word_lexer_free.c \\\n\t\t\t\t$(SRC_DIR)/parser/parser.c \\\n\t\t\t\t$(SRC_DIR)/parser/set_values.c \\\n\t\t\t\t$(SRC_DIR)/parser/status_checker.c \\\n\t\t\t\t$(SRC_DIR)/utils/exit_checker.c \\\n\t\t\t\t$(SRC_DIR)/utils/line_character_checker.c \\\n\t\t\t\t$(SRC_DIR)/built-ins/enviroment.c \\\n\n# Object files\nOBJ_FILES := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))\n\n# Libraries\nLIBS := -L$(LIBFT_DIR) -lft -lreadline\n\n# Executable\nTARGET := minishell\nNAME := $(TARGET)\n\n# Conditional compilation based on target\nifeq ($(MAKECMDGOALS),debug)\n CFLAGS += -g\nelse ifeq ($(MAKECMDGOALS),optimize)\n CFLAGS += -O2\nendif\n\nall: libft $(TARGET)\n\n# Libft targets\nlibft:\n\t$(MAKE) -C $(LIBFT_DIR)\n\nlibft_clean:\n\t$(MAKE) -C $(LIBFT_DIR) clean\n\nlibft_fclean:\n\t$(MAKE) -C $(LIBFT_DIR) fclean\n\nclean: libft_clean \n\trm -rf $(OBJ_DIR)\n\nfclean: clean libft_fclean \n\trm -f $(TARGET)\n\nre: fclean all\n\nbonus:: CFLAGS += -D BONUS=1\nbonus: re\n\nrebonus: fclean bonus\n\n# Build rule\n$(TARGET): $(OBJ_FILES)\n\t$(CC) $(CFLAGS) $^ -o $@ $(LIBS)\n\n# Object file rule\n$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c\n\t@mkdir -p $(@D)\n\t$(CC) $(CFLAGS) -c $< -o $@\n\n# Phony targets\n.PHONY: all clean fclean re bonus rebonus\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Makefile b/Makefile
+--- a/Makefile	
++++ b/Makefile	
+@@ -23,6 +23,8 @@
+ 				$(SRC_DIR)/utils/exit_checker.c \
+ 				$(SRC_DIR)/utils/line_character_checker.c \
+ 				$(SRC_DIR)/built-ins/enviroment.c \
++				$(SRC_DIR)/utils/built_in_command_checker.c \
++				$(SRC_DIR)/built-ins/pwd_built_in.c \
+ 
+ # Object files
+ OBJ_FILES := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))
+Index: minishell.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>/* ************************************************************************** */\n/*                                                                            */\n/*                                                        :::      ::::::::   */\n/*   minishell.h                                        :+:      :+:    :+:   */\n/*                                                    +:+ +:+         +:+     */\n/*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */\n/*                                                +#+#+#+#+#+   +#+           */\n/*   Created: 2024/08/13 12:52:54 by juan-cas          #+#    #+#             */\n/*   Updated: 2024/09/13 20:47:34 by smeixoei         ###   ########.fr       */\n/*                                                                            */\n/* ************************************************************************** */\n\n#ifndef MINISHELL_H\n#define MINISHELL_H\n\n#include <unistd.h>\n#include <stdlib.h>\n#include <stdio.h>\n#include <readline/readline.h>\n#include <readline/history.h>\n#include \"./lib/libft/libft.h\"\n#include \"./pipex/pipex.h\"\n\n#define WORD 0\n#define INFILE 1\n#define HEREDOC 2\n#define OUTFILE 3\n#define APPEND 4\n#define PIPE 5\n#define REDIR 6\n\n// ENVIROMENT\ntypedef struct s_data_env\n{\n\tchar *key;\n\tchar *value;\n}\tt_denv;\n\ntypedef struct s_list_env\n{\n\tt_denv *content;\n\tstruct s_list_env *next;\n}\tt_lenv;\n\n// LEXER\ntypedef struct s_line_word\n{\n\tchar *word;\n\tstruct s_line_word *next;\n}\tt_lword;\n\ntypedef struct s_data_lexer\n{\n\tint\t\tkey;\n\tchar\t*value;\n}\tt_dlexer;\n\ntypedef struct s_lexer\n{\n\tt_dlexer *content;\n\tstruct s_lexer *next;\n}\tt_lexer;\n\n// PARSER\ntypedef struct s_cmd_name\n{\n\tchar\t*name;\n\tstruct s_cmd_name *next;\t\n}\tt_cmd_name;\n\ntypedef struct s_cmd_data_redir\n{\n\tchar\t*where;\n\tint\t\ttype;\n}\tt_cmd_dred;\n\ntypedef struct s_cmd_redir\n{\n\tt_cmd_dred *content;\t\n\tstruct s_cmd_redir *next;\n}\tt_cmd_red;\n\ntypedef struct s_cmd_data\n{\n\tt_cmd_name\t*word;\n\tt_cmd_red\t*redir;\n}\tt_cmd_data;\n\ntypedef struct s_cmd\n{\n\tt_cmd_data *info;\n\tstruct s_cmd *next;\n}\tt_cmd;\n\n// ENV\nt_lenv\t*save_env(char **env);\nvoid\tfree_env(t_lenv *env);\n\n// LEXER\nint\tis_space(char c);\nint\tis_operator(char c);\nint is_quote(char c);\nt_lword\t*split_words(char *line, t_lword *words);\nt_lexer *lexical_analysis(char *line);\nvoid\tfree_lexer(t_lexer **lexer);\nvoid free_words(t_lword *words);\n\n//PARSER\nt_cmd\t*final_cmd(t_lexer *lexer);\nvoid\tfree_cmd(t_cmd *cmd);\nt_cmd\t*set_cmd_mem(t_cmd *cmd);\n// t_dcmd\t*set_cmd_word(t_lexer *lexer);\n// t_rcmd\t*set_cmd_redir(t_lexer *lexer);\nint\tset_cmd_value(t_lexer **lexer, t_cmd *cmd);\nint status_pipe(t_lexer **lexer, int status);\nint status_redir(t_lexer **lexer, int status, t_cmd *cmd);\n\n//UTILS\nint exit_checker(const char *line);\nint check_character_for_history(char c);\nvoid built_in_env(t_lenv *env);\nint built_in_command_checker(t_cmd *cmd, t_denv *env);\n\n#endif
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/minishell.h b/minishell.h
+--- a/minishell.h	
++++ b/minishell.h	
+@@ -20,6 +20,7 @@
+ #include <readline/history.h>
+ #include "./lib/libft/libft.h"
+ #include "./pipex/pipex.h"
++#include <stdbool.h>
+ 
+ #define WORD 0
+ #define INFILE 1
+@@ -28,6 +29,7 @@
+ #define APPEND 4
+ #define PIPE 5
+ #define REDIR 6
++#define ERROR -100
+ 
+ // ENVIROMENT
+ typedef struct s_data_env
+@@ -115,10 +117,13 @@
+ int status_pipe(t_lexer **lexer, int status);
+ int status_redir(t_lexer **lexer, int status, t_cmd *cmd);
+ 
++//BUILT-INS
++int pwd_checker(t_cmd *line, const char *command, t_denv *env)
++int command_checker(const char *line, const char *command);
++
++
+ //UTILS
+-int exit_checker(const char *line);
+ int check_character_for_history(char c);
+-void built_in_env(t_lenv *env);
+ int built_in_command_checker(t_cmd *cmd, t_denv *env);
+ 
+ #endif
+\ No newline at end of file
+Index: src/main.c
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#include \"../minishell.h\"\n#include <readline/readline.h>\n#include <readline/history.h>\n\n//TODO: hay que agregar aca la entrada al ejecutor.\nstatic int line_parser(t_lexer *lexer, t_cmd *cmd, char *line)\n{\n\tlexer = lexical_analysis(line);\n\tif (!lexer)\n\t\treturn (free(line), 1);\n\tcmd = final_cmd(lexer);\n\tif (!cmd)\n\t\treturn (free_lexer(&lexer), free(line), 1);\n\tfree_lexer(&lexer);\n\tif (cmd != NULL)\n\t{\n\t\tfree_cmd(cmd);\n\t\tft_lstclear((t_list **)&cmd, free);\n\t}\n\tif (!check_character_for_history(line[0]))\n\t\tadd_history(line);\n\tfree(line);\n\treturn (0);\n}\n\nstatic void line_reader(t_lenv *env, t_lexer *lexer, t_cmd *cmd, char *line)\n{\n\twhile (1)\n\t{\n\t\tline = readline(\"minishell $>> \");\n\t\tif (line)\n\t\t{\n\t\t\tif (line[0] == 'L')\n\t\t\t\tbuilt_in_env(env);\n\t\t\tif (!exit_checker(line))\n\t\t\t{\n\t\t\t\tfree(line);\n\t\t\t\treturn ;\n\t\t\t}\n\t\t\tbuilt_in_command_checker(cmd, env);\n\t\t\tif (line_parser(lexer, cmd, line))\n\t\t\t\tbreak ;\n\t\t}\n\t\telse\n\t\t\tbreak ;\n\t}\n}\n\nint main(int argc, char **argv, char **enviroment)\n{\n\tchar\t*line;\n\tt_lenv\t*env;\n\tt_lexer\t*lexer;\n\tt_cmd\t*cmd;\n\t(void)argc;\n\t(void)argv;\n\n\tenv = save_env(enviroment);\n\tif (env)\n\t\tprintf(\"Aaª\\n\");\n\tlexer = NULL;\n\tcmd = NULL;\n\tline = NULL;\n\tline_reader(env, lexer, cmd, line);\n\trl_clear_history();\n\tfree_env(env);\n\treturn (0);\n}\n\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main.c b/src/main.c
+--- a/src/main.c	
++++ b/src/main.c	
+@@ -30,16 +30,12 @@
+ 		line = readline("minishell $>> ");
+ 		if (line)
+ 		{
+-			if (line[0] == 'L')
+-				built_in_env(env);
+-			if (!exit_checker(line))
+-			{
+-				free(line);
++			if (line_parser(lexer, cmd, line))
++				return ;
++			if (built_in_command_checker(cmd, env) < 0)
++			{
+ 				return ;
+ 			}
+-			built_in_command_checker(cmd, env);
+-			if (line_parser(lexer, cmd, line))
+-				break ;
+ 		}
+ 		else
+ 			break ;
+Index: src/utils/exit_checker.c
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#include \"../../minishell.h\"\n\n/**\n * @brief this function verifies if the line contains only exit\n * followed by the allowed white spaces in shell and nothing else.\n * @return return 1 in the event of it finding a character that\n * isnt allowed, and 0 if the exit command is allowed.\n */\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/utils/exit_checker.c b/src/utils/exit_checker.c
+--- a/src/utils/exit_checker.c	
++++ b/src/utils/exit_checker.c	
+@@ -1,9 +1,28 @@
+ #include "../../minishell.h"
+ 
+ /**
+- * @brief this function verifies if the line contains only exit
+- * followed by the allowed white spaces in shell and nothing else.
++ * @brief this function verifies the command and if it contains
++ * the allowed white spaces in shell and nothing else.
+  * @return return 1 in the event of it finding a character that
+  * isnt allowed, and 0 if the exit command is allowed.
+  */
+ 
++int command_checker(const char *line, const char *command)
++{
++	int i = 0;
++
++	while (command[i] && line[i])
++	{
++		if (line[i] != command[i])
++			return (1);
++		i++;
++	}
++	while (line[i])
++	{
++		if (line[i] != ' ' && line[i] != '\t' &&
++			line[i] != '\r' && line[i] != '\n' && line[i] != '\0')
++			return (1);
++		i++;
++	}
++	return 0;
++}
+\ No newline at end of file
+Index: src/utils/line_character_checker.c
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#include \"../../minishell.h\"\n\nint check_character_for_history(char c)\n{\n\tif ((c >= '\\t' && c <= '\\r') || c == ' ')\n\t\treturn (1);\n\telse\n\t\treturn (0);\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/utils/line_character_checker.c b/src/utils/line_character_checker.c
+--- a/src/utils/line_character_checker.c	
++++ b/src/utils/line_character_checker.c	
+@@ -1,5 +1,10 @@
+ #include "../../minishell.h"
+ 
++/**
++ * @brief this function checks if there are any valid white spaces.
++ * @return returns 1 if its a white space or 0 if it isn't.
++ */
++
+ int check_character_for_history(char c)
+ {
+ 	if ((c >= '\t' && c <= '\r') || c == ' ')
+Index: src/built-ins/pwd_built_in.c
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/built-ins/pwd_built_in.c b/src/built-ins/pwd_built_in.c
+new file mode 100644
+--- /dev/null	
++++ b/src/built-ins/pwd_built_in.c	
+@@ -0,0 +1,42 @@
++#include "../../minishell.h"
++
++/**
++ * @brief this function looks in the enviroment variable the line
++ * that starts with PWD and prints it.
++ *
++ */
++
++static int built_in_env(t_lenv *env)
++{
++	getcwd();
++	return (printf("Error: the PWD"), false);
++}
++
++/**
++ * @brief this function verifies the command and if it contains
++ * the allowed white spaces in shell and nothing else.
++ * @return return 1 in the event of it finding a character that
++ * isn't allowed, and 0 if the exit command is allowed.
++ */
++
++int pwd_checker(t_cmd *line, const char *command, t_denv *env)
++{
++	int i = 0;
++
++	while (line->info->word[i] && command[i])
++	{
++		if (line->info->word[i] != command[i])
++			return (false);
++		i++;
++	}
++	while (line->info->word[i])
++	{
++		if (line->info->word[i] != ' ' && line->info->word[i] != '\t' &&
++			line->info->word[i] != '\r' && line->info->word[i] != '\n' && line->info->word[i] != '\0')
++		return (false);
++		i++;
++	}
++	if (line->next != NULL)
++		return (printf("pwd: too many arguments"), ERROR);
++	return (built_in_env(env));
++}
+Index: src/utils/built_in_command_checker.c
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#include \"../../minishell.h\"\n\n//TODO:hacer la funcion cd.\n//static int check_cd(t_cmd *cmd)\n//{\n//\tthis function should be able to know where the user is and send him to where he wants to be\n//\twith either the relative or the absolute path.\n//}\n\nstatic int check_pwd_env(t_cmd *cmd)\n{\n\n}\n\nint built_in_command_checker(t_cmd *cmd, t_denv *env)\n{\n\tint compared;\n\tint comparer;\n\tint command_size;\n\n\tcompared = 0;\n\tcomparer = 0;\n\tcommand_size = ft_strlen(cmd->info->word);\n//\tif (command_size == 2)\n//\t{\n//\t\tif (check_cd(cmd))\n//\t\t\treturn (2);\n//\t}\n\tif (command_size == 3)\n\t{\n\t\tif (check_pwd_env(cmd))\n\t\t\treturn (3);\n\t}\n\tif (command_size == 4)\n\t{\n\t\tif (check_echo_exit(cmd))\n\t\t\treturn (4);\n\t}\n\tif (command_size == 5)\n\t{\n\t\tif (check_export_unset(cmd))\n\t\t\treturn (5);\n\t}\n\treturn (0);\n}
+===================================================================
+diff --git a/src/utils/built_in_command_checker.c b/src/utils/built_in_command_checker.c
+--- a/src/utils/built_in_command_checker.c	
++++ b/src/utils/built_in_command_checker.c	
+@@ -7,8 +7,17 @@
+ //	with either the relative or the absolute path.
+ //}
+ 
+-static int check_pwd_env(t_cmd *cmd)
++static int check_pwd_env(t_cmd *cmd, t_denv *env)
+ {
++	int checker;
++
++	checker = pwd_checker(cmd, "pwd", env);
++	if (checker < 0 || checker == ERROR)
++		return (false);
++	else
++		return (true);
++	checker = env_checker(cmd, env);
++
+ 
+ }
+ 
+@@ -21,15 +30,9 @@
+ 	compared = 0;
+ 	comparer = 0;
+ 	command_size = ft_strlen(cmd->info->word);
+-//	if (command_size == 2)
+-//	{
+-//		if (check_cd(cmd))
+-//			return (2);
+-//	}
+ 	if (command_size == 3)
+ 	{
+-		if (check_pwd_env(cmd))
+-			return (3);
++		return (check_pwd_env(cmd, env));
+ 	}
+ 	if (command_size == 4)
+ 	{
+Index: src/built-ins/enviroment.c
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#include \"../../minishell.h\"\n\n\nvoid built_in_env(t_lenv *env)\n{\n\twhile (env)\n\t{\n\t\tif (!ft_strncmp(env->content->key, \"PWD\", 3))\n\t\t{\n\t\t\tprintf(\"%s\\n\",env->content->value);\n\t\t\treturn ;\n\t\t}\n\t\tenv = env->next;\n\t}\n}
+===================================================================
+diff --git a/src/built-ins/enviroment.c b/src/built-ins/enviroment.c
+--- a/src/built-ins/enviroment.c	
++++ b/src/built-ins/enviroment.c	
+@@ -1,15 +1,2 @@
+ #include "../../minishell.h"
+ 
+-
+-void built_in_env(t_lenv *env)
+-{
+-	while (env)
+-	{
+-		if (!ft_strncmp(env->content->key, "PWD", 3))
+-		{
+-			printf("%s\n",env->content->value);
+-			return ;
+-		}
+-		env = env->next;
+-	}
+-}
+\ No newline at end of file

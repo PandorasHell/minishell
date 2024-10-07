@@ -6,6 +6,11 @@ char	*expand_exit_code(char *ret, int *i)
 
 	tmp = ft_itoa(127);
 	ret = ft_strappend(ret, tmp);
+	if (!ret)
+	{
+		free(tmp);
+		return(NULL);
+	}
 	free(tmp);
 	(*i)++;
 	return (ret);
@@ -13,17 +18,14 @@ char	*expand_exit_code(char *ret, int *i)
 
 char	*expand_env(char *ret, char *name, int *i, t_env *env)
 {
-	char	*tmp;
-
-	tmp = NULL;
 	while (env)
 	{
 		if (ft_strncmp(env->content->key, &name[*i],
 				ft_strlen(env->content->key) + 1) == 0)
 		{
-			tmp = ft_strdup(env->content->value);
-			ret = ft_strappend(ret, tmp);
-			free(tmp);
+			ret = ft_strappend(ret, env->content->value);
+			if (!ret)
+				return (NULL);
 			*i += ft_strlen(env->content->key);
 			break ;
 		}
@@ -41,7 +43,7 @@ char	*expand_value(char *name, t_env *env)
 	int		i;
 
 	i = 0;
-	ret = ft_strdup("");
+	ret = NULL;
 	while (name[i])
 	{
 		if (name[i] == '$')
@@ -58,6 +60,8 @@ char	*expand_value(char *name, t_env *env)
 			lit[1] = '\0';
 			ret = ft_strappend(ret, lit);
 		}
+		if(!ret)
+			break ;
 	}
 	return (ret);
 }
@@ -76,10 +80,13 @@ t_cmd	*expand_cmd(t_cmd *cmd, t_env *env)
 			ft_lstclear((t_list **)&cmd, free);
 			return (NULL);
 		}
-		expand_name(tmp, env, cmd);
-		expand_redir(tmp, env, cmd);
+		if (expand_name(tmp, env, cmd) == 1)
+			return (NULL);
+		if (expand_redir(tmp, env, cmd) == 1)
+			return (NULL);
 		ft_lstadd_back((t_list **)&exp, (t_list *)tmp);
 		cmd = cmd->next;
 	}
+	free_cmd(cmd);
 	return (exp);
 }

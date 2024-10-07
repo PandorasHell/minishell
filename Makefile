@@ -22,6 +22,7 @@ SRC_FILES := 	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/parser/status_checker.c \
 				$(SRC_DIR)/utils/exit_checker.c \
 				$(SRC_DIR)/utils/line_character_checker.c \
+				$(SRC_DIR)/utils/free_control.c \
 				$(SRC_DIR)/expander/expander.c \
 				$(SRC_DIR)/expander/expand_redir.c \
 				$(SRC_DIR)/expander/expand_words.c \

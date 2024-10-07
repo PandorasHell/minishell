@@ -122,5 +122,8 @@ char					*expand_value(char *name, t_env *env);
 // UTILS
 int						exit_checker(const char *line, const char *comparer);
 int						check_character_for_history(char c);
+int                     free_control_redir(t_cmd_red *node1, t_cmd_dred *node2, int i);
+int                     free_control_name(t_cmd_name *node1);
+
 
 #endif

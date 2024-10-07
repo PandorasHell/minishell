@@ -69,9 +69,11 @@ t_cmd	*complete_parser(t_lexer *lexer)
 		{
 			free_cmd(cmd);
 			ft_lstclear((t_list **)&cmd, free);
+			free_lexer(&lexer);
 			return (NULL);
 		}
 		ft_lstadd_back((t_list **)&cmd, (t_list *)new);
 	}
+	free_lexer(&lexer);
 	return (cmd);
 }

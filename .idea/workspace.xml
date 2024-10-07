@@ -26,11 +26,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="753c5d10-1022-4b1b-a423-f31660716c25" name="Changes" comment="fixed cmd leaks, refactored the function into modular functions, added documentation to those functions, found leaks with lexical analizis fixing those leaks.">
-      <change afterPath="$PROJECT_DIR$/src/utils/line_character_checker.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/built-ins/pwd_built_in.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/free_control.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_09_24_22_41_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_09_24_22_41__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_14_09_24_15_53_[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_14_09_24_15_53__Changes_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_14_09_24_18_53_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_14_09_24_18_53__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_13_09_24_14_40_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_13_09_24_14_40__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/libft/ft_strappend.c" beforeDir="false" afterPath="$PROJECT_DIR$/lib/libft/ft_strappend.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/minishell.h" beforeDir="false" afterPath="$PROJECT_DIR$/minishell.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/expander/expand_words.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/expander/expand_words.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/expander/expander.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/expander/expander.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/parser.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/parser.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +62,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="parser" />
+        <entry key="$PROJECT_DIR$" value="6ed1c1feb72ccf74ec5ae9cceaec19024ab81761" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -99,20 +113,23 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "com.jetbrains.cidr.cpp.cmake.workspace.CMakeCacheInvalidator.marker": "true",
-    "git-widget-placeholder": "signals",
+    "git-widget-placeholder": "expander",
     "last_opened_file_path": "/mnt/Storage/42cursus/minishell/Makefile",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "editor.preferences.appearance",
     "structure.view.defaults.are.configured": "true",
     "vue.rearranger.settings.migration": "true"
   }
@@ -125,12 +142,7 @@
       <recent name="$PROJECT_DIR$/lib" />
     </key>
   </component>
-  <component name="RunManager" selected="Native Application.Minishell">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Makefile Application.Minishell">
     <configuration name="Minishell" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" version="1">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
@@ -181,17 +193,22 @@
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <list>
-      <item itemvalue="Native Application.Minishell" />
-      <item itemvalue="Native Application.all" />
-      <item itemvalue="Native Application.bonus" />
-      <item itemvalue="Native Application.fclean" />
-      <item itemvalue="Native Application.libft" />
-      <item itemvalue="Native Application.libft_clean" />
-      <item itemvalue="Native Application.libft_fclean" />
-      <item itemvalue="Native Application.minishell" />
-      <item itemvalue="Native Application.re" />
-      <item itemvalue="Native Application.rebonus" />
+      <item itemvalue="Makefile Application.Minishell" />
+      <item itemvalue="Makefile Application.all" />
+      <item itemvalue="Makefile Application.bonus" />
+      <item itemvalue="Makefile Application.fclean" />
+      <item itemvalue="Makefile Application.libft" />
+      <item itemvalue="Makefile Application.libft_clean" />
+      <item itemvalue="Makefile Application.libft_fclean" />
+      <item itemvalue="Makefile Application.minishell" />
+      <item itemvalue="Makefile Application.re" />
+      <item itemvalue="Makefile Application.rebonus" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -212,6 +229,7 @@
       <workItem from="1723915027238" duration="93000" />
       <workItem from="1723915122121" duration="11000" />
       <workItem from="1723915142729" duration="3648000" />
+      <workItem from="1728050126218" duration="10604000" />
     </task>
     <task id="LOCAL-00001" summary="fixed cmd leaks, refactored the function into modular functions, added documentation to those functions, found leaks with lexical analizis fixing those leaks.">
       <option name="closed" value="true" />
@@ -230,5 +248,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fixed cmd leaks, refactored the function into modular functions, added documentation to those functions, found leaks with lexical analizis fixing those leaks." />
     <option name="LAST_COMMIT_MESSAGE" value="fixed cmd leaks, refactored the function into modular functions, added documentation to those functions, found leaks with lexical analizis fixing those leaks." />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

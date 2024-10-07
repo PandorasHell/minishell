@@ -23,8 +23,10 @@ char	*ft_strappend(char *s1, char *s2)
 	if (!s2 && s1)
 		return ((char *)s1);
 	if (!s1)
-		return (NULL);
-	newstring = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	    newstring = malloc(0 + ft_strlen(s2) + 1 * sizeof(char));
+    else
+        newstring = malloc(ft_strlen(s1)
+                           + ft_strlen(s2) + 1 * sizeof(char));
 	if (!newstring)
 		return (NULL);
 	while (s1[++i] != '\0')
