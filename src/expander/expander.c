@@ -76,8 +76,8 @@ t_cmd	*expand_cmd(t_cmd *cmd, t_env *env)
 			ft_lstclear((t_list **)&cmd, free);
 			return (NULL);
 		}
-		expand_name(tmp, env, cmd);
-		expand_redir(tmp, env, cmd);
+		if (expand_name(tmp, env, cmd) || expand_redir(tmp, env, cmd))
+			return (NULL);
 		ft_lstadd_back((t_list **)&exp, (t_list *)tmp);
 		cmd = cmd->next;
 	}
