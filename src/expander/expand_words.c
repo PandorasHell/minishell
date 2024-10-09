@@ -10,10 +10,17 @@ int	expand_name(t_cmd *word, t_env *env, t_cmd *cmd)
 	{
 		new = ft_calloc(1, sizeof(t_cmd_name));
 		if (!new)
-			return ();
+		{
+			free_cmd(word);
+			return (1);
+		}
 		new->name = expand_value(tmp->name, env);
 		if (!new->name)
-			return (free_control_name(new));
+		{
+			free_cmd(word);
+			free(new);
+			return (1);
+		}
 		ft_lstadd_back((t_list **)&word->info->word, (t_list *)new);
 		tmp = tmp->next;
 	}

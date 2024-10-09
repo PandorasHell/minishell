@@ -11,14 +11,14 @@ int	expand_redir(t_cmd *redir, t_env *env, t_cmd *cmd)
 	{
 		new = ft_calloc(1, sizeof(t_cmd_red));
 		if (!new)
-			return (ft_lstclear((t_list **)&new, free), 1);
+			return (free_cmd(redir), 1);
 		data = ft_calloc(1, sizeof(t_cmd_dred));
 		if (!data)
-			return (ft_lstclear((t_list **)&new, free), free(new), 1);
+			return (free_cmd(redir), free(new), 1);
 		new->content = data;
 		data->where = expand_value(tmp->content->where, env);
 		if (!data->where)
-			return (ft_lstclear((t_list **)&new, free), free(new), 1);
+			return (free_cmd(redir), free(new), 1);
 		data->type = tmp->content->type;
 		ft_lstadd_back((t_list **)&redir->info->redir, (t_list *)new);
 		tmp = tmp->next;
