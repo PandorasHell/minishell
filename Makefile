@@ -26,6 +26,7 @@ SRC_FILES := 	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/expander/expander.c \
 				$(SRC_DIR)/expander/expand_redir.c \
 				$(SRC_DIR)/expander/expand_words.c \
+				$(SRC_DIR)/expander/expand_dolar.c \
 
 # Object files
 OBJ_FILES := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))

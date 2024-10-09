@@ -1,6 +1,6 @@
 #include "../../minishell.h"
 
-char	*quote_remove(char *word)
+char	*remove_quote(char *word)
 {
 	// En esta función la idea es eliminar todas las comillas que no sean parte de un string.
 	// Como ejemplos:

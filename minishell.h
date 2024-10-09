@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:52:54 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/10/03 19:25:40 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/10/09 18:31:07 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,13 +117,10 @@ int						status_redir(t_lexer **lexer, int status, t_cmd *cmd);
 t_cmd					*expand_cmd(t_cmd *cmd, t_env *env);
 int						expand_redir(t_cmd *redir, t_env *env, t_cmd *cmd);
 int						expand_name(t_cmd *word, t_env *env, t_cmd *cmd);
-char					*expand_value(char *name, t_env *env);
+char					*expand_dolar(char *name, t_env *env);
 
 // UTILS
 int						exit_checker(const char *line, const char *comparer);
 int						check_character_for_history(char c);
-int                     free_control_redir(t_cmd_red *node1, t_cmd_dred *node2, int i);
-int                     free_control_name(t_cmd_name *node1);
-
 
 #endif

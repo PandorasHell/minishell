@@ -14,13 +14,14 @@ int	expand_name(t_cmd *word, t_env *env, t_cmd *cmd)
 			free_cmd(word);
 			return (1);
 		}
-		new->name = expand_value(tmp->name, env);
+		new->name = expand_dolar(tmp->name, env);
 		if (!new->name)
 		{
 			free_cmd(word);
 			free(new);
 			return (1);
 		}
+		printf("word->name: %s\n", new->name);
 		ft_lstadd_back((t_list **)&word->info->word, (t_list *)new);
 		tmp = tmp->next;
 	}
