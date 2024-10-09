@@ -4,13 +4,9 @@ char	*expand_exit_code(char *ret, int *i)
 {
 	char	*tmp;
 
+	// En el itoa hay que pasar la variable global que contiene el exit code del ultimo comando
 	tmp = ft_itoa(127);
 	ret = ft_strappend(ret, tmp);
-	if (!ret)
-	{
-		free(tmp);
-		return(NULL);
-	}
 	free(tmp);
 	(*i)++;
 	return (ret);
@@ -18,14 +14,17 @@ char	*expand_exit_code(char *ret, int *i)
 
 char	*expand_env(char *ret, char *name, int *i, t_env *env)
 {
+	char	*tmp;
+
+	tmp = NULL;
 	while (env)
 	{
 		if (ft_strncmp(env->content->key, &name[*i],
 				ft_strlen(env->content->key) + 1) == 0)
 		{
-			ret = ft_strappend(ret, env->content->value);
-			if (!ret)
-				return (NULL);
+			tmp = ft_strdup(env->content->value);
+			ret = ft_strappend(ret, tmp);
+			free(tmp);
 			*i += ft_strlen(env->content->key);
 			break ;
 		}
@@ -36,14 +35,24 @@ char	*expand_env(char *ret, char *name, int *i, t_env *env)
 	return (ret);
 }
 
+char	*expand_lit(char *ret, char *name, int *i)
+{
+	char	lit[2];
+
+	lit[0] = name[*i];
+	lit[1] = '\0';
+	ret = ft_strappend(ret, lit);
+	(*i)++;
+	return (ret);
+}
+
 char	*expand_value(char *name, t_env *env)
 {
 	char	*ret;
-	char	lit[2];
 	int		i;
 
 	i = 0;
-	ret = NULL;
+	ret = ft_strdup("");
 	while (name[i])
 	{
 		if (name[i] == '$')
@@ -55,13 +64,9 @@ char	*expand_value(char *name, t_env *env)
 				ret = expand_env(ret, name, &i, env);
 		}
 		else
-		{
-			lit[0] = name[i++];
-			lit[1] = '\0';
-			ret = ft_strappend(ret, lit);
-		}
-		if(!ret)
-			break ;
+			ret = expand_lit(ret, name, &i);
+		if (!ret)
+			return (NULL);
 	}
 	return (ret);
 }
@@ -85,6 +90,5 @@ t_cmd	*expand_cmd(t_cmd *cmd, t_env *env)
 		ft_lstadd_back((t_list **)&exp, (t_list *)tmp);
 		cmd = cmd->next;
 	}
-	free_cmd(cmd);
 	return (exp);
 }

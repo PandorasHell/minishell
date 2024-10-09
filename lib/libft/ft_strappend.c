@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 15:28:24 by smeixoei          #+#    #+#             */
-/*   Updated: 2024/10/03 19:33:02 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/10/09 13:12:10 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,8 @@ char	*ft_strappend(char *s1, char *s2)
 	if (!s2 && s1)
 		return ((char *)s1);
 	if (!s1)
-	    newstring = malloc(0 + ft_strlen(s2) + 1 * sizeof(char));
-    else
-        newstring = malloc(ft_strlen(s1)
-                           + ft_strlen(s2) + 1 * sizeof(char));
+		return (NULL);
+	newstring = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
 	if (!newstring)
 		return (NULL);
 	while (s1[++i] != '\0')
