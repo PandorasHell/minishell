@@ -16,8 +16,6 @@ t_cmd	*expand_cmd(t_cmd *cmd, t_env *env)
 		}
 		if (expand_name(tmp, env, cmd) || expand_redir(tmp, env, cmd))
 			return (ft_lstclear((t_list **)&cmd, free), NULL);
-		// split_exp(tmp, env, cmd);
-		// remove_quote(tmp);
 		ft_lstadd_back((t_list **)&exp, (t_list *)tmp);
 		cmd = cmd->next;
 	}

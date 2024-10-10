@@ -17,6 +17,7 @@ int	expand_redir(t_cmd *redir, t_env *env, t_cmd *cmd)
 			return (free_cmd(redir), free(new), 1);
 		new->content = data;
 		data->where = expand_dolar(tmp->content->where, env);
+		data->where = expand_quote(data->where);
 		if (!data->where)
 			return (free_cmd(redir), free(new), 1);
 		data->type = tmp->content->type;

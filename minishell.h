@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:52:54 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/10/09 18:31:07 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/10/10 17:14:25 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,34 +93,35 @@ typedef struct s_cmd
 }						t_cmd;
 
 // ENV
-t_env					*save_env(char **env);
-void					free_env(t_env *env);
+t_env	*save_env(char **env);
+void	free_env(t_env *env);
 
 // LEXER
-int						is_space(char c);
-int						is_operator(char c);
-int						is_quote(char c);
-t_lword					*split_words(char *line, t_lword *words);
-t_lexer					*lexical_analysis(char *line);
-void					free_lexer(t_lexer **lexer);
-void					free_words(t_lword *words);
+int		is_space(char c);
+int		is_operator(char c);
+int		is_quote(char c);
+t_lword	*split_words(char *line, t_lword *words);
+t_lexer	*lexical_analysis(char *line);
+void	free_lexer(t_lexer **lexer);
+void	free_words(t_lword *words);
 
 // PARSER
-t_cmd					*complete_parser(t_lexer *lexer);
-void					free_cmd(t_cmd *cmd);
-t_cmd					*set_cmd_mem(void);
-int						set_cmd_value(t_lexer **lexer, t_cmd *cmd);
-int						status_pipe(t_lexer **lexer, int status);
-int						status_redir(t_lexer **lexer, int status, t_cmd *cmd);
+t_cmd	*complete_parser(t_lexer *lexer);
+void	free_cmd(t_cmd *cmd);
+t_cmd	*set_cmd_mem(void);
+int		set_cmd_value(t_lexer **lexer, t_cmd *cmd);
+int		status_pipe(t_lexer **lexer, int status);
+int		status_redir(t_lexer **lexer, int status, t_cmd *cmd);
 
 // EXPANDER
-t_cmd					*expand_cmd(t_cmd *cmd, t_env *env);
-int						expand_redir(t_cmd *redir, t_env *env, t_cmd *cmd);
-int						expand_name(t_cmd *word, t_env *env, t_cmd *cmd);
-char					*expand_dolar(char *name, t_env *env);
+t_cmd	*expand_cmd(t_cmd *cmd, t_env *env);
+int		expand_redir(t_cmd *redir, t_env *env, t_cmd *cmd);
+int		expand_name(t_cmd *word, t_env *env, t_cmd *cmd);
+char	*expand_dolar(char *name, t_env *env);
+char	*expand_quote(char *line);
 
 // UTILS
-int						exit_checker(const char *line, const char *comparer);
-int						check_character_for_history(char c);
+int		exit_checker(const char *line, const char *comparer);
+int		check_character_for_history(char c);
 
 #endif
