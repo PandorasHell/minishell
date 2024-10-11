@@ -5,10 +5,12 @@ int	expand_redir(t_cmd *redir, t_env *env, t_cmd *cmd)
 	t_cmd_red	*new;
 	t_cmd_dred	*data;
 	t_cmd_red	*tmp;
+	int			quote;
 
 	tmp = cmd->info->redir;
 	while (tmp)
 	{
+		quote = 0;
 		new = ft_calloc(1, sizeof(t_cmd_red));
 		if (!new)
 			return (free_cmd(redir), 1);
@@ -16,7 +18,7 @@ int	expand_redir(t_cmd *redir, t_env *env, t_cmd *cmd)
 		if (!data)
 			return (free_cmd(redir), free(new), 1);
 		new->content = data;
-		data->where = expand_dolar(tmp->content->where, env);
+		data->where = expand_dolar(tmp->content->where, env, &quote);
 		data->where = expand_quote(data->where);
 		if (!data->where)
 			return (free_cmd(redir), free(new), 1);

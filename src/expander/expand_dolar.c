@@ -65,7 +65,7 @@ char	*expand_lit(char *ret, char *name, int *i)
 	return (ret);
 }
 
-char	*expand_dolar(char *name, t_env *env)
+char	*expand_dolar(char *name, t_env *env, int *quote)
 {
 	char	*ret;
 	int		i;
@@ -80,7 +80,10 @@ char	*expand_dolar(char *name, t_env *env)
 			if (name[i] == '?')
 				ret = expand_exit_code(ret, &i);
 			else
+			{
 				ret = expand_env(ret, name, &i, env);
+				*quote = 1;
+			}
 		}
 		else
 			ret = expand_lit(ret, name, &i);

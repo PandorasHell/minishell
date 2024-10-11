@@ -19,23 +19,21 @@ char	*expand_quote(char *line)
 	char	*exp;
 	int		len;
 	int		i;
-	int		j;
 
+	if (!line)
+		return (NULL);
 	exp = NULL;
-	len = quote_len(line);
-	i = 1;
-	j = 0;
-	exp = ft_calloc(len, sizeof(char));
-	if (!exp)
-		return  (NULL);
-	while (i < len)
+	i = ft_strlen(line) - 1;
+	if (line[0] == '\"' || line[0] == '\''
+		|| line[i] == '\"' || line[i] == '\'')
 	{
-		exp[j++] = line[i];
-		i++;
+		len = quote_len(line);
+		if (!len)
+			return (NULL);
+		exp = ft_substr(line, 1, len - 1);
 	}
-
-	printf("len: %d\n", len);
-	printf("exp: %s\n", exp);
+	else
+		exp = ft_strdup(line);
 	free(line);
 	return (exp);
 }
