@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:52:54 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/10/11 16:06:14 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/10/14 13:16:18 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ int		expand_redir(t_cmd *redir, t_env *env, t_cmd *cmd);
 int		expand_name(t_cmd *word, t_env *env, t_cmd *cmd);
 char	*expand_dolar(char *name, t_env *env, int *quote);
 char	*expand_quote(char *line);
+t_cmd_name	*expand_split_word(char *name);
 
 // UTILS
 int		exit_checker(const char *line, const char *comparer);

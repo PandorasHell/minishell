@@ -29,10 +29,8 @@ char	*expand_exit_code(char *ret, int *i)
 char	*expand_env(char *ret, char *name, int *i, t_env *env)
 {
 	char	*tmp;
-	int		found;
 
 	tmp = NULL;
-	found = 0;
 	while (env)
 	{
 		if (check_exp_env(name, i, env))
@@ -41,15 +39,9 @@ char	*expand_env(char *ret, char *name, int *i, t_env *env)
 			ret = ft_strappend(ret, tmp);
 			free(tmp);
 			*i += ft_strlen(env->content->key);
-			found = 1;
 			break ;
 		}
 		env = env->next;
-	}
-	if (!found)
-	{
-		while (name[*i] && (ft_isalnum(name[*i]) || name[*i] == '_'))
-			(*i)++;
 	}
 	return (ret);
 }
