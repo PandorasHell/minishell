@@ -41,4 +41,3 @@ char	*expand_quote(char *line)
 	free(line);
 	return (exp);
 }
-

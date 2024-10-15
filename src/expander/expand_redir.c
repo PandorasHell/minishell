@@ -19,13 +19,20 @@ int	expand_redir(t_cmd *redir, t_env *env, t_cmd *cmd)
 			return (free_cmd(redir), free(new), 1);
 		new->content = data;
 		data->where = expand_dolar(tmp->content->where, env, &quote);
-		// if (quote)
-		// 	new = expand_split_redir(new);
-		data->where = expand_quote(data->where);
+		if (quote)
+			new = expand_split_redir(new->content->where);
+		else
+			data->where = expand_quote(data->where);
 		if (!data->where)
 			return (free_cmd(redir), free(new), 1);
 		data->type = tmp->content->type;
 		ft_lstadd_back((t_list **)&redir->info->redir, (t_list *)new);
+		tmp = tmp->next;
+	}
+	tmp = redir->info->redir;
+	while (tmp)
+	{
+		printf("tmp->where: %s\n", tmp->content->where);
 		tmp = tmp->next;
 	}
 	return (0);

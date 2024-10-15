@@ -30,14 +30,14 @@ static char	*save_word(char *line)
 			if (!quote)
 				return (printf("Error: Unclosed quotes\n"), NULL);
 			len += quote;
-			break;
+			break ;
 		}
 		else
 			len++;
 	}
 	word = ft_calloc(len + 1, sizeof(char));
 	if (!word)
-		return (printf("Error: Malloc fail\n"),NULL);
+		return (printf("Error: Malloc fail\n"), NULL);
 	ft_strlcpy(word, line, len + 1);
 	return (word);
 }
