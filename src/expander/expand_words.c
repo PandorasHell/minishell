@@ -24,4 +24,5 @@ int	expand_name(t_cmd *word, t_env *env, t_cmd *cmd)
 		ft_lstadd_back((t_list **)&word->info->word, (t_list *)new);
 		tmp = tmp->next;
 	}
+	return (0);
 }
