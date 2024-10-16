@@ -1,9 +1,28 @@
 #include "../../minishell.h"
 
+t_cmd_red	*set_redir_mem(t_cmd *cmd)
+{
+	t_cmd_red	*redir;
+
+	redir = ft_calloc(1, sizeof(t_cmd_red));
+	if (!redir)
+	{
+		free_cmd(cmd);
+		return (NULL);
+	}
+	redir->content = ft_calloc(1, sizeof(t_cmd_dred));
+	if (!redir->content)
+	{
+		free(redir);
+		free_cmd(cmd);
+		return (NULL);
+	}
+	return (redir);
+}
+
 int	expand_redir(t_cmd *redir, t_env *env, t_cmd *cmd)
 {
 	t_cmd_red	*new;
-	t_cmd_dred	*data;
 	t_cmd_red	*tmp;
 	int			quote;
 
@@ -11,28 +30,16 @@ int	expand_redir(t_cmd *redir, t_env *env, t_cmd *cmd)
 	while (tmp)
 	{
 		quote = 0;
-		new = ft_calloc(1, sizeof(t_cmd_red));
-		if (!new)
-			return (free_cmd(redir), 1);
-		data = ft_calloc(1, sizeof(t_cmd_dred));
-		if (!data)
-			return (free_cmd(redir), free(new), 1);
-		new->content = data;
-		data->where = expand_dolar(tmp->content->where, env, &quote);
+		new = set_redir_mem(redir);
+		new->content->where = expand_dolar(tmp->content->where, env, &quote);
 		if (quote)
 			new = expand_split_redir(new->content->where);
 		else
-			data->where = expand_quote(data->where);
-		if (!data->where)
+			new->content->where = expand_quote(new->content->where);
+		if (!new->content->where)
 			return (free_cmd(redir), free(new), 1);
-		data->type = tmp->content->type;
+		new->content->type = tmp->content->type;
 		ft_lstadd_back((t_list **)&redir->info->redir, (t_list *)new);
-		tmp = tmp->next;
-	}
-	tmp = redir->info->redir;
-	while (tmp)
-	{
-		printf("tmp->where: %s\n", tmp->content->where);
 		tmp = tmp->next;
 	}
 	return (0);

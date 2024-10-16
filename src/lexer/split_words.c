@@ -61,6 +61,14 @@ static char	*save_operator(char *line)
 	return (word);
 }
 
+void	save_new(char *line, t_lword *tmp, size_t i)
+{
+	if (!is_operator(line[i]))
+		tmp->word = save_word(&line[i]);
+	else if (is_operator(line[i]))
+		tmp->word = save_operator(&line[i]);
+}
+
 t_lword	*split_words(char *line, t_lword *words)
 {
 	t_lword	*tmp;
@@ -74,10 +82,7 @@ t_lword	*split_words(char *line, t_lword *words)
 			tmp = ft_calloc(1, sizeof(t_lword));
 			if (!tmp)
 				return ((ft_lstclear((t_list **)&words, free)), NULL);
-			if (!is_operator(line[i]))
-				tmp->word = save_word(&line[i]);
-			else if (is_operator(line[i]))
-				tmp->word = save_operator(&line[i]);
+			save_new(line, tmp, i);
 			if (!tmp->word)
 			{
 				ft_lstclear((t_list **)&words, free);

@@ -12,15 +12,12 @@ static int	quote_len(char *line)
 	return (len);
 }
 
-char	*expand_quote(char *line)
+char	*resolve_quote(char *line)
 {
-	char	*exp;
-	int		len;
 	int		i;
+	int		len;
+	char	*exp;
 
-	if (!line)
-		return (NULL);
-	exp = NULL;
 	i = ft_strlen(line) - 1;
 	if (line[0] == '\"' || line[0] == '\'')
 	{
@@ -38,6 +35,16 @@ char	*expand_quote(char *line)
 	}
 	else
 		exp = ft_strdup(line);
+	return (exp);
+}
+
+char	*expand_quote(char *line)
+{
+	char	*exp;
+
+	if (!line)
+		return (NULL);
+	exp = resolve_quote(line);
 	free(line);
 	return (exp);
 }
