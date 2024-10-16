@@ -61,13 +61,14 @@ t_cmd_name	*expand_split_word(char *name)
 		if (!new)
 		{
 			cleanup(split_words);
+			ft_lstclear((t_list **)&new, free);
 			return (NULL);
 		}
 		new->name = ft_strdup(split_words[i]);
 		if (!new->name)
 		{
 			cleanup(split_words);
-			free(new);
+			ft_lstclear((t_list **)&new, free);
 			return (NULL);
 		}
 		new->name = expand_quote(new->name);

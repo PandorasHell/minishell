@@ -25,17 +25,23 @@ int	expand_redir(t_cmd *redir, t_env *env, t_cmd *cmd)
 	t_cmd_red	*new;
 	t_cmd_red	*tmp;
 	int			quote;
+	char		*aux;
 
 	tmp = cmd->info->redir;
 	while (tmp)
 	{
 		quote = 0;
 		new = set_redir_mem(redir);
-		new->content->where = expand_dolar(tmp->content->where, env, &quote);
+		aux = expand_dolar(tmp->content->where, env, &quote);
 		if (quote)
-			new = expand_split_redir(new->content->where);
+		{
+			free(new->content);
+			free(new);
+			new = expand_split_redir(aux);
+			free(aux);
+		}
 		else
-			new->content->where = expand_quote(new->content->where);
+			new->content->where = expand_quote(aux);
 		if (!new->content->where)
 			return (free_cmd(redir), free(new), 1);
 		new->content->type = tmp->content->type;

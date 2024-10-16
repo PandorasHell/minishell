@@ -1,26 +1,41 @@
 #include "../../minishell.h"
 
+static t_cmd_name	*set_name_mem(t_cmd *cmd)
+{
+	t_cmd_name	*new;
+
+	new = ft_calloc(1, sizeof(t_cmd_name));
+	if (!new)
+	{
+		free_cmd(cmd);
+		return (NULL);
+	}
+	return (new);
+}
+
 int	expand_name(t_cmd *word, t_env *env, t_cmd *cmd)
 {
 	t_cmd_name	*new;
 	t_cmd_name	*tmp;
 	int			quote;
+	char		*aux;
 
 	tmp = cmd->info->word;
 	while (tmp)
 	{
 		quote = 0;
-		new = ft_calloc(1, sizeof(t_cmd_name));
+		new = set_name_mem(cmd);
 		if (!new)
-		{
-			free_cmd(word);
 			return (1);
-		}
-		new->name = expand_dolar(tmp->name, env, &quote);
+		aux = expand_dolar(tmp->name, env, &quote);
 		if (quote)
-			new = expand_split_word(new->name);
+		{
+			free(new);
+			new = expand_split_word(aux);
+			free(aux);
+		}
 		else
-			new->name = expand_quote(new->name);
+			new->name = expand_quote(aux);
 		ft_lstadd_back((t_list **)&word->info->word, (t_list *)new);
 		tmp = tmp->next;
 	}

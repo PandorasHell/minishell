@@ -74,7 +74,7 @@ char	*expand_dolar(char *name, t_env *env, int *quote)
 			else
 			{
 				ret = expand_env(ret, name, &i, env);
-				*quote = 1;
+				(*quote) = 1;
 			}
 		}
 		else
