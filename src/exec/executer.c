@@ -4,6 +4,17 @@ void	exec_cmd(t_cmd *cmd, t_env *env)
 {
 	// Antes de hacer nada con el comando hay que resolver los heredocs
 	// Eso incluye a todos los posibles heredocs, no unicamente los del primer comando
+	if (create_heredocs(cmd, env))
+		return (NULL);
+	if (ft_lstsize((t_list **)cmd) == 1)
+	{
+		if (is_built_in(cmd->info->word->name))
+			execute_built_in(cmd);
+		else
+			execute_one(cmd, env);
+	}
+	else
+		execute_cmd(cmd, env);
 
 	// Luego de resolver los heredocs, pasamos a ir ejecutando los comandos
 	// Antes de ponernos a mander execve, tenemos que resolver las redirecciones
