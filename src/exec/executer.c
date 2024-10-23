@@ -4,6 +4,10 @@ void	exec_cmd(t_cmd *cmd, t_env *env)
 {
 	// Antes de hacer nada con el comando hay que resolver los heredocs
 	// Eso incluye a todos los posibles heredocs, no unicamente los del primer comando
+	// En el caso de tener heredoc no se si habria ue cambiar el valor de su redireccion
+	// a infile para abrir este documento (que se tiene que crear y destruir en la carpeta /tmp)
+	// a la hora de ejecutar los comandos.
+	// Si es asi hayq ue volver a crear una nueva lista de redirecciones con esto "expandido"
 	if (create_heredocs(cmd, env))
 		return (NULL);
 	if (ft_lstsize((t_list **)cmd) == 1)
