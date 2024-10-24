@@ -7,6 +7,7 @@ t_cmd_red	*expand_split_redir(char *name)
 	char		**split_words;
 	int			i;
 
+	#TODO: cambiar los : del split por ' '
 	split_words = ft_split(name, ':');
 	if (!split_words)
 		return (NULL);
