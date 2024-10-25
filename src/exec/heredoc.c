@@ -3,6 +3,7 @@
 int	resolve_heredoc(char *limiter, t_env *env)
 {
 	// ahora mismo esto es una copia del heredoc de pipex
+	// Hay que  expandir las variables de entorno dentro del documento T_T
 	char	*line;
 	int		tmp_fd;
 	char 	*here_doc;
