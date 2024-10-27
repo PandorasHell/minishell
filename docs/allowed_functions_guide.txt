@@ -1,83 +1,130 @@
 –––––––––––––––––––––––––––––––– READLINE ––––––––––––––––––––––––––––––––
 
-readline
-rl_clear_history
-rl_on_new_line
-rl_replace_line
-rl_redisplay
-add_history
+readline			--> Espera a que el usuario introduzca una línea de texto. Permite navegar por el historial de comandos anteriores y editar la línea actual Cuando se presiona Enter, la línea completa se retorna como un char*.
+rl_clear_history	--> Elimina todas las entradas almacenadas en el historial de comandos.
+rl_on_new_line		--> Actualiza internamente el estado de Readline para reflejar que una nueva línea de entrada está comenzando.
+rl_replace_line		--> Reemplaza la línea actual que está siendo editada por una nueva línea.
+rl_redisplay		--> Fuerza a Readline a volver a mostrar la línea de entrada actual.
+add_history			--> Añade una nueva entrada al historial de comandos.
 
 –––––––––––––––––––––––––––––––– MEMORY ––––––––––––––––––––––––––––––––
 
-malloc
-free
+malloc	--> Asigna un bloque de memoria en el heap. La memoria asignada persiste hasta que se libera explícitamente.
+free	--> Libera un bloque de memoria previamente asignado por malloc, calloc, realloc, u otras funciones de asignación de memoria dinámica.
 
 –––––––––––––––––––––––––––––––– PROCESS ––––––––––––––––––––––––––––––––
 
-fork
-wait
-waitpid
-wait3
-wait4
-kill
-exit
-execve
+fork	--> Llamada al sistema que crea un nuevo proceso, duplicando el proceso que hace la llamada.
+wait	--> Llamada al sistema que hace que el proceso padre espere a que uno de sus procesos hijos termine, para luego recoger su estado de salida.
+waitpid	--> Versión más flexible de wait que permite al proceso padre esperar a un proceso hijo específico.
+wait3	--> Similar a wait, pero también devuelve el uso de recursos del proceso hijo que terminó.
+wait4	--> Combina la funcionalidad de waitpid y wait3, permitiendo especificar un PID y recibir estadísticas de recursos.
+kill	--> Envía una señal a un proceso o grupo de procesos. Puede enviar cualquier señal.
+exit	--> Termina el proceso actual y devuelve un valor de estado a su proceso padre. Se asegura de que todos los buffers de E/S se vacíen antes de salir.
+execve	--> Reemplaza el proceso actual con un nuevo programa.
 
 –––––––––––––––––––––––––––––––– FILES ––––––––––––––––––––––––––––––––
 
-write
-access
-open
-read
-close
-stat
-lstat
-fstat
-unlink
-dup
-dup2
-pipe
+write	--> Escribe contenido en archivos abiertos (incluyendo stdout y stderr).
+access	--> Verifica si el proceso actual tiene permisos para acceder a un archivo
+open	--> Abre un archivo para lectura, escritura o ambos. Devuelve un descriptor de archivo.
+read	--> Lee datos de un archivo o dispositivo en un buffer.
+close	--> Cierra un archivo o dispositivo previamente abierto con open.
+stat	--> Obtiene información sobre un archivo (tamaño, permisos, tipo, etc.).
+lstat	--> Similar a stat, pero si el archivo es un enlace simbólico, devuelve información sobre el enlace en lugar del archivo que apunta.
+fstat	--> Como stat, pero se aplica a un archivo ya abierto y representado por su descriptor de archivo.
+unlink	--> Elimina un archivo del sistema de archivos. Si un archivo está siendo usado por otro proceso, se elimina cuando todos los descriptores de archivo están cerrados.
+dup		--> Duplica un descriptor de archivo, creando una nueva referencia al mismo archivo.
+dup2	--> Duplica un descriptor de archivo y lo asigna a un descriptor de archivo específico.
+pipe	--> Crea un par de descriptores de archivo que se utilizan para comunicación unidireccional entre procesos (uno para leer, otro para escribir).
 
 –––––––––––––––––––––––––––––––– SIGNALS ––––––––––––––––––––––––––––––––
 
-signal
-sigaction
+signal		--> Configura el manejo de una señal específica, permitiendo que se asocie una acción a una señal del sistema
+sigaction	--> Manejo más avanzado de señales, permitiendo especificar opciones adicionales como el bloqueo de otras señales durante la ejecución del manejador.
 
 –––––––––––––––––––––––––––––––– DIRECTORIES ––––––––––––––––––––––––––––––––
 
-getcwd
-chdir
-opendir
-readdir
-closedir
+getcwd		--> Obtiene el directorio de trabajo actual (working directory) en el que está ejecutándose el proceso.
+chdir		--> Cambia el directorio de trabajo del proceso actual.
+opendir		--> Abre un directorio para leer su contenido.
+readdir		--> Lee la siguiente entrada de un directorio abierto.
+closedir	--> Cierra un directorio abierto.
 
 –––––––––––––––––––––––––––––––– ERROR ––––––––––––––––––––––––––––––––
 
-strerror
-perror
+strerror	--> Convierte un número de error (errno) en una cadena con el mensaje de error correspondiente.
+perror		--> Imprime un mensaje de error descriptivo en función del valor actual de errno.
 
 –––––––––––––––––––––––––––––––– I/O TERM ––––––––––––––––––––––––––––––––
 
-isatty
-ttyname
-ttyslot
-ioctl
-tcsetattr
-tcgetattr
+isatty		--> Determina si un descriptor de archivo (file descriptor) se refiere a un dispositivo de terminal (TTY)
+ttyname		--> Obtiene el nombre del archivo asociado que corresponde a un terminal.
+ttyslot		--> Devuelve el número de línea de terminal asociado con el descriptor de archivo. Posición del terminal en la lista de terminales activos del sistema.
+ioctl		--> Permite realizar operaciones de entrada/salida de bajo nivel en un descriptor de archivo
+tcsetattr	--> Cambia los parámetros de configuración de un terminal
+tcgetattr	--> Obtiene los parámetros de configuración actuales de un terminal.
 
 –––––––––––––––––––––––––––––––– ENVIRONMENT ––––––––––––––––––––––––––––––––
 
-getenv
+getenv	--> Obtiene el valor de una variable de entorno en el sistema operativo.
 
 –––––––––––––––––––––––––––––––– TERM CAPACITY ––––––––––––––––––––––––––––––––
 
-tgetent
-tgetflag
-tgetnum
-tgetstr
-tgoto
-tputs
+tgetent		-->
+tgetflag	-->
+tgetnum		-->
+tgetstr		-->
+tgoto		-->
+tputs		-->
 
 –––––––––––––––––––––––––––––––– LIBFT ––––––––––––––––––––––––––––––––
 
-printf
+printf		--> Escribe en la salida estandar una cadena, contiene varias opciones.
+
+## ALL THESE FUNCTIONS NEED TO BE USED WITH "ft_ AT THE BEGINNING" ##
+
+atoi		--> Convierte un array de caracteres en un valor int.
+bzero		--> Convierte a '\0' todos los elementos de la cadena facilitada.
+calloc		--> Asigna un bloque de memoria en el heap rellenando cada uno de sus valores con '\0'. La memoria asignada persiste hasta que se libera explícitamente.
+isalnum		--> Comprueba que la cadena facilitada contenga unicamente caracteres alfanumericos.
+isalpha		--> Comprueba que la cadena facilitada contenga unicamente caracteres alfabeticos.
+isascii		--> Comprueba que la cadena facilitada contenga unicamente caracteres dentro de la tabla ASCII.
+isdigit		--> Comprueba que la cadena facilitada contenga unicamente caracteres numericos.
+isprint		--> Comprueba que la cadena facilitada contenga unicamente caracteres imprimibles.
+itoa		--> Convierte un array de enteros en un array de caracteres.
+memchr		--> Busca en la memoria la primera coincidencia entre dos valores.
+memcmp		--> Compara en memoria dos valores.
+memcpy		--> Copia en memoria el valor facilitado.
+memmove		--> Copia en meoria el valor facilitado asegurandose que no haya solapamientos.
+memset		--> Asigna el bloque de memoria con un valor constante.
+putchar_fd	--> Escribe en el FD facilitado un caracter.
+putendl_fd	--> Escribe en el FD facilitado una nueva cadena con un salto de linea al final.
+putnbr_fd	--> Convierte y escribe en el FD facilitado una cadena numerica.
+putstr_fd	--> Escribe en el FD facilitado una nueva cadena.
+split		--> Genera una matriz separando la cadena facilitada en nuevas por el caracter indicado.
+strchr		--> Busca en la cadena la primera coincidencia con el valor facilitado.
+strdup		--> Duplica la cadena facilitada reservando la memoria necesaria.
+striteri	--> Itera sobre una cadena aplicando una funcion a cada valor.
+strjoin		--> Reserva memoria para generar una nueva cadena que contiene dos cadenas facilitadas.
+strlcat		--> Concatena en destino dos cadenas de caracteres (destino y new) especificando la longitud a copiar.
+strlcpy		--> Copia en la cadena de destino el valor facilitado por una nueva cadena.
+strlen		--> Calcula la longitud de la cadena facilitada.
+strmapi		--> Crea un duplicado de la cadena facilitada e itera sobre una esta aplicando una funcion a cada valor.
+strncmp		--> Compara durante N numero de caracteres dos cadenas.
+strnstr		--> Busca en una cadena la primera coincidencia de otra cadena facilitada.
+strrchr		--> Busca en una cadena la primera coincidencia de un caracter de manera inversa.
+strtrim		--> Genera una nueva cadena eliminando en el inicio y en el final el valor facilitado.
+substr		--> Crea una nueva cadena basandose en la facilitada. Se le facilita el comienzo y la longitud a copiar.
+tolower		--> Convierte todos los caracteres alfabeticos de una cadena a minusculas.
+toupper		--> Convierte todos los caracteres alfabeticos de una cadena a mayusculas.
+
+lstadd_back		--> Añade un nuevo nodo al final de la lista. Si la lista estuviera vacía se convierte en el primero.
+lstadd_front	--> Añade un nuevo nodo al principio de la lista. Si la lista estuviera vacía se convierte en el primero.
+lstclear		--> Elimina la lista, borrando todos sus nodos y el contenido de estos.
+lstdelone		--> Elimina el nodo relacionado, tambien lo que contenga.
+lstiter			--> Aplica una funcion a cada nodo de la lista.
+lstlast			--> Mueve la referencia al nodo final de la lista.
+lstmap			--> Crea y devuelve un duplicado de la lista. Aplica una funcion a cada uno de los nodos de esta.
+lstnew			--> Crea un nuevo nodo.
+lstsize			--> Devuelve el tamaño de una lista.
