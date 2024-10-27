@@ -1,5 +1,11 @@
 #include "../../minishell.h"
 
+/**
+ * @brief Get the length of the quote
+ * @param line The string to be checked
+ * @return The length of the quote
+ */
+
 static int	quote_len(char *line)
 {
 	int		len;
@@ -11,6 +17,12 @@ static int	quote_len(char *line)
 		len++;
 	return (len);
 }
+
+/**
+ * @brief Resolve the quote expansion eliminating the quotes in the string
+ * @param line The string to be resolved
+ * @return The resolved string
+ */
 
 char	*resolve_quote(char *line)
 {
@@ -37,6 +49,12 @@ char	*resolve_quote(char *line)
 		exp = ft_strdup(line);
 	return (exp);
 }
+
+/**
+ * @brief Expand the quote in the string eliminating the quotes
+ * @param line The string to be expanded
+ * @return The expanded string
+ */
 
 char	*expand_quote(char *line)
 {

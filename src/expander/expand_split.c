@@ -1,5 +1,11 @@
 #include "../../minishell.h"
 
+/**
+ * @brief Divide the string into a matrix of strings by the delimiter and create new node for each one
+ * @param name The string to be divided
+ * @return The new name structure
+ */
+
 t_cmd_red	*expand_split_redir(char *name)
 {
 	t_cmd_red	*exp;
@@ -7,7 +13,9 @@ t_cmd_red	*expand_split_redir(char *name)
 	char		**split_words;
 	int			i;
 
-	#TODO: cambiar los : del split por ' '
+	//#TODO: cambiar los : del split por ' '
+	//#TODO: Creo que al hacer el split deberia darle el valor de la redireccion a cada nodo creado,
+	// aunque cuando haces la prueba te aparece "ambigous redirect" en el caso de que haya mas de una redireccion
 	split_words = ft_split(name, ':');
 	if (!split_words)
 		return (NULL);
@@ -44,6 +52,12 @@ t_cmd_red	*expand_split_redir(char *name)
 	return (exp);
 }
 
+/**
+ * @brief Divide the string into a matrix of strings by the delimiter and create new node for each one
+ * @param name The string to be divided
+ * @return The new name structure
+ */
+
 t_cmd_name	*expand_split_word(char *name)
 {
 	t_cmd_name	*exp;
@@ -51,6 +65,7 @@ t_cmd_name	*expand_split_word(char *name)
 	char		**split_words;
 	int			i;
 
+	//TODO: cambiar los : del split por ' '
 	split_words = ft_split(name, ':');
 	if (!split_words)
 		return (NULL);

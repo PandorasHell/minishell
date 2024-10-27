@@ -1,5 +1,10 @@
 #include "../../minishell.h"
 
+/**
+ * @brief Set the memory for the command structure
+ * @return The command structure with the memory allocated or NULL if an error occurs
+ */
+
 t_cmd	*set_cmd_mem(void)
 {
 	t_cmd		*new;
@@ -17,6 +22,12 @@ t_cmd	*set_cmd_mem(void)
 	new->info = data;
 	return (new);
 }
+
+/**
+ * @brief Allocate the memory for the word structure and set the value (name)
+ * @param lexer The lexer structure to get the value
+ * @return The word structure with the memory allocated or NULL if an error occurs
+ */
 
 t_cmd_name	*set_cmd_word(t_lexer **lexer)
 {
@@ -38,6 +49,12 @@ t_cmd_name	*set_cmd_word(t_lexer **lexer)
 	return (new);
 }
 
+/**
+ * @brief Allocate the memory for the redirection structure and set the value (type and where)
+ * @param lexer The lexer structure to get the value
+ * @return The redirection structure with the memory allocated or NULL if an error occurs
+ */
+
 t_cmd_red	*set_cmd_redir(t_lexer **lexer)
 {
 	t_cmd_red	*new;
@@ -57,6 +74,14 @@ t_cmd_red	*set_cmd_redir(t_lexer **lexer)
 	data->type = (*lexer)->content->key;
 	return (new);
 }
+
+/**
+ * @brief Set the value of the command structure (word or redirection),
+ * create the new node and add it to the list of the commands
+ * @param lexer The lexer structure to get the value
+ * @param cmd The command structure to set the value
+ * @return The status of the value set
+ */
 
 int	set_cmd_value(t_lexer **lexer, t_cmd *cmd)
 {

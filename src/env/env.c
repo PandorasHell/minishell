@@ -1,5 +1,10 @@
 #include "../../minishell.h"
 
+/**
+ * @brief Free the env list and its content (key and value) allocated memory
+ * @param env The env list to free
+ */
+
 void	free_env(t_env *env)
 {
 	t_env	*tmp;
@@ -15,6 +20,11 @@ void	free_env(t_env *env)
 	}
 }
 
+/**
+ * @brief Allocate memory for the env variables and save them in the linked list
+ * @param env The env values to save (key and value) in the linked list
+ */
+
 void	save_data_env(t_env *tmp, char **env, int i)
 {
 	t_denv	*data;
@@ -26,6 +36,12 @@ void	save_data_env(t_env *tmp, char **env, int i)
 	data->key = ft_substr(env[i], 0, ft_strchr(env[i], '=') - env[i]);
 	data->value = ft_strdup(ft_strchr(env[i], '=') + 1);
 }
+
+/**
+ * @brief Save the env variables in a linked list
+ * @param env The env variables to save from the system
+ * @return The linked list containing the env variables
+ */
 
 t_env	*save_env(char **env)
 {

@@ -1,5 +1,11 @@
 #include "../../minishell.h"
 
+/**
+ * @brief Set the memory for the name structure
+ * @param cmd The command structure to be freed if the memory allocation fails
+ * @return The new name structure
+ */
+
 static t_cmd_name	*set_name_mem(t_cmd *cmd)
 {
 	t_cmd_name	*new;
@@ -12,6 +18,14 @@ static t_cmd_name	*set_name_mem(t_cmd *cmd)
 	}
 	return (new);
 }
+
+/**
+ * @brief Expand the names of the command
+ * @param word The name structure to be allocated and filled
+ * @param env The environment variables
+ * @param cmd The command structure to compare for creating the names
+ * @return 0 on success, 1 on failure
+ */
 
 int	expand_name(t_cmd *word, t_env *env, t_cmd *cmd)
 {

@@ -1,5 +1,11 @@
 #include "../../minishell.h"
 
+/**
+ * @brief Set the memory for the redirection structure
+ * @param cmd The command structure to be freed if the memory allocation fails
+ * @return The new redirection structure
+ */
+
 t_cmd_red	*set_redir_mem(t_cmd *cmd)
 {
 	t_cmd_red	*redir;
@@ -19,6 +25,14 @@ t_cmd_red	*set_redir_mem(t_cmd *cmd)
 	}
 	return (redir);
 }
+
+/**
+ * @brief Expand the redirections of the command
+ * @param redir The redirection structure to be allocated and filled
+ * @param env The environment variables
+ * @param cmd The command structure to compare for creating the redirections
+ * @return 0 on success, 1 on failure
+ */
 
 int	expand_redir(t_cmd *redir, t_env *env, t_cmd *cmd)
 {

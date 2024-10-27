@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:52:54 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/10/15 12:21:18 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/10/27 11:07:04 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ int			is_quote(char c);
 t_lword		*split_words(char *line, t_lword *words);
 t_lexer		*lexical_analysis(char *line);
 void		free_lexer(t_lexer **lexer);
-void		free_words(t_lword *words);
 
 // PARSER
 t_cmd		*complete_parser(t_lexer *lexer);

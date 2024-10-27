@@ -1,5 +1,10 @@
 #include "../../minishell.h"
 
+/**
+ * @brief Free the memory allocated for the content of command structure
+ * @param cmd The command structure to be freed
+ */
+
 void	free_cmd(t_cmd *cmd)
 {
 	t_cmd		*tmp;
@@ -25,6 +30,13 @@ void	free_cmd(t_cmd *cmd)
 	}
 }
 
+/**
+ * @brief Set the memory for the command structure and parse the lexer structure
+ * to create the words or redirections of the command
+ * @param lexer The lexer structure to be parsed to create the new node of command structure
+ * @return The new node of the command structure
+ */
+
 t_cmd	*create_cmd(t_lexer **lexer)
 {
 	t_cmd	*cmd;
@@ -49,6 +61,12 @@ t_cmd	*create_cmd(t_lexer **lexer)
 	}
 	return (cmd);
 }
+
+/**
+ * @brief Complete the parser by creating the command structure
+ * @param lexer The lexer structure to be parsed into command structure
+ * @return The command lsit created from the lexer structure
+ */
 
 t_cmd	*complete_parser(t_lexer *lexer)
 {

@@ -1,5 +1,11 @@
 #include "../../minishell.h"
 
+/**
+ * @brief Set the memory for the command structure
+ * with the values expanded from the original command
+ * @return The new command structure
+ */
+
 t_cmd	*expand_cmd(t_cmd *cmd, t_env *env)
 {
 	t_cmd	*exp;
