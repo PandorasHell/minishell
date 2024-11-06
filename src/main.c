@@ -2,6 +2,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
+
 static void	exec_line(t_cmd *cmd, t_env *env, char *line)
 {
 	t_lexer	*lexer;
@@ -15,12 +16,13 @@ static void	exec_line(t_cmd *cmd, t_env *env, char *line)
 	free_lexer(&lexer);
 	free_cmd(parser);
 	ft_lstclear((t_list **)&parser, free);
-	//exec_cmd(cmd, env);
+	exec_cmd(cmd, env);
 	if (cmd != NULL)
 	{
 		free_cmd(cmd);
 		ft_lstclear((t_list **)&cmd, free);
 	}
+
 }
 
 static void	line_reader(t_cmd *cmd, char *line, t_env *env)
@@ -34,11 +36,6 @@ static void	line_reader(t_cmd *cmd, char *line, t_env *env)
 			{
 				free(line);
 				continue ;
-			}
-			if (!exit_checker(line, "exit"))
-			{
-				free(line);
-				break ;
 			}
 			exec_line(cmd, env, line);
 			if (!check_character_for_history(line[0]))

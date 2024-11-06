@@ -29,6 +29,11 @@ SRC_FILES := 	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/expander/expand_dolar.c \
 				$(SRC_DIR)/expander/expand_quote.c \
 				$(SRC_DIR)/expander/expand_split.c \
+				$(SRC_DIR)/builtins/pwd_built_in.c \
+				$(SRC_DIR)/builtins/ft_unset.c \
+				$(SRC_DIR)/builtins/ft_pwd.c \
+				$(SRC_DIR)/exec/executer.c \
+				$(SRC_DIR)/exec/heredoc.c \
 
 # Object files
 OBJ_FILES := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))
