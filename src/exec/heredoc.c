@@ -110,7 +110,7 @@ t_cmd_red	*heredoc_cmd(t_cmd_red *redir, t_env *env, int *status)
 
 int	create_heredocs(t_cmd *cmd, t_env *env)
 {
-	t_cmd	*tmp;
+	t_cmd		*tmp;
 	t_cmd_red	*redir;
 	int		status;
 

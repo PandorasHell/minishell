@@ -58,7 +58,7 @@ pid_t	ft_first_cmd(int (*fd)[2], char **argv, char **env)
 		dup2(fd_in, STDIN_FILENO);
 		dup2(fd[0][1], STDOUT_FILENO);
 		close(fd[0][0]);
-		ft_execute(argv[2 + (ft_strncmp("here_doc", argv[1], 9) == 0)], env);
+                ft_execute(argv[2 + (ft_strncmp("here_doc", argv[1], 9) == 0)], env);
 	}
 	close(fd_in);
 	close(fd[0][1]);
