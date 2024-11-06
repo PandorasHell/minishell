@@ -69,7 +69,7 @@ t_cmd_red	*heredoc_cmd(t_cmd_red *redir, t_env *env, int *status)
 
 int	create_heredocs(t_cmd *cmd, t_env *env)
 {
-	t_cmd	*tmp;
+	t_cmd		*tmp;
 	t_cmd_red	*redir;
 	int		status;
 
@@ -82,7 +82,7 @@ int	create_heredocs(t_cmd *cmd, t_env *env)
 			redir = heredoc_cmd(cmd->info->redir, env, &status);
 		if (status)
 			return (status);
-		free(tmp->info->redir);
+		free_redir(tmp->info->redir);
 		ft_lstadd_back((t_list **)&cmd->info->redir, (t_list *)redir);
 		tmp = tmp->next;
 	}
