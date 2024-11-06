@@ -1,5 +1,29 @@
 #include "../../minishell.h"
 
+void	free_redir(t_cmd_red *redir)
+{
+	t_cmd_red	*tmp;
+	t_cmd_red	*aux;
+
+	if (!redir)
+		return ;
+	tmp = redir;
+	while (tmp)
+	{
+		aux = tmp->next;
+		if (tmp->content)
+		{
+			if (tmp->content->type == HEREDOC)
+				unlink(tmp->content->where);
+			if (tmp->content->where)
+				free(tmp->content->where);
+			free(tmp->content);
+		}
+		free(tmp);
+		tmp = aux;
+	}
+}
+
 int	resolve_heredoc(char *limiter, t_env *env)
 {
 	// ahora mismo esto es una copia del heredoc de pipex
@@ -31,40 +55,57 @@ int	resolve_heredoc(char *limiter, t_env *env)
 	return (tmp_fd);
 }
 
+t_cmd_red	*set_redir_mem(t_cmd_red *redir, int *status)
+{
+	t_cmd_red	*new;
+
+	new = ft_calloc(1, sizeof(t_cmd_red));
+	if (!new)
+	{
+		free_redir(redir);
+		*status = 1;
+		return (NULL);
+	}
+	new->content = ft_calloc(1, sizeof(t_cmd_dred));
+	if (!new->content)
+	{
+		free(new);
+		free_redir(redir);
+		*status = 1;
+		return (NULL);
+	}
+	return (new);
+}
+
 t_cmd_red	*heredoc_cmd(t_cmd_red *redir, t_env *env, int *status)
 {
 	t_cmd_red	*tmp;
 	t_cmd_red	*new;
+	t_cmd_red	*aux;
 
 	tmp = redir;
+	aux = NULL;
 	while (tmp)
 	{
-		new = ft_calloc(1, sizeof(t_cmd_red));
+		new = set_redir_mem(aux, status);
 		if (!new)
-		{
-			// hay que hacer tambien un unlink para eliminar los creados en caso de error
-			free_cmd(redir);
 			return (NULL);
-		}
-		new->content = ft_calloc(1, sizeof(t_cmd_dred));
-		if (!redir->content)
-		{
-			// hay que hacer tambien un unlink para eliminar los creados en caso de error
-			free(new);
-			free_cmd(redir);
-			return (NULL);
-		}
 		if (new->content->type == HEREDOC)
-			status = resolve_heredoc(redir->content->where, env);
+			*status = resolve_heredoc(redir->content->where, env);
 		else
 			new->content->where = ft_strdup(redir->content->where);
 		if (!new->content->where)
-			return (free(new), 1);
+		{
+			free(new->content);
+			free_redir(redir);
+			*status = 1;
+			return (NULL);
+		}
 		new->content->type = redir->content->type;
-		ft_lstadd_back((t_list **)&new, (t_list *)new->content);
+		ft_lstadd_back((t_list **)&aux, (t_list *)new);
 		tmp = tmp->next;
 	}
-	return (new);
+	return (aux);
 }
 
 int	create_heredocs(t_cmd *cmd, t_env *env)
@@ -73,17 +114,19 @@ int	create_heredocs(t_cmd *cmd, t_env *env)
 	t_cmd_red	*redir;
 	int		status;
 
+	if (!cmd || !env)
+		return (1);
 	tmp = cmd;
 	status = 0;
 	redir = NULL;	
 	while (tmp)
 	{
-		if (tmp->info->redir)
-			redir = heredoc_cmd(cmd->info->redir, env, &status);
+		if (tmp->info && tmp->info->redir)
+			redir = heredoc_cmd(tmp->info->redir, env, &status);
 		if (status)
 			return (status);
-		free(tmp->info->redir);
-		ft_lstadd_back((t_list **)&cmd->info->redir, (t_list *)redir);
+		free_redir(cmd->info->redir);
+		cmd->info->redir = redir;
 		tmp = tmp->next;
 	}
 	return (status);
