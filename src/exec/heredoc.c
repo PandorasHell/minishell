@@ -1,61 +1,44 @@
 #include "../../minishell.h"
 
-void	free_redir(t_cmd_red *redir)
-{
-	t_cmd_red	*tmp;
-	t_cmd_red	*aux;
+// TODO: Falta añadir las señales en el heredoc
 
-	if (!redir)
-		return ;
-	tmp = redir;
-	while (tmp)
-	{
-		aux = tmp->next;
-		if (tmp->content)
-		{
-			if (tmp->content->type == HEREDOC)
-				unlink(tmp->content->where);
-			if (tmp->content->where)
-				free(tmp->content->where);
-			free(tmp->content);
-		}
-		free(tmp);
-		tmp = aux;
-	}
-}
-
-int	resolve_heredoc(char *limiter, t_env *env)
+char	*heredoc(char *limiter, t_env *env, int *status)
 {
-	// ahora mismo esto es una copia del heredoc de pipex
-	// Hay que  expandir las variables de entorno dentro del documento T_T
-	char	*line;
 	int		tmp_fd;
-	char 	*here_doc;
-	
-	here_doc = create_tmp_file(); // Generar el archivo temporal para almacenar el archivo
-	tmp_fd = open(here_doc, O_CREAT | O_RDWR | O_TRUNC, 0777);
-	if (tmp_fd < 0)
-		ft_error("Error: open", &tmp_fd);
+	char	*line;
+	char 	*limit;
+	char	*here_doc;
+	char 	*expanded_line;
+
+	limit = create_tmp_file(limiter, status, &tmp_fd, &here_doc);
+	if (!limit)
+		return (NULL);
+	expanded_line = NULL;
 	while (1)
 	{
-		ft_putstr_fd("heredoc > ", 1);
-		line = get_next_line(STDIN_FILENO);
-		if (!line || (ft_strncmp(line, limiter, ft_strlen(limiter)) == 0))
+		line = readline("> ");
+		if (!line || (ft_strncmp(line, limit, ft_strlen(limit)) == 0))
 		{
 			free(line);
+			free(limit);
 			break ;
 		}
-		write(tmp_fd, line, ft_strlen(line));
+		expanded_line = expand_dolar(line, env, status);
+		if (expanded_line)
+		{
+			write(tmp_fd, expanded_line, ft_strlen(expanded_line));
+			write(tmp_fd, "\n", 1);
+			free(expanded_line);
+		}
 		free(line);
 	}
+	// unlink(here_doc);
+	// free(here_doc);
 	close(tmp_fd);
-	tmp_fd = open(here_doc, O_RDONLY);
-	if (tmp_fd < 0 || unlink(here_doc) < 0)
-		ft_error("Error: open or unlink", &tmp_fd);
-	return (tmp_fd);
+	return (here_doc);
 }
 
-t_cmd_red	*set_redir_mem(t_cmd_red *redir, int *status)
+static t_cmd_red	*set_redir_mem(t_cmd_red *redir, int *status)
 {
 	t_cmd_red	*new;
 
@@ -90,10 +73,10 @@ t_cmd_red	*heredoc_cmd(t_cmd_red *redir, t_env *env, int *status)
 		new = set_redir_mem(aux, status);
 		if (!new)
 			return (NULL);
-		if (new->content->type == HEREDOC)
-			*status = resolve_heredoc(redir->content->where, env);
+		if (tmp->content->type == HEREDOC)
+			new->content->where = heredoc(tmp->content->where, env, status);
 		else
-			new->content->where = ft_strdup(redir->content->where);
+			new->content->where = ft_strdup(tmp->content->where);
 		if (!new->content->where)
 		{
 			free(new->content);
@@ -101,14 +84,14 @@ t_cmd_red	*heredoc_cmd(t_cmd_red *redir, t_env *env, int *status)
 			*status = 1;
 			return (NULL);
 		}
-		new->content->type = redir->content->type;
+		new->content->type = tmp->content->type;
 		ft_lstadd_back((t_list **)&aux, (t_list *)new);
 		tmp = tmp->next;
 	}
 	return (aux);
 }
 
-int	create_heredocs(t_cmd *cmd, t_env *env)
+int	create_heredoc(t_cmd *cmd, t_env *env)
 {
 	t_cmd		*tmp;
 	t_cmd_red	*redir;

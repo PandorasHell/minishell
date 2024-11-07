@@ -2,7 +2,6 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
-
 static void	exec_line(t_cmd *cmd, t_env *env, char *line)
 {
 	t_lexer	*lexer;
@@ -36,6 +35,11 @@ static void	line_reader(t_cmd *cmd, char *line, t_env *env)
 			{
 				free(line);
 				continue ;
+			}
+			if (!exit_checker(line, "exit"))
+			{
+				free(line);
+				break ;
 			}
 			exec_line(cmd, env, line);
 			if (!check_character_for_history(line[0]))

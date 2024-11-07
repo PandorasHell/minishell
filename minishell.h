@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:52:54 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/10/25 12:42:42 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/11/07 20:04:40 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,8 +119,17 @@ int			expand_redir(t_cmd *redir, t_env *env, t_cmd *cmd);
 int			expand_name(t_cmd *word, t_env *env, t_cmd *cmd);
 char		*expand_dolar(char *name, t_env *env, int *quote);
 char		*expand_quote(char *line);
+char		*expand_lit(char *ret, char *name, int *i);
 t_cmd_name	*expand_split_word(char *name);
 t_cmd_red	*expand_split_redir(char *name);
+
+// EXECUTER
+void		exec_cmd(t_cmd *cmd, t_env *env);
+int			create_heredoc(t_cmd *cmd, t_env *env);
+void		free_redir(t_cmd_red *redir);
+char		*remove_quotes(char *limiter);
+char		*new_file(int *status);
+char		*create_tmp_file(char *limiter, int *status, int *fd, char **name);
 
 // UTILS
 int			exit_checker(const char *line, const char *comparer);

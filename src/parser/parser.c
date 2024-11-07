@@ -15,7 +15,8 @@ void	free_cmd(t_cmd *cmd)
 			while (cmd->info->redir)
 			{
 				tmp_redir = cmd->info->redir->next;
-				free(cmd->info->redir->content->where);
+				if (cmd->info->redir->content->where)
+					free(cmd->info->redir->content->where);
 				free(cmd->info->redir->content);
 				free(cmd->info->redir);
 				cmd->info->redir = tmp_redir;

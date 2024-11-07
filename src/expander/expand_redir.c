@@ -1,6 +1,6 @@
 #include "../../minishell.h"
 
-t_cmd_red	*set_redir_mem(t_cmd *cmd)
+static t_cmd_red	*set_redir_mem(t_cmd *cmd)
 {
 	t_cmd_red	*redir;
 
