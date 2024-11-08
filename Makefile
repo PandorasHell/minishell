@@ -32,6 +32,8 @@ SRC_FILES := 	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/exec/executer.c \
 				$(SRC_DIR)/exec/heredoc.c \
 				$(SRC_DIR)/exec/heredoc_utils.c \
+				$(SRC_DIR)/exec/exec_one.c \
+				#$(SRC_DIR)/exec/exec_n.c \
 				#$(SRC_DIR)/builtins/pwd_built_in.c \
 				#$(SRC_DIR)/builtins/ft_unset.c \
 				#$(SRC_DIR)/builtins/ft_pwd.c \

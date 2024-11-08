@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:52:54 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/11/07 20:04:40 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/11/08 17:26:05 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ void		free_redir(t_cmd_red *redir);
 char		*remove_quotes(char *limiter);
 char		*new_file(int *status);
 char		*create_tmp_file(char *limiter, int *status, int *fd, char **name);
+void		execute_one(t_cmd *cmd, t_env *env);
 
 // UTILS
 int			exit_checker(const char *line, const char *comparer);
