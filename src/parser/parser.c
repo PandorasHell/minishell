@@ -26,7 +26,7 @@ void	free_cmd(t_cmd *cmd)
 	}
 }
 
-t_cmd	*create_cmd(t_lexer **lexer)
+static t_cmd	*create_cmd(t_lexer **lexer)
 {
 	t_cmd	*cmd;
 	int		status;

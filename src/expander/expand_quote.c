@@ -12,7 +12,7 @@ static int	quote_len(char *line)
 	return (len);
 }
 
-char	*resolve_quote(char *line)
+static char	*resolve_quote(char *line)
 {
 	int		i;
 	int		len;

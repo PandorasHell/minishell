@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:52:54 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/11/08 18:35:49 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/11/17 21:24:44 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,6 @@ typedef struct s_list_env
 }						t_env;
 
 // LEXER
-typedef struct s_line_word
-{
-	char				*word;
-	struct s_line_word	*next;
-}						t_lword;
-
 typedef struct s_data_lexer
 {
 	int					key;
@@ -100,10 +94,9 @@ void		free_env(t_env *env);
 int			is_space(char c);
 int			is_operator(char c);
 int			is_quote(char c);
-t_lword		*split_words(char *line, t_lword *words);
+t_cmd_name	*split_words(char *line, t_cmd_name *words);
 t_lexer		*lexical_analysis(char *line);
 void		free_lexer(t_lexer **lexer);
-void		free_words(t_lword *words);
 
 // PARSER
 t_cmd		*complete_parser(t_lexer *lexer);
@@ -135,6 +128,7 @@ int			relative_path(char **cmd, char **path);
 char		*get_path(char *cmd, char **env);
 char		**env_to_array(t_env *env);
 char		*cmd_to_array(t_cmd *cmd);
+int			manage_redir(t_cmd_red *redir);
 
 // UTILS
 int			exit_checker(const char *line, const char *comparer);

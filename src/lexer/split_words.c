@@ -61,17 +61,17 @@ static char	*save_operator(char *line)
 	return (word);
 }
 
-void	save_new(char *line, t_lword *tmp, size_t i)
+static void	save_new(char *line, t_cmd_name *tmp, size_t i)
 {
 	if (!is_operator(line[i]))
-		tmp->word = save_word(&line[i]);
+		tmp->name = save_word(&line[i]);
 	else if (is_operator(line[i]))
-		tmp->word = save_operator(&line[i]);
+		tmp->name = save_operator(&line[i]);
 }
 
-t_lword	*split_words(char *line, t_lword *words)
+t_cmd_name	*split_words(char *line, t_cmd_name *words)
 {
-	t_lword	*tmp;
+	t_cmd_name	*tmp;
 	size_t	i;
 
 	i = 0;
@@ -79,18 +79,18 @@ t_lword	*split_words(char *line, t_lword *words)
 	{
 		if (!is_space(line[i]))
 		{
-			tmp = ft_calloc(1, sizeof(t_lword));
+			tmp = ft_calloc(1, sizeof(t_cmd_name));
 			if (!tmp)
 				return ((ft_lstclear((t_list **)&words, free)), NULL);
 			save_new(line, tmp, i);
-			if (!tmp->word)
+			if (!tmp->name)
 			{
 				ft_lstclear((t_list **)&words, free);
 				free(tmp);
 				return (NULL);
 			}
 			ft_lstadd_back((t_list **)&words, (t_list *)tmp);
-			i += ft_strlen(tmp->word);
+			i += ft_strlen(tmp->name);
 		}
 		else
 			i++;

@@ -1,6 +1,6 @@
 #include "../../minishell.h"
 
-int	check_exp_env(char *name, int *i, t_env *env)
+static int	check_exp_env(char *name, int *i, t_env *env)
 {
 	if (ft_strncmp(env->content->key, &name[*i],
 			ft_strlen(env->content->key)) == 0
@@ -14,7 +14,7 @@ int	check_exp_env(char *name, int *i, t_env *env)
 		return (0);
 }
 
-char	*expand_exit_code(char *ret, int *i)
+static char	*expand_exit_code(char *ret, int *i)
 {
 	char	*tmp;
 
@@ -26,7 +26,7 @@ char	*expand_exit_code(char *ret, int *i)
 	return (ret);
 }
 
-char	*expand_env(char *ret, char *name, int *i, t_env *env)
+static char	*expand_env(char *ret, char *name, int *i, t_env *env)
 {
 	char	*tmp;
 

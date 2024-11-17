@@ -18,7 +18,7 @@ t_cmd	*set_cmd_mem(void)
 	return (new);
 }
 
-t_cmd_name	*set_cmd_word(t_lexer **lexer)
+static t_cmd_name	*set_cmd_word(t_lexer **lexer)
 {
 	t_cmd_name	*new;
 
@@ -38,7 +38,7 @@ t_cmd_name	*set_cmd_word(t_lexer **lexer)
 	return (new);
 }
 
-t_cmd_red	*set_cmd_redir(t_lexer **lexer)
+static t_cmd_red	*set_cmd_redir(t_lexer **lexer)
 {
 	t_cmd_red	*new;
 	t_cmd_dred	*data;

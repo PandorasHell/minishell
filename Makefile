@@ -16,7 +16,6 @@ SRC_FILES := 	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/lexer/lexer.c \
 				$(SRC_DIR)/lexer/lexer_utils.c \
 				$(SRC_DIR)/lexer/split_words.c \
-				$(SRC_DIR)/lexer/word_lexer_free.c \
 				$(SRC_DIR)/parser/parser.c \
 				$(SRC_DIR)/parser/set_values.c \
 				$(SRC_DIR)/parser/status_checker.c \
@@ -34,6 +33,7 @@ SRC_FILES := 	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/exec/heredoc_utils.c \
 				$(SRC_DIR)/exec/exec_one.c \
 				$(SRC_DIR)/exec/path.c \
+				$(SRC_DIR)/exec/manage_redir.c \
 				$(SRC_DIR)/exec/trans_lst.c \
 				#$(SRC_DIR)/exec/exec_n.c \
 				#$(SRC_DIR)/builtins/pwd_built_in.c \
