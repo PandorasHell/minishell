@@ -21,7 +21,7 @@ static void	child_process(char **cmd, char **envp)
 	}
 }
 
-void	execute_cmd(char **args, char **envp, t_cmd_red *redir)
+static void	execute_cmd(char **args, char **envp, t_cmd_red *redir)
 {
 	pid_t	pid;
 	int		status;
@@ -54,6 +54,7 @@ void	execute_one(t_cmd *cmd, t_env *env)
         perror("Error: malloc failed");
 		exit(1);
     }
+	// TODO: Pasar lo de si es un builtin a la ejecucion de los hijos
     // if (is_built_in(args[0]))
     //     execute_built_in(args, env);
 	// #TODO: Añadir señales en la ejecucion.

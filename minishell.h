@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:52:54 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/11/21 19:24:17 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/11/21 20:13:06 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,20 @@
 # define MINISHELL_H
 
 # include "./lib/libft/libft.h"
-# include "./pipex/pipex.h"
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-
+# include <errno.h>
+# include <fcntl.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <sys/stat.h>
+# include <sys/types.h>
+# include <sys/wait.h>
+# include <unistd.h>
 # define WORD 0
 # define INFILE 1
 # define HEREDOC 2
@@ -129,6 +136,7 @@ char		*get_path(char *cmd, char **env);
 char		**env_to_array(t_env *env);
 char		**cmd_to_array(t_cmd_name *cmd);
 int			manage_redir(t_cmd_red *redir);
+void	execute_n(t_cmd *cmd, t_env *env);
 
 // UTILS
 int			exit_checker(const char *line, const char *comparer);
