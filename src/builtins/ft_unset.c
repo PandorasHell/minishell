@@ -30,7 +30,7 @@ int ft_unset(t_env *env, t_cmd *cmd)
   tmp = env;
   while (tmp)
   {
-    if (ft_strcmp((env->content->key, cmd->info->word->name) == 0)
+    if (ft_strcmp((env->content->key, cmd->info->word->name) == 0))
     {
       if (i == 0)
       {

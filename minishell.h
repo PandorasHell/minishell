@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:52:54 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/11/17 21:24:44 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/11/21 19:24:17 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ void		execute_one(t_cmd *cmd, t_env *env);
 int			relative_path(char **cmd, char **path);
 char		*get_path(char *cmd, char **env);
 char		**env_to_array(t_env *env);
-char		*cmd_to_array(t_cmd *cmd);
+char		**cmd_to_array(t_cmd_name *cmd);
 int			manage_redir(t_cmd_red *redir);
 
 // UTILS

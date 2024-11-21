@@ -1,21 +1,26 @@
 #include "../../minishell.h"
 
-char    *cmd_to_array(t_cmd *cmd)
+char    **cmd_to_array(t_cmd_name *cmd)
 {
     t_cmd_name	*tmp;
-    char		*args;
+    char		**args;
+	int			i;
 
-    tmp = cmd->info->word;
-	args = ft_strdup("");
+	i = ft_lstsize((t_list *)cmd);
+	args = ft_calloc(i + 1, sizeof(char *));
+	if (!args)
+		return (NULL);
+	i = 0;
+    tmp = cmd;
     while (tmp)
     {
-        args = ft_strappend(args, tmp->name);
-		args = ft_strappend(args, " ");
-        if (!args)
+        args[i] = ft_strdup(tmp->name);
+        if (!args[i])
 		{
-			free(args);
+			cleanup(args);
 			return (NULL);
 		}
+		i++;
         tmp = tmp->next;
     }
     return (args);

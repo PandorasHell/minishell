@@ -12,18 +12,20 @@ int	exit_checker(const char *line, const char *comparer)
 	int	i;
 
 	i = 0;
+	if (strlen(line) != strlen(comparer))
+		return (1);
 	while (comparer[i] && line[i])
 	{
 		if (line[i] != comparer[i])
 			return (1);
 		i++;
 	}
-	while (line[i])
-	{
-		if (line[i] != ' ' && line[i] != '\t' && line[i] != '\r'
-			&& line[i] != '\n' && line[i] != '\0')
-			return (1);
-		i++;
-	}
+	// while (line[i])
+	// {
+	// 	if (line[i] != ' ' && line[i] != '\t' && line[i] != '\r'
+	// 		&& line[i] != '\n' && line[i] != '\0')
+	// 		return (1);
+	// 	i++;
+	// }
 	return (0);
 }

@@ -1,11 +1,9 @@
 #include "../../minishell.h"
 
-static void	child_process(char *args, char **envp)
+static void	child_process(char **cmd, char **envp)
 {
-	char	**cmd;
 	char	*path;
 
-	cmd = ft_split(args, ' ');
 	if (relative_path(cmd, &path) == 0)
 	{
 		if (cmd[0])
@@ -23,7 +21,7 @@ static void	child_process(char *args, char **envp)
 	}
 }
 
-void	execute_cmd(char *args, char **envp, t_cmd_red *redir)
+void	execute_cmd(char **args, char **envp, t_cmd_red *redir)
 {
 	pid_t	pid;
 	int		status;
@@ -46,10 +44,10 @@ void	execute_cmd(char *args, char **envp, t_cmd_red *redir)
 
 void	execute_one(t_cmd *cmd, t_env *env)
 {
-    char	*args;
+    char	**args;
     char	**envp;
 
-    args = cmd_to_array(cmd);
+    args = cmd_to_array(cmd->info->word);
     envp = env_to_array(env);
     if (!args || !envp)
     {
@@ -60,6 +58,6 @@ void	execute_one(t_cmd *cmd, t_env *env)
     //     execute_built_in(args, env);
 	// #TODO: Añadir señales en la ejecucion.
     execute_cmd(args, envp, cmd->info->redir);
-	free(args);
+	cleanup(args);
     cleanup(envp);
 }

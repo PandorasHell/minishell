@@ -8,7 +8,8 @@ static int	check_exp_env(char *name, int *i, t_env *env)
 			|| name[*i + ft_strlen(env->content->key)] == ' '
 			|| (name[*i + ft_strlen(env->content->key)] >= 9
 				&& name[*i + ft_strlen(env->content->key)] == 13)
-			|| name[*i + ft_strlen(env->content->key)] == '\"'))
+			|| name[*i + ft_strlen(env->content->key)] == '\"'
+			|| name[*i + ft_strlen(env->content->key)] == '$'))
 		return (1);
 	else
 		return (0);
@@ -61,12 +62,30 @@ char	*expand_dolar(char *name, t_env *env, int *quote)
 {
 	char	*ret;
 	int		i;
+	int		double_quote;
+	int		single_quote;
 
 	i = 0;
 	ret = ft_strdup("");
+	double_quote = 0;
+	single_quote = 0;
 	while (name[i])
 	{
-		if (name[i] == '$')
+		if (name[i] == '\"')
+		{
+			if (double_quote)
+				double_quote = 0;
+			else
+				double_quote = 1;
+		}
+		if (name[i] == '\'' && !double_quote)
+		{
+			if (single_quote)
+				single_quote = 0;
+			else
+				single_quote = 1;
+		}
+		if (name[i] == '$' && !single_quote)
 		{
 			i++;
 			if (name[i] == '?')

@@ -24,7 +24,10 @@ static char	*resolve_quote(char *line)
 		len = quote_len(line);
 		if (!len)
 			return (NULL);
-		exp = ft_substr(line, 1, len - 1);
+		if (len == 1)
+			exp = ft_substr(line, 1, i);
+		else
+			exp = ft_substr(line, 1, len - 1);
 	}
 	else if (line[i] == '\"' || line[i] == '\'')
 	{
