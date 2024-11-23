@@ -13,6 +13,8 @@ static int manage_infile(char *where, int *in, int type)
         return (1);
     }
     *in = fd;
+    printf("fd: %d\n", fd);
+    printf("where: %s\n", where);
     if (type == HEREDOC)
         unlink(where);
     return (0);
@@ -33,6 +35,8 @@ static int manage_outfile(char *where, int *out, int type)
         perror("Error: open failed");
         return (1);
     }
+    printf("fd: %d\n", fd);
+    printf("where: %s\n", where);
     *out = fd;
     return (0);
 }

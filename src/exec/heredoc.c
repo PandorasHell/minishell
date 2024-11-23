@@ -113,24 +113,27 @@ t_cmd_red	*heredoc_cmd(t_cmd_red *redir, t_env *env, int *status)
 
 int	create_heredoc(t_cmd *cmd, t_env *env)
 {
-	t_cmd		*tmp;
+	//t_cmd		*tmp;
 	t_cmd_red	*redir;
 	int		status;
 
 	if (!cmd || !env)
 		return (1);
-	tmp = cmd;
+	//tmp = cmd;
 	status = 0;
-	redir = NULL;	
-	while (tmp)
+	while (cmd)
 	{
-		if (tmp->info && tmp->info->redir)
-			redir = heredoc_cmd(tmp->info->redir, env, &status);
+		redir = NULL;
+		if (cmd->info && cmd->info->redir)
+			redir = heredoc_cmd(cmd->info->redir, env, &status);
 		if (status)
 			return (status);
 		free_redir(cmd->info->redir);
 		cmd->info->redir = redir;
-		tmp = tmp->next;
+		if (cmd->info->redir)
+			printf("redir: %s\n", cmd->info->redir->content->where);
+		cmd = cmd->next;
 	}
+	//cmd = tmp;
 	return (status);
 }

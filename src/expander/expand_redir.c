@@ -32,7 +32,10 @@ int	expand_redir(t_cmd *redir, t_env *env, t_cmd *cmd)
 	{
 		quote = 0;
 		new = set_redir_mem(redir);
-		aux = expand_dolar(tmp->content->where, env, &quote);
+		if (tmp->content->type == HEREDOC)
+			aux = ft_strdup(tmp->content->where);
+		else
+			aux = expand_dolar(tmp->content->where, env, &quote);
 		if (quote)
 		{
 			free(new->content);

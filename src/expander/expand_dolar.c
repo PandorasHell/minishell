@@ -9,6 +9,7 @@ static int	check_exp_env(char *name, int *i, t_env *env)
 			|| (name[*i + ft_strlen(env->content->key)] >= 9
 				&& name[*i + ft_strlen(env->content->key)] == 13)
 			|| name[*i + ft_strlen(env->content->key)] == '\"'
+			|| name[*i + ft_strlen(env->content->key)] == '\''
 			|| name[*i + ft_strlen(env->content->key)] == '$'))
 		return (1);
 	else

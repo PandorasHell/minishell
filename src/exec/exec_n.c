@@ -37,10 +37,14 @@ static void	child_process(char **cmd, char **envp)
 	}
 }
 
-static pid_t	ft_first_cmd(int (*fd)[2], char **args, char **envp, t_cmd_red *redir)
+static pid_t	ft_first_cmd(int (*fd)[2], t_cmd_name *name, t_env *env, t_cmd_red *redir)
 {
 	pid_t	pid_in;
+	char	**args;
+    char	**envp;
 
+    args = cmd_to_array(name);
+    envp = env_to_array(env);
 	pid_in = fork();
 	if (pid_in < 0)
 		return (0);
@@ -52,6 +56,8 @@ static pid_t	ft_first_cmd(int (*fd)[2], char **args, char **envp, t_cmd_red *red
 		child_process(args, envp);
 	}
 	close(fd[0][1]);
+	cleanup(args);
+    cleanup(envp);
 	return (pid_in);
 }
 
@@ -82,9 +88,14 @@ static pid_t	ft_first_cmd(int (*fd)[2], char **args, char **envp, t_cmd_red *red
 // 	return (pid_mid);
 // }
 
-static pid_t	ft_last_cmd(int (*fd)[2], char **args, char **envp, t_cmd_red *redir)
+static pid_t	ft_last_cmd(int (*fd)[2],  t_cmd_name *name, t_env *env, t_cmd_red *redir)
 {
 	pid_t	pid_out;
+	char	**args;
+    char	**envp;
+
+    args = cmd_to_array(name);
+    envp = env_to_array(env);
 
 	pid_out = fork();
 	if (pid_out < 0)
@@ -96,52 +107,37 @@ static pid_t	ft_last_cmd(int (*fd)[2], char **args, char **envp, t_cmd_red *redi
 	{
 		dup2(fd[0][0], STDIN_FILENO);
 		close(fd[0][0]);
-		child_process(args, envp);
 		manage_redir(redir);
+		child_process(args, envp);
 	}
+	cleanup(args);
+    cleanup(envp);
 	return (pid_out);
 }
 
 void	execute_n(t_cmd *cmd, t_env *env)
 {
 	int		fd[2][2];
-    char	**args;
-    char	**envp;
 	pid_t	*child;
 	int		i;
 
-    args = cmd_to_array(cmd->info->word);
-    envp = env_to_array(env);
-    if (!args || !envp)
-    {
-        perror("Error: malloc failed");
-		exit(1);
-    }
+
 	child = (pid_t *)malloc(sizeof(pid_t) * ft_lstsize((t_list *)cmd));
 	if (!child)
-	{
-		cleanup(args);
-   		cleanup(envp);
 		return ;
-	}
 	if (pipe(fd[0]) < 0)
-	{
-		cleanup(args);
-   		cleanup(envp);
 		return ;
-	}
 	i = 0;
-	child[i++] = ft_first_cmd(fd, args, envp, cmd->info->redir);
+	child[i++] = ft_first_cmd(fd, cmd->info->word, env, cmd->info->redir);
 	cmd = cmd->next;
-	while (cmd)
-		child[i++] = ft_mid_cmd(fd, args, envp, cmd->info->redir);
-	child[i++] = ft_last_cmd(fd, args, envp, cmd->info->redir);
+	// while (cmd)
+	// 	child[i++] = ft_mid_cmd(fd, args, envp, cmd->info->redir);
+	child[i++] = ft_last_cmd(fd, cmd->info->word, env, cmd->info->redir);
 	ft_waitchild(child, i);
 	free(child);
 	// TODO: Pasar lo de si es un builtin a la ejecucion de los hijos
     // if (is_built_in(args[0]))
     //     execute_built_in(args, env);
 	// #TODO: Añadir señales en la ejecucion.
-	cleanup(args);
-    cleanup(envp);
+
 }
