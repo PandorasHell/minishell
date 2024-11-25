@@ -61,32 +61,38 @@ static pid_t	ft_first_cmd(int (*fd)[2], t_cmd_name *name, t_env *env, t_cmd_red 
 	return (pid_in);
 }
 
-// static pid_t	ft_mid_cmd(int (*fd)[2], char **args, char **envp, t_cmd_red *redir)
-// {
-// 	pid_t	pid_mid;
-// 	int		fd_mid[2];
+static pid_t	ft_mid_cmd(int (*fd)[2], t_cmd_name *name, t_env *env, t_cmd_red *redir)
+{
+	pid_t	pid_mid;
+	int		fd_mid[2];
+	char	**args;
+    char	**envp;
 
-// 	if (pipe(fd_mid) < 0)
-// 		return (0);
-// 	pid_mid = fork();
-// 	if (pid_mid < 0)
-// 		return (0);
-// 	if (pid_mid == 0)
-// 	{
-// 		close(fd[1][0]);
-// 		dup2(fd[0][0], STDIN_FILENO);
-// 		close(fd[0][0]);
-// 		close(fd_mid[0]);
-// 		dup2(fd_mid[1], STDOUT_FILENO);
-// 		close(fd_mid[1]);
-// 		manage_redir(redir);
-// 		child_process(args, envp);
-// 	}
-// 	close(fd[0][0]);
-// 	close(fd_mid[1]);
-// 	fd[0][0] = fd_mid[0];
-// 	return (pid_mid);
-// }
+    args = cmd_to_array(name);
+    envp = env_to_array(env);
+	if (pipe(fd_mid) < 0)
+		return (0);
+	pid_mid = fork();
+	if (pid_mid < 0)
+		return (0);
+	if (pid_mid == 0)
+	{
+		close(fd[1][0]);
+		dup2(fd[0][0], STDIN_FILENO);
+		close(fd[0][0]);
+		close(fd_mid[0]);
+		dup2(fd_mid[1], STDOUT_FILENO);
+		close(fd_mid[1]);
+		manage_redir(redir);
+		child_process(args, envp);
+	}
+	close(fd[0][0]);
+	close(fd_mid[1]);
+	cleanup(args);
+    cleanup(envp);
+	fd[0][0] = fd_mid[0];
+	return (pid_mid);
+}
 
 static pid_t	ft_last_cmd(int (*fd)[2],  t_cmd_name *name, t_env *env, t_cmd_red *redir)
 {
@@ -130,8 +136,11 @@ void	execute_n(t_cmd *cmd, t_env *env)
 	i = 0;
 	child[i++] = ft_first_cmd(fd, cmd->info->word, env, cmd->info->redir);
 	cmd = cmd->next;
-	// while (cmd)
-	// 	child[i++] = ft_mid_cmd(fd, args, envp, cmd->info->redir);
+	while (cmd->next != NULL)
+	{
+		child[i++] = ft_mid_cmd(fd, cmd->info->word, env, cmd->info->redir);
+		cmd = cmd->next;
+	}
 	child[i++] = ft_last_cmd(fd, cmd->info->word, env, cmd->info->redir);
 	ft_waitchild(child, i);
 	free(child);
