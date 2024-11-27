@@ -4,6 +4,8 @@ static int	check_quote(char *line)
 {
 	if (line[0] == '\"' && (line[1] == '\"' || line[1] == '\''))
 		return (1);
+	if (line[ft_strlen(line) - 1] == '\"' && (line[ft_strlen(line) - 2] == '\"' || line[ft_strlen(line) - 2] == '\''))
+		return (1);
 	return (0);
 }
 
@@ -91,6 +93,7 @@ t_cmd_name	*expand_split_word(char *name)
 			new->name = expand_quote(new->name);
 			quote = 0;
 		}
+		printf("new->name splt: %s\n", new->name);
 		ft_lstadd_back((t_list **)&exp, (t_list *)new);
 		i++;
 	}

@@ -59,32 +59,27 @@ char	*expand_lit(char *ret, char *name, int *i)
 	return (ret);
 }
 
-char	*expand_dolar(char *name, t_env *env, int *quote)
+char	*expand_dolar(char *name, t_env *env, int *quote, int *split)
 {
 	char	*ret;
 	int		i;
-	int		double_quote;
 	int		single_quote;
 
 	i = 0;
 	ret = ft_strdup("");
-	double_quote = 0;
 	single_quote = 0;
 	while (name[i])
 	{
 		if (name[i] == '\"')
-		{
-			if (double_quote)
-				double_quote = 0;
-			else
-				double_quote = 1;
-		}
-		if (name[i] == '\'' && !double_quote)
+			(*quote) = 1;
+		if (name[i] == '\'' && !(*quote))
 		{
 			if (single_quote)
 				single_quote = 0;
 			else
-				single_quote = 1;
+			{
+				(*quote) = 1;
+				single_quote = 1;}
 		}
 		if (name[i] == '$' && !single_quote)
 		{
@@ -94,7 +89,8 @@ char	*expand_dolar(char *name, t_env *env, int *quote)
 			else
 			{
 				ret = expand_env(ret, name, &i, env);
-				(*quote) = 1;
+				if (!single_quote)
+					(*split) = 1;
 			}
 		}
 		else

@@ -18,24 +18,32 @@ int	expand_name(t_cmd *word, t_env *env, t_cmd *cmd)
 	t_cmd_name	*new;
 	t_cmd_name	*tmp;
 	int			quote;
+	int		split;
 	char		*aux;
 
 	tmp = cmd->info->word;
 	while (tmp)
 	{
 		quote = 0;
+		split = 0;
 		new = set_name_mem(cmd);
 		if (!new)
 			return (1);
-		aux = expand_dolar(tmp->name, env, &quote);
-		if (quote)
+		aux = expand_dolar(tmp->name, env, &quote, &split);
+		printf("quote: %d\n", quote);
+		printf("split: %d\n", split);
+		if (split && !quote)
 		{
 			free(new);
 			new = expand_split_word(aux);
 			free(aux);
 		}
 		else
+		{
+			printf("hooal\n");
 			new->name = expand_quote(aux);
+		}
+		printf("new->name: %s\n", new->name);
 		ft_lstadd_back((t_list **)&word->info->word, (t_list *)new);
 		tmp = tmp->next;
 	}

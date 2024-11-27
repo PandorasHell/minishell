@@ -11,7 +11,7 @@ static int	quote_len(char *line)
 		len++;
 	return (len);
 }
-
+// Cambiar todo esto :-)
 static char	*resolve_quote(char *line)
 {
 	int		i;
@@ -47,6 +47,7 @@ char	*expand_quote(char *line)
 
 	if (!line)
 		return (NULL);
+	printf("line: %s\n", line);
 	exp = resolve_quote(line);
 	free(line);
 	return (exp);

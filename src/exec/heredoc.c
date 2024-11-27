@@ -43,7 +43,7 @@ char	*heredoc(char *limiter, t_env *env, int *status)
 			free(limit);
 			break ;
 		}
-		expanded_line = expand_dolar(line, env, status);
+		expanded_line = expand_dolar(line, env, status, 0);
 		if (expanded_line)
 		{
 			write(tmp_fd, expanded_line, ft_strlen(expanded_line));
@@ -52,8 +52,6 @@ char	*heredoc(char *limiter, t_env *env, int *status)
 		}
 		free(line);
 	}
-	// unlink(here_doc);
-	// free(here_doc);
 	close(tmp_fd);
 	return (here_doc);
 }
@@ -113,13 +111,11 @@ t_cmd_red	*heredoc_cmd(t_cmd_red *redir, t_env *env, int *status)
 
 int	create_heredoc(t_cmd *cmd, t_env *env)
 {
-	//t_cmd		*tmp;
 	t_cmd_red	*redir;
 	int		status;
 
 	if (!cmd || !env)
 		return (1);
-	//tmp = cmd;
 	status = 0;
 	while (cmd)
 	{
@@ -134,6 +130,5 @@ int	create_heredoc(t_cmd *cmd, t_env *env)
 			printf("redir: %s\n", cmd->info->redir->content->where);
 		cmd = cmd->next;
 	}
-	//cmd = tmp;
 	return (status);
 }

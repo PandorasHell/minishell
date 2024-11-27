@@ -25,17 +25,19 @@ int	expand_redir(t_cmd *redir, t_env *env, t_cmd *cmd)
 	t_cmd_red	*new;
 	t_cmd_red	*tmp;
 	int			quote;
+	int			split;
 	char		*aux;
 
 	tmp = cmd->info->redir;
 	while (tmp)
 	{
 		quote = 0;
+		split = 0;
 		new = set_redir_mem(redir);
 		if (tmp->content->type == HEREDOC)
 			aux = ft_strdup(tmp->content->where);
 		else
-			aux = expand_dolar(tmp->content->where, env, &quote);
+			aux = expand_dolar(tmp->content->where, env, &quote, &split);
 		if (quote)
 		{
 			free(new->content);

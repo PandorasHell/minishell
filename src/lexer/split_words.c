@@ -30,7 +30,6 @@ static char	*save_word(char *line)
 			if (!quote)
 				return (printf("Error: Unclosed quotes\n"), NULL);
 			len += quote;
-			break ;
 		}
 		else
 			len++;
