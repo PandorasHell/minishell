@@ -30,8 +30,6 @@ int	expand_name(t_cmd *word, t_env *env, t_cmd *cmd)
 		if (!new)
 			return (1);
 		aux = expand_dolar(tmp->name, env, &quote, &split);
-		printf("quote: %d\n", quote);
-		printf("split: %d\n", split);
 		if (split && !quote)
 		{
 			free(new);
@@ -40,7 +38,6 @@ int	expand_name(t_cmd *word, t_env *env, t_cmd *cmd)
 		}
 		else
 		{
-			printf("hooal\n");
 			new->name = expand_quote(aux);
 		}
 		printf("new->name: %s\n", new->name);

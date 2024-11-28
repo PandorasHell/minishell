@@ -33,12 +33,3 @@ void	ft_putnbr_fd(int n, int fd)
 	else
 		write(fd, &(char){n + '0'}, 1);
 }
-
-/*int main(void) {
-    int n = -123456789;
-    int fd = 1; // stdout
-
-    ft_putnbr_fd(n, fd);
-
-    return 0;
-}*/

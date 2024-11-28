@@ -25,16 +25,3 @@ void	*ft_memset(void *s, int c, size_t n)
 		ptr[i++] = c;
 	return (s);
 }
-
-/*int main()
-{
-    char str[50];
-    strcpy(str, "This is a test string");
-    printf("Before: %s\n", str);
-    
-    ft_memset(str, '$', 7);
-    
-    printf("After: %s\n", str);
-    
-    return 0;
-}*/

@@ -2,16 +2,11 @@
 
 void ft_pwd(void)
 {
-  char *current_path;
+	char *pwd;
 
-  current_path = getcwd(NULL, 0);
-  if (!current_path)
-  {
-    ft_putstr_fd("Path error", 2);
-    return ;
-  }
-  else
-    printf("%s\n", current_path);
+	pwd = getcwd(NULL, 0);
+	if (pwd == NULL)
+		return ;
+	printf("%s\n", pwd);
+	free(pwd);
 }
-
-//TODO: mejorar el codigo de error en caso de que no consiga el path

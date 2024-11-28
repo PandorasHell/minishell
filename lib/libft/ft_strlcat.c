@@ -37,14 +37,3 @@ int	ft_strlcat(char *dst, const char *src, size_t size)
 		dst[i] = '\0';
 	return (k + ft_strlen(src));
 }
-
-/*int main(void)
-{
-	char s1[16] = "Hello";
-	char *s2 = " World!";
-	size_t size = 13;
-	printf("%s\n", s1);
-	ft_strlcat(s1, s2, size);
-	printf("%s\n", s1);
-	return (0);
-}*/

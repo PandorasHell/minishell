@@ -1,46 +1,52 @@
 #include "../../minishell.h"
 
-static void free_single_node(t_env *tmp)
+static void free_single_node(t_env *node)
 {
+  t_env	*tmp;
+  t_env *tmp2;
+  t_env *tmp3;
+
+  tmp = node;
+  tmp = tmp;
+  tmp2 = tmp->next;
+  tmp3 = tmp->next->next;
+  tmp->next = tmp3;
+  free(tmp2->content->key);
+  free(tmp2->content->value);
+  free(tmp2->content);
+  free(tmp2);
+}
+
+static void free_first_node(t_env *node)
+{
+  t_env *tmp;
+
+  tmp = node;
+  node = node->next;
   free(tmp->content->key);
   free(tmp->content->value);
   free(tmp->content);
   free(tmp);
 }
 
-static t_env *delete_first_node(t_env *env)
+int ft_unset(char **cmd, t_env *env)
 {
   t_env *tmp;
-
-  tmp = env;
-  env = env->next;
-  free_single_node(tmp);
-  return (env);
-}
-//TODO: funcion que libera un nodo
-
-int ft_unset(t_env *env, t_cmd *cmd)
-{
-  t_env *tmp;
-  t_env *tmp2;
-  t_env *tmp3;
   int   i;
+  int   j;
 
+  tmp = NULL;
   i = 0;
-  tmp = env;
-  while (tmp)
+  j = 0;
+  while (cmd[++i])
   {
-    if (ft_strcmp((env->content->key, cmd->info->word->name) == 0))
-    {
-      if (i == 0)
-      {
-        env = delete_first_node(env);
-        return (0);
-      }
-      if (tmp->next != NULL)
-        tmp3 = tmp->next;
-    }
-    tmp2 = tmp;
-    tmp = tmp->next;
+    tmp = pwd_finder_unset(cmd[i], &j, env);
+    if (j == 0)
+      free_first_node(tmp);
+    else if (j > 0)
+      free_single_node(tmp);
+    if (tmp)
+      free(tmp);
   }
+  return (0);
 }
