@@ -62,6 +62,7 @@ t_cmd	*complete_parser(t_lexer *lexer)
 		if (lexer->content->key == PIPE)
 		{
 			free_cmd(cmd);
+			ft_lstclear((t_list **)&cmd, free);
 			printf("PIPE ERROR \n");
 			return (NULL);
 		}

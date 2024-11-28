@@ -47,7 +47,6 @@ char	*expand_quote(char *line)
 
 	if (!line)
 		return (NULL);
-	printf("line: %s\n", line);
 	exp = resolve_quote(line);
 	free(line);
 	return (exp);

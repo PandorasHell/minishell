@@ -31,8 +31,10 @@ static char	*expand_exit_code(char *ret, int *i)
 static char	*expand_env(char *ret, char *name, int *i, t_env *env)
 {
 	char	*tmp;
+	int		expanded;
 
 	tmp = NULL;
+	expanded = 0;
 	while (env)
 	{
 		if (check_exp_env(name, i, env))
@@ -41,9 +43,18 @@ static char	*expand_env(char *ret, char *name, int *i, t_env *env)
 			ret = ft_strappend(ret, tmp);
 			free(tmp);
 			*i += ft_strlen(env->content->key);
+			expanded = 1;
 			break ;
 		}
 		env = env->next;
+	}
+	if (!expanded)
+	{
+		tmp = ft_strdup("");
+		ret = ft_strappend(ret, tmp);
+		free(tmp);
+		while (name[*i] && name[*i] != ' ')
+			(*i)++;
 	}
 	return (ret);
 }

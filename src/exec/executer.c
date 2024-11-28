@@ -6,7 +6,13 @@ void	exec_cmd(t_cmd *cmd, t_env *env)
 		return ;
 	if (!cmd->info->word)
 	{
-		unlink(cmd->info->redir->content->where);
+		if (cmd->info->redir)
+		{
+			if (cmd->info->redir->content->type == HEREDOC)
+				unlink(cmd->info->redir->content->where);
+			else
+				perror("Error: No such file or directory");
+		}
 		free_cmd(cmd);
 		return ;
 	}

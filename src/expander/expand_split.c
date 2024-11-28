@@ -95,7 +95,6 @@ t_cmd_name	*expand_split_word(char *name)
 			new->name = expand_quote(new->name);
 			quote = 0;
 		}
-		printf("new->name splt: %s\n", new->name);
 		ft_lstadd_back((t_list **)&exp, (t_list *)new);
 		i++;
 	}

@@ -16,16 +16,42 @@ static void	child_process(char **cmd, char **envp)
 	}
 	if (execve(path, cmd, envp) == -1)
 	{
+		free(path);
 		perror("Error: execve failed");
 		exit(1);
 	}
 }
 
-static void	execute_cmd(char **args, char **envp, t_cmd_red *redir)
+// static void	execute_cmd(char **args, char **envp, t_cmd_red *redir)
+// {
+// 	pid_t	pid;
+// 	int		status;
+
+// 	pid = fork();
+// 	status = 0;
+// 	if (pid < 0)
+// 	{
+// 		perror("Error: fork failed");
+// 		return;
+// 	}
+// 	if (pid == 0)
+// 	{
+// 		manage_redir(redir);
+// 		child_process(args, envp);
+// 	}
+// 	else
+// 		waitpid(pid, &status, 0);
+// }
+
+void	execute_one(t_cmd *cmd, t_env *env)
 {
-	pid_t	pid;
+    char	**args;
+    char	**envp;
+ 	pid_t	pid;
 	int		status;
 
+    args = cmd_to_array(cmd->info->word);
+    envp = env_to_array(env);
 	pid = fork();
 	status = 0;
 	if (pid < 0)
@@ -35,30 +61,16 @@ static void	execute_cmd(char **args, char **envp, t_cmd_red *redir)
 	}
 	if (pid == 0)
 	{
-		manage_redir(redir);
+		manage_redir(cmd->info->redir);
 		child_process(args, envp);
 	}
 	else
 		waitpid(pid, &status, 0);
-}
-
-void	execute_one(t_cmd *cmd, t_env *env)
-{
-    char	**args;
-    char	**envp;
-
-    args = cmd_to_array(cmd->info->word);
-    envp = env_to_array(env);
-    if (!args || !envp)
-    {
-        perror("Error: malloc failed");
-		exit(1);
-    }
 	// TODO: Pasar lo de si es un builtin a la ejecucion de los hijos
     // if (is_built_in(args[0]))
     //     execute_built_in(args, env);
 	// #TODO: Añadir señales en la ejecucion.
-    execute_cmd(args, envp, cmd->info->redir);
+    //execute_cmd(args, envp, cmd->info->redir);
 	cleanup(args);
     cleanup(envp);
 }
