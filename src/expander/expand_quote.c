@@ -11,7 +11,7 @@ static int	quote_len(char *line)
 		len++;
 	return (len);
 }
-// Cambiar todo esto :-)
+
 static char	*resolve_quote(char *line)
 {
 	int		i;
@@ -27,14 +27,14 @@ static char	*resolve_quote(char *line)
 		if (len == 1)
 			exp = ft_substr(line, 1, i);
 		else
-			exp = ft_substr(line, 1, len - 1);
+			exp = ft_substr(line, 1, i - 1);
 	}
 	else if (line[i] == '\"' || line[i] == '\'')
 	{
 		len = quote_len(line);
 		if (!len)
 			return (NULL);
-		exp = ft_substr(line, 0, len - 1);
+		exp = ft_substr(line, 0, i - 1);
 	}
 	else
 		exp = ft_strdup(line);

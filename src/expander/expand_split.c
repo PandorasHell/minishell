@@ -4,7 +4,9 @@ static int	check_quote(char *line)
 {
 	if (line[0] == '\"' && (line[1] == '\"' || line[1] == '\''))
 		return (1);
-	if (line[ft_strlen(line) - 1] == '\"' && (line[ft_strlen(line) - 2] == '\"' || line[ft_strlen(line) - 2] == '\''))
+	if (line[ft_strlen(line) - 1] == '\"' &&
+		(line[ft_strlen(line) - 2] == '\"'
+		|| line[ft_strlen(line) - 2] == '\''))
 		return (1);
 	return (0);
 }
