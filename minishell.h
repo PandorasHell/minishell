@@ -144,6 +144,8 @@ int			check_character_for_history(char c);
 int			ft_strcmp(const char *s1, const char *s2);
 t_env		*pwd_finder(char *key, t_env *env);
 t_env		*pwd_finder_unset(char *key, int *j, t_env *env);
+void		free_matrix(char ***matrix);
+int			matrix_counter(char **matrix);
 
 // BUILTINS
 int			ft_cd(t_cmd *cmd, t_env *env);

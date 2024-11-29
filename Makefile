@@ -24,6 +24,7 @@ SRC_FILES := 	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/utils/free_control.c \
 				$(SRC_DIR)/utils/cd_supporters.c \
 				$(SRC_DIR)/utils/ft_strcmp.c \
+				$(SRC_DIR)/utils/ft_free_matrix.c \
 				$(SRC_DIR)/expander/expander.c \
 				$(SRC_DIR)/expander/expand_redir.c \
 				$(SRC_DIR)/expander/expand_words.c \

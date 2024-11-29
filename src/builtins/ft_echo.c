@@ -9,11 +9,11 @@ static int flag_checker(char **cmd, int i)
 		j = 1;
 		if (cmd[i][0] == '-')
 		{
-			while (cmd[i][j] == 'n')
+			while (cmd[i][j])
 			{
+				if (cmd[i][j] != 'n' && cmd[i][j] != '\0')
+					return (i);
 				j++;
-			if (cmd[i][j] != 'n' && cmd[i][j] != '\0')
-				return (i);
 			}
 		}
 		else
@@ -33,8 +33,6 @@ void ft_echo(char **cmd)
 	while (cmd[j])
 		j++;
 	i = flag_checker(cmd, i);
-	printf("%d < j\n", j);
-	printf("%d < i\n", i);
 	if (i > 1)
 	{
 		while (i < j)
