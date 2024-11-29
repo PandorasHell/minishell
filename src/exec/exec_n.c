@@ -49,10 +49,10 @@ static pid_t	ft_first_cmd(int (*fd)[2], t_cmd *cmd, t_env *env)
 	pid_t	pid_in;
 
 	pid_in = fork();
-	if (pid < 0)
+	if (pid_in < 0)
 	{
 		perror("Error: fork failed");
-		return;
+		return (0);
 	}
 	if (pid_in == 0)
 	{
@@ -75,13 +75,13 @@ static pid_t	ft_mid_cmd(int (*fd)[2], t_cmd *cmd, t_env *env)
 	if (pipe(fd_mid) < 0)
 	{
 		perror("Error: pipe failed");
-		return;
+		return (0);
 	}
 	pid_mid = fork();
 	if (pid_mid < 0)
 	{
 		perror("Error: fork failed");
-		return;
+		return (0);
 	}
 	if (pid_mid == 0)
 	{

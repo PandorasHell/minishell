@@ -54,7 +54,7 @@ void	execute_one(t_cmd *cmd, t_env *env)
     char	**args;
 
     args = cmd_to_array(cmd->info->word);
-    if (!args || !envp)
+    if (!args)
     {
         perror("Error: malloc failed");
 		exit(1);
