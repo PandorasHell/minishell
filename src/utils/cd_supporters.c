@@ -69,7 +69,9 @@ t_env *pwd_finder(char *key, t_env *env)
 	t_env *tmp;
 
 	tmp = env;
-	while(tmp)
+	if (!key || !env)
+		return (NULL);
+	while(tmp != NULL)
 	{
 		if (ft_strcmp(tmp->content->key, key) == 0)
 			return (tmp);

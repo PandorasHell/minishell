@@ -45,8 +45,7 @@ int ft_unset(char **cmd, t_env *env)
       free_first_node(tmp);
     else if (j > 0)
       free_single_node(tmp);
-    if (tmp)
-      free(tmp);
   }
+  tmp = env;
   return (0);
 }

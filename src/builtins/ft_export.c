@@ -12,11 +12,11 @@ static int variable_updater(char **cmd_matrix, t_env *env)
 	return (0);
 }
 
-static int	save_node_env(char **cmd_matrix, t_env *env)
+static int	save_node_env(char **cmd_matrix, t_env *new_node, t_env *env)
 {
 	t_denv	*data;
 
-	data = (t_denv *)malloc(sizeof(t_denv));
+	data = malloc(sizeof(t_denv));
 	if (!data)
 		return (1);
 	data->key = ft_strdup(cmd_matrix[0]);
@@ -32,7 +32,8 @@ static int	save_node_env(char **cmd_matrix, t_env *env)
 		free(data);
 		return (1);
 	}
-	ft_lstadd_back((t_list **)&env, (t_list *)data);
+	new_node->content = data;
+	ft_lstadd_back((t_list **)&env, (t_list *)new_node);
 	return (0);
 }
 
@@ -66,8 +67,10 @@ static char ***matrix_creator(char **cmd)
 static int	var_checker(char ***cmd_matrix, t_env *env)
 {
 	int		i;
+	t_env	*possible_node;
 
 	i = 0;
+	possible_node = NULL;
 	while (cmd_matrix[i])
 	{
 		if (pwd_finder(cmd_matrix[i][0], env))
@@ -77,7 +80,8 @@ static int	var_checker(char ***cmd_matrix, t_env *env)
 		}
 		else
 		{
-			if (save_node_env(cmd_matrix[i], env))
+			possible_node = malloc(sizeof(t_env));
+			if (save_node_env(cmd_matrix[i], possible_node, env))
 				return (1);
 		}
 		i++;
@@ -98,8 +102,6 @@ int ft_export(char **cmd, t_env *env)
 		return (1);
 	}
 	free_matrix(cmd_matrix);
-	t_env *tmp = pwd_finder("PWD", env);
-	printf("key is : %s and value is : %s\n",tmp->content->key, tmp->content->value);
 	return (0);
 }
 
