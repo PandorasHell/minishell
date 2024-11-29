@@ -70,11 +70,3 @@ char	*ft_itoa(int n)
 	}
 	return (str);
 }
-
-/*int	main(void)
-{
-	int i = 214783648;
-	char *result = ft_itoa(i);
-	printf("the string is:%s\n", result);
-	return (0);
-}*/

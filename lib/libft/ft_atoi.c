@@ -39,13 +39,3 @@ int	ft_atoi(const char *str)
 	}
 	return (result * sig);
 }
-
-/*int main()
-{
-    char str[] = "    -1234asda123";
-    int result = ft_atoi(str);
-
-    printf("the str to convert is %s\n", str);
-    printf("the result is: %d\n", result);
-    return (0);
-}*/

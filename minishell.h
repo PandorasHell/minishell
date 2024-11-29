@@ -117,7 +117,7 @@ int			status_redir(t_lexer **lexer, int status, t_cmd *cmd);
 t_cmd		*expand_cmd(t_cmd *cmd, t_env *env);
 int			expand_redir(t_cmd *redir, t_env *env, t_cmd *cmd);
 int			expand_name(t_cmd *word, t_env *env, t_cmd *cmd);
-char	*expand_dolar(char *name, t_env *env, int *quote, int *split);
+char		*expand_dolar(char *name, t_env *env, int *quote, int *split);
 char		*expand_quote(char *line);
 char		*expand_lit(char *ret, char *name, int *i);
 t_cmd_name	*expand_split_word(char *name);
@@ -136,10 +136,22 @@ char		*get_path(char *cmd, char **env);
 char		**env_to_array(t_env *env);
 char		**cmd_to_array(t_cmd_name *cmd);
 int			manage_redir(t_cmd_red *redir);
-void	execute_n(t_cmd *cmd, t_env *env);
+void		execute_n(t_cmd *cmd, t_env *env);
 
 // UTILS
 int			exit_checker(const char *line, const char *comparer);
 int			check_character_for_history(char c);
+int			ft_strcmp(const char *s1, const char *s2);
+t_env		*pwd_finder(char *key, t_env *env);
+t_env		*pwd_finder_unset(char *key, int *j, t_env *env);
+
+// BUILTINS
+int			ft_cd(t_cmd *cmd, t_env *env);
+void		ft_echo(char **cmd);
+void		ft_env(t_env *env);
+int			ft_export(char **cmd, t_env *env);
+void		ft_pwd(void);
+int			ft_unset(char **cmd, t_env *env);
+int			ft_is_builtin_checker(char **cmd, t_env *env);
 
 #endif

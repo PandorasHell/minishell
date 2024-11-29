@@ -49,11 +49,18 @@ void	execute_one(t_cmd *cmd, t_env *env)
     char	**envp;
  	pid_t	pid;
 	int		status;
+    char	**cmd_matrix;
+    char	**emv_matrix;
 
     args = cmd_to_array(cmd->info->word);
     envp = env_to_array(env);
 	pid = fork();
 	status = 0;
+    if (!cmd_matrix || !emv_matrix)
+    {
+        perror("Error: malloc failed");
+		exit(1);
+    }
 	if (pid < 0)
 	{
 		perror("Error: fork failed");

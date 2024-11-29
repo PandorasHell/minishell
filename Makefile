@@ -22,6 +22,8 @@ SRC_FILES := 	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/utils/exit_checker.c \
 				$(SRC_DIR)/utils/line_character_checker.c \
 				$(SRC_DIR)/utils/free_control.c \
+				$(SRC_DIR)/utils/cd_supporters.c \
+				$(SRC_DIR)/utils/ft_strcmp.c \
 				$(SRC_DIR)/expander/expander.c \
 				$(SRC_DIR)/expander/expand_redir.c \
 				$(SRC_DIR)/expander/expand_words.c \
@@ -36,10 +38,14 @@ SRC_FILES := 	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/exec/path.c \
 				$(SRC_DIR)/exec/manage_redir.c \
 				$(SRC_DIR)/exec/trans_lst.c \
-				#$(SRC_DIR)/exec/exec_n.c \
-				#$(SRC_DIR)/builtins/pwd_built_in.c \
-				#$(SRC_DIR)/builtins/ft_unset.c \
-				#$(SRC_DIR)/builtins/ft_pwd.c \
+				$(SRC_DIR)/exec/exec_n.c \
+				$(SRC_DIR)/builtins/ft_cd.c \
+                $(SRC_DIR)/builtins/ft_echo.c \
+                $(SRC_DIR)/builtins/ft_env.c \
+                $(SRC_DIR)/builtins/ft_export.c \
+                $(SRC_DIR)/builtins/ft_pwd.c \
+                $(SRC_DIR)/builtins/ft_unset.c \
+                $(SRC_DIR)/builtins/ft_is_builtin.c \
 
 # Object files
 OBJ_FILES := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))

@@ -26,12 +26,3 @@ void	ft_bzero(void *s, size_t n)
 		i++;
 	}
 }
-/*
-int main (void)
-{
-	char str[] = "Hello World";
-	size_t n = 5;
-	ft_bzero(str, n);
-	printf("the string is: %s\n", str);
-	return (0);
-}*/
