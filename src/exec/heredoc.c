@@ -2,26 +2,6 @@
 
 // TODO: Falta añadir las señales en el heredoc
 
-static int	exit_heredoc(const char *line, const char *comparer)
-{
-	int	i;
-
-	i = 0;
-	while (comparer[i] && line[i])
-	{
-		if (line[i] != comparer[i])
-			return (1);
-		i++;
-	}
-	while (line[i])
-	{
-		if (line[i] != '\n' && line[i] != '\0')
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
 char	*heredoc(char *limiter, t_env *env, int *status)
 {
 	int		tmp_fd;
@@ -29,6 +9,7 @@ char	*heredoc(char *limiter, t_env *env, int *status)
 	char 	*limit;
 	char	*here_doc;
 	char 	*expanded_line;
+	int		i;
 
 	limit = create_tmp_file(limiter, status, &tmp_fd, &here_doc);
 	if (!limit)
@@ -37,13 +18,14 @@ char	*heredoc(char *limiter, t_env *env, int *status)
 	while (1)
 	{
 		line = readline("> ");
-		if (!line || !exit_heredoc(line, limit))
+		if (!ft_strcmp(line, limit))
 		{
 			free(line);
 			free(limit);
 			break ;
 		}
-		expanded_line = expand_dolar(line, env, status, 0);
+		i = 0;
+		expanded_line = expand_dolar(line, env, status, &i);
 		if (expanded_line)
 		{
 			write(tmp_fd, expanded_line, ft_strlen(expanded_line));

@@ -2,6 +2,20 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
+int	exit_line(char *line)
+{
+	while (*line)
+	{
+		if (*line == '<')
+		{
+			if (*(line + 1) == '<')
+				return (0);
+		}
+		line++;
+	}
+	return (1);
+}
+
 static void	exec_line(t_cmd *cmd, t_env *env, char *line)
 {
 	t_lexer	*lexer;
@@ -42,7 +56,7 @@ static void	line_reader(t_cmd *cmd, char *line, t_env *env)
 				break ;
 			}
 			exec_line(cmd, env, line);
-			if (!check_character_for_history(line[0]))
+			if (!check_character_for_history(line[0]) && exit_line(line))
 				add_history(line);
 			free(line);
 		}
@@ -63,7 +77,7 @@ int	main(int argc, char **argv, char **enviroment)
 	cmd = NULL;
 	line = NULL;
 	line_reader(cmd, line, env);
-	//rl_clear_history();
+	rl_clear_history();
 	free_env(env);
 	return (0);
 }

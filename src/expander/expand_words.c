@@ -37,10 +37,7 @@ int	expand_name(t_cmd *word, t_env *env, t_cmd *cmd)
 			free(aux);
 		}
 		else
-		{
 			new->name = expand_quote(aux);
-		}
-		printf("new->name: %s\n", new->name);
 		ft_lstadd_back((t_list **)&word->info->word, (t_list *)new);
 		tmp = tmp->next;
 	}
