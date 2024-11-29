@@ -1,66 +1,40 @@
 #include "../../minishell.h"
 
-static void	child_process(char **cmd, char **envp)
+static void	child_process(t_cmd *cmd, t_env *env)
 {
 	char	*path;
+	char	**envp;
+	char	**args;
 
-	if (relative_path(cmd, &path) == 0)
+	args = cmd_to_array(cmd->info->word);
+    envp = env_to_array(env);
+	if (relative_path(args, &path) == 0)
 	{
-		if (cmd[0])
-			path = get_path(cmd[0], envp);
+		if (args[0])
+			path = get_path(args[0], envp);
 	}
 	if (!path)
 	{
 		perror("Error: command not found");
 		exit(127);
 	}
-	if (execve(path, cmd, envp) == -1)
+	if (execve(path, args, envp) == -1)
 	{
 		free(path);
+		cleanup(args);
+		cleanup(envp);
 		perror("Error: execve failed");
 		exit(1);
 	}
 }
 
-// static void	execute_cmd(char **args, char **envp, t_cmd_red *redir)
-// {
-// 	pid_t	pid;
-// 	int		status;
-
-// 	pid = fork();
-// 	status = 0;
-// 	if (pid < 0)
-// 	{
-// 		perror("Error: fork failed");
-// 		return;
-// 	}
-// 	if (pid == 0)
-// 	{
-// 		manage_redir(redir);
-// 		child_process(args, envp);
-// 	}
-// 	else
-// 		waitpid(pid, &status, 0);
-// }
-
-void	execute_one(t_cmd *cmd, t_env *env)
+static void	execute_cmd(t_cmd *cmd, t_env *env)
 {
-    char	**args;
-    char	**envp;
- 	pid_t	pid;
+	pid_t	pid;
 	int		status;
-    char	**cmd_matrix;
-    char	**emv_matrix;
 
-    args = cmd_to_array(cmd->info->word);
-    envp = env_to_array(env);
 	pid = fork();
 	status = 0;
-    if (!cmd_matrix || !emv_matrix)
-    {
-        perror("Error: malloc failed");
-		exit(1);
-    }
 	if (pid < 0)
 	{
 		perror("Error: fork failed");
@@ -69,15 +43,26 @@ void	execute_one(t_cmd *cmd, t_env *env)
 	if (pid == 0)
 	{
 		manage_redir(cmd->info->redir);
-		child_process(args, envp);
+		child_process(cmd, env);
 	}
 	else
 		waitpid(pid, &status, 0);
+}
+
+void	execute_one(t_cmd *cmd, t_env *env)
+{
+    char	**args;
+
+    args = cmd_to_array(cmd->info->word);
+    if (!args || !envp)
+    {
+        perror("Error: malloc failed");
+		exit(1);
+    }
 	// TODO: Pasar lo de si es un builtin a la ejecucion de los hijos
     // if (is_built_in(args[0]))
     //     execute_built_in(args, env);
 	// #TODO: Añadir señales en la ejecucion.
-    //execute_cmd(args, envp, cmd->info->redir);
+    execute_cmd(cmd, env);
 	cleanup(args);
-    cleanup(envp);
 }

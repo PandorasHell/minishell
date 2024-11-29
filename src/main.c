@@ -77,7 +77,7 @@ int	main(int argc, char **argv, char **enviroment)
 	cmd = NULL;
 	line = NULL;
 	line_reader(cmd, line, env);
-	//rl_clear_history();
+	rl_clear_history();
 	free_env(env);
 	return (0);
 }

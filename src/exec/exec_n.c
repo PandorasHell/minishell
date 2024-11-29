@@ -16,65 +16,73 @@ void	ft_waitchild(pid_t *child, int cmds)
 	}
 }
 
-static void	child_process(char **cmd, char **envp)
+static void	child_process(t_cmd *cmd, t_env *env)
 {
 	char	*path;
+	char	**envp;
+	char	**args;
 
-	if (relative_path(cmd, &path) == 0)
+	args = cmd_to_array(cmd->info->word);
+    envp = env_to_array(env);
+	if (relative_path(args, &path) == 0)
 	{
-		if (cmd[0])
-			path = get_path(cmd[0], envp);
+		if (args[0])
+			path = get_path(args[0], envp);
 	}
 	if (!path)
 	{
 		perror("Error: command not found");
 		exit(127);
 	}
-	if (execve(path, cmd, envp) == -1)
+	if (execve(path, args, envp) == -1)
 	{
+		free(path);
+		cleanup(args);
+		cleanup(envp);
 		perror("Error: execve failed");
 		exit(1);
 	}
 }
 
-static pid_t	ft_first_cmd(int (*fd)[2], t_cmd_name *name, t_env *env, t_cmd_red *redir)
+static pid_t	ft_first_cmd(int (*fd)[2], t_cmd *cmd, t_env *env)
 {
 	pid_t	pid_in;
-	char	**args;
-    char	**envp;
 
-    args = cmd_to_array(name);
-    envp = env_to_array(env);
 	pid_in = fork();
-	if (pid_in < 0)
-		return (0);
+	if (pid < 0)
+	{
+		perror("Error: fork failed");
+		return;
+	}
 	if (pid_in == 0)
 	{
 		dup2(fd[0][1], STDOUT_FILENO);
 		close(fd[0][0]);
-        manage_redir(redir);
-		child_process(args, envp);
+		close(fd[1][1]);
+        manage_redir(cmd->info->redir);
+		child_process(cmd , env);
 	}
 	close(fd[0][1]);
-	cleanup(args);
-    cleanup(envp);
+	close(fd[1][1]);
 	return (pid_in);
 }
 
-static pid_t	ft_mid_cmd(int (*fd)[2], t_cmd_name *name, t_env *env, t_cmd_red *redir)
+static pid_t	ft_mid_cmd(int (*fd)[2], t_cmd *cmd, t_env *env)
 {
 	pid_t	pid_mid;
 	int		fd_mid[2];
-	char	**args;
-    char	**envp;
 
-    args = cmd_to_array(name);
-    envp = env_to_array(env);
 	if (pipe(fd_mid) < 0)
-		return (0);
+	{
+		perror("Error: pipe failed");
+		return;
+	}
 	pid_mid = fork();
 	if (pid_mid < 0)
-		return (0);
+	{
+		perror("Error: fork failed");
+		return;
+	}
 	if (pid_mid == 0)
 	{
 		close(fd[1][0]);
@@ -83,25 +91,18 @@ static pid_t	ft_mid_cmd(int (*fd)[2], t_cmd_name *name, t_env *env, t_cmd_red *r
 		close(fd_mid[0]);
 		dup2(fd_mid[1], STDOUT_FILENO);
 		close(fd_mid[1]);
-		manage_redir(redir);
-		child_process(args, envp);
+		manage_redir(cmd->info->redir);
+		child_process(cmd , env);
 	}
 	close(fd[0][0]);
 	close(fd_mid[1]);
-	cleanup(args);
-    cleanup(envp);
 	fd[0][0] = fd_mid[0];
 	return (pid_mid);
 }
 
-static pid_t	ft_last_cmd(int (*fd)[2],  t_cmd_name *name, t_env *env, t_cmd_red *redir)
+static pid_t	ft_last_cmd(int (*fd)[2], t_cmd *cmd, t_env *env)
 {
 	pid_t	pid_out;
-	char	**args;
-    char	**envp;
-
-    args = cmd_to_array(name);
-    envp = env_to_array(env);
 
 	pid_out = fork();
 	if (pid_out < 0)
@@ -113,11 +114,12 @@ static pid_t	ft_last_cmd(int (*fd)[2],  t_cmd_name *name, t_env *env, t_cmd_red 
 	{
 		dup2(fd[0][0], STDIN_FILENO);
 		close(fd[0][0]);
-		manage_redir(redir);
-		child_process(args, envp);
+		close(fd[1][1]);
+		manage_redir(cmd->info->redir);
+		child_process(cmd , env);
 	}
-	cleanup(args);
-    cleanup(envp);
+	close(fd[0][0]);
+	close(fd[1][1]);
 	return (pid_out);
 }
 
@@ -134,19 +136,14 @@ void	execute_n(t_cmd *cmd, t_env *env)
 	if (pipe(fd[0]) < 0)
 		return ;
 	i = 0;
-	child[i++] = ft_first_cmd(fd, cmd->info->word, env, cmd->info->redir);
+	child[i++] = ft_first_cmd(fd, cmd, env);
 	cmd = cmd->next;
 	while (cmd->next != NULL)
 	{
-		child[i++] = ft_mid_cmd(fd, cmd->info->word, env, cmd->info->redir);
+		child[i++] = ft_mid_cmd(fd, cmd, env);
 		cmd = cmd->next;
 	}
-	child[i++] = ft_last_cmd(fd, cmd->info->word, env, cmd->info->redir);
+	child[i++] = ft_last_cmd(fd, cmd, env);
 	ft_waitchild(child, i);
 	free(child);
-	// TODO: Pasar lo de si es un builtin a la ejecucion de los hijos
-    // if (is_built_in(args[0]))
-    //     execute_built_in(args, env);
-	// #TODO: Añadir señales en la ejecucion.
-
 }
