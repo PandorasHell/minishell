@@ -148,6 +148,7 @@ void		free_matrix(char ***matrix);
 int			matrix_counter(char **matrix);
 int			pointer_free(void *ptr, void *ptr2, void *ptr3, int flag);
 int			error_pointer_free(void *ptr, void *ptr2, void *ptr3, int flag);
+char		*append_path(char const *s1, char const *s2);
 
 // BUILTINS
 int			ft_cd(char **cmd, t_env *env);
