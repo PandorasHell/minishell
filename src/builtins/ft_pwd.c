@@ -1,12 +1,13 @@
 #include "../../minishell.h"
 
-void ft_pwd(void)
+int ft_pwd(void)
 {
 	char *pwd;
 
 	pwd = getcwd(NULL, 0);
 	if (pwd == NULL)
-		return ;
+		return (1);
 	printf("%s\n", pwd);
 	free(pwd);
+	return (0);
 }

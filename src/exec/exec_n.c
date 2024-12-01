@@ -60,7 +60,13 @@ static pid_t	ft_first_cmd(int (*fd)[2], t_cmd *cmd, t_env *env)
 		close(fd[0][0]);
 		close(fd[1][1]);
         manage_redir(cmd->info->redir);
-		child_process(cmd , env);
+		if (ft_is_builtin(cmd->info->word->name))
+		{
+			exec_builtin(cmd, env);
+			exit (0);
+		}
+		else
+			child_process(cmd , env);
 	}
 	close(fd[0][1]);
 	close(fd[1][1]);
@@ -92,7 +98,13 @@ static pid_t	ft_mid_cmd(int (*fd)[2], t_cmd *cmd, t_env *env)
 		dup2(fd_mid[1], STDOUT_FILENO);
 		close(fd_mid[1]);
 		manage_redir(cmd->info->redir);
-		child_process(cmd , env);
+		if (ft_is_builtin(cmd->info->word->name))
+		{
+			exec_builtin(cmd, env);
+			exit (0);
+		}
+		else
+			child_process(cmd , env);
 	}
 	close(fd[0][0]);
 	close(fd_mid[1]);
@@ -116,7 +128,13 @@ static pid_t	ft_last_cmd(int (*fd)[2], t_cmd *cmd, t_env *env)
 		close(fd[0][0]);
 		close(fd[1][1]);
 		manage_redir(cmd->info->redir);
-		child_process(cmd , env);
+		if (ft_is_builtin(cmd->info->word->name))
+		{
+			exec_builtin(cmd, env);
+			exit (0);
+		}
+		else
+			child_process(cmd , env);
 	}
 	close(fd[0][0]);
 	close(fd[1][1]);

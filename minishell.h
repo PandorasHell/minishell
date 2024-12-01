@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:52:54 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/11/27 21:31:53 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/12/01 11:08:26 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,15 +152,16 @@ char		*append_path(char const *s1, char const *s2);
 
 // BUILTINS
 int			ft_cd(char **cmd, t_env *env);
-void		ft_echo(char **cmd);
-void		ft_env(t_env *env);
+int			ft_echo(char **cmd);
+int			ft_env(t_env *env);
 int			ft_export(char **cmd, t_env *env);
-void		ft_pwd(void);
+int			ft_pwd(void);
 int			ft_unset(char **cmd, t_env *env);
-int			ft_is_builtin_checker(char **cmd, t_env *env);
+int			ft_is_builtin(char *cmd);
+int			exec_builtin(t_cmd *cmd, t_env *env);
 int			variable_updater(char **cmd_matrix, t_env **env);
-int			path_update_control(t_env *pwd, t_env *oldpwd,\
-			char *possible_path, t_env **env);
+int			path_update_control(t_env *pwd, t_env *oldpwd,
+char 		*possible_path, t_env **env);
 int			path_updater(char *key, char *value, t_env *env);
 
 

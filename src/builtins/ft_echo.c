@@ -23,7 +23,7 @@ static int flag_checker(char **cmd, int i)
 	return (i);
 }
 
-void ft_echo(char **cmd)
+int ft_echo(char **cmd)
 {
 	int	i;
 	int	j;
@@ -55,4 +55,5 @@ void ft_echo(char **cmd)
 			i++;
 		}
 	}
+	return (0);
 }

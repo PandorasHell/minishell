@@ -51,24 +51,10 @@ static void	execute_cmd(t_cmd *cmd, t_env *env)
 
 void	execute_one(t_cmd *cmd, t_env *env)
 {
-    char	**args;
-
-    args = cmd_to_array(cmd->info->word);
-    if (!args)
-    {
-        perror("Error: malloc failed");
-		exit(1);
-    }
 // TODO: Pasar lo de si es un builtin a la ejecucion de los hijos
 	// #TODO: Añadir señales en la ejecucion.
-	if (ft_is_builtin_checker(args, env))
-	{
-		cleanup(args);
-		return ;
-	}
+	if (ft_is_builtin(cmd->info->word->name))
+		exec_builtin(cmd, env);
 	else
-	{
 		execute_cmd(cmd, env);
-		cleanup(args);
-	}
 }

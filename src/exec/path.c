@@ -32,7 +32,10 @@ char	*get_path(char *cmd, char **env)
 	while (!(*env) || ft_strncmp(*env, "PATH=", 5) != 0)
 	{
 		if (!(*env))
+		{
 			printf("Error: path not found\n");
+			return (NULL);
+		}
 		env++;
 	}
 	e_path = ft_split(env[0] + 5, ':');
