@@ -59,10 +59,16 @@ void	execute_one(t_cmd *cmd, t_env *env)
         perror("Error: malloc failed");
 		exit(1);
     }
-	// TODO: Pasar lo de si es un builtin a la ejecucion de los hijos
-    // if (is_built_in(args[0]))
-    //     execute_built_in(args, env);
+// TODO: Pasar lo de si es un builtin a la ejecucion de los hijos
 	// #TODO: Añadir señales en la ejecucion.
-    execute_cmd(cmd, env);
-	cleanup(args);
+	if (ft_is_builtin_checker(args, env))
+	{
+		cleanup(args);
+		return ;
+	}
+	else
+	{
+		execute_cmd(cmd, env);
+		cleanup(args);
+	}
 }

@@ -1,17 +1,17 @@
 #include "../../minishell.h"
 
-void	free_env(t_env *env)
+void	free_env(t_env **env)
 {
 	t_env	*tmp;
 
-	while (env)
+	while (*env)
 	{
-		tmp = env->next;
-		free(env->content->key);
-		free(env->content->value);
-		free(env->content);
-		free(env);
-		env = tmp;
+		tmp = (*env)->next;
+		free((*env)->content->key);
+		free((*env)->content->value);
+		free((*env)->content);
+		free(*env);
+		*env = tmp;
 	}
 }
 

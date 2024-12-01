@@ -1,10 +1,10 @@
 #include "../../minishell.h"
 
-static int variable_updater(char **cmd_matrix, t_env *env)
+int variable_updater(char **cmd_matrix, t_env **env)
 {
 	t_env	*tmp_node;
 
-	tmp_node = pwd_finder(cmd_matrix[0], env);
+	tmp_node = env_node_search(cmd_matrix[0], *env);
 	free(tmp_node->content->value);
 	tmp_node->content->value = ft_substr(cmd_matrix[1], 0, ft_strlen(cmd_matrix[1]));
 	if (!tmp_node->content->value)
@@ -12,28 +12,25 @@ static int variable_updater(char **cmd_matrix, t_env *env)
 	return (0);
 }
 
-static int	save_node_env(char **cmd_matrix, t_env *new_node, t_env *env)
+static int	save_node_env(char **cmd_matrix, t_env *env)
 {
 	t_denv	*data;
+	t_env	*node;
 
+	node = ft_calloc(sizeof(t_env), 1);
+	if (!node)
+		return (1);
 	data = malloc(sizeof(t_denv));
 	if (!data)
 		return (1);
 	data->key = ft_strdup(cmd_matrix[0]);
 	if (!data->key)
-	{
-		free(data);
-		return (1);
-	}
+		return (error_pointer_free(data, NULL, NULL, 1));
 	data->value = ft_strdup(cmd_matrix[1]);
 	if (!data->value)
-	{
-		free(data->key);
-		free(data);
-		return (1);
-	}
-	new_node->content = data;
-	ft_lstadd_back((t_list **)&env, (t_list *)new_node);
+		return (error_pointer_free(data->key, data, NULL, 2));
+	node->content = data;
+	ft_lstadd_back((t_list **)&env, (t_list *)node);
 	return (0);
 }
 
@@ -64,24 +61,21 @@ static char ***matrix_creator(char **cmd)
 	return (cmd_matrix);
 }
 
-static int	var_checker(char ***cmd_matrix, t_env *env)
+static int	var_checker(char ***cmd_matrix, t_env **env)
 {
 	int		i;
-	t_env	*possible_node;
 
 	i = 0;
-	possible_node = NULL;
 	while (cmd_matrix[i])
 	{
-		if (pwd_finder(cmd_matrix[i][0], env))
+		if (env_node_search(cmd_matrix[i][0], *env))
 		{
 			if (variable_updater(cmd_matrix[i], env))
 				return (1);
 		}
 		else
 		{
-			possible_node = malloc(sizeof(t_env));
-			if (save_node_env(cmd_matrix[i], possible_node, env))
+			if (save_node_env(cmd_matrix[i], *env))
 				return (1);
 		}
 		i++;
@@ -95,8 +89,8 @@ int ft_export(char **cmd, t_env *env)
 
 	cmd_matrix = matrix_creator(cmd);
 	if (!cmd_matrix)
-		return (-1);
-	if (var_checker(cmd_matrix, env))
+		return (1);
+	if (var_checker(cmd_matrix, &env))
 	{
 		free_matrix(cmd_matrix);
 		return (1);

@@ -53,6 +53,7 @@ static void	line_reader(t_cmd *cmd, char *line, t_env *env)
 			if (!exit_checker(line, "exit"))
 			{
 				free(line);
+				free_env(&env);
 				break ;
 			}
 			exec_line(cmd, env, line);
@@ -78,6 +79,5 @@ int	main(int argc, char **argv, char **enviroment)
 	line = NULL;
 	line_reader(cmd, line, env);
 	rl_clear_history();
-	free_env(env);
 	return (0);
 }

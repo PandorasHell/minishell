@@ -40,7 +40,7 @@ int ft_unset(char **cmd, t_env *env)
   j = 0;
   while (cmd[++i])
   {
-    tmp = pwd_finder_unset(cmd[i], &j, env);
+    tmp = unset_node_search(cmd[i], &j, env);
     if (j == 0)
       free_first_node(tmp);
     else if (j > 0)

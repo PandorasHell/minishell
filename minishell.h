@@ -95,7 +95,7 @@ typedef struct s_cmd
 
 // ENV
 t_env		*save_env(char **env);
-void		free_env(t_env *env);
+void		free_env(t_env **env);
 
 // LEXER
 int			is_space(char c);
@@ -142,18 +142,26 @@ void		execute_n(t_cmd *cmd, t_env *env);
 int			exit_checker(const char *line, const char *comparer);
 int			check_character_for_history(char c);
 int			ft_strcmp(const char *s1, const char *s2);
-t_env		*pwd_finder(char *key, t_env *env);
-t_env		*pwd_finder_unset(char *key, int *j, t_env *env);
+t_env		*env_node_search(char *key, t_env *env);
+t_env		*unset_node_search(char *key, int *j, t_env *env);
 void		free_matrix(char ***matrix);
 int			matrix_counter(char **matrix);
+int			pointer_free(void *ptr, void *ptr2, void *ptr3, int flag);
+int			error_pointer_free(void *ptr, void *ptr2, void *ptr3, int flag);
 
 // BUILTINS
-int			ft_cd(t_cmd *cmd, t_env *env);
+int			ft_cd(char **cmd, t_env *env);
 void		ft_echo(char **cmd);
 void		ft_env(t_env *env);
 int			ft_export(char **cmd, t_env *env);
 void		ft_pwd(void);
 int			ft_unset(char **cmd, t_env *env);
 int			ft_is_builtin_checker(char **cmd, t_env *env);
+int			variable_updater(char **cmd_matrix, t_env **env);
+int			path_update_control(t_env *pwd, t_env *oldpwd,\
+			char *possible_path, t_env **env);
+int			path_updater(char *key, char *value, t_env *env);
+
+
 
 #endif

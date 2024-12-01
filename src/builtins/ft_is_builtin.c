@@ -2,11 +2,11 @@
 
 static int builtins_second_part(char **cmd, t_env *env)
 {
-	// if (ft_strcmp(cmd[0], "cd") == 0)
-	// {
-	// 	ft_cd();
-	// 	return (1);
-	// }
+	if (ft_strcmp(cmd[0], "cd") == 0)
+	{
+		ft_cd(cmd, env);
+		return (1);
+	}
 	if (ft_strcmp(cmd[0], "export") == 0)
 	{
 		ft_export(cmd, env);

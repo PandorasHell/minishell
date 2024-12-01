@@ -22,7 +22,8 @@ SRC_FILES := 	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/utils/exit_checker.c \
 				$(SRC_DIR)/utils/line_character_checker.c \
 				$(SRC_DIR)/utils/free_control.c \
-				$(SRC_DIR)/utils/cd_supporters.c \
+				$(SRC_DIR)/utils/node_searchers.c \
+				$(SRC_DIR)/utils/pointer_freer.c \
 				$(SRC_DIR)/utils/ft_strcmp.c \
 				$(SRC_DIR)/utils/ft_free_matrix.c \
 				$(SRC_DIR)/expander/expander.c \
@@ -45,8 +46,10 @@ SRC_FILES := 	$(SRC_DIR)/main.c \
                 $(SRC_DIR)/builtins/ft_env.c \
                 $(SRC_DIR)/builtins/ft_export.c \
                 $(SRC_DIR)/builtins/ft_pwd.c \
+                $(SRC_DIR)/builtins/ft_exit.c \
                 $(SRC_DIR)/builtins/ft_unset.c \
                 $(SRC_DIR)/builtins/ft_is_builtin.c \
+                $(SRC_DIR)/builtins/cd_utils.c \
 
 # Object files
 OBJ_FILES := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))

@@ -1,39 +1,69 @@
 #include "../../minishell.h"
 
-/*
-static int make_pwd(t_env *env)
+static int	relative_path_checker(char *possible_path, t_env *env)
 {
-	t_env *tmp_home;
-	t_env *tmp_path;
+	t_env	*pwd;
+	t_env	*oldpwd;
+	char	*current_path;
+	char	*new_path;
 
-	tmp_home = NULL;
-	tmp_path = NULL;
-	tmp_home = pwd_finder("HOME", env);
-	if (!tmp_home)
+	current_path = getcwd(NULL, 0);
+	if (!current_path)
+	{
 		return (1);
-	tmp_path = pwd_finder("PATH", env);
-	if (!tmp_path)
-		return (1);
-
+	}
+	new_path = ft_strjoin(current_path, possible_path);
+	if (chdir(new_path) == 0)
+	{
+		pwd = env_node_search("PWD", env);
+		oldpwd = env_node_search("OLDPWD", env);
+		if (path_update_control(pwd, oldpwd, new_path, &env) == 1)
+			return (error_pointer_free(current_path, new_path, NULL, 2));
+	}
+		printf("cambiando ruta");
+	pointer_free(current_path, new_path, NULL, 2);
+	return (0);
 }
 
-int ft_cd(t_cmd *cmd, t_env *env)
+static int	absolute_path_checker(char *possible_path, t_env *env)
 {
-	int i;
-	int arguments;
-	char **commands;
+	t_env	*pwd;
+	t_env	*oldpwd;
 
-
-	arguments = 0;
-	commands = ft_split(cmd->info->word->name, ' ');
-	i = 0;
-	while (commands[arguments])
-		arguments++;
-	if (arguments == 1 && ft_strncmp(commands[0], "cd", 2) == 0)
-		make_pwd_home(env);
-	while(path[i] != '/' || path[i] != '.')
-		i++;
-
-
+	if (access(possible_path, X_OK) && access(possible_path, F_OK) == -1)
+	{
+		printf("no tengo permisos");
 		return (1);
-}*/
+	}
+	else
+	{
+		pwd = env_node_search("PWD", env);
+		oldpwd = env_node_search("OLDPWD", env);
+		if (path_update_control(pwd, oldpwd, possible_path, &env) == 1)
+			return (1);
+		chdir(possible_path);
+	}
+	return (0);
+}
+
+int ft_cd(char **cmd, t_env *env)
+{
+	char	**check_path;
+
+	check_path = ft_split(cmd[1], ' ');
+	if (check_path[0][1] == '/')
+	{
+		if (absolute_path_checker(check_path[0], env) == 1)
+			return (1);
+		else
+			return (0);
+	}
+	if (check_path[0][1] != '.')
+	{
+		if (relative_path_checker(check_path[0], env) == 1)
+			return (1);
+		else
+			return (0);
+	}
+		return (1);
+}
