@@ -160,7 +160,7 @@ int			ft_unset(char **cmd, t_env *env);
 int			ft_is_builtin(char *cmd);
 int			exec_builtin(t_cmd *cmd, t_env *env);
 int			variable_updater(char **cmd_matrix, t_env **env);
-int			path_var_updater(char *path, char *old_path, t_env *env);
+int			path_update_control(char *old_path, t_env *env);
 
 
 

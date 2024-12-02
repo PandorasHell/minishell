@@ -50,7 +50,6 @@ SRC_FILES := 	$(SRC_DIR)/main.c \
                 $(SRC_DIR)/builtins/ft_unset.c \
                 $(SRC_DIR)/builtins/ft_is_builtin.c \
 				$(SRC_DIR)/builtins/ft_cd.c \
-                $(SRC_DIR)/builtins/cd_utils.c \
 
 # Object files
 OBJ_FILES := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))
