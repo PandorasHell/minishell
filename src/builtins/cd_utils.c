@@ -1,12 +1,10 @@
 #include "../../minishell.h"
 
-int path_updater(char *key, char *value, t_env *env)
+static int path_updater(char *key, char *value, t_env *env)
 {
 	t_env	*tmp_node;
 
 	tmp_node = env_node_search(key, env);
-	if (!tmp_node)
-		return (1);
 	free(tmp_node->content->value);
 	tmp_node->content->value = ft_substr(value, \
 		0, ft_strlen(value));
@@ -15,20 +13,31 @@ int path_updater(char *key, char *value, t_env *env)
 	return (0);
 }
 
-int	path_update_control(t_env *pwd, t_env *oldpwd,\
-			char *possible_path, t_env **env)
+// TODO: crear funcion que maneje el cambio de directorio usando ../ (lo maneja chdir analizar errores por si borran el directorio padre)
+int changing_parent_dir()
+
+// TODO: crear la funcion que manejara y actualizara el directorio final si es un path absoluto.
+int absolute_path(char *path, t_env *env)
 {
-		if (oldpwd)
-		{
-			if (path_updater("OLDPWD", pwd->content->value, *env) == 1)
-				return (1);
-			if (path_updater("PWD", possible_path, *env) == 1)
-				return (1);
-		}
-		else if (pwd)
-		{
-			if (path_updater("PWD", possible_path, *env) == 1)
-				return (1);
-		}
+
+}
+
+int	path_var_updater(char *path, char *old_path, t_env *env)
+{
+	t_env	*pwd;
+	t_env	*oldpwd;
+
+	pwd = env_node_search("PWD", env);
+	oldpwd = env_node_search("OLDPWD", env);
+	if (pwd)
+	{
+		if (path_updater("PWD", path, env) == 1)
+			return (1);
+	}
+	if (oldpwd)
+	{
+		if (path_updater("OLDPWD", old_path, env) == 1)
+			return (1);
+	}
 	return (0);
 }

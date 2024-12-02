@@ -17,8 +17,8 @@ int	exec_builtin(t_cmd *cmd, t_env *env)
 		status = ft_export(aux, env);
 	if (ft_strcmp(aux[0], "unset") == 0)
 		status = ft_unset(aux, env);
-	// if (ft_strcmp(cmd[0], "cd") == 0)
-	// 	status = ft_cd(cmd, env);
+	if (ft_strcmp(aux[0], "cd") == 0)
+		status = ft_cd(aux, env);
 	cleanup(aux);
 	return (status);
 }
@@ -35,7 +35,7 @@ int	ft_is_builtin(char *cmd)
 		return (1);
 	if (ft_strcmp(cmd, "unset") == 0)
 		return (1);
-	// if (ft_strcmp(cmd, "cd") == 0)
-	// 	return (1);
+	if (ft_strcmp(cmd, "cd") == 0)
+		return (1);
 	return (0);
 }
