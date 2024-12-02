@@ -13,14 +13,12 @@ static int path_updater(char *key, char *value, t_env *env)
 	return (0);
 }
 
-// TODO: crear funcion que maneje el cambio de directorio usando ../ (lo maneja chdir analizar errores por si borran el directorio padre)
-int changing_parent_dir()
 
 // TODO: crear la funcion que manejara y actualizara el directorio final si es un path absoluto.
-int absolute_path(char *path, t_env *env)
-{
-
-}
+// int absolute_path(char *path, char *old_path, t_env *env)
+// {
+//
+// }
 
 int	path_var_updater(char *path, char *old_path, t_env *env)
 {
