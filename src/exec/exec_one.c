@@ -1,32 +1,5 @@
 #include "../../minishell.h"
 
-static void	child_process(t_cmd *cmd, t_env *env)
-{
-	char	*path;
-	char	**envp;
-	char	**args;
-
-	args = cmd_to_array(cmd->info->word);
-    envp = env_to_array(env);
-	if (relative_path(args, &path) == 0)
-	{
-		if (args[0])
-			path = get_path(args[0], envp);
-	}
-	if (!path)
-	{
-		perror("Error: command not found");
-		exit(127);
-	}
-	if (execve(path, args, envp) == -1)
-	{
-		free(path);
-		cleanup(args);
-		cleanup(envp);
-		perror("Error: execve failed");
-		exit(1);
-	}
-}
 
 static void	execute_cmd(t_cmd *cmd, t_env *env)
 {

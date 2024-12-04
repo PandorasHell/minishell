@@ -2,6 +2,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
+
 int	exit_line(char *line)
 {
 	while (*line)

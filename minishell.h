@@ -149,6 +149,13 @@ int			matrix_counter(char **matrix);
 int			pointer_free(void *ptr, void *ptr2, void *ptr3, int flag);
 int			error_pointer_free(void *ptr, void *ptr2, void *ptr3, int flag);
 char		*append_path(char const *s1, char const *s2);
+void		child_process(t_cmd *cmd, t_env *env);
+int			midcloser_2(int (*fd)[2]);
+int			midcloser_1(int fd_mid[2]);
+pid_t		child_birth(void);
+int			pipe_builder(int fd_mid[2]);
+int			dup_manager(int (*fd)[2], int fd_mid[2]);
+void		child_labour(int (*fd)[2], int fd_mid[2], t_cmd *cmd, t_env *env);
 
 // BUILTINS
 int			ft_cd(char **cmd, t_env *env);
@@ -158,6 +165,7 @@ int			ft_export(char **cmd, t_env *env);
 int			ft_pwd(void);
 int			ft_unset(char **cmd, t_env *env);
 int			ft_is_builtin(char *cmd);
+int			ft_exit(char **cmd_matrix, t_cmd *cmd, t_env *env);
 int			exec_builtin(t_cmd *cmd, t_env *env);
 int			variable_updater(char **cmd_matrix, t_env **env);
 int			path_update_control(char *old_path, t_env *env);

@@ -47,7 +47,7 @@ static int dup_process(int in, int out)
     {
         if (dup2(in, STDIN_FILENO) < 0)
         {
-            perror("Error: dup2 failed");
+            perror(strerror(errno));
             return (1);
         }
         close(in);
@@ -56,7 +56,7 @@ static int dup_process(int in, int out)
     {
         if (dup2(out, STDOUT_FILENO) < 0)
         {
-            perror("Error: dup2 failed");
+            perror(strerror(errno));
             return (1);
         }
         close(out);

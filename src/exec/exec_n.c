@@ -16,7 +16,7 @@ void	ft_waitchild(pid_t *child, int cmds)
 	}
 }
 
-static void	child_process(t_cmd *cmd, t_env *env)
+void	child_process(t_cmd *cmd, t_env *env)
 {
 	char	*path;
 	char	**envp;
@@ -24,6 +24,7 @@ static void	child_process(t_cmd *cmd, t_env *env)
 
 	args = cmd_to_array(cmd->info->word);
     envp = env_to_array(env);
+	path = NULL;
 	if (relative_path(args, &path) == 0)
 	{
 		if (args[0])
@@ -39,8 +40,8 @@ static void	child_process(t_cmd *cmd, t_env *env)
 		free(path);
 		cleanup(args);
 		cleanup(envp);
-		perror("Error: execve failed");
-		exit(1);
+		perror(strerror(errno));
+		ft_exit(NULL, cmd, env);
 	}
 }
 
@@ -78,34 +79,13 @@ static pid_t	ft_mid_cmd(int (*fd)[2], t_cmd *cmd, t_env *env)
 	pid_t	pid_mid;
 	int		fd_mid[2];
 
-	if (pipe(fd_mid) < 0)
-	{
-		perror("Error: pipe failed");
-		return (0);
-	}
+	if (pipe_builder(fd_mid))
+		return (1);
 	pid_mid = fork();
 	if (pid_mid < 0)
-	{
-		perror("Error: fork failed");
-		return (0);
-	}
+		return (1);
 	if (pid_mid == 0)
-	{
-		close(fd[1][0]);
-		dup2(fd[0][0], STDIN_FILENO);
-		close(fd[0][0]);
-		close(fd_mid[0]);
-		dup2(fd_mid[1], STDOUT_FILENO);
-		close(fd_mid[1]);
-		manage_redir(cmd->info->redir);
-		if (ft_is_builtin(cmd->info->word->name))
-		{
-			exec_builtin(cmd, env);
-			exit (0);
-		}
-		else
-			child_process(cmd , env);
-	}
+		child_labour(fd, fd_mid, cmd, env);
 	close(fd[0][0]);
 	close(fd_mid[1]);
 	fd[0][0] = fd_mid[0];

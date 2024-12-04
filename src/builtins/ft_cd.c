@@ -70,6 +70,11 @@ int ft_cd(char **cmd, t_env *env)
 	char	*current_path;
 	int		flag;
 
+	if (matrix_counter(cmd) > 2)
+	{
+		ft_putstr_fd("too many arguments\n", 2);
+		return (1);
+	}
 	current_path = getcwd(NULL, 0);
 	flag = matrix_counter(cmd);
 	if (flag > 1)
