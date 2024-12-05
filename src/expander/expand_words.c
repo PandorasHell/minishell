@@ -30,9 +30,6 @@ int	expand_name(t_cmd *word, t_env *env, t_cmd *cmd)
 		if (!new)
 			return (1);
 		aux = expand_dolar(tmp->name, env, &quote, &split);
-		printf("quote: %d\n", quote);
-		printf("split: %d\n", split);
-		printf("aux: %s\n", aux);
 		if (split && !quote)
 		{
 			free(new);
@@ -44,7 +41,6 @@ int	expand_name(t_cmd *word, t_env *env, t_cmd *cmd)
 			new->name = ft_strdup(aux);
 			free(aux);
 		}
-		printf("new->name: %s\n", new->name);
 		ft_lstadd_back((t_list **)&word->info->word, (t_list *)new);
 		tmp = tmp->next;
 	}

@@ -25,6 +25,8 @@ static void	exec_line(t_cmd *cmd, t_env *env, char *line)
 	lexer = NULL;
 	parser = NULL;
 	lexer = lexical_analysis(line);
+	if (lexer == NULL)
+		return ;
 	parser = complete_parser(lexer);
 	cmd = expand_cmd(parser, env);
 	free_lexer(&lexer);
@@ -63,7 +65,11 @@ static void	line_reader(t_cmd *cmd, char *line, t_env *env)
 			free(line);
 		}
 		else
+		{
+			free_env(&env);
+			write(1, "exit\n", 5);
 			break ;
+		}
 	}
 }
 

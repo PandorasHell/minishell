@@ -1,16 +1,22 @@
 #include "../../minishell.h"
 
-static void	set_lexer_key(t_cmd_name *words, t_lexer *new)
+static int	set_lexer_key(t_cmd_name *words, t_lexer *new)
 {
 	t_dlexer	*data;
 
+	if ((words->name[0] == '|' && words->name[1] == '|')
+		|| (words->name[0] == '&' && words->name[1] == '&'))
+	{
+		printf("NO PUEDE SER\n");
+		return (-1);
+	}
 	data = ft_calloc(1, sizeof(t_dlexer));
 	if (!data)
-		return ;
+		return (-1);
 	new->content = data;
 	data->value = ft_strdup(words->name);
 	data->key = WORD;
-	if (data->value[0] == '|')
+	if (data->value[0] == '|' && !data->value[1])
 		data->key = PIPE;
 	else if (data->value[0] == '<' && data->value[1])
 		data->key = HEREDOC;
@@ -20,18 +26,19 @@ static void	set_lexer_key(t_cmd_name *words, t_lexer *new)
 		data->key = APPEND;
 	else if (data->value[0] == '>')
 		data->key = OUTFILE;
-	else if (data->value[0] == ';')
-		data->key = 6;
-	else if (data->value[0] == '&')
-		data->key = 7;
-	if ((data->value[0] == '|' && data->value[1])
-		|| (data->value[0] == '&' && data->value[1]))
-		data->key = -1;
+	// else if ((data->value[0] == '|' && data->value[1] == '|')
+	// 	|| (data->value[0] == '&' && data->value[1] == '&'))
+	// {
+	// 	free(data->value);
+	// 	free(data);
+	// 	return (-1);
+	// }
+	return (0);
 }
 
 static t_lexer	*set_lexer_value(t_cmd_name *words, t_lexer *lexer)
 {
-	t_lexer	*new;
+	t_lexer		*new;
 	t_cmd_name	*tmp_word;
 
 	new = NULL;
@@ -44,9 +51,15 @@ static t_lexer	*set_lexer_value(t_cmd_name *words, t_lexer *lexer)
 			ft_lstclear((t_list **)&lexer, free);
 			return (NULL);
 		}
-		set_lexer_key(words, new);
-		if (new->content->key == -1)
+		if (set_lexer_key(words, new) == -1)
+		{
+			free(new);
+			free_lexer(&lexer);
+			ft_lstclear((t_list **)&lexer, free);
+			ft_lstclear((t_list **)&tmp_word, free);
+			ft_putstr_fd("Syntax error: invalid operator\n", STDERR_FILENO);
 			return (NULL);
+		}
 		ft_lstadd_back((t_list **)&lexer, (t_list *)new);
 		words = words->next;
 	}

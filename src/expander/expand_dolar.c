@@ -119,8 +119,6 @@ char	*expand_dolar(char *name, t_env *env, int *quote, int *split)
 		}
 		else
 			ret = expand_lit(ret, name, &i);
-		printf("i: %d\n", i);
-		printf("len: %zu\n", ft_strlen(name));
 		if ((size_t)i >= ft_strlen(name))
 			break;
 	}
