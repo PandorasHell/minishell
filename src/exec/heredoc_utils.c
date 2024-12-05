@@ -47,16 +47,14 @@ char	*remove_quotes(char *limiter)
 	return (aux);
 }
 
-// TODO: Quitar una (1) linea
-
 char	*new_file(int *status)
 {
 	char	*tmp;
 	char	*name;
 	int		i;
 
-	i = 0;
-	while (i <= INT_MAX)
+	i = -1;
+	while (++i <= INT_MAX)
 	{
 		tmp = ft_itoa(i);
 		if (!tmp)
@@ -74,7 +72,6 @@ char	*new_file(int *status)
 		if (access(name, F_OK) == -1)
 			return (name);
 		free(name);
-		i++;
 	}
 	return (NULL);
 }
