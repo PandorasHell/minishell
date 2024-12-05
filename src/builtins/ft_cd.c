@@ -1,5 +1,11 @@
 #include "../../minishell.h"
 
+static int	error_args(void)
+{
+	ft_putstr_fd("too many arguments\n", 2);
+	return (1);
+}
+
 static int	send_to_home(char *old_path, t_env *env)
 {
 	t_env	*home;
@@ -64,18 +70,13 @@ int	path_update_control(char *old_path, t_env *env)
 	return (0);
 }
 
-// TODO: Tiene más de 25
-
 int	ft_cd(char **cmd, t_env *env)
 {
 	char	*current_path;
 	int		flag;
 
 	if (matrix_counter(cmd) > 2)
-	{
-		ft_putstr_fd("too many arguments\n", 2);
-		return (1);
-	}
+		return (error_args());
 	current_path = getcwd(NULL, 0);
 	flag = matrix_counter(cmd);
 	if (flag > 1)

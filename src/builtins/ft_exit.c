@@ -1,5 +1,14 @@
 #include "../../minishell.h"
 
+static void	clean_up_for_exit(char **cmd_matrix, t_cmd *cmd, t_env *env)
+{
+			cleanup(cmd_matrix);
+			free_cmd(cmd);
+			ft_lstclear((t_list **)&cmd, free);
+			free_env(&env);
+			exit(1);
+}
+
 static int	ft_exit_arg_checker(char *str)
 {
 	int	checker;
@@ -15,8 +24,6 @@ static int	ft_exit_arg_checker(char *str)
 	}
 	return (0);
 }
-
-// TODO: tiene 26 xd
 
 int	ft_exit(char **cmd_matrix, t_cmd *cmd, t_env *env)
 {
@@ -34,16 +41,9 @@ int	ft_exit(char **cmd_matrix, t_cmd *cmd, t_env *env)
 				ft_putstr_fd("Only use numeric values\n", 2);
 				return (1);
 			}
-			cleanup(cmd_matrix);
-			free_cmd(cmd);
-			ft_lstclear((t_list **)&cmd, free);
-			free_env(&env);
-			exit(1);
 		}
+		clean_up_for_exit(cmd_matrix, cmd, env);
 	}
-	cleanup(cmd_matrix);
-	free_cmd(cmd);
-	ft_lstclear((t_list **)&cmd, free);
-	free_env(&env);
-	exit(1);
+	clean_up_for_exit(cmd_matrix, cmd, env);
+	return (0);
 }

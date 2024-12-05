@@ -153,7 +153,6 @@ void		child_process(t_cmd *cmd, t_env *env);
 int			midcloser_2(int (*fd)[2]);
 int			midcloser_1(int fd_mid[2]);
 pid_t		child_birth(void);
-int			pipe_builder(int fd_mid[2]);
 int			dup_manager(int (*fd)[2], int fd_mid[2]);
 void		child_labour(int (*fd)[2], int fd_mid[2], t_cmd *cmd, t_env *env);
 

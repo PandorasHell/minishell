@@ -1,29 +1,51 @@
 #include "../../minishell.h"
 
-static int	flag_checker(char **cmd, int i)
+static void	print_without_flag(char **cmd, int *i, int j)
+{
+		while ((*i) < j)
+		{
+			if (cmd[(*i) + 1] == NULL)
+				printf("%s\n", cmd[(*i)]);
+			else
+				printf("%s ", cmd[(*i)]);
+			(*i)++;
+		}
+}
+
+static void	print_with_flag(char **cmd, int *i, int j)
+{
+		while ((*i) < j)
+		{
+			if (cmd[(*i) + 1] == NULL)
+				printf("%s", cmd[(*i)]);
+			else
+				printf("%s ", cmd[(*i)]);
+			(*i)++;
+		}
+}
+
+static int	flag_checker(char **cmd, int iterator)
 {
 	int	j;
 
-	while (cmd[i])
+	while (cmd[iterator])
 	{
 		j = 1;
-		if (cmd[i][0] == '-')
+		if (cmd[iterator][0] == '-')
 		{
-			while (cmd[i][j])
+			while (cmd[iterator][j])
 			{
-				if (cmd[i][j] != 'n' && cmd[i][j] != '\0')
-					return (i);
+				if (cmd[iterator][j] != 'n' && cmd[iterator][j] != '\0')
+					return (iterator);
 				j++;
 			}
 		}
 		else
-			return (i);
-		i++;
+			return (iterator);
+		iterator++;
 	}
-	return (i);
+	return (iterator);
 }
-
-// TODO: Esta refactorizarla
 
 int	ft_echo(char **cmd)
 {
@@ -36,26 +58,8 @@ int	ft_echo(char **cmd)
 		j++;
 	i = flag_checker(cmd, i);
 	if (i > 1)
-	{
-		while (i < j)
-		{
-			if (cmd[i + 1] == NULL)
-				printf("%s", cmd[i]);
-			else
-				printf("%s ", cmd[i]);
-			i++;
-		}
-	}
+		print_with_flag(cmd, &i, j);
 	else
-	{
-		while (i < j)
-		{
-			if (cmd[i + 1] == NULL)
-				printf("%s\n", cmd[i]);
-			else
-				printf("%s ", cmd[i]);
-			i++;
-		}
-	}
+		print_without_flag(cmd, &i, j);
 	return (0);
 }

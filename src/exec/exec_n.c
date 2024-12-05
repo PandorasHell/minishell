@@ -79,8 +79,6 @@ static pid_t	ft_mid_cmd(int (*fd)[2], t_cmd *cmd, t_env *env)
 	pid_t	pid_mid;
 	int		fd_mid[2];
 
-	if (pipe_builder(fd_mid))
-		return (1);
 	pid_mid = fork();
 	if (pid_mid < 0)
 		return (1);
