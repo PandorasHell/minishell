@@ -75,22 +75,35 @@ char	*expand_dolar(char *name, t_env *env, int *quote, int *split)
 	char	*ret;
 	int		i;
 	int		single_quote;
+	int		double_quote;
 
 	i = 0;
 	ret = ft_strdup("");
 	single_quote = 0;
+	double_quote = 0;
 	while (name[i])
 	{
 		if (name[i] == '\"')
-			(*quote) = 1;
-		if (name[i] == '\'' && !(*quote))
+		{
+			if (double_quote)
+				double_quote = 0;
+			else
+			{
+				(*quote) += 1;
+				double_quote = 1;
+			}
+			i++;
+		}
+		if (name[i] == '\'' && !double_quote)
 		{
 			if (single_quote)
 				single_quote = 0;
 			else
 			{
-				(*quote) = 1;
-				single_quote = 1;}
+				(*quote) += 1;
+				single_quote = 1;
+			}
+			i++;
 		}
 		if (name[i] == '$' && !single_quote)
 		{
@@ -106,6 +119,10 @@ char	*expand_dolar(char *name, t_env *env, int *quote, int *split)
 		}
 		else
 			ret = expand_lit(ret, name, &i);
+		printf("i: %d\n", i);
+		printf("len: %zu\n", ft_strlen(name));
+		if ((size_t)i >= ft_strlen(name))
+			break;
 	}
 	return (ret);
 }

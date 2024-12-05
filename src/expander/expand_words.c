@@ -18,7 +18,7 @@ int	expand_name(t_cmd *word, t_env *env, t_cmd *cmd)
 	t_cmd_name	*new;
 	t_cmd_name	*tmp;
 	int			quote;
-	int		split;
+	int			split;
 	char		*aux;
 
 	tmp = cmd->info->word;
@@ -30,6 +30,9 @@ int	expand_name(t_cmd *word, t_env *env, t_cmd *cmd)
 		if (!new)
 			return (1);
 		aux = expand_dolar(tmp->name, env, &quote, &split);
+		printf("quote: %d\n", quote);
+		printf("split: %d\n", split);
+		printf("aux: %s\n", aux);
 		if (split && !quote)
 		{
 			free(new);
@@ -37,7 +40,11 @@ int	expand_name(t_cmd *word, t_env *env, t_cmd *cmd)
 			free(aux);
 		}
 		else
-			new->name = expand_quote(aux);
+		{
+			new->name = ft_strdup(aux);
+			free(aux);
+		}
+		printf("new->name: %s\n", new->name);
 		ft_lstadd_back((t_list **)&word->info->word, (t_list *)new);
 		tmp = tmp->next;
 	}

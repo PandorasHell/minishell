@@ -46,7 +46,10 @@ int	expand_redir(t_cmd *redir, t_env *env, t_cmd *cmd)
 			free(aux);
 		}
 		else
-			new->content->where = expand_quote(aux);
+		{
+			new->content->where = ft_strdup(aux);
+			free(aux);
+		}
 		if (!new->content->where)
 			return (free_cmd(redir), free(new), 1);
 		new->content->type = tmp->content->type;

@@ -13,7 +13,7 @@ pid_t	child_birth(void)
 	return (pid);
 }
 
-static int	pipe_builder(int fd_mid[2])
+int	pipe_builder(int fd_mid[2])
 {
 	if (pipe(fd_mid) < 0)
 	{
