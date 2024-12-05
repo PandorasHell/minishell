@@ -1,7 +1,7 @@
 #include "../../minishell.h"
 
-static void *free_lexer(t_lexer *lexer, t_lexer *new,
-	/ t_cmd_name *tmp_word)
+static void *free_lexical_values(t_lexer *lexer, t_lexer *new, \
+ 				t_cmd_name *tmp_word)
 {
 		free(new);
 		free_lexer(&lexer);
@@ -55,7 +55,7 @@ static t_lexer	*set_lexer_value(t_cmd_name *words, t_lexer *lexer)
 			return (NULL);
 		}
 		if (set_lexer_key(words, new) == -1)
-			return (free_lexer(lexer, new, tmp_word));
+			return (free_lexical_values(lexer, new, tmp_word));
 		ft_lstadd_back((t_list **)&lexer, (t_list *)new);
 		words = words->next;
 	}
