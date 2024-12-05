@@ -39,6 +39,8 @@ static void	exec_line(t_cmd *cmd, t_env *env, char *line)
 	}
 }
 
+// TODO: Esto tiene más de 25 por el exit, pero lo quitaremos cuando hagamos el builtin
+
 static void	line_reader(t_cmd *cmd, char *line, t_env *env)
 {
 	while (1)

@@ -1,6 +1,6 @@
 #include "../../minishell.h"
 
-int		matrix_counter(char **matrix)
+int	matrix_counter(char **matrix)
 {
 	int		i;
 

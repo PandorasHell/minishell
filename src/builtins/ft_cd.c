@@ -64,6 +64,8 @@ int	path_update_control(char *old_path, t_env *env)
 	return (0);
 }
 
+// TODO: Tiene más de 25
+
 int	ft_cd(char **cmd, t_env *env)
 {
 	char	*current_path;

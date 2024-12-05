@@ -28,6 +28,8 @@ static char	*expand_exit_code(char *ret, int *i)
 	return (ret);
 }
 
+// TODO: Esta también tiene más de 25
+
 static char	*expand_env(char *ret, char *name, int *i, t_env *env)
 {
 	char	*tmp;
@@ -69,6 +71,8 @@ char	*expand_lit(char *ret, char *name, int *i)
 	(*i)++;
 	return (ret);
 }
+
+// TODO: Dividir esto en dos
 
 char	*expand_dolar(char *name, t_env *env, int *quote, int *split)
 {

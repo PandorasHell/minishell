@@ -16,6 +16,8 @@ static int	ft_exit_arg_checker(char *str)
 	return (0);
 }
 
+// TODO: tiene 26 xd
+
 int	ft_exit(char **cmd_matrix, t_cmd *cmd, t_env *env)
 {
 	if (cmd_matrix)

@@ -20,6 +20,8 @@ static t_cmd_red	*set_redir_mem(t_cmd *cmd)
 	return (redir);
 }
 
+// TODO: Dividir esto en dos
+
 int	expand_redir(t_cmd *redir, t_env *env, t_cmd *cmd)
 {
 	t_cmd_red	*new;
@@ -38,7 +40,7 @@ int	expand_redir(t_cmd *redir, t_env *env, t_cmd *cmd)
 			aux = ft_strdup(tmp->content->where);
 		else
 			aux = expand_dolar(tmp->content->where, env, &quote, &split);
-		if (quote)
+		if (split && !quote)
 		{
 			free(new->content);
 			free(new);

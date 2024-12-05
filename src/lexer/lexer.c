@@ -26,6 +26,8 @@ static int	set_lexer_key(t_cmd_name *words, t_lexer *new)
 	return (0);
 }
 
+// TODO: Sobran dos lineas TT_TT
+
 static t_lexer	*set_lexer_value(t_cmd_name *words, t_lexer *lexer)
 {
 	t_lexer		*new;

@@ -47,6 +47,8 @@ char	*remove_quotes(char *limiter)
 	return (aux);
 }
 
+// TODO: Quitar una (1) linea
+
 char	*new_file(int *status)
 {
 	char	*tmp;

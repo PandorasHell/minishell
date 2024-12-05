@@ -13,6 +13,8 @@ static t_cmd_name	*set_name_mem(t_cmd *cmd)
 	return (new);
 }
 
+// TODO: Dividir esto (Quitar el if else quiza)
+
 int	expand_name(t_cmd *word, t_env *env, t_cmd *cmd)
 {
 	t_cmd_name	*new;

@@ -1,5 +1,7 @@
 #include "../../minishell.h"
 
+// TODO: Aqu ambas funciones se pasan de 25 xd
+
 t_cmd_red	*expand_split_redir(char *name)
 {
 	t_cmd_red	*exp;

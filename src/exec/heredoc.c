@@ -1,6 +1,7 @@
 #include "../../minishell.h"
 
 // TODO: Falta añadir las señales en el heredoc
+// TODO: eliminar all menos una variable y acortar la función 
 
 char	*heredoc(char *limiter, t_env *env, int *status)
 {
@@ -59,6 +60,8 @@ static t_cmd_red	*set_redir_mem(t_cmd_red *redir, int *status)
 	}
 	return (new);
 }
+
+// TODO: Esta también tiene más de 25
 
 t_cmd_red	*heredoc_cmd(t_cmd_red *redir, t_env *env, int *status)
 {
