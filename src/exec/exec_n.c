@@ -23,7 +23,7 @@ void	child_process(t_cmd *cmd, t_env *env)
 	char	**args;
 
 	args = cmd_to_array(cmd->info->word);
-    envp = env_to_array(env);
+	envp = env_to_array(env);
 	path = NULL;
 	if (relative_path(args, &path) == 0)
 	{
@@ -60,14 +60,14 @@ static pid_t	ft_first_cmd(int (*fd)[2], t_cmd *cmd, t_env *env)
 		dup2(fd[0][1], STDOUT_FILENO);
 		close(fd[0][0]);
 		close(fd[1][1]);
-        manage_redir(cmd->info->redir);
+		manage_redir(cmd->info->redir);
 		if (ft_is_builtin(cmd->info->word->name))
 		{
 			exec_builtin(cmd, env);
 			exit (0);
 		}
 		else
-			child_process(cmd , env);
+			child_process(cmd, env);
 	}
 	close(fd[0][1]);
 	close(fd[1][1]);
@@ -114,7 +114,7 @@ static pid_t	ft_last_cmd(int (*fd)[2], t_cmd *cmd, t_env *env)
 			exit (0);
 		}
 		else
-			child_process(cmd , env);
+			child_process(cmd, env);
 	}
 	close(fd[0][0]);
 	close(fd[1][1]);
@@ -126,7 +126,6 @@ void	execute_n(t_cmd *cmd, t_env *env)
 	int		fd[2][2];
 	pid_t	*child;
 	int		i;
-
 
 	child = (pid_t *)malloc(sizeof(pid_t) * ft_lstsize((t_list *)cmd));
 	if (!child)

@@ -1,6 +1,5 @@
 #include "../../minishell.h"
 
-
 char	*append_path(char const *s1, char const *s2)
 {
 	size_t	i;
@@ -16,7 +15,7 @@ char	*append_path(char const *s1, char const *s2)
 		return (NULL);
 	while (s1[++i])
 		s3[i] = s1[i];
-    s3[i] = '/';
+	s3[i] = '/';
 	i++;
 	while (s2[j])
 	{

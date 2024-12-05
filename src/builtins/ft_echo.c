@@ -1,8 +1,8 @@
 #include "../../minishell.h"
 
-static int flag_checker(char **cmd, int i)
+static int	flag_checker(char **cmd, int i)
 {
-	int j;
+	int	j;
 
 	while (cmd[i])
 	{
@@ -23,7 +23,7 @@ static int flag_checker(char **cmd, int i)
 	return (i);
 }
 
-int ft_echo(char **cmd)
+int	ft_echo(char **cmd)
 {
 	int	i;
 	int	j;

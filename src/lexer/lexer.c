@@ -6,10 +6,7 @@ static int	set_lexer_key(t_cmd_name *words, t_lexer *new)
 
 	if ((words->name[0] == '|' && words->name[1] == '|')
 		|| (words->name[0] == '&' && words->name[1] == '&'))
-	{
-		printf("NO PUEDE SER\n");
 		return (-1);
-	}
 	data = ft_calloc(1, sizeof(t_dlexer));
 	if (!data)
 		return (-1);
@@ -26,13 +23,6 @@ static int	set_lexer_key(t_cmd_name *words, t_lexer *new)
 		data->key = APPEND;
 	else if (data->value[0] == '>')
 		data->key = OUTFILE;
-	// else if ((data->value[0] == '|' && data->value[1] == '|')
-	// 	|| (data->value[0] == '&' && data->value[1] == '&'))
-	// {
-	// 	free(data->value);
-	// 	free(data);
-	// 	return (-1);
-	// }
 	return (0);
 }
 
@@ -85,7 +75,7 @@ void	free_lexer(t_lexer **lexer)
 t_lexer	*lexical_analysis(char *line)
 {
 	t_cmd_name	*words;
-	t_lexer	*lexer;
+	t_lexer		*lexer;
 
 	lexer = NULL;
 	words = NULL;

@@ -120,7 +120,7 @@ char	*expand_dolar(char *name, t_env *env, int *quote, int *split)
 		else
 			ret = expand_lit(ret, name, &i);
 		if ((size_t)i >= ft_strlen(name))
-			break;
+			break ;
 	}
 	return (ret);
 }

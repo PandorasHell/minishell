@@ -23,8 +23,7 @@ int	pipe_builder(int fd_mid[2])
 	return (0);
 }
 
-static int first_part(int (*fd)[2], int fd_mid[2], \
-			t_cmd *cmd, t_env *env)
+static int	first_part(int (*fd)[2], int fd_mid[2], t_cmd *cmd, t_env *env)
 {
 	if (close(fd[1][0]) < 0)
 	{
@@ -49,7 +48,7 @@ static int first_part(int (*fd)[2], int fd_mid[2], \
 	return (0);
 }
 
-void child_labour(int (*fd)[2], int fd_mid[2], t_cmd *cmd, t_env *env)
+void	child_labour(int (*fd)[2], int fd_mid[2], t_cmd *cmd, t_env *env)
 {
 	first_part(fd, fd_mid, cmd, env);
 	if (dup2(fd_mid[1], STDOUT_FILENO) < 0)
@@ -62,12 +61,12 @@ void child_labour(int (*fd)[2], int fd_mid[2], t_cmd *cmd, t_env *env)
 		perror(strerror(errno));
 		ft_exit(NULL, cmd, env);
 	}
-	if	(manage_redir(cmd->info->redir))
+	if (manage_redir(cmd->info->redir))
 		ft_exit(NULL, cmd, env);
 	if (ft_is_builtin(cmd->info->word->name))
 	{
 		exec_builtin(cmd, env);
 		ft_exit(NULL, cmd, env);
 	}
-	child_process(cmd , env);
+	child_process(cmd, env);
 }

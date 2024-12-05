@@ -1,8 +1,8 @@
 #include "../../minishell.h"
 
-static int send_to_home(char *old_path, t_env *env)
+static int	send_to_home(char *old_path, t_env *env)
 {
-	t_env *home;
+	t_env	*home;
 
 	home = env_node_search("HOME", env);
 	if (!home)
@@ -16,7 +16,7 @@ static int send_to_home(char *old_path, t_env *env)
 	return (0);
 }
 
-static int path_updater(char *key, char *value, t_env *env)
+static int	path_updater(char *key, char *value, t_env *env)
 {
 	t_env	*tmp_node;
 
@@ -28,10 +28,9 @@ static int path_updater(char *key, char *value, t_env *env)
 	}
 	if (value)
 	{
-		tmp_node->content->value = ft_substr(value, \
-			0, ft_strlen(value));
+		tmp_node->content->value = ft_substr(value, 0, ft_strlen(value));
 		if (!tmp_node->content->value)
-			return(1);
+			return (1);
 	}
 	return (0);
 }
@@ -65,7 +64,7 @@ int	path_update_control(char *old_path, t_env *env)
 	return (0);
 }
 
-int ft_cd(char **cmd, t_env *env)
+int	ft_cd(char **cmd, t_env *env)
 {
 	char	*current_path;
 	int		flag;
@@ -81,7 +80,7 @@ int ft_cd(char **cmd, t_env *env)
 	{
 		if (chdir(cmd[1]) == -1)
 		{
-			ft_putendl_fd( strerror(errno), 1);
+			ft_putendl_fd(strerror(errno), 1);
 			free(current_path);
 			return (1);
 		}

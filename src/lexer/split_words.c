@@ -71,7 +71,7 @@ static void	save_new(char *line, t_cmd_name *tmp, size_t i)
 t_cmd_name	*split_words(char *line, t_cmd_name *words)
 {
 	t_cmd_name	*tmp;
-	size_t	i;
+	size_t		i;
 
 	i = 0;
 	while (line[i])

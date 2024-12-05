@@ -1,12 +1,13 @@
 #include "../../minishell.h"
 
-int variable_updater(char **cmd_matrix, t_env **env)
+int	variable_updater(char **cmd_matrix, t_env **env)
 {
 	t_env	*tmp_node;
 
 	tmp_node = env_node_search(cmd_matrix[0], *env);
 	free(tmp_node->content->value);
-	tmp_node->content->value = ft_substr(cmd_matrix[1], 0, ft_strlen(cmd_matrix[1]));
+	tmp_node->content->value = ft_substr(cmd_matrix[1], 0,
+			ft_strlen(cmd_matrix[1]));
 	if (!tmp_node->content->value)
 		return (1);
 	return (0);
@@ -34,7 +35,7 @@ static int	save_node_env(char **cmd_matrix, t_env *env)
 	return (0);
 }
 
-static char ***matrix_creator(char **cmd)
+static char	***matrix_creator(char **cmd)
 {
 	char	***cmd_matrix;
 	int		i;
@@ -43,7 +44,7 @@ static char ***matrix_creator(char **cmd)
 	i = 0;
 	j = 1;
 	i = matrix_counter(cmd);
-	cmd_matrix = ft_calloc( i + 1,sizeof(char **));
+	cmd_matrix = ft_calloc(i + 1, sizeof(char **));
 	if (!cmd_matrix)
 		return (NULL);
 	i = 0;
@@ -63,7 +64,7 @@ static char ***matrix_creator(char **cmd)
 
 static int	var_checker(char ***cmd_matrix, t_env **env)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	while (cmd_matrix[i])
@@ -83,7 +84,7 @@ static int	var_checker(char ***cmd_matrix, t_env **env)
 	return (0);
 }
 
-int ft_export(char **cmd, t_env *env)
+int	ft_export(char **cmd, t_env *env)
 {
 	char	***cmd_matrix;
 
@@ -98,4 +99,3 @@ int ft_export(char **cmd, t_env *env)
 	free_matrix(cmd_matrix);
 	return (0);
 }
-

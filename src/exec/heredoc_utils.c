@@ -23,6 +23,7 @@ void	free_redir(t_cmd_red *redir)
 		tmp = aux;
 	}
 }
+
 char	*remove_quotes(char *limiter)
 {
 	char	*aux;
@@ -53,7 +54,8 @@ char	*new_file(int *status)
 	int		i;
 
 	i = 0;
-	while (i <= INT_MAX) {
+	while (i <= INT_MAX)
+	{
 		tmp = ft_itoa(i);
 		if (!tmp)
 		{

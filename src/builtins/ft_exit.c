@@ -1,8 +1,8 @@
 #include "../../minishell.h"
 
-static int ft_exit_arg_checker(char *str)
+static int	ft_exit_arg_checker(char *str)
 {
-	int		checker;
+	int	checker;
 
 	checker = 0;
 	if (str == NULL)
@@ -34,7 +34,7 @@ int	ft_exit(char **cmd_matrix, t_cmd *cmd, t_env *env)
 			}
 			cleanup(cmd_matrix);
 			free_cmd(cmd);
-			ft_lstclear((t_list **) &cmd, free);
+			ft_lstclear((t_list **)&cmd, free);
 			free_env(&env);
 			exit(1);
 		}

@@ -6,9 +6,9 @@ char	*heredoc(char *limiter, t_env *env, int *status)
 {
 	int		tmp_fd;
 	char	*line;
-	char 	*limit;
+	char	*limit;
 	char	*here_doc;
-	char 	*expanded_line;
+	char	*expanded_line;
 	int		i;
 
 	limit = create_tmp_file(limiter, status, &tmp_fd, &here_doc);
@@ -94,7 +94,7 @@ t_cmd_red	*heredoc_cmd(t_cmd_red *redir, t_env *env, int *status)
 int	create_heredoc(t_cmd *cmd, t_env *env)
 {
 	t_cmd_red	*redir;
-	int		status;
+	int			status;
 
 	if (!cmd || !env)
 		return (1);

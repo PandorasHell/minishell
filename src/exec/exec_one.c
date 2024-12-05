@@ -1,6 +1,5 @@
 #include "../../minishell.h"
 
-
 static void	execute_cmd(t_cmd *cmd, t_env *env)
 {
 	pid_t	pid;
@@ -11,7 +10,7 @@ static void	execute_cmd(t_cmd *cmd, t_env *env)
 	if (pid < 0)
 	{
 		perror("Error: fork failed");
-		return;
+		return ;
 	}
 	if (pid == 0)
 	{
@@ -24,7 +23,6 @@ static void	execute_cmd(t_cmd *cmd, t_env *env)
 
 void	execute_one(t_cmd *cmd, t_env *env)
 {
-// TODO: Pasar lo de si es un builtin a la ejecucion de los hijos
 	// #TODO: Añadir señales en la ejecucion.
 	if (ft_is_builtin(cmd->info->word->name))
 		exec_builtin(cmd, env);

@@ -2,7 +2,6 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
-
 int	exit_line(char *line)
 {
 	while (*line)
@@ -38,7 +37,6 @@ static void	exec_line(t_cmd *cmd, t_env *env, char *line)
 		free_cmd(cmd);
 		ft_lstclear((t_list **)&cmd, free);
 	}
-
 }
 
 static void	line_reader(t_cmd *cmd, char *line, t_env *env)

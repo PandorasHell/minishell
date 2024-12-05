@@ -1,9 +1,9 @@
 #include "../../minishell.h"
 
-char    **cmd_to_array(t_cmd_name *cmd)
+char	**cmd_to_array(t_cmd_name *cmd)
 {
-    t_cmd_name	*tmp;
-    char		**args;
+	t_cmd_name	*tmp;
+	char		**args;
 	int			i;
 
 	i = ft_lstsize((t_list *)cmd);
@@ -11,19 +11,19 @@ char    **cmd_to_array(t_cmd_name *cmd)
 	if (!args)
 		return (NULL);
 	i = 0;
-    tmp = cmd;
-    while (tmp)
-    {
-        args[i] = ft_strdup(tmp->name);
-        if (!args[i])
+	tmp = cmd;
+	while (tmp)
+	{
+		args[i] = ft_strdup(tmp->name);
+		if (!args[i])
 		{
 			cleanup(args);
 			return (NULL);
 		}
 		i++;
-        tmp = tmp->next;
-    }
-    return (args);
+		tmp = tmp->next;
+	}
+	return (args);
 }
 
 char	**env_to_array(t_env *env)

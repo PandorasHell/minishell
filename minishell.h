@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:52:54 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/12/01 11:08:26 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/12/05 16:23:42 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,5 @@ int			ft_exit(char **cmd_matrix, t_cmd *cmd, t_env *env);
 int			exec_builtin(t_cmd *cmd, t_env *env);
 int			variable_updater(char **cmd_matrix, t_env **env);
 int			path_update_control(char *old_path, t_env *env);
-
-
 
 #endif

@@ -70,7 +70,6 @@ t_cmd_name	*expand_split_word(char *name)
 			ft_lstclear((t_list **)&new, free);
 			return (NULL);
 		}
-		printf("new->name split: %s\n", new->name);
 		ft_lstadd_back((t_list **)&exp, (t_list *)new);
 		i++;
 	}
