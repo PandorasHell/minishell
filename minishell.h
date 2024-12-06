@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:52:54 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/12/06 18:37:30 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/12/06 19:21:53 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,7 @@ int			matrix_counter(char **matrix);
 int			pointer_free(void *ptr, void *ptr2, void *ptr3, int flag);
 int			error_pointer_free(void *ptr, void *ptr2, void *ptr3, int flag);
 char		*append_path(char const *s1, char const *s2);
-int 		is_sys_var(char *name);
+int			is_sys_var(char *name);
 
 // BUILTINS
 int			ft_cd(char **cmd, t_env *env);

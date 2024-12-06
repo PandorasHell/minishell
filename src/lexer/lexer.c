@@ -1,6 +1,6 @@
 #include "../../minishell.h"
 
-static void *free_lexer_key(t_lexer *lexer, t_lexer *new, t_cmd_name *tmp_word)
+static void	*free_lexer_key(t_lexer *lexer, t_lexer *new, t_cmd_name *tmp_word)
 {
 	free(new);
 	free_lexer(&lexer);

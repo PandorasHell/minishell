@@ -28,15 +28,12 @@ static char	*expand_exit_code(char *ret, int *i)
 	return (ret);
 }
 
-// TODO: Esta también tiene más de 25
-
 static char	*expand_env(char *ret, char *name, int *i, t_env *env)
 {
 	char	*tmp;
 	int		expanded;
 
-	tmp = NULL;
-	expanded = 0;
+	expanded = ((tmp = NULL), 0);
 	while (env)
 	{
 		if (check_exp_env(name, i, env))
@@ -44,8 +41,7 @@ static char	*expand_env(char *ret, char *name, int *i, t_env *env)
 			tmp = ft_strdup(env->content->value);
 			ret = ft_strappend(ret, tmp);
 			free(tmp);
-			*i += ft_strlen(env->content->key);
-			expanded = 1;
+			*i += ((expanded = 1), ft_strlen(env->content->key));
 			break ;
 		}
 		env = env->next;
