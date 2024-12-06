@@ -2,11 +2,11 @@
 
 static void	clean_up_for_exit(char **cmd_matrix, t_cmd *cmd, t_env *env)
 {
-			cleanup(cmd_matrix);
-			free_cmd(cmd);
-			ft_lstclear((t_list **)&cmd, free);
-			free_env(&env);
-			exit(1);
+	cleanup(cmd_matrix);
+	free_cmd(cmd);
+	ft_lstclear((t_list **)&cmd, free);
+	free_env(&env);
+	exit(1);
 }
 
 static int	ft_exit_arg_checker(char *str)

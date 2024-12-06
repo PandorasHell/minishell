@@ -72,6 +72,29 @@ char	*expand_lit(char *ret, char *name, int *i)
 	return (ret);
 }
 
+static void	double_quote_status(int *double_quote, int *i, int *quote)
+{
+	if (*double_quote)
+		*double_quote = 0;
+	else
+	{
+		(*quote) += 1;
+		*double_quote = 1;
+	}
+	(*i)++;
+}
+
+static void	single_quote_status(int *single_quote, int *i, int *quote)
+{
+	if (*single_quote)
+		*single_quote = 0;
+	else
+	{
+		(*quote) += 1;
+		*single_quote = 1;
+	}
+	(*i)++;
+};
 // TODO: Dividir esto en dos
 
 char	*expand_dolar(char *name, t_env *env, int *quote, int *split)
@@ -88,27 +111,9 @@ char	*expand_dolar(char *name, t_env *env, int *quote, int *split)
 	while (name[i])
 	{
 		if (name[i] == '\"')
-		{
-			if (double_quote)
-				double_quote = 0;
-			else
-			{
-				(*quote) += 1;
-				double_quote = 1;
-			}
-			i++;
-		}
+			double_quote_status(&double_quote, &i, quote);
 		if (name[i] == '\'' && !double_quote)
-		{
-			if (single_quote)
-				single_quote = 0;
-			else
-			{
-				(*quote) += 1;
-				single_quote = 1;
-			}
-			i++;
-		}
+			single_quote_status(&single_quote, &i, quote);
 		if (name[i] == '$' && !single_quote)
 		{
 			i++;
@@ -117,8 +122,7 @@ char	*expand_dolar(char *name, t_env *env, int *quote, int *split)
 			else
 			{
 				ret = expand_env(ret, name, &i, env);
-				if (!single_quote)
-					(*split) = 1;
+				(*split) = 1;
 			}
 		}
 		else

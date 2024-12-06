@@ -27,13 +27,11 @@ SRC_FILES := 	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/utils/ft_strcmp.c \
 				$(SRC_DIR)/utils/ft_free_matrix.c \
 				$(SRC_DIR)/utils/append_path.c \
-				$(SRC_DIR)/utils/midcloser.c \
-				$(SRC_DIR)/utils/child_utils.c \
+				$(SRC_DIR)/utils/is_sys_var.c \
 				$(SRC_DIR)/expander/expander.c \
 				$(SRC_DIR)/expander/expand_redir.c \
 				$(SRC_DIR)/expander/expand_words.c \
 				$(SRC_DIR)/expander/expand_dolar.c \
-				$(SRC_DIR)/expander/expand_quote.c \
 				$(SRC_DIR)/expander/expand_split.c \
 				$(SRC_DIR)/exec/executer.c \
 				$(SRC_DIR)/exec/heredoc.c \
@@ -44,6 +42,7 @@ SRC_FILES := 	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/exec/manage_redir.c \
 				$(SRC_DIR)/exec/trans_lst.c \
 				$(SRC_DIR)/exec/exec_n.c \
+				$(SRC_DIR)/exec/child_exec.c \
                 $(SRC_DIR)/builtins/ft_echo.c \
                 $(SRC_DIR)/builtins/ft_env.c \
                 $(SRC_DIR)/builtins/ft_export.c \

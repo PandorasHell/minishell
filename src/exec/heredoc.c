@@ -61,6 +61,8 @@ static t_cmd_red	*set_redir_mem(t_cmd_red *redir, int *status)
 	return (new);
 }
 
+// TODO: Acortar la función
+
 t_cmd_red	*heredoc_cmd(t_cmd_red *redir, t_env *env, int *status)
 {
 	t_cmd_red	*tmp;
@@ -109,8 +111,6 @@ int	create_heredoc(t_cmd *cmd, t_env *env)
 			return (status);
 		free_redir(cmd->info->redir);
 		cmd->info->redir = redir;
-		if (cmd->info->redir)
-			printf("redir: %s\n", cmd->info->redir->content->where);
 		cmd = cmd->next;
 	}
 	return (status);

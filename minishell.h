@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:52:54 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/12/05 16:23:42 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/12/06 18:37:30 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <unistd.h>
+
 # define WORD 0
 # define INFILE 1
 # define HEREDOC 2
@@ -118,7 +119,6 @@ t_cmd		*expand_cmd(t_cmd *cmd, t_env *env);
 int			expand_redir(t_cmd *redir, t_env *env, t_cmd *cmd);
 int			expand_name(t_cmd *word, t_env *env, t_cmd *cmd);
 char		*expand_dolar(char *name, t_env *env, int *quote, int *split);
-char		*expand_quote(char *line);
 char		*expand_lit(char *ret, char *name, int *i);
 t_cmd_name	*expand_split_word(char *name);
 t_cmd_red	*expand_split_redir(char *name);
@@ -137,6 +137,10 @@ char		**env_to_array(t_env *env);
 char		**cmd_to_array(t_cmd_name *cmd);
 int			manage_redir(t_cmd_red *redir);
 void		execute_n(t_cmd *cmd, t_env *env);
+void		child_process(t_cmd *cmd, t_env *env);
+pid_t		ft_first_cmd(int (*fd)[2], t_cmd *cmd, t_env *env);
+pid_t		ft_mid_cmd(int (*fd)[2], t_cmd *cmd, t_env *env);
+pid_t		ft_last_cmd(int (*fd)[2], t_cmd *cmd, t_env *env);
 
 // UTILS
 int			exit_checker(const char *line, const char *comparer);
@@ -149,12 +153,7 @@ int			matrix_counter(char **matrix);
 int			pointer_free(void *ptr, void *ptr2, void *ptr3, int flag);
 int			error_pointer_free(void *ptr, void *ptr2, void *ptr3, int flag);
 char		*append_path(char const *s1, char const *s2);
-void		child_process(t_cmd *cmd, t_env *env);
-int			midcloser_2(int (*fd)[2]);
-int			midcloser_1(int fd_mid[2]);
-pid_t		child_birth(void);
-int			dup_manager(int (*fd)[2], int fd_mid[2]);
-void		child_labour(int (*fd)[2], int fd_mid[2], t_cmd *cmd, t_env *env);
+int 		is_sys_var(char *name);
 
 // BUILTINS
 int			ft_cd(char **cmd, t_env *env);

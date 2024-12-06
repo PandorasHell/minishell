@@ -40,83 +40,9 @@ void	child_process(t_cmd *cmd, t_env *env)
 		free(path);
 		cleanup(args);
 		cleanup(envp);
-		perror(strerror(errno));
-		ft_exit(NULL, cmd, env);
+		perror("minishell");
+		exit(1);
 	}
-}
-
-static pid_t	ft_first_cmd(int (*fd)[2], t_cmd *cmd, t_env *env)
-{
-	pid_t	pid_in;
-
-	pid_in = fork();
-	if (pid_in < 0)
-	{
-		perror("Error: fork failed");
-		return (0);
-	}
-	if (pid_in == 0)
-	{
-		dup2(fd[0][1], STDOUT_FILENO);
-		close(fd[0][0]);
-		close(fd[1][1]);
-		manage_redir(cmd->info->redir);
-		if (ft_is_builtin(cmd->info->word->name))
-		{
-			exec_builtin(cmd, env);
-			exit (0);
-		}
-		else
-			child_process(cmd, env);
-	}
-	close(fd[0][1]);
-	close(fd[1][1]);
-	return (pid_in);
-}
-
-static pid_t	ft_mid_cmd(int (*fd)[2], t_cmd *cmd, t_env *env)
-{
-	pid_t	pid_mid;
-	int		fd_mid[2];
-
-	pid_mid = fork();
-	if (pid_mid < 0)
-		return (1);
-	if (pid_mid == 0)
-		child_labour(fd, fd_mid, cmd, env);
-	close(fd[0][0]);
-	close(fd_mid[1]);
-	fd[0][0] = fd_mid[0];
-	return (pid_mid);
-}
-
-static pid_t	ft_last_cmd(int (*fd)[2], t_cmd *cmd, t_env *env)
-{
-	pid_t	pid_out;
-
-	pid_out = fork();
-	if (pid_out < 0)
-	{
-		perror("Error: fork failed");
-		return (0);
-	}
-	if (pid_out == 0)
-	{
-		dup2(fd[0][0], STDIN_FILENO);
-		close(fd[0][0]);
-		close(fd[1][1]);
-		manage_redir(cmd->info->redir);
-		if (ft_is_builtin(cmd->info->word->name))
-		{
-			exec_builtin(cmd, env);
-			exit (0);
-		}
-		else
-			child_process(cmd, env);
-	}
-	close(fd[0][0]);
-	close(fd[1][1]);
-	return (pid_out);
 }
 
 void	execute_n(t_cmd *cmd, t_env *env)

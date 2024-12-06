@@ -1,14 +1,13 @@
 #include "../../minishell.h"
 
-static void *free_lexical_values(t_lexer *lexer, t_lexer *new, \
- 				t_cmd_name *tmp_word)
+static void *free_lexer_key(t_lexer *lexer, t_lexer *new, t_cmd_name *tmp_word)
 {
-		free(new);
-		free_lexer(&lexer);
-		ft_lstclear((t_list **)&lexer, free);
-		ft_lstclear((t_list **)&tmp_word, free);
-		ft_putstr_fd("Syntax error: invalid operator\n", STDERR_FILENO);
-		return (NULL);
+	free(new);
+	free_lexer(&lexer);
+	ft_lstclear((t_list **)&lexer, free);
+	ft_lstclear((t_list **)&tmp_word, free);
+	ft_putstr_fd("Syntax error: invalid operator\n", STDERR_FILENO);
+	return (NULL);
 }
 
 static int	set_lexer_key(t_cmd_name *words, t_lexer *new)
@@ -55,7 +54,7 @@ static t_lexer	*set_lexer_value(t_cmd_name *words, t_lexer *lexer)
 			return (NULL);
 		}
 		if (set_lexer_key(words, new) == -1)
-			return (free_lexical_values(lexer, new, tmp_word));
+			return (free_lexer_key(lexer, new, tmp_word));
 		ft_lstadd_back((t_list **)&lexer, (t_list *)new);
 		words = words->next;
 	}

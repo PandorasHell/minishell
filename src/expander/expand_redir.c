@@ -20,7 +20,21 @@ static t_cmd_red	*set_redir_mem(t_cmd *cmd)
 	return (redir);
 }
 
-// TODO: Dividir esto en dos
+static void	manage_where(char **aux, int *quote, int *split, t_cmd_red **new)
+{
+	if (*split && !*quote)
+	{
+		free((*new)->content);
+		free(*new);
+		*new = expand_split_redir(*aux);
+		free(*aux);
+	}
+	else
+	{
+		(*new)->content->where = ft_strdup(*aux);
+		free(*aux);
+	}
+}
 
 int	expand_redir(t_cmd *redir, t_env *env, t_cmd *cmd)
 {
@@ -40,18 +54,7 @@ int	expand_redir(t_cmd *redir, t_env *env, t_cmd *cmd)
 			aux = ft_strdup(tmp->content->where);
 		else
 			aux = expand_dolar(tmp->content->where, env, &quote, &split);
-		if (split && !quote)
-		{
-			free(new->content);
-			free(new);
-			new = expand_split_redir(aux);
-			free(aux);
-		}
-		else
-		{
-			new->content->where = ft_strdup(aux);
-			free(aux);
-		}
+		manage_where(&aux, &quote, &split, &new);
 		if (!new->content->where)
 			return (free_cmd(redir), free(new), 1);
 		new->content->type = tmp->content->type;

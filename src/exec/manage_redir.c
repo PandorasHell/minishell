@@ -43,7 +43,7 @@ static int	dup_process(int in, int out)
 	{
 		if (dup2(in, STDIN_FILENO) < 0)
 		{
-			perror(strerror(errno));
+			perror("minishell");
 			return (1);
 		}
 		close(in);
@@ -52,7 +52,7 @@ static int	dup_process(int in, int out)
 	{
 		if (dup2(out, STDOUT_FILENO) < 0)
 		{
-			perror(strerror(errno));
+			perror("minishell");
 			return (1);
 		}
 		close(out);

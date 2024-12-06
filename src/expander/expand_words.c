@@ -13,7 +13,20 @@ static t_cmd_name	*set_name_mem(t_cmd *cmd)
 	return (new);
 }
 
-// TODO: Dividir esto (Quitar el if else quiza)
+static void	manage_where(char **aux, int *quote, int *split, t_cmd_name **new)
+{
+	if (*split && !*quote)
+	{
+		free(*new);
+		*new = expand_split_word(*aux);
+		free(*aux);
+	}
+	else
+	{
+		(*new)->name = ft_strdup(*aux);
+		free(*aux);
+	}
+}
 
 int	expand_name(t_cmd *word, t_env *env, t_cmd *cmd)
 {
@@ -32,17 +45,7 @@ int	expand_name(t_cmd *word, t_env *env, t_cmd *cmd)
 		if (!new)
 			return (1);
 		aux = expand_dolar(tmp->name, env, &quote, &split);
-		if (split && !quote)
-		{
-			free(new);
-			new = expand_split_word(aux);
-			free(aux);
-		}
-		else
-		{
-			new->name = ft_strdup(aux);
-			free(aux);
-		}
+		manage_where(&aux, &quote, &split, &new);
 		ft_lstadd_back((t_list **)&word->info->word, (t_list *)new);
 		tmp = tmp->next;
 	}

@@ -2,14 +2,14 @@
 
 //TODO: verificar que liberan las dos funciones auxiliares
 
-static void *free_word_split(char **split_words, t_cmd_name *new)
+static void	*free_word_split(char **split_words, t_cmd_name *new)
 {
 	cleanup(split_words);
 	ft_lstclear((t_list **)&new, free);
 	return (NULL);
 }
 
-static void *free_redir_split(char **split_words, t_cmd_red *new)
+static void	*free_redir_split(char **split_words, t_cmd_red *new)
 {
 	cleanup(split_words);
 	if (new->content)

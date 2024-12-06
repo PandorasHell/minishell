@@ -2,26 +2,26 @@
 
 static void	print_without_flag(char **cmd, int *i, int j)
 {
-		while ((*i) < j)
-		{
-			if (cmd[(*i) + 1] == NULL)
-				printf("%s\n", cmd[(*i)]);
-			else
-				printf("%s ", cmd[(*i)]);
-			(*i)++;
-		}
+	while ((*i) < j)
+	{
+		if (cmd[(*i) + 1] == NULL)
+			printf("%s\n", cmd[(*i)]);
+		else
+			printf("%s ", cmd[(*i)]);
+		(*i)++;
+	}
 }
 
 static void	print_with_flag(char **cmd, int *i, int j)
 {
-		while ((*i) < j)
-		{
-			if (cmd[(*i) + 1] == NULL)
-				printf("%s", cmd[(*i)]);
-			else
-				printf("%s ", cmd[(*i)]);
-			(*i)++;
-		}
+	while ((*i) < j)
+	{
+		if (cmd[(*i) + 1] == NULL)
+			printf("%s", cmd[(*i)]);
+		else
+			printf("%s ", cmd[(*i)]);
+		(*i)++;
+	}
 }
 
 static int	flag_checker(char **cmd, int iterator)
