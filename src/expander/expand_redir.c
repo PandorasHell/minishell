@@ -20,9 +20,9 @@ static t_cmd_red	*set_redir_mem(t_cmd *cmd)
 	return (redir);
 }
 
-static void	manage_where(char **aux, int *quote, int *split, t_cmd_red **new)
+static void	manage_where(char **aux, int *quote, t_cmd_red **new)
 {
-	if (*split && !*quote)
+	if (!*quote)
 	{
 		free((*new)->content);
 		free(*new);
@@ -41,20 +41,18 @@ int	expand_redir(t_cmd *redir, t_env *env, t_cmd *cmd)
 	t_cmd_red	*new;
 	t_cmd_red	*tmp;
 	int			quote;
-	int			split;
 	char		*aux;
 
 	tmp = cmd->info->redir;
 	while (tmp)
 	{
 		quote = 0;
-		split = 0;
 		new = set_redir_mem(redir);
 		if (tmp->content->type == HEREDOC)
 			aux = ft_strdup(tmp->content->where);
 		else
-			aux = expand_dolar(tmp->content->where, env, &quote, &split);
-		manage_where(&aux, &quote, &split, &new);
+			aux = expand_dolar(tmp->content->where, env, &quote);
+		manage_where(&aux, &quote, &new);
 		if (!new->content->where)
 			return (free_cmd(redir), free(new), 1);
 		new->content->type = tmp->content->type;

@@ -10,7 +10,7 @@ char	*heredoc(char *limiter, t_env *env, int *status)
 	char	*limit;
 	char	*here_doc;
 	char	*expanded_line;
-	int		i;
+	int		j;
 
 	limit = create_tmp_file(limiter, status, &tmp_fd, &here_doc);
 	if (!limit)
@@ -25,8 +25,8 @@ char	*heredoc(char *limiter, t_env *env, int *status)
 			free(limit);
 			break ;
 		}
-		i = 0;
-		expanded_line = expand_dolar(line, env, status, &i);
+		j = 0;
+		expanded_line = expand_dolar(line, env, &j);
 		if (expanded_line)
 		{
 			write(tmp_fd, expanded_line, ft_strlen(expanded_line));
