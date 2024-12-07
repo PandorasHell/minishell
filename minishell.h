@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:52:54 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/12/06 22:08:45 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/12/07 11:23:07 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ char		*expand_env(char *ret, char *name, int *i, t_env *env);
 char		*expand_exit_code(char *ret, int *i);
 t_cmd_name	*expand_split_word(char *name);
 t_cmd_red	*expand_split_redir(char *name);
+char		*expand_dolar_heredoc(char *name, t_env *env);
 
 // EXECUTER
 void		exec_cmd(t_cmd *cmd, t_env *env);
@@ -155,7 +156,7 @@ int			matrix_counter(char **matrix);
 int			pointer_free(void *ptr, void *ptr2, void *ptr3, int flag);
 int			error_pointer_free(void *ptr, void *ptr2, void *ptr3, int flag);
 char		*append_path(char const *s1, char const *s2);
-int			is_sys_var(char *name);
+int			is_sys_var(char *name, int *pos);
 
 // BUILTINS
 int			ft_cd(char **cmd, t_env *env);

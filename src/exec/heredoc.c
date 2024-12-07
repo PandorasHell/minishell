@@ -1,7 +1,20 @@
 #include "../../minishell.h"
 
 // TODO: Falta añadir las señales en el heredoc
-// TODO: eliminar all menos una variable y acortar la función 
+
+static void	expand_line_heredoc(char *line, t_env *env, int tmp_fd)
+{
+	char	*expanded_line;
+
+	expanded_line = NULL;
+	expanded_line = expand_dolar_heredoc(line, env);
+	if (expanded_line)
+	{
+		write(tmp_fd, expanded_line, ft_strlen(expanded_line));
+		write(tmp_fd, "\n", 1);
+		free(expanded_line);
+	}
+}
 
 char	*heredoc(char *limiter, t_env *env, int *status)
 {
@@ -9,13 +22,10 @@ char	*heredoc(char *limiter, t_env *env, int *status)
 	char	*line;
 	char	*limit;
 	char	*here_doc;
-	char	*expanded_line;
-	int		j;
 
 	limit = create_tmp_file(limiter, status, &tmp_fd, &here_doc);
 	if (!limit)
 		return (NULL);
-	expanded_line = NULL;
 	while (1)
 	{
 		line = readline("> ");
@@ -25,14 +35,7 @@ char	*heredoc(char *limiter, t_env *env, int *status)
 			free(limit);
 			break ;
 		}
-		j = 0;
-		expanded_line = expand_dolar(line, env, &j);
-		if (expanded_line)
-		{
-			write(tmp_fd, expanded_line, ft_strlen(expanded_line));
-			write(tmp_fd, "\n", 1);
-			free(expanded_line);
-		}
+		expand_line_heredoc(line, env, tmp_fd);
 		free(line);
 	}
 	close(tmp_fd);
@@ -61,16 +64,13 @@ static t_cmd_red	*set_redir_mem(t_cmd_red *redir, int *status)
 	return (new);
 }
 
-// TODO: Acortar la función
-
 t_cmd_red	*heredoc_cmd(t_cmd_red *redir, t_env *env, int *status)
 {
 	t_cmd_red	*tmp;
 	t_cmd_red	*new;
 	t_cmd_red	*aux;
 
-	tmp = redir;
-	aux = NULL;
+	aux = ((tmp = redir), NULL);
 	while (tmp)
 	{
 		new = set_redir_mem(aux, status);
@@ -84,8 +84,7 @@ t_cmd_red	*heredoc_cmd(t_cmd_red *redir, t_env *env, int *status)
 		{
 			free(new->content);
 			free_redir(redir);
-			*status = 1;
-			return (NULL);
+			return ((*status = 1), NULL);
 		}
 		new->content->type = tmp->content->type;
 		ft_lstadd_back((t_list **)&aux, (t_list *)new);

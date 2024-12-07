@@ -22,9 +22,9 @@ static void	single_quote_status(int *single_quote, int *i, int *quote)
 		*single_quote = 1;
 	}
 	(*i)++;
-};
+}
 
-static char *expand_dolar_case(char *ret, char *name, int *i, t_env *env)
+static char	*expand_dolar_case(char *ret, char *name, int *i, t_env *env)
 {
 	(*i)++;
 	if (name[(*i)] == '?')
@@ -51,7 +51,7 @@ char	*expand_dolar(char *name, t_env *env, int *quote)
 			double_quote_status(&double_quote, &i, quote);
 		if (name[i] == '\'' && !double_quote)
 			single_quote_status(&single_quote, &i, quote);
-		if (name[i] == '$' && !single_quote)
+		if (name[i] == '$' && is_sys_var(name, &i) && !single_quote)
 			ret = expand_dolar_case(ret, name, &i, env);
 		else
 			ret = expand_lit(ret, name, &i);

@@ -35,6 +35,7 @@ SRC_FILES := 	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/expander/expand_split.c \
 				$(SRC_DIR)/expander/expand_env.c \
 				$(SRC_DIR)/expander/expand_lit.c \
+				$(SRC_DIR)/expander/expand_heredoc.c \
 				$(SRC_DIR)/expander/expand_exit_code.c \
 				$(SRC_DIR)/exec/executer.c \
 				$(SRC_DIR)/exec/heredoc.c \
