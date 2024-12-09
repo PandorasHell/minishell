@@ -4,7 +4,7 @@ int	is_sys_var(char *name, int *pos)
 {
 	int	i;
 
-	i = (*pos) + 1;
+	i = (*pos);
 	if (name[i] == '_' || ft_isalpha(name[i]) || name[i] == '?')
 		i++;
 	else

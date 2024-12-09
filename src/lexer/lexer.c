@@ -1,6 +1,7 @@
 #include "../../minishell.h"
 
-static void	*free_lexer_key(t_lexer *lexer, t_lexer *new, t_cmd_name *tmp_word, t_cmd_name *words)
+static void	*free_lexer_key(t_lexer *lexer, t_lexer *new, t_cmd_name *tmp_word,
+	t_cmd_name *words)
 {
 	ft_putstr_fd("Syntax error near unexpected token: ", STDERR_FILENO);
 	if (words->name[0] == '|' && words->name[1] == '|')
