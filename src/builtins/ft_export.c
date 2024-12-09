@@ -27,9 +27,14 @@ static int	save_node_env(char **cmd_matrix, t_env *env)
 	data->key = ft_strdup(cmd_matrix[0]);
 	if (!data->key)
 		return (error_pointer_free(data, NULL, NULL, 1));
-	data->value = ft_strdup(cmd_matrix[1]);
-	if (!data->value)
-		return (error_pointer_free(data->key, data, NULL, 2));
+	if (!cmd_matrix[1])
+		data->value = ft_calloc(sizeof(char), 1);
+	else
+	{
+		data->value = ft_strdup(cmd_matrix[1]);
+		if (!data->value)
+			return (error_pointer_free(data->key, data, NULL, 2));
+	}
 	node->content = data;
 	ft_lstadd_back((t_list **)&env, (t_list *)node);
 	return (0);

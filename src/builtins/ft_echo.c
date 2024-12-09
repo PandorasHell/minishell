@@ -56,6 +56,11 @@ int	ft_echo(char **cmd)
 	i = 1;
 	while (cmd[j])
 		j++;
+	if (j == 1)
+	{
+		printf("\n");
+		return (0);
+	}
 	i = flag_checker(cmd, i);
 	if (i > 1)
 		print_with_flag(cmd, &i, j);
