@@ -7,7 +7,6 @@ static void	free_single_node(t_env *node)
 	t_env	*tmp3;
 
 	tmp = node;
-	tmp = tmp;
 	tmp2 = tmp->next;
 	tmp3 = tmp->next->next;
 	tmp->next = tmp3;

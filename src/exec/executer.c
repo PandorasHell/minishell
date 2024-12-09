@@ -7,12 +7,7 @@ void	exec_cmd(t_cmd *cmd, t_env *env)
 	if (!cmd->info->word)
 	{
 		if (cmd->info->redir)
-		{
-			if (cmd->info->redir->content->type == HEREDOC)
-				unlink(cmd->info->redir->content->where);
-			else
-				perror("Error: No such file or directory");
-		}
+			manage_only_redir_line(cmd->info->redir);
 		free_cmd(cmd);
 		return ;
 	}

@@ -39,6 +39,8 @@ static t_cmd	*create_cmd(t_lexer **lexer)
 	while (lexer)
 	{
 		status = set_cmd_value(lexer, cmd);
+		if (status == -1)
+			return (free_cmd(cmd), NULL);
 		if (status_pipe(lexer, status))
 			return (cmd);
 		if (status_redir(lexer, status, cmd))
@@ -71,7 +73,7 @@ t_cmd	*complete_parser(t_lexer *lexer)
 		{
 			free_cmd(cmd);
 			ft_lstclear((t_list **)&cmd, free);
-			free_lexer(&lexer);
+			//free_lexer(&lexer);
 			return (NULL);
 		}
 		ft_lstadd_back((t_list **)&cmd, (t_list *)new);

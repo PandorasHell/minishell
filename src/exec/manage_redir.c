@@ -60,6 +60,35 @@ static int	dup_process(int in, int out)
 	return (0);
 }
 
+void	manage_only_redir_line(t_cmd_red *redir)
+{
+	int			in;
+	int			out;
+	t_cmd_red	*tmp;
+
+	in = 0;
+	out = 0;
+	tmp = redir;
+	while (tmp)
+	{
+		if (tmp->content->type == INFILE || tmp->content->type == HEREDOC)
+		{
+			if (manage_infile(tmp->content->where, &in, tmp->content->type))
+				return ;
+		}
+		else if (tmp->content->type == OUTFILE || tmp->content->type == APPEND)
+		{
+			if (manage_outfile(tmp->content->where, &out, tmp->content->type))
+				return ;
+		}
+		tmp = tmp->next;
+	}
+	if (in)
+		close(in);
+	if (out)
+		close(out);
+}
+
 int	manage_redir(t_cmd_red *redir)
 {
 	int			in;

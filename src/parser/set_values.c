@@ -52,6 +52,14 @@ static t_cmd_red	*set_cmd_redir(t_lexer **lexer)
 	new->content = data;
 	if ((*lexer)->next && (*lexer)->next->content->key == WORD)
 		data->where = ft_strdup((*lexer)->next->content->value);
+	else
+	{
+		ft_putstr_fd("Syntax error near unexpected token: ", 2);
+		if ((*lexer)->next)
+			ft_putendl_fd((*lexer)->next->content->value, 2);
+		else
+			ft_putendl_fd("newline", 2);
+	}
 	if (!data->where)
 		return (ft_lstclear((t_list **)&new, free), free(new), NULL);
 	data->type = (*lexer)->content->key;
@@ -78,7 +86,7 @@ int	set_cmd_value(t_lexer **lexer, t_cmd *cmd)
 	{
 		new_redir = set_cmd_redir(lexer);
 		if (!new_redir)
-			return (free_cmd(cmd), printf("REDIR ERROR \n"), 1);
+			return (free_cmd(cmd), -1);
 		ft_lstadd_back((t_list **)&cmd->info->redir, (t_list *)new_redir);
 		status = REDIR;
 	}

@@ -51,8 +51,6 @@ static char	*save_operator(char *line)
 	len = 0;
 	while (line[len] && line[len] == operator)
 		len++;
-	if (len > 2)
-		return (NULL);
 	word = ft_calloc(len + 1, sizeof(char));
 	if (!word)
 		return (NULL);

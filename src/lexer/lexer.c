@@ -1,12 +1,24 @@
 #include "../../minishell.h"
 
-static void	*free_lexer_key(t_lexer *lexer, t_lexer *new, t_cmd_name *tmp_word)
+static void	*free_lexer_key(t_lexer *lexer, t_lexer *new, t_cmd_name *tmp_word, t_cmd_name *words)
 {
+	ft_putstr_fd("Syntax error near unexpected token: ", STDERR_FILENO);
+	if (words->name[0] == '|' && words->name[1] == '|')
+		ft_putendl_fd("||", STDERR_FILENO);
+	else if (words->name[0] == '&' && words->name[1] == '&')
+		ft_putendl_fd("&&", STDERR_FILENO);
+	else if (words->name[0] == '<' && ft_strlen(words->name) == 2)
+		ft_putendl_fd("<", STDERR_FILENO);
+	else if (words->name[0] == '<')
+		ft_putendl_fd("<<", STDERR_FILENO);
+	else if (words->name[0] == '>' && ft_strlen(words->name) == 2)
+		ft_putendl_fd(">", STDERR_FILENO);
+	else if (words->name[0] == '>')
+		ft_putendl_fd(">>", STDERR_FILENO);
 	free(new);
 	free_lexer(&lexer);
 	ft_lstclear((t_list **)&lexer, free);
 	ft_lstclear((t_list **)&tmp_word, free);
-	ft_putstr_fd("Syntax error: invalid operator\n", STDERR_FILENO);
 	return (NULL);
 }
 
@@ -15,7 +27,9 @@ static int	set_lexer_key(t_cmd_name *words, t_lexer *new)
 	t_dlexer	*data;
 
 	if ((words->name[0] == '|' && words->name[1] == '|')
-		|| (words->name[0] == '&' && words->name[1] == '&'))
+		|| (words->name[0] == '&' && words->name[1] == '&')
+		|| (words->name[0] == '<' && ft_strlen(words->name) > 2)
+		|| (words->name[0] == '>' && ft_strlen(words->name) > 2))
 		return (-1);
 	data = ft_calloc(1, sizeof(t_dlexer));
 	if (!data)
@@ -54,7 +68,7 @@ static t_lexer	*set_lexer_value(t_cmd_name *words, t_lexer *lexer)
 			return (NULL);
 		}
 		if (set_lexer_key(words, new) == -1)
-			return (free_lexer_key(lexer, new, tmp_word));
+			return (free_lexer_key(lexer, new, tmp_word, words));
 		ft_lstadd_back((t_list **)&lexer, (t_list *)new);
 		words = words->next;
 	}
