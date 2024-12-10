@@ -6,6 +6,8 @@ static void	free_single_node(t_env *node)
 	t_env	*tmp2;
 	t_env	*tmp3;
 
+	if (!node)
+		return ;
 	tmp = node;
 	tmp2 = tmp->next;
 	tmp3 = tmp->next->next;
@@ -20,6 +22,8 @@ static void	free_first_node(t_env *node)
 {
 	t_env	*tmp;
 
+	if (!node)
+		return ;
 	tmp = node;
 	node = node->next;
 	free(tmp->content->key);
@@ -40,6 +44,7 @@ int	ft_unset(char **cmd, t_env *env)
 	while (cmd[++i])
 	{
 		tmp = unset_node_search(cmd[i], &j, env);
+		printf("the variable to be removed is: %s\n", tmp->content->key);
 		if (j == 0)
 			free_first_node(tmp);
 		else if (j > 0)

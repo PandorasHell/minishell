@@ -9,7 +9,7 @@ t_env	*unset_node_search(char *key, int *j, t_env *env)
 		return (NULL);
 	if (ft_strcmp(tmp->content->key, key) == 0)
 		return (tmp);
-	while (tmp)
+	while (tmp->next != NULL)
 	{
 		(*j)++;
 		if (ft_strcmp(tmp->next->content->key, key) == 0)

@@ -35,6 +35,8 @@ char	*heredoc(char *limiter, t_env *env, int *status)
 			free(limit);
 			break ;
 		}
+		if (global_handler == -1)
+			break ;
 		expand_line_heredoc(line, env, tmp_fd);
 		free(line);
 	}

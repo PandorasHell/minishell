@@ -28,6 +28,7 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <unistd.h>
+# include <bits/signum-generic.h>
 
 # define WORD 0
 # define INFILE 1
@@ -36,6 +37,8 @@
 # define APPEND 4
 # define PIPE 5
 # define REDIR 6
+
+extern int global_handler;
 
 // ENVIROMENT
 typedef struct s_data_env
@@ -158,6 +161,7 @@ int			pointer_free(void *ptr, void *ptr2, void *ptr3, int flag);
 int			error_pointer_free(void *ptr, void *ptr2, void *ptr3, int flag);
 char		*append_path(char const *s1, char const *s2);
 int			is_sys_var(char *name, int *pos);
+long		ft_atol(const char *str);
 
 // BUILTINS
 int			ft_cd(char **cmd, t_env *env);
@@ -171,5 +175,15 @@ int			ft_exit(char **cmd_matrix, t_cmd *cmd, t_env *env);
 int			exec_builtin(t_cmd *cmd, t_env *env);
 int			variable_updater(char **cmd_matrix, t_env **env);
 int			path_update_control(char *old_path, t_env *env);
+
+// SIGNALS
+void		signal_handler(int signal_number);
+void		signal_int(void);
+void		signal_heredoc(void);
+void		signal_main(void);
+void		signal_dfl(void);
+
+
+
 
 #endif
