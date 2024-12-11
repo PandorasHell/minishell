@@ -28,6 +28,7 @@ char	*heredoc(char *limiter, t_env *env, int *status)
 		return (NULL);
 	while (1)
 	{
+		main_signals();
 		line = readline("> ");
 		if (!ft_strcmp(line, limit))
 		{

@@ -35,12 +35,15 @@ void	child_process(t_cmd *cmd, t_env *env)
 		perror("Error: command not found");
 		exit(127);
 	}
+	child_signals();
+	if (path)
+        printf("%s\n", path);
 	if (execve(path, args, envp) == -1)
 	{
-		free(path);
-		cleanup(args);
-		cleanup(envp);
-		perror("minishell");
+		// free(path);
+		// cleanup(args);
+		// cleanup(envp);
+		perror("Error");
 		exit(1);
 	}
 }
@@ -65,6 +68,7 @@ void	execute_n(t_cmd *cmd, t_env *env)
 		cmd = cmd->next;
 	}
 	child[i++] = ft_last_cmd(fd, cmd, env);
+	ignored_signals();
 	ft_waitchild(child, i);
 	free(child);
 }

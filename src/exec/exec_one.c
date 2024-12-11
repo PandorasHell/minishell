@@ -23,7 +23,6 @@ static void	execute_cmd(t_cmd *cmd, t_env *env)
 
 void	execute_one(t_cmd *cmd, t_env *env)
 {
-	// #TODO: Añadir señales en la ejecucion.
 	if (ft_is_builtin(cmd->info->word->name))
 		exec_builtin(cmd, env);
 	else

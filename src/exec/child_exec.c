@@ -8,8 +8,7 @@ static void	exec_mid(t_cmd *cmd, t_env *env)
 		exec_builtin(cmd, env);
 		exit (0);
 	}
-	else
-		child_process(cmd, env);
+	child_process(cmd, env);
 }
 
 pid_t	ft_first_cmd(int (*fd)[2], t_cmd *cmd, t_env *env)
@@ -33,8 +32,7 @@ pid_t	ft_first_cmd(int (*fd)[2], t_cmd *cmd, t_env *env)
 			exec_builtin(cmd, env);
 			exit (0);
 		}
-		else
-			child_process(cmd, env);
+		child_process(cmd, env);
 	}
 	close(fd[0][1]);
 	//close(fd[1][1]);

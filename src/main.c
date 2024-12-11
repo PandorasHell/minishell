@@ -43,10 +43,12 @@ static void	exec_line(t_cmd *cmd, t_env *env, char *line)
 
 static void	line_reader(t_cmd *cmd, char *line, t_env *env)
 {
-	signal_main();
+    main_signals();
 	while (1)
 	{
 		line = readline("minishell $>> ");
+		if (!line)
+			exit(0);
 		if (line)
 		{
 			if (ft_strlen(line) == 0)
@@ -54,19 +56,10 @@ static void	line_reader(t_cmd *cmd, char *line, t_env *env)
 				free(line);
 				continue ;
 			}
-			signal_dfl();
 			exec_line(cmd, env, line);
-			signal_main();
 			if (!check_character_for_history(line[0]) && exit_line(line))
 				add_history(line);
 			free(line);
-		}
-		if (global_handler == -2)
-		{
-			printf("%d<-\n", global_handler);
-			free_env(&env);
-			write(1, "exit\n", 5);
-			break ;
 		}
 	}
 }
@@ -82,7 +75,6 @@ int	main(int argc, char **argv, char **enviroment)
 	env = save_env(enviroment);
 	cmd = NULL;
 	line = NULL;
-	signal_dfl();
 	line_reader(cmd, line, env);
 	rl_clear_history();
 	return (0);

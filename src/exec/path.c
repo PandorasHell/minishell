@@ -40,9 +40,12 @@ char	*get_path(char *cmd, char **env)
 	}
 	e_path = ft_split(env[0] + 5, ':');
 	if (!e_path)
+	{
 		printf("Error: split\n");
+		exit(1);
+	}
 	c_path = search_path(cmd, e_path);
-	free(e_path);
+	cleanup(e_path);
 	return (c_path);
 }
 
@@ -53,8 +56,9 @@ int	relative_path(char **cmd, char **path)
 	if (*cmd == NULL)
 		return (0);
 	check = 0;
-	if (ft_strncmp(*cmd, "/", 1) == 0 || ft_strncmp(*cmd, "./", 2) == 0
-		|| ft_strncmp(*cmd, "../", 2) == 0)
+	if ((ft_strncmp(*cmd, "/", 1) == 0 && ft_strlen(cmd[0]) > 2)
+		|| (ft_strncmp(*cmd, "./", 2) == 0 && ft_strlen(cmd[0]) > 3)
+		|| (ft_strncmp(*cmd, "../", 2) == 0 && ft_strlen(cmd[0]) > 4))
 		check = 1;
 	if (check == 1)
 	{

@@ -178,10 +178,9 @@ int			path_update_control(char *old_path, t_env *env);
 
 // SIGNALS
 void		signal_handler(int signal_number);
-void		signal_int(void);
-void		signal_heredoc(void);
-void		signal_main(void);
-void		signal_dfl(void);
+void		ignored_signals(void);
+void		main_signals(void);
+void		child_signals(void);
 
 
 
