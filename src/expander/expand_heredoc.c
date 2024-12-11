@@ -5,17 +5,21 @@ char	*expand_dolar_heredoc(char *name, t_env *env)
 	char	*ret;
 	int		i;
 
-	i = 0;
-	ret = ft_strdup("");
+	ret = ((i = 0), ft_strdup(""));
 	while (name[i])
 	{
-		if (name[i] == '$' && is_sys_var(name, &i))
+		if (name[i] == '$')
 		{
 			i++;
 			if (name[i] == '?')
 				ret = expand_exit_code(ret, &i);
-			else
+			else if (is_sys_var(name, &i))
 				ret = expand_env(ret, name, &i, env);
+			else
+			{
+				i++;
+				ret = expand_lit(ret, name, &i);
+			}
 		}
 		else
 			ret = expand_lit(ret, name, &i);
