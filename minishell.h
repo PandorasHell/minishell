@@ -39,7 +39,6 @@
 # define REDIR 6
 
 extern int global_handler;
-
 // ENVIROMENT
 typedef struct s_data_env
 {
@@ -181,6 +180,7 @@ void		signal_handler(int signal_number);
 void		ignored_signals(void);
 void		main_signals(void);
 void		child_signals(void);
+void		heredoc_signals(void);
 
 
 

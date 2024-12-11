@@ -46,7 +46,9 @@ static void	line_reader(t_cmd *cmd, char *line, t_env *env)
     main_signals();
 	while (1)
 	{
+		rl_catch_signals = 0;
 		line = readline("minishell $>> ");
+		main_signals();
 		if (!line)
 			exit(0);
 		if (line)

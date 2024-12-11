@@ -10,6 +10,13 @@ void signal_handler(int signal_number)
 		rl_redisplay();
 		global_handler = -1;
 	}
+	else if (signal_number == SIGQUIT)
+	{
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
+		global_handler = SIGQUIT;
+	}
 }
 
 void child_signal_handler(int signal_number)
@@ -17,31 +24,35 @@ void child_signal_handler(int signal_number)
 	if (signal_number == SIGINT)
 	{
 		printf("\n");
-		global_handler = -1;
+		global_handler = SIGINT;
 	}
 	else if (signal_number == SIGQUIT)
 	{
-		rl_replace_line(rl_line_buffer, 0);
-		rl_redisplay();
-		global_handler = -2;
+		global_handler = SIGQUIT;
 	}
 
 }
 
 void ignored_signals(void)
 {
-	signal(SIGINT, SIG_IGN);
-	signal(SIGQUIT, SIG_IGN);
+	if (signal(SIGINT, SIG_IGN) == SIG_ERR)
+		perror("Error setting SIGINT handler");
+	if (signal(SIGQUIT, SIG_IGN) == SIG_ERR)
+		perror("Error setting SIGQUIT handler");
 }
 
 void child_signals(void)
 {
-	signal(SIGINT, &child_signal_handler);
-	signal(SIGQUIT, &child_signal_handler);
+	if (signal(SIGINT, child_signal_handler) == SIG_ERR)
+		perror("Error setting SIGINT handler");
+	if (signal(SIGQUIT, child_signal_handler) == SIG_ERR)
+		perror("Error setting SIGQUIT handler");
 }
 
 void main_signals(void)
 {
-	signal(SIGINT, &signal_handler);
-	signal(SIGQUIT, SIG_IGN);
+	if (signal(SIGINT, signal_handler) == SIG_ERR)
+		perror("Error setting SIGINT handler");
+	if (signal(SIGQUIT, SIG_IGN) == SIG_ERR)
+		perror("Error setting SIGQUIT handler");
 }

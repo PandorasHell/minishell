@@ -32,17 +32,11 @@ void	child_process(t_cmd *cmd, t_env *env)
 	}
 	if (!path)
 	{
-		perror("Error: command not found");
+		perror("Error");
 		exit(127);
 	}
-	child_signals();
-	if (path)
-        printf("%s\n", path);
 	if (execve(path, args, envp) == -1)
 	{
-		// free(path);
-		// cleanup(args);
-		// cleanup(envp);
 		perror("Error");
 		exit(1);
 	}
@@ -54,12 +48,14 @@ void	execute_n(t_cmd *cmd, t_env *env)
 	pid_t	*child;
 	int		i;
 
+	ignored_signals();
 	child = (pid_t *)malloc(sizeof(pid_t) * ft_lstsize((t_list *)cmd));
 	if (!child)
 		return ;
 	if (pipe(fd[0]) < 0)
 		return ;
 	i = 0;
+	child_signals();
 	child[i++] = ft_first_cmd(fd, cmd, env);
 	cmd = cmd->next;
 	while (cmd->next != NULL)
@@ -68,7 +64,7 @@ void	execute_n(t_cmd *cmd, t_env *env)
 		cmd = cmd->next;
 	}
 	child[i++] = ft_last_cmd(fd, cmd, env);
-	ignored_signals();
 	ft_waitchild(child, i);
 	free(child);
+	main_signals();
 }

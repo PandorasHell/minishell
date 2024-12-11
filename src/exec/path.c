@@ -45,7 +45,7 @@ char	*get_path(char *cmd, char **env)
 		exit(1);
 	}
 	c_path = search_path(cmd, e_path);
-	cleanup(e_path);
+	free(e_path);
 	return (c_path);
 }
 

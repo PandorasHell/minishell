@@ -26,9 +26,9 @@ char	*heredoc(char *limiter, t_env *env, int *status)
 	limit = create_tmp_file(limiter, status, &tmp_fd, &here_doc);
 	if (!limit)
 		return (NULL);
+	main_signals();
 	while (1)
 	{
-		main_signals();
 		line = readline("> ");
 		if (!ft_strcmp(line, limit))
 		{
@@ -37,7 +37,10 @@ char	*heredoc(char *limiter, t_env *env, int *status)
 			break ;
 		}
 		if (global_handler == -1)
+		{
+			printf("hola aca");
 			break ;
+		}
 		expand_line_heredoc(line, env, tmp_fd);
 		free(line);
 	}

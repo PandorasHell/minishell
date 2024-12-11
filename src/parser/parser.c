@@ -40,7 +40,7 @@ static t_cmd	*create_cmd(t_lexer **lexer)
 	{
 		status = set_cmd_value(lexer, cmd);
 		if (status == -1)
-			return (free_cmd(cmd), NULL);
+			return (free_cmd(cmd),ft_lstclear((t_list **)&cmd, free), NULL);
 		if (status_pipe(lexer, status))
 			return (cmd);
 		if (status_redir(lexer, status, cmd))

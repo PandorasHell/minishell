@@ -5,11 +5,12 @@ static void	execute_cmd(t_cmd *cmd, t_env *env)
 	pid_t	pid;
 	int		status;
 
+	child_signals();
 	pid = fork();
 	status = 0;
 	if (pid < 0)
 	{
-		perror("Error: fork failed");
+		perror("Error");
 		return ;
 	}
 	if (pid == 0)
@@ -17,8 +18,8 @@ static void	execute_cmd(t_cmd *cmd, t_env *env)
 		manage_redir(cmd->info->redir);
 		child_process(cmd, env);
 	}
-	else
-		waitpid(pid, &status, 0);
+	waitpid(pid, &status, 0);
+	main_signals();
 }
 
 void	execute_one(t_cmd *cmd, t_env *env)
