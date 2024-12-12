@@ -1,7 +1,5 @@
 #include "../../minishell.h"
 
-// TODO: Falta añadir las señales en el heredoc
-
 static void	expand_line_heredoc(char *line, t_env *env, int tmp_fd)
 {
 	char	*expanded_line;
@@ -29,16 +27,17 @@ char	*heredoc(char *limiter, t_env *env, int *status)
 	main_signals();
 	while (1)
 	{
+		if (g_handler == -1)
+		{
+			free(limit);
+			return (NULL);
+		}
+		// line = get_next_line(1);
 		line = readline("> ");
 		if (!ft_strcmp(line, limit))
 		{
 			free(line);
 			free(limit);
-			break ;
-		}
-		if (global_handler == -1)
-		{
-			printf("hola aca");
 			break ;
 		}
 		expand_line_heredoc(line, env, tmp_fd);

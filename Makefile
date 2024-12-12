@@ -29,6 +29,8 @@ SRC_FILES := 	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/utils/append_path.c \
 				$(SRC_DIR)/utils/is_sys_var.c \
 				$(SRC_DIR)/utils/atol.c \
+				$(SRC_DIR)/get_next_line/get_next_line.c \
+				$(SRC_DIR)/get_next_line/get_next_line_utils.c \
 				$(SRC_DIR)/expander/expander.c \
 				$(SRC_DIR)/expander/expand_redir.c \
 				$(SRC_DIR)/expander/expand_words.c \

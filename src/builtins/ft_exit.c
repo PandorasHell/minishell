@@ -35,7 +35,7 @@ int	ft_exit(char **cmd_matrix, t_cmd *cmd, t_env *env)
 {
 	int	exit_status;
 
-	exit_status = global_handler;
+	exit_status = g_handler;
 	if (cmd_matrix)
 	{
 		if (matrix_counter(cmd_matrix) > 2)

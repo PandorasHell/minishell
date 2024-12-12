@@ -2,7 +2,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
-int global_handler = 0;
+int g_handler = 0;
 
 int	exit_line(char *line)
 {
@@ -46,6 +46,7 @@ static void	line_reader(t_cmd *cmd, char *line, t_env *env)
     main_signals();
 	while (1)
 	{
+		g_handler = 0;
 		rl_catch_signals = 0;
 		line = readline("minishell $>> ");
 		main_signals();

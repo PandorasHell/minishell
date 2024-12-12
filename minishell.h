@@ -29,7 +29,9 @@
 # include <sys/wait.h>
 # include <unistd.h>
 # include <bits/signum-generic.h>
+# include <sys/ioctl.h>
 
+# define BUFFER_SIZE 1024
 # define WORD 0
 # define INFILE 1
 # define HEREDOC 2
@@ -38,7 +40,8 @@
 # define PIPE 5
 # define REDIR 6
 
-extern int global_handler;
+extern int g_handler;
+
 // ENVIROMENT
 typedef struct s_data_env
 {
@@ -162,6 +165,11 @@ char		*append_path(char const *s1, char const *s2);
 int			is_sys_var(char *name, int *pos);
 long		ft_atol(const char *str);
 
+// GNL
+int			new_line_finder(const char *s, int c);
+char		*get_next_line(int fd);
+char		*append(char *s1, char *s2);
+
 // BUILTINS
 int			ft_cd(char **cmd, t_env *env);
 int			ft_echo(char **cmd);
@@ -181,6 +189,7 @@ void		ignored_signals(void);
 void		main_signals(void);
 void		child_signals(void);
 void		heredoc_signals(void);
+void		heredoc_signal_handler(int signal_number);
 
 
 

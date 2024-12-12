@@ -8,14 +8,14 @@ void signal_handler(int signal_number)
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
-		global_handler = -1;
+		g_handler = -1;
 	}
 	else if (signal_number == SIGQUIT)
 	{
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
-		global_handler = SIGQUIT;
+		g_handler = SIGQUIT;
 	}
 }
 
@@ -23,12 +23,11 @@ void child_signal_handler(int signal_number)
 {
 	if (signal_number == SIGINT)
 	{
-		printf("\n");
-		global_handler = SIGINT;
+		g_handler = SIGINT;
 	}
 	else if (signal_number == SIGQUIT)
 	{
-		global_handler = SIGQUIT;
+		g_handler = SIGQUIT;
 	}
 
 }
