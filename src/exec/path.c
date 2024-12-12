@@ -32,10 +32,7 @@ char	*get_path(char *cmd, char **env)
 	while (!(*env) || ft_strncmp(*env, "PATH=", 5) != 0)
 	{
 		if (!(*env))
-		{
-			printf("Error: path not found\n");
 			return (NULL);
-		}
 		env++;
 	}
 	e_path = ft_split(env[0] + 5, ':');
@@ -51,16 +48,12 @@ char	*get_path(char *cmd, char **env)
 
 int	relative_path(char **cmd, char **path)
 {
-	int	check;
 	struct stat	buf;
 
 	if (*cmd == NULL)
 		return (0);
-	check = 0;
 	if (ft_strncmp(*cmd, "/", 1) == 0 || ft_strncmp(*cmd, "./", 2) == 0 
 		|| ft_strncmp(*cmd, "../", 3) == 0)
-		check = 1;
-	if (check == 1)
 	{
 		if (stat(cmd[0], &buf) == -1)
 			exit (1);
@@ -69,8 +62,13 @@ int	relative_path(char **cmd, char **path)
 			printf("Error: %s is a directory\n", cmd[0]);
 			exit (1);
 		}
-		if (access(cmd[0], F_OK) == 0)
+		if (access(cmd[0], X_OK) == 0)
 			*path = cmd[0];
+		else
+		{
+			printf("Error: %s not found\n", cmd[0]);
+			exit (1);
+		}
 	}
-	return (check);
+	return (0);
 }

@@ -8,11 +8,11 @@ static void	*free_lexer_key(t_lexer *lexer, t_lexer *new, t_cmd_name *tmp_word,
 		ft_putendl_fd("||", STDERR_FILENO);
 	else if (words->name[0] == '&' && words->name[1] == '&')
 		ft_putendl_fd("&&", STDERR_FILENO);
-	else if (words->name[0] == '<' && ft_strlen(words->name) == 2)
+	else if (words->name[0] == '<' && ft_strlen(words->name) == 3)
 		ft_putendl_fd("<", STDERR_FILENO);
 	else if (words->name[0] == '<')
 		ft_putendl_fd("<<", STDERR_FILENO);
-	else if (words->name[0] == '>' && ft_strlen(words->name) == 2)
+	else if (words->name[0] == '>' && ft_strlen(words->name) == 3)
 		ft_putendl_fd(">", STDERR_FILENO);
 	else if (words->name[0] == '>')
 		ft_putendl_fd(">>", STDERR_FILENO);
