@@ -52,16 +52,23 @@ char	*get_path(char *cmd, char **env)
 int	relative_path(char **cmd, char **path)
 {
 	int	check;
+	struct stat	buf;
 
 	if (*cmd == NULL)
 		return (0);
 	check = 0;
-	if ((ft_strncmp(*cmd, "/", 1) == 0 && ft_strlen(cmd[0]) > 2)
-		|| (ft_strncmp(*cmd, "./", 2) == 0 && ft_strlen(cmd[0]) > 3)
-		|| (ft_strncmp(*cmd, "../", 2) == 0 && ft_strlen(cmd[0]) > 4))
+	if (ft_strncmp(*cmd, "/", 1) == 0 || ft_strncmp(*cmd, "./", 2) == 0 
+		|| ft_strncmp(*cmd, "../", 3) == 0)
 		check = 1;
 	if (check == 1)
 	{
+		if (stat(cmd[0], &buf) == -1)
+			exit (1);
+		if (S_ISDIR(buf.st_mode))
+		{
+			printf("Error: %s is a directory\n", cmd[0]);
+			exit (1);
+		}
 		if (access(cmd[0], F_OK) == 0)
 			*path = cmd[0];
 	}
