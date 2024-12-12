@@ -32,8 +32,10 @@ char	*heredoc(char *limiter, t_env *env, int *status)
 			free(limit);
 			return (NULL);
 		}
-		// line = get_next_line(1);
-		line = readline("> ");
+		line = get_next_line(1);
+		// printf("name1: %s\n", line);
+		// printf("name1 len: %lu\n", ft_strlen(line));
+		// line = readline("> ");
 		if (!ft_strcmp(line, limit))
 		{
 			free(line);

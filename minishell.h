@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:52:54 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/12/09 11:37:11 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/12/12 18:48:08 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <readline/readline.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <stdint.h>
 # include <unistd.h>
 # include <errno.h>
 # include <fcntl.h>
@@ -31,7 +32,6 @@
 # include <bits/signum-generic.h>
 # include <sys/ioctl.h>
 
-# define BUFFER_SIZE 1024
 # define WORD 0
 # define INFILE 1
 # define HEREDOC 2
@@ -166,9 +166,7 @@ int			is_sys_var(char *name, int *pos);
 long		ft_atol(const char *str);
 
 // GNL
-int			new_line_finder(const char *s, int c);
 char		*get_next_line(int fd);
-char		*append(char *s1, char *s2);
 
 // BUILTINS
 int			ft_cd(char **cmd, t_env *env);

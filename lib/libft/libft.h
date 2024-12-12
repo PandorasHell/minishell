@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 21:28:29 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/11/27 20:55:43 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/12/12 18:45:46 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,19 @@
 # define LIBFT_H
 //# define NULL 0
 
+# include <fcntl.h>
+# include <stdint.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <ctype.h>
+# include <stdio.h>
 # include <limits.h>
 # include <stddef.h>
 # include <stdlib.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 3
+# endif
 
 typedef struct s_list
 {
@@ -61,6 +71,7 @@ int			ft_tolower(int c);
 int			ft_toupper(int c);
 char		*ft_strappend(char *s1, char *s2);
 void		cleanup(char **split_words);
+char		*get_next_line(int fd);
 
 t_list		*ft_lstnew(void *content);
 void		ft_lstclear(t_list **lst, void (*del)(void *));
