@@ -165,9 +165,6 @@ char		*append_path(char const *s1, char const *s2);
 int			is_sys_var(char *name, int *pos);
 long		ft_atol(const char *str);
 
-// GNL
-char		*get_next_line(int fd);
-
 // BUILTINS
 int			ft_cd(char **cmd, t_env *env);
 int			ft_echo(char **cmd);
@@ -188,6 +185,9 @@ void		main_signals(void);
 void		child_signals(void);
 void		heredoc_signals(void);
 void		heredoc_signal_handler(int signal_number);
+
+// GET_NEXT_LINE
+char		*get_next_line(int fd);
 
 
 

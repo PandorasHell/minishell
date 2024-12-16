@@ -1,4 +1,4 @@
-#include "./libft.h"
+#include "../../minishell.h"
 
 static char	*ft_read(int fd, char *rf)
 {
@@ -12,6 +12,11 @@ static char	*ft_read(int fd, char *rf)
 	while (!ft_strchr(rf, '\n') && bytes != 0)
 	{
 		bytes = read(fd, nl, BUFFER_SIZE);
+        if (g_handler == SIGINT)
+        {
+			free(nl);
+        	return (NULL);
+        }
 		if (bytes < 0)
 		{
 			free(nl);
@@ -78,7 +83,7 @@ char	*get_next_line(int fd)
 	static char	*rf;
 	char		*line;
 
-	if (BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0 || fd < 0)
+	if (read(fd, 0, 0) < 0 || fd < 0)
 	{
 		free(rf);
 		rf = NULL;
@@ -95,5 +100,10 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line = ft_line(rf);
 	rf = ft_rst(rf);
+	if (g_handler == SIGINT)
+	{
+		free(rf);
+		return (NULL);
+	}
 	return (line);
 }

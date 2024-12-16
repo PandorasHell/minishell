@@ -8,7 +8,7 @@ void signal_handler(int signal_number)
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
-		g_handler = -1;
+		g_handler = SIGINT;
 	}
 	else if (signal_number == SIGQUIT)
 	{

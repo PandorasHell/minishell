@@ -27,15 +27,9 @@ char	*heredoc(char *limiter, t_env *env, int *status)
 	main_signals();
 	while (1)
 	{
-		if (g_handler == -1)
-		{
-			free(limit);
-			return (NULL);
-		}
 		line = get_next_line(1);
-		// printf("name1: %s\n", line);
-		// printf("name1 len: %lu\n", ft_strlen(line));
-		// line = readline("> ");
+		if (!line && g_handler == SIGINT)
+			break ;
 		if (!ft_strcmp(line, limit))
 		{
 			free(line);

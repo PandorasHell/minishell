@@ -57,6 +57,7 @@ SRC_FILES := 	$(SRC_DIR)/main.c \
                 $(SRC_DIR)/builtins/ft_is_builtin.c \
 				$(SRC_DIR)/builtins/ft_cd.c \
 				$(SRC_DIR)/signals/signals.c \
+				$(SRC_DIR)/get_next_line/get_next_line.c \
 
 # Object files
 OBJ_FILES := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))

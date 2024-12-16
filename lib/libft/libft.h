@@ -71,7 +71,6 @@ int			ft_tolower(int c);
 int			ft_toupper(int c);
 char		*ft_strappend(char *s1, char *s2);
 void		cleanup(char **split_words);
-char		*get_next_line(int fd);
 
 t_list		*ft_lstnew(void *content);
 void		ft_lstclear(t_list **lst, void (*del)(void *));
