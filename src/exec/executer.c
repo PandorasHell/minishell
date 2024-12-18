@@ -14,5 +14,5 @@ void	exec_cmd(t_cmd *cmd, t_env *env, t_cmd_name *export_env)
 	if (ft_lstsize((t_list *)cmd) == 1)
 		execute_one(cmd, env, export_env);
 	else
-		execute_n(cmd, env);
+		execute_n(cmd, env, export_env);
 }
