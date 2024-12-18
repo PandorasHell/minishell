@@ -1,6 +1,6 @@
 #include "../../minishell.h"
 
-static void	double_quote_status(int *double_quote, int *i, int *quote)
+static void	double_quote_status(int *double_quote, int *i, int *quote, char *name)
 {
 	if (*double_quote)
 		*double_quote = 0;
@@ -10,9 +10,20 @@ static void	double_quote_status(int *double_quote, int *i, int *quote)
 		*double_quote = 1;
 	}
 	(*i)++;
+	if (name[*i] == '\"')
+	{
+		if (*double_quote)
+			*double_quote = 0;
+		else
+		{
+			(*quote) += 1;
+			*double_quote = 1;
+		}
+		(*i)++;
+	}
 }
 
-static void	single_quote_status(int *single_quote, int *i, int *quote)
+static void	single_quote_status(int *single_quote, int *i, int *quote, char *name)
 {
 	if (*single_quote)
 		*single_quote = 0;
@@ -22,6 +33,17 @@ static void	single_quote_status(int *single_quote, int *i, int *quote)
 		*single_quote = 1;
 	}
 	(*i)++;
+	if (name[*i] == '\'')
+	{
+		if (*single_quote)
+			*single_quote = 0;
+		else
+		{
+			(*quote) += 1;
+			*single_quote = 1;
+		}
+		(*i)++;
+	}
 }
 
 static char	*expand_dolar_case(char *ret, char *name, int *i, t_env *env)
@@ -53,9 +75,9 @@ char	*expand_dolar(char *name, t_env *env, int *quote)
 	while (name[i])
 	{
 		if (name[i] == '\"' && !single_quote)
-			double_quote_status(&double_quote, &i, quote);
+			double_quote_status(&double_quote, &i, quote, name);
 		if (name[i] == '\'' && !double_quote)
-			single_quote_status(&single_quote, &i, quote);
+			single_quote_status(&single_quote, &i, quote, name);
 		if (name[i] == '$' && !single_quote)
 			ret = expand_dolar_case(ret, name, &i, env);
 		else
