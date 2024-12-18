@@ -3,12 +3,7 @@
 int	variable_updater(char **cmd_matrix, t_env **env)
 {
 	t_env	*tmp_node;
-	int		cmd_counter;
 
-	cmd_counter = matrix_counter(cmd_matrix);
-	printf("cmd 0 -> %s\n", cmd_matrix[0]);
-	printf("cmd 1 -> %s\n", cmd_matrix[1]);
-	printf("counter -> %d\n", cmd_counter);
 	tmp_node = env_node_search(cmd_matrix[0], *env);
 	free(tmp_node->content->value);
 	if (cmd_matrix[1])
@@ -22,7 +17,7 @@ int	variable_updater(char **cmd_matrix, t_env **env)
 	return (0);
 }
 
-static int	save_node_env(char **cmd_matrix, t_env *env)
+int	save_node_env(char **cmd_matrix, t_env *env)
 {
 	t_denv	*data;
 	t_env	*node;
@@ -49,56 +44,59 @@ static int	save_node_env(char **cmd_matrix, t_env *env)
 	return (0);
 }
 
-static char	***matrix_creator(char **cmd, t_cmd_name *exported_env)
+static char	***matrix_creator(char **cmd, t_cmd_name *exported_env, t_env *env)
 {
 	char	***cmd_matrix;
 	int		i;
 	int		j;
 
-	i = 0;
-	j = 1;
+	j = 0;
 	i = matrix_counter(cmd);
 	cmd_matrix = ft_calloc(i + 1, sizeof(char **));
 	if (!cmd_matrix)
-		return (NULL);
+		exit(1);
 	i = 0;
-	while (cmd[j])
+	while (cmd[++j])
 	{
-		if (ft_strchr(cmd[j], '='))
+		if (cmd_checker(cmd[j]))
 		{
-			cmd_matrix[i] = ft_split(cmd[j], '=');
-			if (!cmd_matrix[i])
+			if (ft_strchr(cmd[j], '='))
 			{
-				free_matrix(cmd_matrix);
-				return (NULL);
+				cmd_matrix[i] = ft_split(cmd[j], '=');
+				i++;
 			}
+			else
+				export_foo_creator(cmd[j], exported_env, env);
 		}
 		else
-			export_foo_creator(exported_env, cmd[j]);
-		i++;
-		j++;
+			printf("export: %s: not a valid identifier\n", cmd[j]);
 	}
 	return (cmd_matrix);
 }
 
-static int	var_checker(char ***cmd_matrix, t_env **env)
+static int	var_checker(char ***cmd_matrix, t_env *env,
+						t_cmd_name *export_env)
 {
 	int	i;
+	int counter;
+	t_cmd_name *tmp;
 
-	i = 0;
-	while (cmd_matrix[i])
+	i = -1;
+	while (cmd_matrix[++i])
 	{
-		if (env_node_search(cmd_matrix[i][0], *env))
+		if (env_node_search(cmd_matrix[i][0], env))
 		{
-			if (variable_updater(cmd_matrix[i], env))
+			if (variable_updater(cmd_matrix[i], &env))
 				return (1);
 		}
 		else
 		{
-			if (save_node_env(cmd_matrix[i], *env))
+			if (save_node_env(cmd_matrix[i], env))
 				return (1);
 		}
-		i++;
+		tmp = exp_node_search(cmd_matrix[i][0], &counter, export_env);
+		if (tmp && env_node_search(cmd_matrix[i][0], env))
+			exp_node_control(tmp, export_env, counter);
 	}
 	return (0);
 }
@@ -111,10 +109,10 @@ int	ft_export(char **cmd, t_env *env, t_cmd_name *exported_env)
 	cmd_counter = matrix_counter(cmd);
 	if (cmd_counter == 1)	
 		export_env(exported_env, env);
-	cmd_matrix = matrix_creator(cmd, exported_env);
+	cmd_matrix = matrix_creator(cmd, exported_env, env);
 	if (!cmd_matrix)
 		return (1);
-	if (var_checker(cmd_matrix, &env))
+	if (var_checker(cmd_matrix, env, exported_env))
 	{
 		free_matrix(cmd_matrix);
 		return (1);

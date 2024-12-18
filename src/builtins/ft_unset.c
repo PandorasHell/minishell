@@ -44,9 +44,9 @@ int	ft_unset(char **cmd, t_env *env)
 	while (cmd[++i])
 	{
 		tmp = unset_node_search(cmd[i], &j, env);
-		if (j == 0)
+		if (tmp && j == 0)
 			free_first_node(tmp);
-		else if (j > 0)
+		else if (tmp && j > 0)
 			free_single_node(tmp);
 	}
 	tmp = env;

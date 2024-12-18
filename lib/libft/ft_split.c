@@ -80,8 +80,8 @@ char	**ft_split(char const *s, char c)
 	wordcount = ft_countword(s, c);
 	lst = (char **)malloc((wordcount + 1) * sizeof(char *));
 	if (!lst)
-		return (NULL);
+		exit(1);
 	if (!filler(s, lst, c))
-		return (NULL);
+		exit (1);
 	return (lst);
 }

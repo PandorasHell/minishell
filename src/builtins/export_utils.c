@@ -1,10 +1,62 @@
 #include "../../minishell.h"
 
+int cmd_checker(char *cmd)
+{
+    if (ft_isalpha(cmd[0]) || cmd[0] == '_')
+    {
+        return (1);
+    }
+    return (0);
+}
 
-void export_foo_creator(t_cmd_name *exported_env, char *cmd)
+void exp_node_control(t_cmd_name *node, t_cmd_name *export_env, int counter)
+{
+	t_cmd_name	*tmp_node2;
+
+    tmp_node2 = export_env;
+    if (node && counter == 0)
+    {
+        free_exp_first_node(tmp_node2);
+    }
+    else if (node && counter > 0)
+    {
+        free_exp_mid_node(tmp_node2);
+    }
+}
+
+t_cmd_name	*exp_node_search(char *cmd, int *node_counter, t_cmd_name *export_env)
+{
+	t_cmd_name	*tmp;
+
+	tmp = export_env;
+	if (!cmd || !export_env)
+		return (NULL);
+    if (ft_strcmp(cmd, tmp->name) == 0)
+    {
+        return (tmp);
+    }
+	while (tmp != NULL)
+	{
+        if (node_counter)
+            (*node_counter)++;
+		if (ft_strcmp(tmp->name, cmd) == 0)
+			return (tmp);
+		tmp = tmp->next;
+	}
+	return (NULL);
+}
+
+void export_foo_creator(char *cmd, t_cmd_name *exported_env, t_env *env)
 {
     t_cmd_name *node;
+    t_env       *tmp;
 
+    node = exp_node_search(cmd, NULL, exported_env);
+    if (node)
+        return ;
+    tmp = env_node_search(cmd, env);
+    if (tmp)
+        return ;
     node = ft_calloc(1, sizeof(t_cmd_name)); 
     if (!node)
         exit(1);
