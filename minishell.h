@@ -179,12 +179,10 @@ int			variable_updater(char **cmd_matrix, t_env **env);
 int			path_update_control(char *old_path, t_env *env);
 
 // SIGNALS
-void		signal_handler(int signal_number);
 void		ignored_signals(void);
 void		main_signals(void);
 void		child_signals(void);
 void		heredoc_signals(void);
-void		heredoc_signal_handler(int signal_number);
 
 // GET_NEXT_LINE
 char		*get_next_line(int fd);

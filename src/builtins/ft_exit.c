@@ -34,6 +34,7 @@ static int	ft_exit_arg_checker(char *str)
 int	ft_exit(char **cmd_matrix, t_cmd *cmd, t_env *env)
 {
 	int	exit_status;
+	unsigned int randomizer;
 
 	exit_status = g_handler;
 	if (cmd_matrix)
@@ -48,11 +49,11 @@ int	ft_exit(char **cmd_matrix, t_cmd *cmd, t_env *env)
 			if (ft_exit_arg_checker(cmd_matrix[1]) == 1)
 			{
 				ft_putstr_fd("Only use numeric values\n", 2);
-				clean_up_for_exit(cmd_matrix, cmd, env, exit_status);
+				clean_up_for_exit(cmd_matrix, cmd, env, 2);
 			}
-			exit_status = ft_atoi(cmd_matrix[1]);
+			randomizer = ft_atoi(cmd_matrix[1]);
 		}
-		clean_up_for_exit(cmd_matrix, cmd, env, exit_status);
+		clean_up_for_exit(cmd_matrix, cmd, env, randomizer);
 	}
 	clean_up_for_exit(cmd_matrix, cmd, env, exit_status);
 	return (0);

@@ -1,10 +1,10 @@
 #include "../../minishell.h"
 
-void signal_handler(int signal_number)
+static void signal_handler(int signal_number)
 {
 	if (signal_number == SIGINT)
 	{
-		ioctl(0, TIOCSTI, "\n");
+		printf("\n");
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
