@@ -1,6 +1,7 @@
 #include "../../minishell.h"
 
-int	exec_builtin(t_cmd *cmd, t_env *env)
+int	exec_builtin(t_cmd *cmd, t_env *env,
+				 t_cmd_name *export_env)
 {
 	int		status;
 	char	**cmd_matrix;
@@ -14,7 +15,7 @@ int	exec_builtin(t_cmd *cmd, t_env *env)
 	if (ft_strcmp(cmd_matrix[0], "env") == 0)
 		status = ft_env(env);
 	if (ft_strcmp(cmd_matrix[0], "export") == 0)
-		status = ft_export(cmd_matrix, env);
+		status = ft_export(cmd_matrix, env, export_env);
 	if (ft_strcmp(cmd_matrix[0], "unset") == 0)
 		status = ft_unset(cmd_matrix, env);
 	if (ft_strcmp(cmd_matrix[0], "cd") == 0)

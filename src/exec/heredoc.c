@@ -28,10 +28,8 @@ char	*heredoc(char *limiter, t_env *env, int *status)
 	heredoc_signals();
 	while (1)
 	{
-		line = readline("minishell $>> ");
-		if (g_handler == SIGINT)
-			break ;
-		if (!ft_strcmp(line, limit))
+		line = readline("$>> ");
+		if (!ft_strcmp(line, limit) || g_handler == SIGINT)
 		{
 			free(line);
 			free(limit);

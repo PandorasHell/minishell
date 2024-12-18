@@ -56,6 +56,7 @@ SRC_FILES := 	$(SRC_DIR)/main.c \
                 $(SRC_DIR)/builtins/ft_unset.c \
                 $(SRC_DIR)/builtins/ft_is_builtin.c \
 				$(SRC_DIR)/builtins/ft_cd.c \
+				$(SRC_DIR)/builtins/export_utils.c \
 				$(SRC_DIR)/signals/signals.c \
 				$(SRC_DIR)/signals/heredoc_signal.c \
 				$(SRC_DIR)/get_next_line/get_next_line.c \

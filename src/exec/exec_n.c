@@ -38,7 +38,7 @@ void	child_process(t_cmd *cmd, t_env *env)
 	if (execve(path, args, envp) == -1)
 	{
 		perror("Error");
-		exit(1);
+		exit(errno);
 	}
 }
 

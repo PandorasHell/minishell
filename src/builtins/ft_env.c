@@ -9,7 +9,7 @@ int	ft_env(t_env *env)
 		return (1);
 	while (tmp)
 	{
-		if (tmp->content->value)
+		if (tmp->content->value && tmp->content->value[0] != '\0')
 			printf("%s=%s\n", tmp->content->key, tmp->content->value);
 		tmp = tmp->next;
 	}

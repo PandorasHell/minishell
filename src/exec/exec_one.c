@@ -22,10 +22,11 @@ static void	execute_cmd(t_cmd *cmd, t_env *env)
 	main_signals();
 }
 
-void	execute_one(t_cmd *cmd, t_env *env)
+void	execute_one(t_cmd *cmd, t_env *env,
+					 t_cmd_name *export_env)
 {
 	if (ft_is_builtin(cmd->info->word->name))
-		exec_builtin(cmd, env);
+		exec_builtin(cmd, env, export_env);
 	else
 		execute_cmd(cmd, env);
 }

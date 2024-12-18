@@ -1,6 +1,6 @@
 #include "../../minishell.h"
 
-void	exec_cmd(t_cmd *cmd, t_env *env)
+void	exec_cmd(t_cmd *cmd, t_env *env, t_cmd_name *export_env)
 {
 	if (create_heredoc(cmd, env))
 		return ;
@@ -12,7 +12,7 @@ void	exec_cmd(t_cmd *cmd, t_env *env)
 		return ;
 	}
 	if (ft_lstsize((t_list *)cmd) == 1)
-		execute_one(cmd, env);
+		execute_one(cmd, env, export_env);
 	else
-		execute_n(cmd, env);
+		execute_n(cmd, env, export_env);
 }

@@ -132,13 +132,13 @@ t_cmd_red	*expand_split_redir(char *name);
 char		*expand_dolar_heredoc(char *name, t_env *env);
 
 // EXECUTER
-void		exec_cmd(t_cmd *cmd, t_env *env);
+void		exec_cmd(t_cmd *cmd, t_env *env, t_cmd_name *export_env);
 int			create_heredoc(t_cmd *cmd, t_env *env);
 void		free_redir(t_cmd_red *redir);
 char		*remove_quotes(char *limiter);
 char		*new_file(int *status);
 char		*create_tmp_file(char *limiter, int *status, int *fd, char **name);
-void		execute_one(t_cmd *cmd, t_env *env);
+void		execute_one(t_cmd *cmd, t_env *env, t_cmd_name *export_env);
 int			relative_path(char **cmd, char **path);
 char		*get_path(char *cmd, char **env);
 char		**env_to_array(t_env *env);
@@ -169,14 +169,17 @@ long		ft_atol(const char *str);
 int			ft_cd(char **cmd, t_env *env);
 int			ft_echo(char **cmd);
 int			ft_env(t_env *env);
-int			ft_export(char **cmd, t_env *env);
+int			ft_export(char **cmd, t_env *env, t_cmd_name *export_env);
 int			ft_pwd(void);
 int			ft_unset(char **cmd, t_env *env);
 int			ft_is_builtin(char *cmd);
 int			ft_exit(char **cmd_matrix, t_cmd *cmd, t_env *env);
-int			exec_builtin(t_cmd *cmd, t_env *env);
+int			exec_builtin(t_cmd *cmd, t_env *env, t_cmd_name *export_env);
 int			variable_updater(char **cmd_matrix, t_env **env);
 int			path_update_control(char *old_path, t_env *env);
+void		export_env(t_cmd_name *exported_env, t_env *env);
+void		export_foo_creator(t_cmd_name *exported_env, char *cmd);
+
 
 // SIGNALS
 void		ignored_signals(void);

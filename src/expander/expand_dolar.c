@@ -52,7 +52,7 @@ char	*expand_dolar(char *name, t_env *env, int *quote)
 	double_quote = 0;
 	while (name[i])
 	{
-		if (name[i] == '\"')
+		if (name[i] == '\"' && !single_quote)
 			double_quote_status(&double_quote, &i, quote);
 		if (name[i] == '\'' && !double_quote)
 			single_quote_status(&single_quote, &i, quote);
