@@ -1,17 +1,19 @@
 #include "../../minishell.h"
 
-static void	exec_mid(t_cmd *cmd, t_env *env)
+static void	exec_mid(t_cmd *cmd, t_env *env, 
+					t_cmd_name *export_env)
 {
 	manage_redir(cmd->info->redir);
 	if (ft_is_builtin(cmd->info->word->name))
 	{
-		exec_builtin(cmd, env);
+		exec_builtin(cmd, env, export_env);
 		exit (0);
 	}
 	child_process(cmd, env);
 }
 
-pid_t	ft_first_cmd(int (*fd)[2], t_cmd *cmd, t_env *env)
+pid_t	ft_first_cmd(int (*fd)[2], t_cmd *cmd, t_env *env, 
+					t_cmd_name *export_env)
 {
 	pid_t	pid_in;
 
@@ -29,7 +31,7 @@ pid_t	ft_first_cmd(int (*fd)[2], t_cmd *cmd, t_env *env)
 		manage_redir(cmd->info->redir);
 		if (ft_is_builtin(cmd->info->word->name))
 		{
-			exec_builtin(cmd, env);
+			exec_builtin(cmd, env, export_env);
 			exit (0);
 		}
 		child_process(cmd, env);
@@ -39,7 +41,8 @@ pid_t	ft_first_cmd(int (*fd)[2], t_cmd *cmd, t_env *env)
 	return (pid_in);
 }
 
-pid_t	ft_mid_cmd(int (*fd)[2], t_cmd *cmd, t_env *env)
+pid_t	ft_mid_cmd(int (*fd)[2], t_cmd *cmd, t_env *env, 
+					t_cmd_name *export_env)
 {
 	pid_t	pid_mid;
 	int		fd_mid[2];
@@ -60,7 +63,7 @@ pid_t	ft_mid_cmd(int (*fd)[2], t_cmd *cmd, t_env *env)
 		close(fd_mid[0]);
 		dup2(fd_mid[1], STDOUT_FILENO);
 		close(fd_mid[1]);
-		exec_mid(cmd, env);
+		exec_mid(cmd, env, export_env);
 	}
 	close(fd[0][0]);
 	close(fd_mid[1]);
@@ -68,7 +71,8 @@ pid_t	ft_mid_cmd(int (*fd)[2], t_cmd *cmd, t_env *env)
 	return (pid_mid);
 }
 
-pid_t	ft_last_cmd(int (*fd)[2], t_cmd *cmd, t_env *env)
+pid_t	ft_last_cmd(int (*fd)[2], t_cmd *cmd, t_env *env,
+					t_cmd_name *export_env)
 {
 	pid_t	pid_out;
 
@@ -86,7 +90,7 @@ pid_t	ft_last_cmd(int (*fd)[2], t_cmd *cmd, t_env *env)
 		manage_redir(cmd->info->redir);
 		if (ft_is_builtin(cmd->info->word->name))
 		{
-			exec_builtin(cmd, env);
+			exec_builtin(cmd, env, export_env);
 			exit (0);
 		}
 		else

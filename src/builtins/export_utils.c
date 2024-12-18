@@ -24,7 +24,7 @@ void export_env(t_cmd_name *exported_env, t_env *env)
         exit(1);
 	while (tmp)
 	{
-		if (tmp->content->value && tmp->content->value[0] != '\0')
+		if (tmp->content->value)
 			printf("declare -x %s=%s\n", tmp->content->key, tmp->content->value);
 		tmp = tmp->next;
 	}

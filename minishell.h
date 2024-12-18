@@ -147,9 +147,12 @@ int			manage_redir(t_cmd_red *redir);
 void		manage_only_redir_line(t_cmd_red *redir);
 void		execute_n(t_cmd *cmd, t_env *env);
 void		child_process(t_cmd *cmd, t_env *env);
-pid_t		ft_first_cmd(int (*fd)[2], t_cmd *cmd, t_env *env);
-pid_t		ft_mid_cmd(int (*fd)[2], t_cmd *cmd, t_env *env);
-pid_t		ft_last_cmd(int (*fd)[2], t_cmd *cmd, t_env *env);
+pid_t		ft_first_cmd(int (*fd)[2], t_cmd *cmd, t_env *env,
+						 t_cmd_name *export_env);
+pid_t		ft_mid_cmd(int (*fd)[2], t_cmd *cmd, t_env *env, 
+						t_cmd_name *export_env);
+pid_t		ft_last_cmd(int (*fd)[2], t_cmd *cmd, t_env *env, 
+						t_cmd_name *export_env);
 
 // UTILS
 int			exit_checker(const char *line, const char *comparer);
