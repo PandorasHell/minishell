@@ -44,7 +44,6 @@ int	ft_unset(char **cmd, t_env *env)
 	while (cmd[++i])
 	{
 		tmp = unset_node_search(cmd[i], &j, env);
-		printf("the variable to be removed is: %s\n", tmp->content->key);
 		if (j == 0)
 			free_first_node(tmp);
 		else if (j > 0)

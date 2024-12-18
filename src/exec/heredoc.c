@@ -27,7 +27,7 @@ char	*heredoc(char *limiter, t_env *env, int *status)
 	main_signals();
 	while (1)
 	{
-		line = get_next_line(1);
+		line = readline("minishell $>> ");
 		if (!line && g_handler == SIGINT)
 			break ;
 		if (!ft_strcmp(line, limit))

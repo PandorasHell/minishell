@@ -96,14 +96,15 @@ char	*get_next_line(int fd)
 			return (NULL);
 	}
 	rf = ft_read(fd, rf);
-	if (!rf)
-		return (NULL);
-	line = ft_line(rf);
-	rf = ft_rst(rf);
 	if (g_handler == SIGINT)
 	{
 		free(rf);
 		return (NULL);
 	}
+	if (!rf)
+		return (NULL);
+	line = ft_line(rf);
+	rf = ft_rst(rf);
+
 	return (line);
 }

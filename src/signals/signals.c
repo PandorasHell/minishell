@@ -4,7 +4,7 @@ void signal_handler(int signal_number)
 {
 	if (signal_number == SIGINT)
 	{
-		printf("\n");
+		ioctl(0, TIOCSTI, "\n");
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
