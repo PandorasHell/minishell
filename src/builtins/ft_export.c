@@ -6,14 +6,18 @@ int	variable_updater(char **cmd_matrix, t_env **env)
 	int		cmd_counter;
 
 	cmd_counter = matrix_counter(cmd_matrix);
-	if (cmd_counter > 2)
+	printf("cmd 0 -> %s\n", cmd_matrix[0]);
+	printf("cmd 1 -> %s\n", cmd_matrix[1]);
+	printf("counter -> %d\n", cmd_counter);
+	tmp_node = env_node_search(cmd_matrix[0], *env);
+	free(tmp_node->content->value);
+	if (cmd_matrix[1])
 	{
-		tmp_node = env_node_search(cmd_matrix[0], *env);
-		free(tmp_node->content->value);
 		tmp_node->content->value = ft_substr(cmd_matrix[1], 0,
 				ft_strlen(cmd_matrix[1]));
 		if (!tmp_node->content->value)
 			return (1);
+
 	}
 	return (0);
 }

@@ -145,7 +145,7 @@ char		**env_to_array(t_env *env);
 char		**cmd_to_array(t_cmd_name *cmd);
 int			manage_redir(t_cmd_red *redir);
 void		manage_only_redir_line(t_cmd_red *redir);
-void		execute_n(t_cmd *cmd, t_env *env);
+void		execute_n(t_cmd *cmd, t_env *env, t_cmd_name *exported_env);
 void		child_process(t_cmd *cmd, t_env *env);
 pid_t		ft_first_cmd(int (*fd)[2], t_cmd *cmd, t_env *env,
 						 t_cmd_name *export_env);

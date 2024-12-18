@@ -42,7 +42,7 @@ void	child_process(t_cmd *cmd, t_env *env)
 	}
 }
 
-void	execute_n(t_cmd *cmd, t_env *env)
+void	execute_n(t_cmd *cmd, t_env *env, t_cmd_name *exported_env)
 {
 	int		fd[2][2];
 	pid_t	*child;
@@ -56,14 +56,14 @@ void	execute_n(t_cmd *cmd, t_env *env)
 		return ;
 	i = 0;
 	child_signals();
-	child[i++] = ft_first_cmd(fd, cmd, env);
+	child[i++] = ft_first_cmd(fd, cmd, env, exported_env);
 	cmd = cmd->next;
 	while (cmd->next != NULL)
 	{
-		child[i++] = ft_mid_cmd(fd, cmd, env);
+		child[i++] = ft_mid_cmd(fd, cmd, env, exported_env);
 		cmd = cmd->next;
 	}
-	child[i++] = ft_last_cmd(fd, cmd, env);
+	child[i++] = ft_last_cmd(fd, cmd, env, exported_env);
 	ft_waitchild(child, i);
 	free(child);
 	main_signals();

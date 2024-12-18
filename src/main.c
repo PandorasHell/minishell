@@ -2,7 +2,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
-int g_handler = 0;
+int	g_handler = 0;
 
 int	exit_line(char *line)
 {
