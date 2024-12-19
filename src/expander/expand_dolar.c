@@ -33,6 +33,11 @@ static void	single_quote_status(int *single_quote, int *i, int *quote, char *nam
 static char	*expand_dolar_case(char *ret, char *name, int *i, t_env *env)
 {
 	(*i)++;
+	if (!name[(*i)])
+	{
+		ret = ft_strappend(ret, "$");
+		return (ret);
+	}
 	if (name[(*i)] == '?')
 		ret = expand_exit_code(ret, i);
 	else if (is_sys_var(name, i))

@@ -2,11 +2,12 @@
 
 static int	check_exp_env(char *name, int *i, t_env *env)
 {
-	if (ft_strncmp(env->content->key, &name[*i],
-			ft_strlen(env->content->key)) == 0
-		&& (name[*i + ft_strlen(env->content->key)] == '\0'
-			|| ft_strchr("_-?=/.@!^+%*#&()[]{}<>|;:,.~`\\\"'", name[*i
-				+ ft_strlen(env->content->key)])))
+	size_t	len;
+
+	len = ft_strlen(env->content->key);
+	if (ft_strncmp(env->content->key, &name[*i], len) == 0
+		&& (name[*i + len] == '\0'
+			|| ft_strchr("_-?=/.@!^+%*#&()[]{}<>|;:,.~`\\\"'", name[*i + len])))
 		return (1);
 	else
 		return (0);
@@ -14,27 +15,23 @@ static int	check_exp_env(char *name, int *i, t_env *env)
 
 char	*expand_env(char *ret, char *name, int *i, t_env *env)
 {
-	char	*tmp;
 	int		expanded;
 
-	expanded = ((tmp = NULL), 0);
+	expanded = 0;
 	while (env)
 	{
 		if (check_exp_env(name, i, env))
 		{
-			tmp = ft_strdup(env->content->value);
-			ret = ft_strappend(ret, tmp);
-			free(tmp);
-			*i += ((expanded = 1), ft_strlen(env->content->key));
+			ret = ft_strappend(ret, env->content->value);
+			expanded = 1;
+			*i += ft_strlen(env->content->key);
 			break ;
 		}
 		env = env->next;
 	}
 	if (!expanded)
 	{
-		tmp = ft_strdup("");
-		ret = ft_strappend(ret, tmp);
-		free(tmp);
+		ret = ft_strappend(ret, "");
 		while (name[*i] && name[*i] != ' ')
 			(*i)++;
 	}
