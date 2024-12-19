@@ -1,7 +1,6 @@
 #include "../../minishell.h"
 
-int	exec_builtin(t_cmd *cmd, t_env *env,
-				 t_cmd_name *export_env)
+int	exec_builtin(t_cmd *cmd, t_env *env, t_cmd_name *export_env)
 {
 	int		status;
 	char	**cmd_matrix;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/19 17:18:13 by smeixoei          #+#    #+#             */
+/*   Updated: 2024/12/19 17:25:22 by smeixoei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../minishell.h"
 
 void	free_cmd(t_cmd *cmd)
@@ -40,7 +52,7 @@ static t_cmd	*create_cmd(t_lexer **lexer)
 	{
 		status = set_cmd_value(lexer, cmd);
 		if (status == -1)
-			return (free_cmd(cmd),ft_lstclear((t_list **)&cmd, free), NULL);
+			return (free_cmd(cmd), ft_lstclear((t_list **)&cmd, free), NULL);
 		if (status_pipe(lexer, status))
 			return (cmd);
 		if (status_redir(lexer, status, cmd))
@@ -73,7 +85,6 @@ t_cmd	*complete_parser(t_lexer *lexer)
 		{
 			free_cmd(cmd);
 			ft_lstclear((t_list **)&cmd, free);
-			//free_lexer(&lexer);
 			return (NULL);
 		}
 		ft_lstadd_back((t_list **)&cmd, (t_list *)new);

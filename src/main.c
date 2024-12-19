@@ -1,8 +1,20 @@
-#include "../minishell.h"
-#include <readline/readline.h>
-#include <readline/history.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/19 17:18:00 by smeixoei          #+#    #+#             */
+/*   Updated: 2024/12/19 17:18:01 by smeixoei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int	g_handler = 0;
+#include "../minishell.h"
+#include <readline/history.h>
+#include <readline/readline.h>
+
+int			g_handler = 0;
 
 int	exit_line(char *line)
 {
@@ -18,8 +30,8 @@ int	exit_line(char *line)
 	return (1);
 }
 
-static void	exec_line(t_cmd *cmd, t_env *env, char *line, 
-					t_cmd_name *export_env)
+static void	exec_line(t_cmd *cmd, t_env *env, char *line,
+		t_cmd_name *export_env)
 {
 	t_lexer	*lexer;
 	t_cmd	*parser;
@@ -43,9 +55,9 @@ static void	exec_line(t_cmd *cmd, t_env *env, char *line,
 }
 
 static void	line_reader(t_cmd *cmd, char *line, t_env *env,
-			 t_cmd_name *export_env)
+		t_cmd_name *export_env)
 {
-    main_signals();
+	main_signals();
 	while (1)
 	{
 		g_handler = 0;

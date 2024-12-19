@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   child_exec.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/19 17:19:11 by smeixoei          #+#    #+#             */
+/*   Updated: 2024/12/19 17:19:11 by smeixoei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../minishell.h"
 
-static void	exec_mid(t_cmd *cmd, t_env *env, 
-					t_cmd_name *export_env)
+static void	exec_mid(t_cmd *cmd, t_env *env, t_cmd_name *export_env)
 {
 	manage_redir(cmd->info->redir);
 	if (ft_is_builtin(cmd->info->word->name))
@@ -12,8 +23,7 @@ static void	exec_mid(t_cmd *cmd, t_env *env,
 	child_process(cmd, env);
 }
 
-pid_t	ft_first_cmd(int (*fd)[2], t_cmd *cmd, t_env *env, 
-					t_cmd_name *export_env)
+pid_t	ft_first_cmd(int (*fd)[2], t_cmd *cmd, t_env *env, t_cmd_name *export_env)
 {
 	pid_t	pid_in;
 
@@ -27,7 +37,6 @@ pid_t	ft_first_cmd(int (*fd)[2], t_cmd *cmd, t_env *env,
 	{
 		dup2(fd[0][1], STDOUT_FILENO);
 		close(fd[0][0]);
-		//close(fd[1][1]);
 		manage_redir(cmd->info->redir);
 		if (ft_is_builtin(cmd->info->word->name))
 		{
@@ -37,11 +46,10 @@ pid_t	ft_first_cmd(int (*fd)[2], t_cmd *cmd, t_env *env,
 		child_process(cmd, env);
 	}
 	close(fd[0][1]);
-	//close(fd[1][1]);
 	return (pid_in);
 }
 
-pid_t	ft_mid_cmd(int (*fd)[2], t_cmd *cmd, t_env *env, 
+pid_t	ft_mid_cmd(int (*fd)[2], t_cmd *cmd, t_env *env,
 					t_cmd_name *export_env)
 {
 	pid_t	pid_mid;

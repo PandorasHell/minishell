@@ -12,7 +12,6 @@ LIBFT_DIR := $(LIB_DIR)/libft
 # Source files
 SRC_FILES := 	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/env/env.c \
-				$(SRC_DIR)/parsing/malloc_check.c \
 				$(SRC_DIR)/lexer/lexer.c \
 				$(SRC_DIR)/lexer/lexer_utils.c \
 				$(SRC_DIR)/lexer/split_words.c \
@@ -60,7 +59,6 @@ SRC_FILES := 	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/builtins/export_utils_2.c \
 				$(SRC_DIR)/signals/signals.c \
 				$(SRC_DIR)/signals/heredoc_signal.c \
-				$(SRC_DIR)/get_next_line/get_next_line.c \
 
 # Object files
 OBJ_FILES := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))

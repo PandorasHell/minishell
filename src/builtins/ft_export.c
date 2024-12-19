@@ -12,7 +12,6 @@ int	variable_updater(char **cmd_matrix, t_env **env)
 				ft_strlen(cmd_matrix[1]));
 		if (!tmp_node->content->value)
 			return (1);
-
 	}
 	return (0);
 }
@@ -74,12 +73,11 @@ static char	***matrix_creator(char **cmd, t_cmd_name *exported_env, t_env *env)
 	return (cmd_matrix);
 }
 
-static int	var_checker(char ***cmd_matrix, t_env *env,
-						t_cmd_name *export_env)
+static int	var_checker(char ***cmd_matrix, t_env *env, t_cmd_name *export_env)
 {
-	int	i;
-	int counter;
-	t_cmd_name *tmp;
+	int			i;
+	int			counter;
+	t_cmd_name	*tmp;
 
 	i = -1;
 	while (cmd_matrix[++i])
@@ -103,11 +101,11 @@ static int	var_checker(char ***cmd_matrix, t_env *env,
 
 int	ft_export(char **cmd, t_env *env, t_cmd_name *exported_env)
 {
-	char				***cmd_matrix;
-	int					cmd_counter;
-	
+	char	***cmd_matrix;
+	int		cmd_counter;
+
 	cmd_counter = matrix_counter(cmd);
-	if (cmd_counter == 1)	
+	if (cmd_counter == 1)
 		export_env(exported_env, env);
 	cmd_matrix = matrix_creator(cmd, exported_env, env);
 	if (!cmd_matrix)

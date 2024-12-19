@@ -1,6 +1,6 @@
 #include "../../minishell.h"
 
-static void signal_handler(int signal_number)
+static void	signal_handler(int signal_number)
 {
 	if (signal_number == SIGINT)
 	{
@@ -19,7 +19,7 @@ static void signal_handler(int signal_number)
 	}
 }
 
-void child_signal_handler(int signal_number)
+void	child_signal_handler(int signal_number)
 {
 	if (signal_number == SIGINT)
 	{
@@ -29,10 +29,9 @@ void child_signal_handler(int signal_number)
 	{
 		g_handler = SIGQUIT;
 	}
-
 }
 
-void ignored_signals(void)
+void	ignored_signals(void)
 {
 	if (signal(SIGINT, SIG_IGN) == SIG_ERR)
 		perror("Error setting SIGINT handler");
@@ -40,7 +39,7 @@ void ignored_signals(void)
 		perror("Error setting SIGQUIT handler");
 }
 
-void child_signals(void)
+void	child_signals(void)
 {
 	if (signal(SIGINT, child_signal_handler) == SIG_ERR)
 		perror("Error setting SIGINT handler");
@@ -48,7 +47,7 @@ void child_signals(void)
 		perror("Error setting SIGQUIT handler");
 }
 
-void main_signals(void)
+void	main_signals(void)
 {
 	if (signal(SIGINT, signal_handler) == SIG_ERR)
 		perror("Error setting SIGINT handler");

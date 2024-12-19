@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec_one.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/19 17:19:26 by smeixoei          #+#    #+#             */
+/*   Updated: 2024/12/19 17:19:26 by smeixoei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../minishell.h"
 
 static void	execute_cmd(t_cmd *cmd, t_env *env)
@@ -22,8 +34,7 @@ static void	execute_cmd(t_cmd *cmd, t_env *env)
 	main_signals();
 }
 
-void	execute_one(t_cmd *cmd, t_env *env,
-					 t_cmd_name *export_env)
+void	execute_one(t_cmd *cmd, t_env *env, t_cmd_name *export_env)
 {
 	if (ft_is_builtin(cmd->info->word->name))
 		exec_builtin(cmd, env, export_env);

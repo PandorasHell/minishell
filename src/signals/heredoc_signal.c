@@ -1,6 +1,6 @@
 #include "../../minishell.h"
 
-static void heredoc_signal_handler(int signal_number)
+static void	heredoc_signal_handler(int signal_number)
 {
 	if (signal_number == SIGINT)
 	{
@@ -9,7 +9,7 @@ static void heredoc_signal_handler(int signal_number)
 	}
 }
 
-void heredoc_signals(void)
+void	heredoc_signals(void)
 {
 	if (signal(SIGINT, heredoc_signal_handler) == SIG_ERR)
 		perror("Error setting SIGINT handler");

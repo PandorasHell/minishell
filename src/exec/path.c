@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   path.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/19 17:19:38 by smeixoei          #+#    #+#             */
+/*   Updated: 2024/12/19 17:19:38 by smeixoei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../minishell.h"
 
 char	*search_path(char *cmd, char **e_path)
@@ -52,7 +64,7 @@ int	relative_path(char **cmd, char **path)
 
 	if (*cmd == NULL)
 		return (0);
-	if (ft_strncmp(*cmd, "/", 1) == 0 || ft_strncmp(*cmd, "./", 2) == 0 
+	if (ft_strncmp(*cmd, "/", 1) == 0 || ft_strncmp(*cmd, "./", 2) == 0
 		|| ft_strncmp(*cmd, "../", 3) == 0)
 	{
 		if (stat(cmd[0], &buf) == -1)

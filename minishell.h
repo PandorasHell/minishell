@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 12:52:54 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/12/12 18:48:08 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/12/19 17:26:50 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 # define PIPE 5
 # define REDIR 6
 
-extern int g_handler;
+extern int	g_handler;
 
 // ENVIROMENT
 typedef struct s_data_env
@@ -99,6 +99,12 @@ typedef struct s_cmd
 	struct s_cmd		*next;
 }						t_cmd;
 
+typedef struct s_quote
+{
+	int			s_quote;
+	int			d_quote;
+}						t_quote;
+
 // ENV
 t_env		*save_env(char **env);
 void		free_env(t_env **env);
@@ -130,9 +136,8 @@ char		*expand_exit_code(char *ret, int *i);
 t_cmd_name	*expand_split_word(char *name);
 t_cmd_red	*expand_split_redir(char *name);
 char		*expand_dolar_heredoc(char *name, t_env *env);
-void		double_quote_status(int *double_quote, int *i, int *quote,
-								char *name, int *single_quote);
-void		single_quote_status(int *single_quote, int *i, int *quote, char *name, int *double_quote);
+void		double_quote_status(t_quote *quot, int *i, int *split, char *name);
+void		single_quote_status(t_quote *quot, int *i, int *split, char *name);
 
 // EXECUTER
 void		exec_cmd(t_cmd *cmd, t_env *env, t_cmd_name *export_env);
@@ -151,11 +156,11 @@ void		manage_only_redir_line(t_cmd_red *redir);
 void		execute_n(t_cmd *cmd, t_env *env, t_cmd_name *exported_env);
 void		child_process(t_cmd *cmd, t_env *env);
 pid_t		ft_first_cmd(int (*fd)[2], t_cmd *cmd, t_env *env,
-						 t_cmd_name *export_env);
-pid_t		ft_mid_cmd(int (*fd)[2], t_cmd *cmd, t_env *env, 
-						t_cmd_name *export_env);
-pid_t		ft_last_cmd(int (*fd)[2], t_cmd *cmd, t_env *env, 
-						t_cmd_name *export_env);
+				t_cmd_name *export_env);
+pid_t		ft_mid_cmd(int (*fd)[2], t_cmd *cmd, t_env *env,
+				t_cmd_name *export_env);
+pid_t		ft_last_cmd(int (*fd)[2], t_cmd *cmd, t_env *env,
+				t_cmd_name *export_env);
 
 // UTILS
 int			exit_checker(const char *line, const char *comparer);
@@ -192,7 +197,6 @@ void		free_exp_first_node(t_cmd_name *node);
 void		free_exp_mid_node(t_cmd_name *node);
 t_cmd_name	*exp_node_search(char *cmd, int *node_counter, t_cmd_name *export_env);
 
-
 // SIGNALS
 void		ignored_signals(void);
 void		main_signals(void);
@@ -201,8 +205,5 @@ void		heredoc_signals(void);
 
 // GET_NEXT_LINE
 char		*get_next_line(int fd);
-
-
-
 
 #endif

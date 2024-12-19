@@ -1,7 +1,7 @@
 #include "../../minishell.h"
 
-static void	clean_up_for_exit(char **cmd_matrix, t_cmd *cmd, \
-			t_env *env, int exit_status)
+static void	clean_up_for_exit(char **cmd_matrix, t_cmd *cmd, t_env *env,
+		int exit_status)
 {
 	cleanup(cmd_matrix);
 	free_cmd(cmd);
@@ -12,8 +12,8 @@ static void	clean_up_for_exit(char **cmd_matrix, t_cmd *cmd, \
 
 static int	ft_exit_arg_checker(char *str)
 {
-	int	checker;
-	long result;
+	int		checker;
+	long	result;
 
 	result = ft_atol(str);
 	checker = 0;
@@ -33,8 +33,8 @@ static int	ft_exit_arg_checker(char *str)
 
 int	ft_exit(char **cmd_matrix, t_cmd *cmd, t_env *env)
 {
-	int	exit_status;
-	unsigned int randomizer;
+	int				exit_status;
+	unsigned int	randomizer;
 
 	if (g_handler == SIGQUIT)
 		exit_status = g_handler;
