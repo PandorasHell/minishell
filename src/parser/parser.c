@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:18:13 by smeixoei          #+#    #+#             */
-/*   Updated: 2024/12/19 17:25:22 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/12/19 18:07:50 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ t_cmd	*complete_parser(t_lexer *lexer)
 		{
 			free_cmd(cmd);
 			ft_lstclear((t_list **)&cmd, free);
-			printf("PIPE ERROR \n");
+			printf("Syntax error near unexpected token: |\n");
 			return (NULL);
 		}
 		new = create_cmd(&lexer);

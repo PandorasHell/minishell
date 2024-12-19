@@ -22,7 +22,7 @@ static int	manage_infile(char *where, int *in, int type)
 	if (fd < 0)
 	{
 		perror("Error: open failed");
-		return (1);
+		exit (1);
 	}
 	*in = fd;
 	if (type == HEREDOC)
