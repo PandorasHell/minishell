@@ -130,6 +130,9 @@ char		*expand_exit_code(char *ret, int *i);
 t_cmd_name	*expand_split_word(char *name);
 t_cmd_red	*expand_split_redir(char *name);
 char		*expand_dolar_heredoc(char *name, t_env *env);
+void		double_quote_status(int *double_quote, int *i, int *quote,
+								char *name, int *single_quote);
+void		single_quote_status(int *single_quote, int *i, int *quote, char *name, int *double_quote);
 
 // EXECUTER
 void		exec_cmd(t_cmd *cmd, t_env *env, t_cmd_name *export_env);
