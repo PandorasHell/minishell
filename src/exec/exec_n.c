@@ -26,6 +26,10 @@ void	ft_waitchild(pid_t *child, int cmds)
 			return ;
 		i++;
 	}
+	if (WIFEXITED(status))
+		g_handler = WEXITSTATUS(status);
+	if (WIFSIGNALED(status))
+		g_handler = WTERMSIG(status) + 128;
 }
 
 void	child_process(t_cmd *cmd, t_env *env)

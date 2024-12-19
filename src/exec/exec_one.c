@@ -32,15 +32,9 @@ static void	execute_cmd(t_cmd *cmd, t_env *env)
 	}
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
-	{
 		g_handler = WEXITSTATUS(status);
-		printf("se cambio global: (%d)\n", WEXITSTATUS(status));
-	}
 	if (WIFSIGNALED(status))
-	{
-		g_handler = WTERMSIG(status);
-		printf("se cambio global\n");
-	}
+		g_handler = WTERMSIG(status) + 128;
 	main_signals();
 }
 
