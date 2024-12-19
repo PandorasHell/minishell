@@ -23,7 +23,7 @@ static void	exec_mid(t_cmd *cmd, t_env *env, t_cmd_name *export_env)
 	child_process(cmd, env);
 }
 
-pid_t	ft_first_cmd(int (*fd)[2], t_cmd *cmd, t_env *env, t_cmd_name *export_env)
+pid_t	ft_first_cmd(int (*fd)[2], t_cmd *cmd, t_env *env, t_cmd_name *xprt_env)
 {
 	pid_t	pid_in;
 
@@ -40,7 +40,7 @@ pid_t	ft_first_cmd(int (*fd)[2], t_cmd *cmd, t_env *env, t_cmd_name *export_env)
 		manage_redir(cmd->info->redir);
 		if (ft_is_builtin(cmd->info->word->name))
 		{
-			exec_builtin(cmd, env, export_env);
+			exec_builtin(cmd, env, xprt_env);
 			exit (0);
 		}
 		child_process(cmd, env);

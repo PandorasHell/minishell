@@ -156,7 +156,7 @@ void		manage_only_redir_line(t_cmd_red *redir);
 void		execute_n(t_cmd *cmd, t_env *env, t_cmd_name *exported_env);
 void		child_process(t_cmd *cmd, t_env *env);
 pid_t		ft_first_cmd(int (*fd)[2], t_cmd *cmd, t_env *env,
-				t_cmd_name *export_env);
+				t_cmd_name *xprt_env);
 pid_t		ft_mid_cmd(int (*fd)[2], t_cmd *cmd, t_env *env,
 				t_cmd_name *export_env);
 pid_t		ft_last_cmd(int (*fd)[2], t_cmd *cmd, t_env *env,
@@ -186,7 +186,7 @@ int			ft_unset(char **cmd, t_env *env);
 int			ft_is_builtin(char *cmd);
 int			ft_exit(char **cmd_matrix, t_cmd *cmd, t_env *env);
 int			exec_builtin(t_cmd *cmd, t_env *env, t_cmd_name *export_env);
-void		exp_node_control(t_cmd_name *node, t_cmd_name *export_env, int counter);
+void		exp_node_control(t_cmd_name *node, t_cmd_name *exp_env, int cntr);
 int			variable_updater(char **cmd_matrix, t_env **env);
 int			cmd_checker(char *cmd);
 int			path_update_control(char *old_path, t_env *env);
@@ -195,7 +195,7 @@ void		export_foo_creator(char *cmd, t_cmd_name *exported_env, t_env *env);
 int			save_node_env(char **cmd_matrix, t_env *env);
 void		free_exp_first_node(t_cmd_name *node);
 void		free_exp_mid_node(t_cmd_name *node);
-t_cmd_name	*exp_node_search(char *cmd, int *node_counter, t_cmd_name *export_env);
+t_cmd_name	*exp_node_search(char *cmd, int *ndo_cntr, t_cmd_name *export_env);
 
 // SIGNALS
 void		ignored_signals(void);

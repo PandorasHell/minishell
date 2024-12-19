@@ -21,23 +21,22 @@ int	cmd_checker(char *cmd)
 	return (0);
 }
 
-void	exp_node_control(t_cmd_name *node, t_cmd_name *export_env, int counter)
+void	exp_node_control(t_cmd_name *node, t_cmd_name *exp_env, int cntr)
 {
 	t_cmd_name	*tmp_node2;
 
-	tmp_node2 = export_env;
-	if (node && counter == 0)
+	tmp_node2 = exp_env;
+	if (node && cntr == 0)
 	{
 		free_exp_first_node(tmp_node2);
 	}
-	else if (node && counter > 0)
+	else if (node && cntr > 0)
 	{
 		free_exp_mid_node(tmp_node2);
 	}
 }
 
-t_cmd_name	*exp_node_search(char *cmd, int *node_counter,
-		t_cmd_name *export_env)
+t_cmd_name	*exp_node_search(char *cmd, int *ndo_cntr, t_cmd_name *export_env)
 {
 	t_cmd_name	*tmp;
 
@@ -50,8 +49,8 @@ t_cmd_name	*exp_node_search(char *cmd, int *node_counter,
 	}
 	while (tmp != NULL)
 	{
-		if (node_counter)
-			(*node_counter)++;
+		if (ndo_cntr)
+			(*ndo_cntr)++;
 		if (ft_strcmp(tmp->name, cmd) == 0)
 			return (tmp);
 		tmp = tmp->next;

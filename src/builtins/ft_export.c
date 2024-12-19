@@ -62,11 +62,10 @@ static char	***matrix_creator(char **cmd, t_cmd_name *exported_env, t_env *env)
 	int		j;
 
 	j = 0;
-	i = matrix_counter(cmd);
-	cmd_matrix = ft_calloc(i + 1, sizeof(char **));
+	i = 0;
+	cmd_matrix = ft_calloc(matrix_counter(cmd) + 1, sizeof(char **));
 	if (!cmd_matrix)
 		exit(1);
-	i = 0;
 	while (cmd[++j])
 	{
 		if (cmd_checker(cmd[j]))
