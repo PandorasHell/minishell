@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:19:33 by smeixoei          #+#    #+#             */
-/*   Updated: 2024/12/19 18:33:31 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/12/19 19:01:28 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int	create_heredoc(t_cmd *cmd, t_env *env)
 	t_cmd_red	*redir;
 	int			status;
 
-	if (!cmd || !env)
+	if (!cmd)
 		return (1);
 	status = 0;
 	while (cmd)
