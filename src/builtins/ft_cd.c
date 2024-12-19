@@ -6,7 +6,7 @@
 /*   By: juan-cas <juan-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:33:14 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/12/19 17:33:15 by juan-cas         ###   ########.fr       */
+/*   Updated: 2024/12/19 19:01:39 by juan-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,5 +108,6 @@ int	ft_cd(char **cmd, t_env *env)
 		free(current_path);
 		return (1);
 	}
+	free(current_path);
 	return (0);
 }
