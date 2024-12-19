@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:19:33 by smeixoei          #+#    #+#             */
-/*   Updated: 2024/12/19 17:19:34 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/12/19 18:33:31 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*heredoc(char *limiter, t_env *env, int *status)
 	while (1)
 	{
 		line = readline("$>> ");
-		if (!ft_strcmp(line, limit) || g_handler == SIGINT)
+		if (!ft_strcmp(line, limit) || g_handler == SIGINT || !line)
 		{
 			free(line);
 			free(limit);

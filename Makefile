@@ -1,5 +1,5 @@
 # Compiler and flags
-CC := gcc
+CC := cc
 CFLAGS := -Wall -Wextra -Werror -g3 -fsanitize=address,leak
 
 

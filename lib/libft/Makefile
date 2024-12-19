@@ -6,7 +6,7 @@
 #    By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 18:14:56 by juan-cas          #+#    #+#              #
-#    Updated: 2024/12/12 18:47:29 by smeixoei         ###   ########.fr        #
+#    Updated: 2024/12/19 18:23:54 by smeixoei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ BSOURCES = \
 OBJECTS = $(SOURCES:.c=.o)
 BOBJECTS = $(BSOURCES:.c=.o)
 
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 AR = ar
