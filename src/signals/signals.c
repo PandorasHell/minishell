@@ -6,7 +6,7 @@
 /*   By: juan-cas <juan-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:33:44 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/12/19 17:33:45 by juan-cas         ###   ########.fr       */
+/*   Updated: 2024/12/19 19:23:30 by juan-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ static void	signal_handler(int signal_number)
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
-		g_handler = SIGINT;
+		g_handler = SIGINT + 128;
 	}
 	else if (signal_number == SIGQUIT)
 	{
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
-		g_handler = SIGQUIT;
+		g_handler = SIGQUIT + 128;
 	}
 }
 
@@ -35,11 +35,11 @@ void	child_signal_handler(int signal_number)
 {
 	if (signal_number == SIGINT)
 	{
-		g_handler = SIGINT;
+		g_handler = SIGINT + 128;
 	}
 	else if (signal_number == SIGQUIT)
 	{
-		g_handler = SIGQUIT;
+		g_handler = SIGQUIT + 128;
 	}
 }
 

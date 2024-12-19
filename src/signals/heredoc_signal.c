@@ -6,7 +6,7 @@
 /*   By: juan-cas <juan-cas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:33:42 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/12/19 17:33:43 by juan-cas         ###   ########.fr       */
+/*   Updated: 2024/12/19 19:21:47 by juan-cas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	heredoc_signal_handler(int signal_number)
 	if (signal_number == SIGINT)
 	{
 		ioctl(0, TIOCSTI, "\n");
-		g_handler = SIGINT;
+		g_handler = SIGINT + 128;
 	}
 }
 
