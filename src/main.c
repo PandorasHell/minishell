@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:18:00 by smeixoei          #+#    #+#             */
-/*   Updated: 2024/12/19 17:18:01 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/12/19 20:28:51 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,6 @@
 #include <readline/readline.h>
 
 int			g_handler = 0;
-
-int	exit_line(char *line)
-{
-	while (*line)
-	{
-		if (*line == '<')
-		{
-			if (*(line + 1) == '<')
-				return (0);
-		}
-		line++;
-	}
-	return (1);
-}
 
 static void	exec_line(t_cmd *cmd, t_env *env, char *line,
 		t_cmd_name *export_env)
@@ -73,7 +59,7 @@ static void	line_reader(t_cmd *cmd, char *line, t_env *env,
 				continue ;
 			}
 			exec_line(cmd, env, line, export_env);
-			if (!check_character_for_history(line[0]) && exit_line(line))
+			if (!check_character_for_history(line[0]))
 				add_history(line);
 			free(line);
 		}

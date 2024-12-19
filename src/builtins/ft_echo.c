@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juan-cas <juan-cas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:33:12 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/12/19 17:33:13 by juan-cas         ###   ########.fr       */
+/*   Updated: 2024/12/19 20:28:34 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	flag_checker(char **cmd, int iterator)
 	while (cmd[iterator])
 	{
 		j = 1;
-		if (cmd[iterator][0] == '-')
+		if (cmd[iterator][0] == '-' && cmd[iterator][1])
 		{
 			while (cmd[iterator][j])
 			{

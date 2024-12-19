@@ -43,7 +43,7 @@ static int	manage_outfile(char *where, int *out, int type)
 	if (fd < 0)
 	{
 		perror("Error: open failed");
-		return (1);
+		exit (1);
 	}
 	*out = fd;
 	return (0);
@@ -125,6 +125,6 @@ int	manage_redir(t_cmd_red *redir)
 		tmp = tmp->next;
 	}
 	if (dup_process(in, out))
-		return (1);
+		exit (1);
 	return (0);
 }
