@@ -19,7 +19,6 @@ SRC_FILES := 	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/parser/set_values.c \
 				$(SRC_DIR)/parser/status_checker.c \
 				$(SRC_DIR)/utils/exit_checker.c \
-				$(SRC_DIR)/utils/line_character_checker.c \
 				$(SRC_DIR)/utils/free_control.c \
 				$(SRC_DIR)/utils/node_searchers.c \
 				$(SRC_DIR)/utils/pointer_freer.c \

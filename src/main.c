@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:18:00 by smeixoei          #+#    #+#             */
-/*   Updated: 2024/12/19 20:28:51 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/12/19 20:35:57 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,7 @@ static void	line_reader(t_cmd *cmd, char *line, t_env *env,
 				continue ;
 			}
 			exec_line(cmd, env, line, export_env);
-			if (!check_character_for_history(line[0]))
-				add_history(line);
+			add_history(line);
 			free(line);
 		}
 	}
