@@ -6,7 +6,7 @@
 /*   By: smeixoei <smeixoei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:33:06 by juan-cas          #+#    #+#             */
-/*   Updated: 2024/12/19 18:38:56 by smeixoei         ###   ########.fr       */
+/*   Updated: 2024/12/19 18:42:13 by smeixoei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	ft_exit(char **cmd_matrix, t_cmd *cmd, t_env *env)
 	{
 		if (matrix_counter(cmd_matrix) > 2)
 			return (ft_putstr_fd("exit: too many arguments\n", 2), 1);
-		if (cmd_matrix[1] != 0)
+		if (cmd_matrix[1])
 		{
 			if (ft_exit_arg_checker(cmd_matrix[1]) == 1)
 			{
