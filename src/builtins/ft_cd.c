@@ -26,6 +26,7 @@ static int	send_to_home(char *old_path, t_env *env)
 	if (!home)
 	{
 		ft_putstr_fd("Error: there is no HOME\n", 2);
+		g_handler = 2;
 		return (1);
 	}
 	chdir(home->content->value);
@@ -97,7 +98,7 @@ int	ft_cd(char **cmd, t_env *env)
 		{
 			ft_putendl_fd(strerror(errno), 1);
 			free(current_path);
-			return (1);
+			return (g_handler = errno, 1);
 		}
 		path_update_control(current_path, env);
 		free(current_path);
