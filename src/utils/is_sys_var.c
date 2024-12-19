@@ -11,7 +11,8 @@ int	is_sys_var(char *name, int *pos)
 		return (0);
 	while (name[i] && name[i] != ' ' && name[i] != '=' && name[i] != '/')
 	{
-		if (name[i] == '_' || ft_isalpha(name[i]) || ft_isdigit(name[i]))
+		if (ft_strchr("_-?=/.@!^+%*#&()[]{}<>|;:,.~`'\"\\", name[i])
+			|| ft_isalpha(name[i]) || ft_isdigit(name[i]))
 		{
 			i++;
 			if (name[i] == '\"')

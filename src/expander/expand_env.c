@@ -5,12 +5,8 @@ static int	check_exp_env(char *name, int *i, t_env *env)
 	if (ft_strncmp(env->content->key, &name[*i],
 			ft_strlen(env->content->key)) == 0
 		&& (name[*i + ft_strlen(env->content->key)] == '\0'
-			|| name[*i + ft_strlen(env->content->key)] == ' '
-			|| (name[*i + ft_strlen(env->content->key)] >= 9
-				&& name[*i + ft_strlen(env->content->key)] == 13)
-			|| name[*i + ft_strlen(env->content->key)] == '\"'
-			|| name[*i + ft_strlen(env->content->key)] == '\''
-			|| name[*i + ft_strlen(env->content->key)] == '$'))
+			|| ft_strchr("_-?=/.@!^+%*#&()[]{}<>|;:,.~`\\\"'", name[*i
+				+ ft_strlen(env->content->key)])))
 		return (1);
 	else
 		return (0);

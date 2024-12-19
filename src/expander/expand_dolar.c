@@ -2,6 +2,8 @@
 
 static void	double_quote_status(int *double_quote, int *i, int *quote, char *name)
 {
+	while (name[*i] == '\"')
+	{
 	if (*double_quote)
 		*double_quote = 0;
 	else
@@ -10,30 +12,12 @@ static void	double_quote_status(int *double_quote, int *i, int *quote, char *nam
 		*double_quote = 1;
 	}
 	(*i)++;
-	if (name[*i] == '\"')
-	{
-		if (*double_quote)
-			*double_quote = 0;
-		else
-		{
-			(*quote) += 1;
-			*double_quote = 1;
-		}
-		(*i)++;
 	}
 }
 
 static void	single_quote_status(int *single_quote, int *i, int *quote, char *name)
 {
-	if (*single_quote)
-		*single_quote = 0;
-	else
-	{
-		(*quote) += 1;
-		*single_quote = 1;
-	}
-	(*i)++;
-	if (name[*i] == '\'')
+	while (name[*i] == '\'')
 	{
 		if (*single_quote)
 			*single_quote = 0;
